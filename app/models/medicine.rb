@@ -1,5 +1,5 @@
 class Medicine < ApplicationRecord
-	has_many :bill_details as: :billable
-	has_many :prescribed_medicines
-	has_many :purchase_details
+	has_many :bill_details as: :billable, dependent: :destroy
+	has_many :prescribed_medicines, dependent: :destroy
+	has_many :purchase_details, dependent: :destroy
 end
