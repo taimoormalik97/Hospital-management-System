@@ -1,4 +1,5 @@
 class Bill < ApplicationRecord
+  belongs_to :hospital
   belongs_to :patient
   has_many :bill_details as: :billable, dependent: :destroy
   has_many :medicines through: :bill_details
