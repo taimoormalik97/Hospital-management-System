@@ -3,12 +3,12 @@ class Hospital < ApplicationRecord
   has_many :appointments
   has_many :feedbacks
   has_many :availability
-  has_many :lab_report
-  has_many :test
-  has_many :medicine 
-  has_many :prescribed_medicine
-  has_many :purchase_order
-  has_many :purchase_detail
-  has_many :bill
-  has_many :bill_detail
+  has_many :lab_reports
+  has_many :tests
+  has_many :medicines
+  has_many :prescribed_medicines
+  has_many :purchase_orders
+  has_many :purchase_details
+  has_many :bills
+  has_many :bill_details
 end
