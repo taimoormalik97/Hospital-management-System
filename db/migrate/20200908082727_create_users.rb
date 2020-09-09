@@ -11,11 +11,10 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :registration_no
       t.string :speciality
       t.decimal :consultancy_fee, precision: 10, scale: 2
-      t.references :hospital, null: false, foreign_key: true
+      t.references :hospital, null: false
 
       t.timestamps null: false
     end
     add_index :users, [:id, :type]
-    add_index :users, :hospital_id
   end
 end
