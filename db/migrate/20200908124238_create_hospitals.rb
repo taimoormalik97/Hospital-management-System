@@ -6,7 +6,7 @@ class CreateHospitals < ActiveRecord::Migration[6.0]
       t.bigint :phone_number, null: false
       t.string :sub_domain, null: false
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

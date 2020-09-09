@@ -7,7 +7,7 @@ class CreateAppointments < ActiveRecord::Migration[6.0]
       t.references :availability, null: false, foreign_key: true
       t.references :hospital, null: false, foreign_key: true
 
-      t.timestamps
+      t.timestamps null: false
     end
     add_index :appointments, :hospital_id
   end

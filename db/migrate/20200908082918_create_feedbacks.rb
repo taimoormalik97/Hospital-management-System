@@ -6,7 +6,7 @@ class CreateFeedbacks < ActiveRecord::Migration[6.0]
       t.references :appointment, null: false, foreign_key: true
       t.references :hospital, null: false, foreign_key: true
 
-      t.timestamps
+      t.timestamps null: false
     end
     add_index :feedbacks, :hospital_id
   end
