@@ -7,7 +7,8 @@ class CreateLabReports < ActiveRecord::Migration[6.0]
       t.datetime :sample_collection_date, null: false
       t.datetime :report_generation_date, null: false
 
-      t.timestamps
+      t.timestamps null: false
     end
+    add_index :lab_reports, [:hospital, :id]
   end
 end

@@ -6,7 +6,8 @@ class CreateMedicines < ActiveRecord::Migration[6.0]
       t.decimal :price, precision: 10, scale: 2, null: false
       t.references :hospital, null: false, foreign_key: true
 
-      t.timestamps
+      t.timestamps null: false
     end
+    add_index :medicines, [:hospital, :id]
   end
 end

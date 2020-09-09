@@ -6,7 +6,9 @@ class CreatePrescribedMedicines < ActiveRecord::Migration[6.0]
       t.string :usage_instruction, null: false
       t.references :hospital, null: false, foreign_key: true
 
-      t.timestamps
+      t.timestamps null: false
     end
+    add_index :prescribed_medicines, :hospital
+    add_index :prescribed_medicines, :medicine
   end
 end

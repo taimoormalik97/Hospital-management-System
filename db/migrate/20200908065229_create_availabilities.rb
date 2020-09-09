@@ -7,8 +7,9 @@ class CreateAvailabilities < ActiveRecord::Migration[6.0]
       t.references :doctor, null: false, foreign_key: true
       t.references :hospital, null: false, foreign_key: true
 
-      t.timestamps
+      t.timestamps null: false
     end
     add_index :availabilities, :week_day
+    add_index :availabilities, :hospital
   end
 end
