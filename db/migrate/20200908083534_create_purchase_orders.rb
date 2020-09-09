@@ -6,7 +6,7 @@ class CreatePurchaseOrders < ActiveRecord::Migration[6.0]
       t.string :state, null: false
       t.references :admin, null: false, foreign_key: true
       t.references :hospital, foreign_key: true, null:false, index: true
-      t.timestamps, null: false
+      t.timestamps null: false
     end
   end
 end
