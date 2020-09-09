@@ -1,10 +1,12 @@
 class CreatePurchaseDetails < ActiveRecord::Migration[6.0]
   def change
     create_table :purchase_details do |t|
-      t.references :purchaseorder, null: false, foreign_key: true
+      t.integer :quantity
+      t.references :purchase_order, null: false, foreign_key: true
       t.references :medicine, null: false, foreign_key: true
       t.references :hospital, foreign_key: true, null:false
-      t.timestamps
+      t.timestamps, null: false
+      add_index(:purchase_details, [:hospital_id, :purchase_order_id])
     end
   end
 end
