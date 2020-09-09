@@ -8,6 +8,6 @@ class CreateMedicines < ActiveRecord::Migration[6.0]
 
       t.timestamps null: false
     end
-    add_index :medicines, [:hospital, :id]
+    add_index :medicines, [:hospital_id, :id]
   end
 end

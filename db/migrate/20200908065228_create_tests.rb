@@ -9,6 +9,6 @@ class CreateTests < ActiveRecord::Migration[6.0]
       t.timestamps null: false
     end
     add_index :tests, :name
-    add_index :tests, :hospital
+    add_index :tests, :hospital_id
   end
 end

@@ -8,7 +8,7 @@ class CreatePrescribedMedicines < ActiveRecord::Migration[6.0]
 
       t.timestamps null: false
     end
-    add_index :prescribed_medicines, :hospital
-    add_index :prescribed_medicines, :medicine
+    add_index :prescribed_medicines, :hospital_id
+    add_index :prescribed_medicines, :medicine_id
   end
 end

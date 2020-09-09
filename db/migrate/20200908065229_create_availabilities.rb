@@ -10,6 +10,6 @@ class CreateAvailabilities < ActiveRecord::Migration[6.0]
       t.timestamps null: false
     end
     add_index :availabilities, :week_day
-    add_index :availabilities, :hospital
+    add_index :availabilities, :hospital_id
   end
 end

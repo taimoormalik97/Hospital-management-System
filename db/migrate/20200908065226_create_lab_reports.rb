@@ -9,6 +9,6 @@ class CreateLabReports < ActiveRecord::Migration[6.0]
 
       t.timestamps null: false
     end
-    add_index :lab_reports, [:hospital, :id]
+    add_index :lab_reports, [:hospital_id, :id]
   end
 end
