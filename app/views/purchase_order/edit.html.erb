@@ -1,0 +1,34 @@
+<div class="container">   
+  
+<%= form_for @purchase_order, url: {action: :update} do |f| %>   
+     
+   <h3>Add Order</h3>         
+     <div class="container">   
+            <label>Vendor Name</label>   
+            <%= f.text_field :vendorname %>   
+     </div>   
+  
+     <div class="container">   
+            <label class="input">Price</label>   
+            <%= f.text_field :price %>   
+     </div>   
+        
+     <div class="container">   
+            <label>State</label>   
+            <%= f.select :state, options_for_select(['drafted', 'confirmed','delivered']), { prompt: true, selected: 'drafted' }, required: true %>    
+   <div>   
+      <%= link_to 'Back', { controller: 'purchase_order', action: 'index'} %>   
+      <%= f.submit 'Update' %>  
+      <% end %> 
+    </div>    
+ <div class="container">
+      <%= form_tag(search_medicines_path, method: 'get', remote: true, 
+    class: 'navbar-form navbar-left') do %>  
+  <div class="input-group">  
+    <%= search_field_tag :search, params[:search], placeholder: "Search Medicines", class: "form-control" %>  
+    <div class="input-group-btn">  
+      <%= submit_tag "Submit", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
+    </div> 
+    <div id="display_results"></div>
+  </div>  
+<% end %>  
