@@ -4,10 +4,6 @@
 			<div class="card-header p-3 container-fluid">
 				<div class="row">
 					<h3 class="col-md-9">Edit Patient</h3> 
-					<div class="col-md-3 float-right">
-			  		<%= f.submit 'Update' , class: "btn btn-primary "%>   
-						<%= link_to 'Cancel', { controller: 'patients', action: 'show'} , class: "btn btn-secondary ", style:"margin-left: 1em"%>
-					</div>
 				</div>
 			</div>
 			<div class="card-body">     
@@ -37,6 +33,14 @@
 						<%=f.select :gender, options_for_select(["Male", "Female", "Other"]) , class:"form-control float-right"%>   
 					</div>     
 				</p> 
+			</div> 
+			<div class="card-footer p-3 container-fluid">
+				<div class="row d-flex justify-content-md-end">
+					<div class="col-md-3 d-flex justify-content-md-end">
+			  		<%= f.submit 'Update' , class: "btn btn-primary "%>   
+					<%= link_to 'Cancel', { controller: 'patients', action: 'show'} , class: "btn btn-secondary ", style:"margin-left: 1em"%>
+					</div>
+				</div>
 			</div>   	
 		</div>   	
 	</div> 

@@ -4,10 +4,6 @@
 			<div class="card-header p-3 container-fluid">
 				<div class="row">
 					<h3 class="col-md-9">Edit Doctor</h3> 
-					<div class="col-md-3 float-right">
-			  		<%= f.submit 'Update' , class: "btn btn-primary "%>   
-						<%= link_to 'Cancel', { controller: 'doctors', action: 'show'} , class: "btn btn-secondary ", style:"margin-left: 1em"%>
-					</div>
 				</div>
 			</div>
 			<div class="card-body">     
@@ -37,6 +33,14 @@
 						<%= f.text_field :consultancy_fee, class:"form-control" %>   
 					</div>     
 				</p> 
+			</div>
+			<div class="card-footer p-3 container-fluid">
+				<div class="row d-flex justify-content-md-end">
+					<div class="col-md-3 d-flex justify-content-md-end">
+			  		<%= f.submit 'Update' , class: "btn btn-primary "%>   
+						<%= link_to 'Cancel', { controller: 'doctors', action: 'show'} , class: "btn btn-secondary ", style:"margin-left: 1em"%>
+					</div>
+				</div>
 			</div>   	
 		</div>   	
 	</div> 

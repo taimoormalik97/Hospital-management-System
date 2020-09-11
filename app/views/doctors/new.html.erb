@@ -4,10 +4,6 @@
 			<div class="card-header p-3 container-fluid">
 				<div class="row">
 					<h3 class="col-md-9">Add Doctor</h3> 
-					<div class="col-md-3 float-right">
-			  		<%= f.submit 'Save' , class: "btn btn-primary "%>   
-						<%= link_to 'Cancel', { controller: 'doctors', action: 'index'} , class: "btn btn-secondary ", style:"margin-left: 1em"%>
-					</div>
 				</div>
 			</div>
 			<div class="card-body">
@@ -41,7 +37,15 @@
 					  </div>   
 				  </p>   
 				</div> 
-			<% end %>   
 		</div> 
+		<div class="card-footer p-3 container-fluid">
+			<div class="row d-flex justify-content-md-end">
+				<div class="col-md-3 d-flex justify-content-md-end">
+		  		<%= f.submit 'Save' , class: "btn btn-primary "%>   
+				<%= link_to 'Cancel', { controller: 'doctors', action: 'index'} , class: "btn btn-secondary ", style:"margin-left: 1em"%>
+				</div>
+			</div>
+		</div>
 	</div> 
 </div> 
+<% end %>   
