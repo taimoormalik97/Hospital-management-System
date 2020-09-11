@@ -1,0 +1,35 @@
+<div class="container  pt-3"> 
+	<div class="card">
+		<div class="card-header p-3 container-fluid">
+			<div class="row">
+				<h3 class="col-md-10">Patients</h3> 
+				<div class="col-md-2 float-right">
+					<%= link_to 'Add Patient', new_patient_path ,class:"btn btn-primary"%>   
+				</div>   
+			</div>
+		</div> 
+		<div class="card-body">
+			<p><%= flash[:notice] %></p> 
+			<table  class="table">   
+				<thead >   
+					<tr>   
+						<th>Name</th>   
+						<th>Gender</th>   
+						<th>Date of Birth</th>   
+						<th>Family History</th>  
+					</tr>   
+				</thead>   
+				<tbody>   
+				<% @patients.each do |patient| %>   
+						<tr>   
+							<td><%= link_to patient.name, patient_path(patient) %></td>   
+							<td><%= patient.gender %></td>  
+							<td><%= patient.dob %></td>  
+							<td><%= patient.family_history %></td>   
+						</tr>   
+				<% end %>   
+				</tbody>   
+			</table> 
+		</div>
+	</div>
+</div> 
