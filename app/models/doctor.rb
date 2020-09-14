@@ -1,4 +1,5 @@
 class Doctor < User
+	sequenceid :hospital , :doctors
   has_many :appointments, dependent: :nullify
   has_many :patients, through: :appointments
   has_many :feedbacks, dependent: :destroy

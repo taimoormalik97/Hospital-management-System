@@ -5,9 +5,16 @@ Rails.application.routes.draw do
   	collection do
     	get 'search'
     end
+    member do
+    	post 'decquantity'
+    end
   end
   root 'medicines#index'
 
-  resources :purchase_order
+  resources :purchase_order do
+    member do
+      post 'addmed'
+    end
+end
 end
 

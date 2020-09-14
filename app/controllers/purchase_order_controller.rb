@@ -7,10 +7,30 @@ class PurchaseOrderController < ApplicationController
     @purchase_order = PurchaseOrder.new
   end
 
+  def addmed
+    binding.pry
+    @purchase_order = PurchaseOrder.find(params[:id])
+    @medicine= Medicine.find_by(id: params[:medicine_id])
+    if @purchase_order.add_med(@medicine) 
+        if @medicine.update(quantity: @medicine.quantity-1)
+          binding.pry   
+          flash[:notice] = 'Med updated!'   
+        else   
+          flash[:error] = 'Failed!'     
+      end  
+        flash[:notice] = 'Medicine added'            
+    else   
+        flash[:error] = 'Failed!'   
+        render :edit   
+    end 
+
+  end
+
   def show
     @purchase_order = PurchaseOrder.find(params[:id])
   end
   def edit
+    binding.pry
     @purchase_order = PurchaseOrder.find(params[:id])
   end
   def create

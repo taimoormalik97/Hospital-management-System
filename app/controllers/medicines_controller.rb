@@ -9,22 +9,22 @@ class MedicinesController < ApplicationController
 	def show
 		@medicine = Medicine.find(params[:id])
 	end
+
 	def search
 		#binding.pry
-		response.content_type = Mime[:js]
 		@medicine = Medicine.find_by(name: params[:search])
 		if @medicine.blank?
 			flash[:notice] = 'Medicine not found!'
 			redirect_to root_path
 		else		
 			respond_to do |format|
-        		format.js# { render partial: 'search-results', locals: @medicine}
+        		format.js{ render 'purchase_order/search' }
       	    end
 		end
 	end
 	def create
 		@medicine = Medicine.new(medicine_params)
-		@medicine.hospital=Hospital.first   
+		@medicine.hospital=Hospital.first  
 	    if @medicine.save   
 	      flash[:notice] = 'Medicine successfully added!'   
 	      redirect_to root_path   
@@ -34,6 +34,7 @@ class MedicinesController < ApplicationController
 	    end   
 	end
 	def edit
+		binding.pry
 		@medicine= Medicine.find(params[:id])
 	end
 	def update

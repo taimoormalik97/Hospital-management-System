@@ -1,6 +1,6 @@
 <div class="container">   
   
-<%= form_for @purchase_order, url: {action: :update} do |f| %>   
+  <%= form_for @purchase_order, url: {action: :update} do |f| %>   
      
    <h3>Add Order</h3>         
      <div class="container">   
@@ -20,15 +20,19 @@
       <%= link_to 'Back', { controller: 'purchase_order', action: 'index'} %>   
       <%= f.submit 'Update' %>  
       <% end %> 
-    </div>    
- <div class="container">
+    </div> 
+    </div> 
+</div>  
+<div class="container" id="search1">
       <%= form_tag(search_medicines_path, method: 'get', remote: true, 
     class: 'navbar-form navbar-left') do %>  
   <div class="input-group">  
-    <%= search_field_tag :search, params[:search], placeholder: "Search Medicines", class: "form-control" %>  
+    <%= search_field_tag :search, params[:search], placeholder: "Search Medicines", class: "form-control" %> 
+    <%= hidden_field_tag :purchase_order_id, @purchase_order.id%> 
     <div class="input-group-btn">  
       <%= submit_tag "Submit", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
     </div> 
-    <div id="display_results"></div>
   </div>  
-<% end %>  
+<% end %> 
+</div> 
+<div class="container" id="display_results"></div>
