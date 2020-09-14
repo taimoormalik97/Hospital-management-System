@@ -13,23 +13,23 @@ class AdminController < ApplicationController
   # PATCH/resource/update
   def update
     respond_to do |format|
-         if @admin.update(admin_params)
-            format.html { redirect_to @admin, notice: 'Profile was successfully updated.' }
-         else
-            format.html { render :edit }
-         end
+      if @admin.update(admin_params)
+        format.html { redirect_to @admin, notice: 'Profile was successfully updated.' }
+      else
+        format.html { render :edit }
       end
+    end
   end
 
   private
    
   
-   def set_admin
-      @admin = Admin.find(params[:id])
-   end
+  def set_admin
+    @admin = Admin.find(params[:id])
+  end
 
-   def admin_params
-      params.require(:admin).permit(:name, :email)
-   end
+  def admin_params
+    params.require(:admin).permit(:name, :email)
+  end
 
 end
