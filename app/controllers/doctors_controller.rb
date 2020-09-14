@@ -21,8 +21,8 @@ class DoctorsController < ApplicationController
     @doctor.hospital = Hospital.first
     respond_to do |format|
       if @doctor.save
-        format.html { redirect_to doctors_path }
         flash[:notice] = t('doctor.add.success')
+        format.html { redirect_to doctors_path }
       else
         flash[:error] = t('doctor.add.failure')
         format.html { render :new }
@@ -51,10 +51,10 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.find(params[:id])
     respond_to do |format|
       if @doctor.update(doctor_params)
-        flash[:notice] = t('doctor.udpate.success')
+        flash[:notice] = t('doctor.update.success')
         format.html { redirect_to doctor_path(@doctor) }
       else
-        flash[:error] = t('doctor.udpate.failure')
+        flash[:error] = t('doctor.update.failure')
         format.html { render :edit }
       end
     end

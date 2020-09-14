@@ -38,7 +38,7 @@ en:
     delete:
       success: "Doctor has been deleted successfully"
       failure: "Doctor is not deleted!"
-    udpate:
+    update:
       success: "Doctor has been updated successfully"
       failure: "Doctor is not updated!"
   patient:
@@ -48,7 +48,7 @@ en:
     delete:
       success: "Patient has been deleted successfully"
       failure: "Patient is not deleted!"
-    udpate:
+    update:
       success: "Patient has been updated successfully"
       failure: "Patient is not updated!"
       

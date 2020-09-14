@@ -4,9 +4,9 @@
         <div class="row">
           <h3 class="col-md-8">Dr. <%= @doctor.name %></h3> 
           <div class="col-md-4 d-flex justify-content-md-end"> 
-            <%= link_to 'Edit', edit_doctor_path(@doctor) , class: "btn btn-primary "%> 
-            <%= link_to 'Delete', doctor_path(@doctor), method: :delete , class: "btn btn-danger  ", style:"margin-left: 1em"%>  
-            <%= link_to 'Back', doctors_path , class: "btn btn-secondary", style:"margin-left: 1em"%>
+            <%= link_to 'Edit', edit_doctor_path(@doctor) , class: "btn btn-primary " %> 
+            <%= link_to 'Delete', doctor_path(@doctor), method: :delete , class: "btn btn-danger btn-spacing" %>  
+            <%= link_to 'Back', doctors_path , class: "btn btn-secondary btn-spacing" %>
           </div>
         </div>
       </div>

@@ -51,10 +51,10 @@ class PatientsController < ApplicationController
     @patient = Patient.find(params[:id])
     respond_to do |format|
       if @patient.update(patient_params)
-        flash[:notice] = t('patient.udpate.success')
+        flash[:notice] = t('patient.update.success')
         format.html { redirect_to patient_path(@patient) }
       else
-        flash[:error] = t('patient.udpate.failure')
+        flash[:error] = t('patient.update.failure')
         format.html { render :edit }
       end
     end
