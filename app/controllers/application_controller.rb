@@ -4,11 +4,16 @@ class ApplicationController < ActionController::Base
     #   render file: "#{Rails.root}/public/404", status: :not_found
     # end
 
-    before_action :configure_permitted_parameters, if: :devise_controller?
-    around_action :scope_current_hospital
-    before_action :check_valid_domain, :allow_signup_on_domain, :allow_signin_on_subdomain, :allow_password_reset_on_subdomain, :allow_confirmation_email_on_subdomain, :devise_edit_profile
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  around_action :scope_current_hospital
+  before_action :check_valid_domain, :allow_signup_on_domain, :allow_signin_on_subdomain, :allow_password_reset_on_subdomain, :allow_confirmation_email_on_subdomain, :devise_edit_profile
 
-    
+  rescue_from ActiveRecord::RecordNotFound do
+    respond_to do |format|
+      format.html { render plain: '404 Not Found', status: 404 }
+    end
+  end
+
   private
 
   def configure_permitted_parameters
@@ -82,3 +87,9 @@ class ApplicationController < ActionController::Base
   end
 
 end
+
+  rescue_from ActiveRecord::RecordNotFound do
+    respond_to do |format|
+      format.html { render plain: '404 Not Found', status: 404 }
+    end
+  end

@@ -1,0 +1,35 @@
+<div class="container  pt-3"> 
+  <div class="card">
+    <div class="card-header p-3 container-fluid">
+      <div class="row">
+        <h3 class="col-md-10">Doctors</h3> 
+        <div class="col-md-2 d-flex justify-content-md-end">
+          <%= link_to 'Add Doctor', new_doctor_path ,class: "btn btn-primary" %>   
+        </div>   
+      </div>
+    </div> 
+    <div class="card-body">
+      <p><%= flash[:notice] %></p> 
+      <table  class="table">   
+        <thead >   
+          <tr>   
+            <th>Name</th>   
+            <th>Registration#</th>   
+            <th>Speciality</th>   
+            <th>Consultancy Fee</th>  
+          </tr>   
+        </thead>   
+        <tbody>   
+        <% @doctors.each do |doctor| %>   
+          <tr>   
+            <td><%= link_to doctor.name, doctor_path(doctor) %></td>   
+            <td><%= doctor.registration_no %></td>  
+            <td><%= doctor.speciality %></td>  
+            <td><%= doctor.consultancy_fee %></td>   
+          </tr>   
+        <% end %>   
+        </tbody>   
+      </table> 
+    </div>
+  </div>
+</div> 
