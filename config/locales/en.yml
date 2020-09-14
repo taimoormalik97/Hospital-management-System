@@ -51,3 +51,4 @@ en:
     udpate:
       success: "Patient has been updated successfully"
       failure: "Patient is not updated!"
+      
