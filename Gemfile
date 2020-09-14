@@ -21,6 +21,8 @@ gem 'pry'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'sequenceid', '=0.0.7', git: "https://github.com/alisyed/sequenceid.git", branch: 'feature/change_activerecord_base_to_applicationrecord_in_sti_parent_class_method'
+gem "transitions", :require => ["transitions", "active_model/transitions"]
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
