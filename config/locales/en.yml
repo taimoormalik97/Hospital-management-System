@@ -41,9 +41,6 @@ en:
     udpate:
       success: "Doctor has been updated successfully"
       failure: "Doctor is not updated!"
-    show:
-      success: ""
-      failure: "Doctor does not exits!"
   patient:
     add:
       success: "Patient has been added successfully"
@@ -54,6 +51,3 @@ en:
     udpate:
       success: "Patient has been updated successfully"
       failure: "Patient is not updated!"
-    show:
-      success: ""
-      failure: "Patient does not exits!"
