@@ -4,7 +4,7 @@
       <div class="row">
         <h3 class="col-md-10">Doctors</h3> 
         <div class="col-md-2 d-flex justify-content-md-end">
-          <%= link_to 'Add Doctor', new_doctor_path ,class:"btn btn-primary" %>   
+          <%= link_to 'Add Doctor', new_doctor_path ,class: "btn btn-primary" %>   
         </div>   
       </div>
     </div> 
@@ -21,12 +21,12 @@
         </thead>   
         <tbody>   
         <% @doctors.each do |doctor| %>   
-            <tr>   
-              <td><%= link_to doctor.name, doctor_path(doctor) %></td>   
-              <td><%= doctor.registration_no %></td>  
-              <td><%= doctor.speciality %></td>  
-              <td><%= doctor.consultancy_fee %></td>   
-            </tr>   
+          <tr>   
+            <td><%= link_to doctor.name, doctor_path(doctor) %></td>   
+            <td><%= doctor.registration_no %></td>  
+            <td><%= doctor.speciality %></td>  
+            <td><%= doctor.consultancy_fee %></td>   
+          </tr>   
         <% end %>   
         </tbody>   
       </table> 
