@@ -22,7 +22,7 @@
             <td><%= po.state%></td> 
              <div>   
                <td>   
-                <%= link_to 'Edit', edit_purchase_order_path(po) %>   
+                <%= link_to_if po.drafted?, 'Edit', edit_purchase_order_path(po) %>   
                 <%= link_to 'Delete', purchase_order_path(po), method: :delete %>   
               </div>   
             </td>        
