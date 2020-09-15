@@ -1,7 +1,6 @@
 class DoctorsController < ApplicationController
   # GET /doctors
   def index
-    add_breadcrumb "index", doctors_path
     @doctors = Doctor.unscoped.all
     respond_to do |format|
       format.html
@@ -10,7 +9,6 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/new
   def new
-    add_breadcrumb "new", doctors_path
     @doctor = Doctor.new
     respond_to do |format|
       format.html
