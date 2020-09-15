@@ -1,7 +1,7 @@
 class DoctorsController < ApplicationController
   # GET /doctors
   def index
-    @doctors = Doctor.unscoped.all
+    @doctors = Doctor.all
     respond_to do |format|
       format.html
     end
