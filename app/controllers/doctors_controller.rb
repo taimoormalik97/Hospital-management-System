@@ -1,8 +1,13 @@
 class DoctorsController < ApplicationController
+
+  before_action :doctor_index_page_breadcrumb , only: [:index, :new, :show, :edit]
+  before_action :doctor_show_page_breadcrumb , only: [:show, :edit]
+  before_action :doctor_new_page_breadcrumb , only: [:new]
+  before_action :doctor_edit_page_breadcrumb , only: [:edit]
+
   # GET /doctors
   def index
-    add_breadcrumb "index", doctors_path
-    @doctors = Doctor.unscoped.all
+    @doctors = Doctor.all
     respond_to do |format|
       format.html
     end
@@ -10,7 +15,6 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/new
   def new
-    add_breadcrumb "new", doctors_path
     @doctor = Doctor.new
     respond_to do |format|
       format.html
@@ -34,9 +38,7 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/:id
   def show
-    @doctor = Doctor.unscoped.find(params[:id])
-    add_breadcrumb 'Doctor', doctors_path
-    add_breadcrumb 'Doctor Detail', doctor_path(@doctor)
+    @doctor = Doctor.find(params[:id])
     respond_to do |format|
       format.html
     end
@@ -81,6 +83,22 @@ class DoctorsController < ApplicationController
 
   def doctor_params
     params.require(:doctor).permit(:name, :email, :password, :registration_no, :speciality, :consultancy_fee)
+  end
+
+  def doctor_index_page_breadcrumb
+    add_breadcrumb 'Doctors', doctors_path
+  end
+
+  def doctor_show_page_breadcrumb
+    add_breadcrumb 'Doctor Detail', doctor_path
+  end
+
+  def doctor_new_page_breadcrumb
+    add_breadcrumb 'New Doctor', new_doctor_path
+  end
+
+  def doctor_edit_page_breadcrumb
+    add_breadcrumb 'Edit Doctor', edit_doctor_path
   end
 
 end

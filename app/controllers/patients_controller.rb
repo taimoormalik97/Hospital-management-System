@@ -1,4 +1,10 @@
 class PatientsController < ApplicationController
+
+  before_action :patient_index_page_breadcrumb , only: [:index, :new, :show, :edit]
+  before_action :patient_show_page_breadcrumb , only: [:show, :edit]
+  before_action :patient_new_page_breadcrumb , only: [:new]
+  before_action :patient_edit_page_breadcrumb , only: [:edit]
+
   # GET /patients
   def index
     @patients = Patient.all
@@ -78,4 +84,21 @@ class PatientsController < ApplicationController
   def patient_params
     params.require(:patient).permit(:name, :email, :password, :gender, :dob, :family_history)
   end
+
+  def patient_index_page_breadcrumb
+    add_breadcrumb 'All Patients', patients_path
+  end
+
+  def patient_show_page_breadcrumb
+    add_breadcrumb 'Patient Detail', patient_path
+  end
+
+  def patient_new_page_breadcrumb
+    add_breadcrumb 'New Patient', new_patient_path
+  end
+
+  def patient_edit_page_breadcrumb
+    add_breadcrumb 'Edit Patient', edit_patient_path
+  end
+
 end
