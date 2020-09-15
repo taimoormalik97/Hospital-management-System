@@ -20,7 +20,14 @@ class PurchaseOrder < ApplicationRecord
   belongs_to :admin
   has_many :purchase_details, dependent: :destroy
   has_many :medicines, through: :purchase_details
-  def add_med(medicine)
-  	purchase_details.create(quantity: 1, medicine: medicine, hospital: medicine.hospital)
-  end
+  def add_medicine(medicine)
+  	if medicine.quantity>0
+      if medicine.update(quantity: medicine.quantity-1)
+        self.update(price: self.price+=medicine.price)   
+  	    purchase_details.create(quantity: 1, medicine: medicine, hospital: medicine.hospital)        
+  	  end
+  	else
+  		flash[:error]= t('medicine.add.failure')
+    end
+ end
 end
