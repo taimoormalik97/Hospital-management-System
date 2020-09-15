@@ -228,7 +228,7 @@ DEPENDENCIES
   mysql2
   pry (= 0.13.1)
   puma (~> 4.1)
-  rails (~> 6.0.3.3)
+  rails (~> 6.0.3.2)
   sass-rails (>= 6)
   selenium-webdriver
   spring

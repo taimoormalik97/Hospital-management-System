@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :scope_current_hospital
-  before_action :validate_subdomain, :redirect_to_valid_signup, :redirect_to_valid_signin, :redirect_to_valid_password_reset, :redirect_to_valid_confirmation_email, :devise_edit_profile
+  before_action :validate_subdomain, :redirect_to_valid_signup, :redirect_to_valid_signin, :redirect_to_valid_password_reset, :redirect_to_valid_confirmation_email, :devise_edit_profile, :redirect_to_signin_subdomain
 
   rescue_from ActiveRecord::RecordNotFound do
     respond_to do |format|
@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
  
   def current_hospital
-    Hospital.find_by(sub_domain: request.subdomain) if request.subdomain.present?
+    @current_hospital ||= Hospital.find_by(sub_domain: request.subdomain) if request.subdomain.present?
   end
 
   helper_method :current_hospital
@@ -48,6 +48,11 @@ class ApplicationController < ActionController::Base
   def validate_subdomain
     render file: "#{Rails.root}/public/404", status: :not_found if (request.subdomain.present?) && (Hospital.find_by(sub_domain: request.subdomain).blank?)
   end
+
+  def redirect_to_signin_subdomain
+    redirect_to new_user_session_path if (request.subdomain.present?) && (request.url.include? '/find')
+  end
+
   def redirect_to_valid_signup
     redirect_to new_user_registration_url(subdomain: false) if (request.subdomain.present?) && (request.url.include? '/users/sign_up')
   end
