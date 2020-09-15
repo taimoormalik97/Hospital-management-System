@@ -14,8 +14,16 @@ class MedicinesController < ApplicationController
 	  @medicine = Medicine.find_by(sequence_num: params[:id])
 	end
 
+    def search_pred
+      @medicines = Medicine.search(params[:q])
+      respond_to do |format|
+        format.html 
+        format.json { render json: @medicines }
+      end
+    end
+
 	def search
-	  @medicine = Medicine.find_by(name: params[:search])
+	  @medicine = Medicine.find_by(id: params[:search])
 	    if @medicine.blank?
 		  flash[:notice] = t('medicine.search.failure')
 		  redirect_to medicines_path

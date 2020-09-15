@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   resources :medicines do
   	collection do
       get 'search'
+      get 'search_pred'
     end
   end
-  
+
   resources :purchase_order do
     member do
       post 'addmed'

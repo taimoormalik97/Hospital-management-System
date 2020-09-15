@@ -1,3 +1,5 @@
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+$(document).ready(function(){
+	$('#search_medicines').tokenInput("/medicines/search_pred", {preventDuplicates: true})
+});
