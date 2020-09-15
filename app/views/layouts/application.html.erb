@@ -9,6 +9,7 @@
   </head>
 
   <body>
+    <%= render_breadcrumbs separator: ' / ', class: 'breadcrumb'%>
     <%= render partial: 'layouts/flash', flash: flash %> 
     <%= yield %>
   </body>

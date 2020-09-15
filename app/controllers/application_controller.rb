@@ -6,13 +6,13 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound do
     respond_to do |format|
-      format.html { render plain: '404 Not Found', status: 404 }
+      format.html { render file: "#{Rails.root}/public/404", status: :not_found }
     end
   end
 
   rescue_from ActionController::RoutingError do
      respond_to do |format|
-      format.html { render plain: '404 Not Found', status: 404 }
+      format.html { render file: "#{Rails.root}/public/404", status: :not_found }
     end
   end
 

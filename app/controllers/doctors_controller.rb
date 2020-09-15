@@ -1,7 +1,8 @@
 class DoctorsController < ApplicationController
   # GET /doctors
   def index
-    @doctors = Doctor.all
+    add_breadcrumb "index", doctors_path
+    @doctors = Doctor.unscoped.all
     respond_to do |format|
       format.html
     end
@@ -9,6 +10,7 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/new
   def new
+    add_breadcrumb "new", doctors_path
     @doctor = Doctor.new
     respond_to do |format|
       format.html
@@ -32,7 +34,9 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/:id
   def show
-    @doctor = Doctor.find(params[:id])
+    @doctor = Doctor.unscoped.find(params[:id])
+    add_breadcrumb 'Doctor', doctors_path
+    add_breadcrumb 'Doctor Detail', doctor_path(@doctor)
     respond_to do |format|
       format.html
     end
@@ -78,4 +82,5 @@ class DoctorsController < ApplicationController
   def doctor_params
     params.require(:doctor).permit(:name, :email, :password, :registration_no, :speciality, :consultancy_fee)
   end
+
 end
