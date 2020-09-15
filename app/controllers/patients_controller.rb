@@ -1,4 +1,6 @@
 class PatientsController < ApplicationController
+  load_and_authorize_resource # find by sequence no.
+  
   # GET /patients
   def index
     @patients = Patient.all

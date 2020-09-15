@@ -1,4 +1,6 @@
 class DoctorsController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /doctors
   def index
     @doctors = Doctor.all
