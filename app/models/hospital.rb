@@ -14,9 +14,8 @@ class Hospital < ApplicationRecord
   validates :name, uniqueness: true, length: { minimum: 3 }
   validates :sub_domain, uniqueness: true
   
-
-  def self.current_id=(id)
-    Thread.current[:hospital_id] = id
+  def self.current_id=(hospital_id)
+    Thread.current[:hospital_id] = hospital_id
   end
 
   def self.current_id

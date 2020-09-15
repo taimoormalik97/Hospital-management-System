@@ -9,8 +9,16 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+    <div class="container">
+      <% flash.each do |type, msg| %>
+        <div class="alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show">
+          <%= msg %>
+          <button class="close" data-dismiss="alert">x</button>
+        </div>
+      <% end %> 
+    </div>
+    
     <%= yield %>
   </body>
 </html>

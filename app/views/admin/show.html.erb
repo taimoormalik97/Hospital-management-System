@@ -1,18 +1,11 @@
-
 <h3> Admin Profile </h3>
 
 <h5>Name: <%= @admin.name %> </h5>
-
 <h5>Email: <%= @admin.email %> </h5>
-
 <h5>Hospital Name: <%= @admin.hospital.name %> </h5>
-
 <h5>Hospital Name: <%= @admin.hospital.sub_domain %> </h5>
-
 <h5>Hospital Address: <%= @admin.hospital.address %> </h5>
-
 <h5>Phone Number: <%= @admin.hospital.phone_number %> </h5>
 
-<%= link_to 'Edit Profile', edit_admin_path(@admin), :class => 'navbar-link' %>
-
+<%= link_to 'Edit Profile', edit_admin_path(@admin), class: 'navbar-link' %>
 <%= link_to "Back", hospital_index_path %>
