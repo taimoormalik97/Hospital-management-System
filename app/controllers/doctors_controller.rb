@@ -7,7 +7,7 @@ class DoctorsController < ApplicationController
   
   # GET /doctors
   def index
-    @doctors = @doctors.paginate(page: params[:page], per_page: 1)
+    @doctors = @doctors.paginate(page: params[:page], per_page: 10)
     respond_to do |format|
       format.html
     end
