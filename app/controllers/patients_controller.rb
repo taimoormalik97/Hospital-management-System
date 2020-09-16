@@ -1,7 +1,8 @@
 class PatientsController < ApplicationController
+  load_and_authorize_resource # find by sequence no.
+  
   # GET /patients
   def index
-    @patients = Patient.all
     respond_to do |format|
       format.html
     end
@@ -9,7 +10,6 @@ class PatientsController < ApplicationController
 
   # GET  /patients/new
   def new
-    @patient = Patient.new
     respond_to do |format|
       format.html
     end
@@ -17,8 +17,6 @@ class PatientsController < ApplicationController
 
   # POST /patients
   def create
-    @patient = Patient.new(patient_params)
-    @patient.hospital = Hospital.first
     respond_to do |format|
       if @patient.save
         flash[:notice] = t('patient.add.success')
@@ -32,7 +30,6 @@ class PatientsController < ApplicationController
 
   # GET  /patients/:id
   def show
-    @patient = Patient.find(params[:id])
     respond_to do |format|
       format.html
     end
@@ -40,7 +37,6 @@ class PatientsController < ApplicationController
 
   # GET  /patients/:id/edit
   def edit
-    @patient = Patient.find(params[:id])
     respond_to do |format|
       format.html
     end
@@ -48,7 +44,6 @@ class PatientsController < ApplicationController
 
   # PATCH/PUT  /patients/:id
   def update
-    @patient = Patient.find(params[:id])
     respond_to do |format|
       if @patient.update(patient_params)
         flash[:notice] = t('patient.update.success')
@@ -62,7 +57,6 @@ class PatientsController < ApplicationController
 
   # DELETE /patients/:id
   def destroy
-    @patient = Patient.find(params[:id])
     @patient.destroy
     respond_to do |format|
       if @patient.destroyed?

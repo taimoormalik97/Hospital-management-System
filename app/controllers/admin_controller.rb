@@ -1,6 +1,5 @@
 class AdminController < ApplicationController
-
-  before_action :load_admin, only: [:show, :edit, :update]
+  load_and_authorize_resource
 
   # GET /resource/show
   def show
@@ -30,10 +29,6 @@ class AdminController < ApplicationController
   end
 
   private
-
-  def load_admin
-    @admin = Admin.find(params[:id])
-  end
 
   def admin_params
     params.require(:admin).permit(:name, :email)
