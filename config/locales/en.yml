@@ -77,3 +77,8 @@ en:
     update:
       success: "Patient has been updated successfully"
       failure: "Patient is not updated!"
+
+  admin:
+    update:
+      success: "Profile has been updated successfully"
+      failure: "Profile is not updated!"

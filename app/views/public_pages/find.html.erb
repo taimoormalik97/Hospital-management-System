@@ -1,0 +1,12 @@
+
+<%= form_for @user, url: check_email_path(@user), method: "post"  do |f| %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Continue" %>
+  </div>
+<% end %>

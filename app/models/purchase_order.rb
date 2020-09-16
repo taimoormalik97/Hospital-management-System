@@ -30,4 +30,5 @@ class PurchaseOrder < ApplicationRecord
   		flash[:error]= t('medicine.add.failure')
     end
  end
+  default_scope { where(hospital_id: Hospital.current_id) }
 end
