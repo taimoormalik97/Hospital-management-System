@@ -5,9 +5,11 @@ class DoctorsController < ApplicationController
   before_action :doctor_new_page_breadcrumb, only: [:new]
   before_action :doctor_edit_page_breadcrumb, only: [:edit]
 
+  load_and_authorize_resource
+  
   # GET /doctors
   def index
-    @doctors = Doctor.all.paginate(page: params[:page], per_page: 10)
+    @doctors = @doctors.paginate(page: params[:page], per_page: 10)
     respond_to do |format|
       format.html
     end
@@ -15,7 +17,6 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/new
   def new
-    @doctor = Doctor.new
     respond_to do |format|
       format.html
     end
@@ -23,8 +24,6 @@ class DoctorsController < ApplicationController
 
   # POST /doctors
   def create
-    @doctor = Doctor.new(doctor_params)
-    @doctor.hospital = Hospital.first
     respond_to do |format|
       if @doctor.save
         flash[:notice] = t('doctor.add.success')
@@ -38,7 +37,6 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/:id
   def show
-    @doctor = Doctor.find(params[:id])
     respond_to do |format|
       format.html
     end
@@ -46,7 +44,6 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/:id/edit
   def edit
-    @doctor = Doctor.find(params[:id])
     respond_to do |format|
       format.html
     end
@@ -54,7 +51,6 @@ class DoctorsController < ApplicationController
 
   # PATCH/PUT /doctors/:id
   def update
-    @doctor = Doctor.find(params[:id])
     respond_to do |format|
       if @doctor.update(doctor_params)
         flash[:notice] = t('doctor.update.success')
@@ -68,7 +64,6 @@ class DoctorsController < ApplicationController
 
   # DELETE  /doctors/:id
   def destroy
-    @doctor = Doctor.find(params[:id])
     @doctor.destroy
     respond_to do |format|
       if @doctor.destroyed?

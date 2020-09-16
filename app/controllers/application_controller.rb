@@ -16,8 +16,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:warning] = exception.message
+    redirect_to root_path
+  end
+  
   add_flash_types :info, :error, :warning, :success
-
+  
   private
 
   def configure_permitted_parameters
@@ -76,5 +81,4 @@ class ApplicationController < ActionController::Base
       redirect_to find_path if (request.url.include? '/users/confirmation/new') || (request.url.include? '/users/confirmation')
     end
   end
-
 end

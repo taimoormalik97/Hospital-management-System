@@ -11,18 +11,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable,
          :confirmable, :validatable
   default_scope { where(hospital_id: Hospital.current_id) }
-
-  def admin?
-    type == 'Admin'
-  end
-
-  def doctor?
-    type == 'Patient'
-  end
-
-  def patient?
-    type == 'Doctor'
-  end
+  ROLES = { admin: 'Admin', doctor: 'Doctor', patient: 'Patient' }.freeze
 
 # Added these function because devise was always checking for uniqueness of email, but in our product,
 # there can be same emails in different domain. So we have have set devise email validation to false.
@@ -33,5 +22,16 @@ class User < ApplicationRecord
   def will_save_change_to_email?
     false
   end
-
+  
+  def admin?
+  	type == ROLES[:admin]
+  end
+  
+  def doctor?
+  	type == ROLES[:doctor]
+  end
+  
+  def patient?
+  	type == ROLES[:patient]
+  end
 end
