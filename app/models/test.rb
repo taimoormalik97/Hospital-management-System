@@ -3,4 +3,5 @@ class Test < ApplicationRecord
 	has_many :lab_reports, dependent: :nullify
 	has_many :bills, through: :bill_details
 	belongs_to :hospital
+  default_scope { where(hospital_id: Hospital.current_id) }
 end

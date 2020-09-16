@@ -1,0 +1,5 @@
+<h3> Select a domain </h3>
+
+<% @selected_users.each do |user| %>
+<h5><%= link_to user.hospital.name, new_user_session_url(email: user.email, subdomain: user.hospital.sub_domain ) %></h5>
+<% end %>

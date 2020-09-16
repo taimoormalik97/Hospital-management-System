@@ -1,0 +1,21 @@
+<h2>Edit Profile </h2>
+
+<%= form_for @admin, url: admin_path(@admin), method: "patch" do |f| %>
+  <%= render "users/shared/error_messages", resource: @admin %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name ,autofocus: true, required: true %>
+  </div>
+
+   <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<%= link_to "Back", :back %>
