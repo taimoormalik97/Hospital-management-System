@@ -22,12 +22,15 @@ class User < ApplicationRecord
   def will_save_change_to_email?
     false
   end
+  
   def admin?
   	type == ROLES[:admin]
   end
+  
   def doctor?
   	type == ROLES[:doctor]
   end
+  
   def patient?
   	type == ROLES[:patient]
   end
