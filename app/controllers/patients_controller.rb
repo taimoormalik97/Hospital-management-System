@@ -1,15 +1,13 @@
 class PatientsController < ApplicationController
+  load_and_authorize_resource # find by sequence no.
 
+  before_action :root_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :patient_index_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :patient_show_page_breadcrumb, only: [:show, :edit]
-  before_action :patient_new_page_breadcrumb, only: [:new]
-  before_action :patient_edit_page_breadcrumb, only: [:edit]
-
-  load_and_authorize_resource # find by sequence no.
   
   # GET /patients
   def index
-    @patients = @patients.paginate(page: params[:page], per_page: 10)
+    @patients = @patients.paginate(page: params[:page], per_page: 1)
     respond_to do |format|
       format.html
     end
@@ -17,6 +15,7 @@ class PatientsController < ApplicationController
 
   # GET  /patients/new
   def new
+    add_breadcrumb t('patient.breadcrumb.new'), new_patient_path
     respond_to do |format|
       format.html
     end
@@ -44,6 +43,7 @@ class PatientsController < ApplicationController
 
   # GET  /patients/:id/edit
   def edit
+    add_breadcrumb t('patient.breadcrumb.edit'), edit_patient_path
     respond_to do |format|
       format.html
     end
@@ -80,20 +80,16 @@ class PatientsController < ApplicationController
     params.require(:patient).permit(:name, :email, :password, :gender, :dob, :family_history)
   end
 
+  def root_page_breadcrumb
+    add_breadcrumb current_hospital.name, hospital_index_path
+  end
+
   def patient_index_page_breadcrumb
-    add_breadcrumb 'Patients', patients_path
+    add_breadcrumb t('patient.breadcrumb.index'), patients_path
   end
 
   def patient_show_page_breadcrumb
-    add_breadcrumb 'Patient Detail', patient_path
-  end
-
-  def patient_new_page_breadcrumb
-    add_breadcrumb 'New Patient', new_patient_path
-  end
-
-  def patient_edit_page_breadcrumb
-    add_breadcrumb 'Edit Patient', edit_patient_path
+    add_breadcrumb t('patient.breadcrumb.show'), patient_path
   end
 
 end

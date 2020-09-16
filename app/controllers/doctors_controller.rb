@@ -1,15 +1,13 @@
 class DoctorsController < ApplicationController
+  load_and_authorize_resource
 
+  before_action :root_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :doctor_index_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :doctor_show_page_breadcrumb, only: [:show, :edit]
-  before_action :doctor_new_page_breadcrumb, only: [:new]
-  before_action :doctor_edit_page_breadcrumb, only: [:edit]
-
-  load_and_authorize_resource
   
   # GET /doctors
   def index
-    @doctors = @doctors.paginate(page: params[:page], per_page: 10)
+    @doctors = @doctors.paginate(page: params[:page], per_page: 1)
     respond_to do |format|
       format.html
     end
@@ -17,6 +15,7 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/new
   def new
+    add_breadcrumb t('doctor.breadcrumb.new'), new_doctor_path
     respond_to do |format|
       format.html
     end
@@ -44,6 +43,7 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/:id/edit
   def edit
+    add_breadcrumb t('doctor.breadcrumb.edit'), edit_doctor_path
     respond_to do |format|
       format.html
     end
@@ -80,20 +80,16 @@ class DoctorsController < ApplicationController
     params.require(:doctor).permit(:name, :email, :password, :registration_no, :speciality, :consultancy_fee)
   end
 
+  def root_page_breadcrumb
+    add_breadcrumb current_hospital.name, hospital_index_path
+  end
+
   def doctor_index_page_breadcrumb
-    add_breadcrumb 'Doctors', doctors_path
+    add_breadcrumb t('doctor.breadcrumb.index'), doctors_path
   end
 
   def doctor_show_page_breadcrumb
-    add_breadcrumb 'Doctor Detail', doctor_path
-  end
-
-  def doctor_new_page_breadcrumb
-    add_breadcrumb 'New Doctor', new_doctor_path
-  end
-
-  def doctor_edit_page_breadcrumb
-    add_breadcrumb 'Edit Doctor', edit_doctor_path
+    add_breadcrumb t('doctor.breadcrumb.show'), doctor_path
   end
 
 end

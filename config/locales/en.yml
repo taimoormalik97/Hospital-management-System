@@ -31,6 +31,9 @@
 
 en:
   hello: "Hello world"
+  paginate:
+    previous: "Previous"
+    next: "Next"
   doctor:
     add:
       success: "Doctor has been added successfully"
@@ -41,6 +44,11 @@ en:
     update:
       success: "Doctor has been updated successfully"
       failure: "Doctor is not updated!"
+    breadcrumb:
+      index: "Doctors"
+      new: "New Doctor"
+      show: "Doctor Details"
+      edit: "Edit Doctor"
   patient:
     add:
       success: "Patient has been added successfully"
@@ -51,7 +59,15 @@ en:
     update:
       success: "Patient has been updated successfully"
       failure: "Patient is not updated!"
+    breadcrumb:
+      index: "Patients"
+      new: "New Patient"
+      show: "Patient Details"
+      edit: "Edit Patient"
   admin:
     update:
       success: "Profile has been updated successfully"
       failure: "Profile is not updated!"
+    breadcrumb:
+      show: "Profile"
+      edit: "Edit Profile"

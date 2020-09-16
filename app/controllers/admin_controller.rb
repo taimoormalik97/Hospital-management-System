@@ -2,8 +2,7 @@ class AdminController < ApplicationController
   load_and_authorize_resource
 
   before_action :root_page_breadcrumb, only: [:show, :edit]
-  before_action :admin_show_page_breadcrumb, only: [:show, :edit]
-  before_action :admin_edit_page_breadcrumb, only: [:edit]
+  before_action :show_page_breadcrumb, only: [:show, :edit]
 
   # GET /resource/show
   def show
@@ -14,6 +13,7 @@ class AdminController < ApplicationController
 
   # GET /resource/edit
   def edit
+    add_breadcrumb t('admin.breadcrumb.show'), edit_admin_path
     respond_to do |format|
       format.html
     end
@@ -38,17 +38,12 @@ class AdminController < ApplicationController
     params.require(:admin).permit(:name, :email)
   end
 
-
   def root_page_breadcrumb
-    add_breadcrumb 'Index', hospital_index_path
+    add_breadcrumb current_hospital.name, hospital_index_path
   end
 
-  def admin_show_page_breadcrumb
-    add_breadcrumb 'Profile', admin_path
-  end
-
-  def admin_edit_page_breadcrumb
-    add_breadcrumb 'Edit Details', edit_admin_path
+  def show_page_breadcrumb
+    add_breadcrumb t('admin.breadcrumb.show'), admin_path
   end
 
 end

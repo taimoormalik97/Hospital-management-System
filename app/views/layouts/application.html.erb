@@ -10,13 +10,7 @@
   </head>
 
   <body>
-    <% if breadcrumbs.length > 0 %>
-      <div aria-label="breadcrumb" >
-        <div class="breadcrumb" >
-          <%= render_breadcrumbs separator: ' / '%>
-        </div>
-      </div>
-    <% end %>
+    <%= render partial: 'layouts/breadcrumb' %>
     <%= render partial: 'layouts/flash', flash: flash %> 
     <%= yield %>
   </body>

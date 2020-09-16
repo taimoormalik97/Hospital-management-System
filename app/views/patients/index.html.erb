@@ -34,5 +34,5 @@
   </div>
 </div> 
 <div class="pagination justify-content-center" style="margin:20px 0">
-  <%= will_paginate @patients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, :previous_label => 'Previous', :next_label => 'Next' %> 
+  <%= will_paginate @doctors, previous_label: t('paginate.previous'), next_label: t('paginate.next') %> 
 </div>
