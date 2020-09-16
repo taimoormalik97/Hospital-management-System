@@ -9,8 +9,12 @@
   </head>
 
   <body>
+    <div id="wrapper">
+      <%= render partial: 'layouts/header' %>
+      <%= render partial: 'layouts/sidebar' %>
+      <%= yield %>
+    </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= yield %>
   </body>
 </html>

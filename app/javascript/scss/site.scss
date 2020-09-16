@@ -1,2 +1,13 @@
-@import "~bootstrap/scss/bootstrap";
+/*@import "~bootstrap/scss/bootstrap";*/
+
+@import "./bootstrap";
+@import "./demo";
+@import "./main";
+@import "../vendor/bootstrap/css/bootstrap.css";
+@import "../vendor/bootstrap/css/bootstrap-theme.css";
+@import "../vendor/chartist/css/chartist.css";
+@import "../vendor/chartist/css/chartist-custom.css";
+@import "../vendor/font-awesome/css/font-awesome.css";
+@import "../vendor/linearicons/style.css";
+@import "../vendor/toastr/toastr.css";
 @import "./_custom";
