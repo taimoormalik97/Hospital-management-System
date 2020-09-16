@@ -1,13 +1,13 @@
 class DoctorsController < ApplicationController
 
-  before_action :doctor_index_page_breadcrumb , only: [:index, :new, :show, :edit]
-  before_action :doctor_show_page_breadcrumb , only: [:show, :edit]
-  before_action :doctor_new_page_breadcrumb , only: [:new]
-  before_action :doctor_edit_page_breadcrumb , only: [:edit]
+  before_action :doctor_index_page_breadcrumb, only: [:index, :new, :show, :edit]
+  before_action :doctor_show_page_breadcrumb, only: [:show, :edit]
+  before_action :doctor_new_page_breadcrumb, only: [:new]
+  before_action :doctor_edit_page_breadcrumb, only: [:edit]
 
   # GET /doctors
   def index
-    @doctors = Doctor.all
+    @doctors = Doctor.all.paginate(page: params[:page], per_page: 10)
     respond_to do |format|
       format.html
     end

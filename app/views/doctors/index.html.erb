@@ -27,9 +27,12 @@
             <td><%= doctor.speciality %></td>  
             <td><%= doctor.consultancy_fee %></td>   
           </tr>   
-        <% end %>   
+        <% end %>  
         </tbody>   
       </table> 
     </div>
   </div>
-</div> 
+</div>
+<div class="pagination justify-content-center" style="margin:20px 0">
+  <%= will_paginate @doctors, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, :previous_label => 'Previous', :next_label => 'Next' %> 
+</div>

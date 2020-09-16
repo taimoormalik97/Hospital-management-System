@@ -10,7 +10,11 @@
   </head>
 
   <body>
-    <%= render_breadcrumbs separator: ' / ', class: 'breadcrumb'%>
+    <div aria-label="breadcrumb" >
+      <div class="breadcrumb" >
+        <%= render_breadcrumbs separator: ' / '%>
+      </div>
+    </div>
     <%= render partial: 'layouts/flash', flash: flash %> 
     <%= yield %>
   </body>

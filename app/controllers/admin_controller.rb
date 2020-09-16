@@ -2,9 +2,9 @@ class AdminController < ApplicationController
 
   before_action :load_admin, only: [:show, :edit, :update]
 
-  before_action :root_page_breadcrumb , only: [:show, :edit]
-  before_action :admin_show_page_breadcrumb , only: [:show, :edit]
-  before_action :admin_edit_page_breadcrumb , only: [:edit]
+  before_action :root_page_breadcrumb, only: [:show, :edit]
+  before_action :admin_show_page_breadcrumb, only: [:show, :edit]
+  before_action :admin_edit_page_breadcrumb, only: [:edit]
 
   # GET /resource/show
   def show

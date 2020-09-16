@@ -33,3 +33,6 @@
     </div>
   </div>
 </div> 
+<div class="pagination justify-content-center" style="margin:20px 0">
+  <%= will_paginate @patients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %> 
+</div>

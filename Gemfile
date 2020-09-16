@@ -58,4 +58,5 @@ gem 'devise', '4.7.2'
 
 gem 'breadcrumbs_on_rails', '4.0.0'
 
-gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate', '3.1.8'
+gem 'will_paginate-bootstrap4'
