@@ -1,0 +1,43 @@
+<div class="container  pt-3"> 
+    <div class="card">
+      <div class="card-header p-3 container-fluid">
+        <div class="row">
+          <h3 class="col-md-8"><%= @patient.name.titleize %></h3> 
+          <div class="col-md-4 d-flex justify-content-md-end"> 
+            <%= link_to 'Edit', edit_patient_path(@patient) , class: "btn btn-primary" %> 
+            <%= link_to 'Delete', patient_path(@patient), method: :delete , class: "btn btn-danger btn-spacing" %>  
+            <%= link_to 'Back', patients_path , class: "btn btn-secondary btn-spacing" %>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+      <p><%= flash[:notice] %></p> 
+      <dl class="row">
+        <dt class="col-sm-2">  
+          <label>Email: </label>
+        </dt>
+        <dd class="col-sm-9">   
+          <%= @patient.email %>   
+        </dd>
+        <dt class="col-sm-2">  
+          <label>Gender: </label>   
+        </dt>
+        <dd class="col-sm-9">   
+          <%= @patient.gender %>   
+        </dd>
+        <dt class="col-sm-2">  
+          <label>Date of Birth: </label>
+        </dt>
+        <dd class="col-sm-9">   
+          <%= @patient.dob %>   
+        </dd>
+        <dt class="col-sm-2">  
+          <label>Family History: </label>
+        </dt>
+        <dd class="col-sm-9">   
+          <%= @patient.family_history %>   
+        </dd>
+      </dl>
+    </div>    
+  </div>   
+</div>  

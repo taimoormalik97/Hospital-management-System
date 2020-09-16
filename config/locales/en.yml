@@ -57,3 +57,23 @@ en:
     search:
       success: "Medicine found!"
       failure: "Medicine not found"
+  doctor:
+    add:
+      success: "Doctor has been added successfully"
+      failure: "Doctor is not added!"
+    delete:
+      success: "Doctor has been deleted successfully"
+      failure: "Doctor is not deleted!"
+    update:
+      success: "Doctor has been updated successfully"
+      failure: "Doctor is not updated!"
+  patient:
+    add:
+      success: "Patient has been added successfully"
+      failure: "Patient is not added!"
+    delete:
+      success: "Patient has been deleted successfully"
+      failure: "Patient is not deleted!"
+    update:
+      success: "Patient has been updated successfully"
+      failure: "Patient is not updated!"

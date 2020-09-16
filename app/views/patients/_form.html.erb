@@ -1,0 +1,51 @@
+<%= form_for @patient do |f| %>  
+  <div class="container  pt-3"> 
+    <div class="card">
+      <div class="card-header p-3 container-fluid">
+        <div class="row">
+          <h3 class="col-md-9">
+          <%= @patient.persisted? ? "Edit Patient" : "Add Patient " %>
+        </h3>  
+        </div>
+      </div>
+      <div class="card-body">     
+        <p><%= flash[:error] %></p>   
+        <p>   
+          <div class="form-group">   
+            <label>Patient Name</label>   
+            <%= f.text_field :name, :required => true, class: "form-control" %>   
+          </div>    
+          <div class="form-group"> 
+            <label>Email</label>   
+            <%= f.email_field :email, :required => true, class: "form-control" %>   
+          </div>   
+          <div class="form-group">   
+            <label>Password</label>   
+            <%= f.password_field :password, :required => true, class: "form-control" %>
+          </div> 
+          <div class="form-group">  
+            <label>Date of Birth</label>   
+            <%= f.date_field :dob, :required => true, class: "form-control" %>     
+          </div> 
+          <div class="form-group">   
+            <label>Family History</label>   
+            <%= f.text_field :family_history, class: "form-control" %>   
+          </div> 
+          <div class="form-group">   
+            <label>Gender</label>   
+            <%=f.select :gender, options_for_select(["Male", "Female", "Other"]), :required => true , class: "form-control float-right" %>   
+          </div>     
+        </p> 
+      </div> 
+      <div class="card-footer p-3 container-fluid">
+        <div class="row d-flex justify-content-md-end">
+          <div class="col-md-3 d-flex justify-content-md-end">
+            <%= f.submit 'Save' , class: "btn btn-primary " %>   
+            <% cancel_path = @patient.persisted? ? patient_path(@patient) : patients_path %>
+            <%= link_to 'Cancel', cancel_path , class: "btn btn-secondary btn-spacing" %>
+          </div>
+        </div>
+      </div>    
+    </div>    
+  </div>
+<% end %> 
