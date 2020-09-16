@@ -1,20 +1,29 @@
 class AdminController < ApplicationController
+
   load_and_authorize_resource
 
   # GET /resource/show
   def show
+    respond_to do |format|
+      format.html
+    end
   end
 
   # GET /resource/edit
   def edit
+    respond_to do |format|
+      format.html
+    end
   end
 
   # PATCH/resource/update
   def update
     respond_to do |format|
       if @admin.update(admin_params)
-        format.html { redirect_to @admin, notice: 'Profile was successfully updated.' }
+        flash[:notice] = t('admin.update.success')
+        format.html { redirect_to @admin }
       else
+        flash[:error] = t('admin.update.failure')
         format.html { render :edit }
       end
     end
