@@ -9,6 +9,7 @@ class PatientsController < ApplicationController
   
   # GET /patients
   def index
+    @patients = @patients.paginate(page: params[:page], per_page: 10)
     respond_to do |format|
       format.html
     end
@@ -80,7 +81,7 @@ class PatientsController < ApplicationController
   end
 
   def patient_index_page_breadcrumb
-    add_breadcrumb 'All Patients', patients_path
+    add_breadcrumb 'Patients', patients_path
   end
 
   def patient_show_page_breadcrumb
