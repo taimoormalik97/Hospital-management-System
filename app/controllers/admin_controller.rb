@@ -13,7 +13,7 @@ class AdminController < ApplicationController
 
   # GET /resource/edit
   def edit
-    add_breadcrumb t('admin.breadcrumb.show'), edit_admin_path
+    add_breadcrumb t('admin.breadcrumb.edit'), edit_admin_path
     respond_to do |format|
       format.html
     end
