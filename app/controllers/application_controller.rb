@@ -20,7 +20,9 @@ class ApplicationController < ActionController::Base
     flash[:warning] = exception.message
     redirect_to root_path
   end
+  
   add_flash_types :info, :error, :warning, :success
+  
   private
 
   def configure_permitted_parameters
