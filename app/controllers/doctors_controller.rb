@@ -32,9 +32,7 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/:id
   def show
-    @doctor = Doctor.unscoped.find(params[:id])
-    add_breadcrumb 'Doctor', doctors_path
-    add_breadcrumb 'Doctor Detail', doctor_path(@doctor)
+    @doctor = Doctor.find(params[:id])
     respond_to do |format|
       format.html
     end
