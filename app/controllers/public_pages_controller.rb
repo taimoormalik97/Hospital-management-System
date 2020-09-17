@@ -10,7 +10,7 @@ class PublicPagesController < ApplicationController
 
   # GET /resource/find
   def find
-    @admin = Admin.new
+    @user = User.new
     respond_to do |format|
       format.html
     end
@@ -18,21 +18,20 @@ class PublicPagesController < ApplicationController
 
   # POST/resource/check_email
   def check_email
-    @admin = email_in_params
     respond_to do |format|
-      if Admin.unscoped.where(email: @admin[:email]).count(:hospital_id) == 1
-        format.html { redirect_to new_user_session_url(email: @admin[:email], subdomain: Admin.unscoped.find_by_email(@admin[:email]).hospital.sub_domain) }
+      user = user_email_in_params
+      if User.unscoped.where(email: user[:email]).count(:hospital_id) == 1
+        format.html{redirect_to new_user_session_url(email: user[:email], subdomain: User.unscoped.find_by_email(user[:email]).hospital.sub_domain)}
       else
-        format.html { redirect_to select_domain_url(email: @admin[:email]) }
+        format.html {redirect_to select_domain_url(email: user[:email])}
       end
     end
   end
 
   private
 
-  def email_in_params
-    params.require(:admin).permit(:email)
+  def user_email_in_params
+    params.require(:user).permit(:email)
   end
-
 
 end

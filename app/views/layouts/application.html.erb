@@ -6,15 +6,20 @@
     <%= csp_meta_tag %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
     <div id="wrapper">
       <%= render partial: 'layouts/header' %>
       <%= render partial: 'layouts/sidebar' %>
-      <%= yield %>
+      <div class="main">
+        <div class="main-content">
+          <%= yield %>
+        </div>
+      </div>
+      <%= render partial: 'layouts/flash', flash: flash %> 
+      <%= render_breadcrumbs separator: ' / ', class: 'breadcrumb'%>
     </div>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
   </body>
 </html>

@@ -7,10 +7,15 @@ $(document).ready(function() {
   $('.btn-toggle-fullwidth').on('click', function() {
     if(!$('body').hasClass('layout-fullwidth')) {
       $('body').addClass('layout-fullwidth');
+      $('.sidebar .nav i').addClass('vertical-icon');
+      $('.sidebar-text').addClass('vertical-span');
+      $('.sidebar-row').addClass('vertical-block');
 
     } else {
       $('body').removeClass('layout-fullwidth');
-      $('body').removeClass('layout-default'); // also remove default behaviour if set
+      $('.sidebar .nav i').removeClass('vertical-icon');
+      $('.sidebar-text').removeClass('vertical-span');
+      $('.sidebar-row').removeClass('vertical-block');
     }
 
     $(this).find('.lnr').toggleClass('lnr-arrow-left-circle lnr-arrow-right-circle');

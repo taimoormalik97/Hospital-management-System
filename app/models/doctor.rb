@@ -9,5 +9,4 @@ class Doctor < User
   validates :name, length: { in: 3..35 }
   validates :consultancy_fee, numericality: true
   validates :registration_no, numericality: { only_integer: true }, uniqueness: { scope: :hospital_id }
-
 end

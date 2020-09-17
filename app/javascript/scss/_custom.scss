@@ -3,5 +3,15 @@
 }
 .float-right-arrow {
   float: right;
-  padding: 0 0;
+  padding: 6 0;
+}
+.vertical-icon {
+  display: block;
+  margin-right: -5px !important;
+}
+.vertical-span {
+  display: none
+}
+.vertical-block {
+  text-align: right
 }

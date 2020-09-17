@@ -93,7 +93,7 @@ footer {
     padding-top: 130px; } }
 
 .layout-fullwidth #wrapper .sidebar {
-  left: -260px; }
+  left: -200px; }
 
 .layout-fullwidth #wrapper .main {
   width: 100%; }
@@ -125,7 +125,7 @@ footer {
     display: none; } }
 
 .main-content {
-  padding: 28px 10px; }
+  padding: 28px 70px; }
 
 .navbar + .main-content {
   padding: 105px 0 28px 5px; }

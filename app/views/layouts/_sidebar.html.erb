@@ -3,24 +3,38 @@
   <div class="sidebar-scroll">
     <nav>
       <ul class="nav">
-        <li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-        <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
-        <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
-        <li><a href="panels.html" class="active"><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
-        <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
-        <li>
-          <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-          <div id="subPages" class="collapse ">
-            <ul class="nav">
-              <li><a href="page-profile.html" class="">Profile</a></li>
-              <li><a href="page-login.html" class="">Login</a></li>
-              <li><a href="page-lockscreen.html" class="">Lockscreen</a></li>
-            </ul>
-          </div>
-        </li>
-        <li><a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>
-        <li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
-        <li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
+        <!-- Medicines -->
+        <% if can?(:index, Medicine) %>
+        <li><a href="#" class="sidebar-row"><i class="lnr lnr-leaf"></i><span class="sidebar-text">Medicines</span></a></li>
+        <% end %>
+        <!-- Purchase Orders -->
+        <% if can?(:index, PurchaseOrder) %>
+        <li><a href="#" class="sidebar-row"><i class="lnr lnr-cart"></i> <span class="sidebar-text">Purchase Orders</span></a></li>
+        <% end %>
+        <!-- Sale Orders -->
+        <% if can?(:index, Bill) %>
+        <li><a href="#" class="sidebar-row"><i class="lnr lnr-chart-bars"></i> <span class="sidebar-text">Sale Orders</span></a></li>
+        <% end %>
+        <!-- Doctor -->
+        <% if can?(:index, Doctor) %>
+          <li><a class="sidebar-row active" href=<%= doctors_path %> ><i class="lnr lnr-heart-pulse"></i> <span class="sidebar-text">Doctors</span></a></li>
+        <% end %>
+        <!-- Patient -->
+        <% if can?(:index, Patient) %>
+          <li><a class="sidebar-row" href=<%= patients_path %> ><i class="lnr lnr-wheelchair"></i><span class="sidebar-text">Patients</span></a></li>
+        <% end %>
+        <!-- Appointments -->
+        <% if can?(:index, Appointment) %>
+          <li><a href="#" class="sidebar-row"><i class="lnr lnr-calendar-full"></i> <span class="sidebar-text">Appointments</span></a></li>
+        <% end %>
+        <!-- Prescriptions -->
+        <% if can?(:index, PrescribedMedicine) %>
+          <li><a href="#" class="sidebar-row"><i class="lnr lnr-list"></i> <span class="sidebar-text">Prescriptions</span></a></li>
+        <% end %>
+        <!-- Reports -->
+        <% if can?(:index, Test) %>
+          <li><a href="#" class="sidebar-row"><i class="lnr lnr-file-empty"></i> <span class="sidebar-text">Reports</span></a></li>
+        <% end %>
       </ul>
     </nav>
     <div class="container-fluid">
