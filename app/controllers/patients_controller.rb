@@ -2,8 +2,8 @@ class PatientsController < ApplicationController
   load_and_authorize_resource # find by sequence no.
 
   before_action :root_page_breadcrumb, only: [:index, :new, :show, :edit]
-  before_action :patient_index_page_breadcrumb, only: [:index, :new, :show, :edit]
-  before_action :patient_show_page_breadcrumb, only: [:show, :edit]
+  before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
+  before_action :show_page_breadcrumb, only: [:show, :edit]
   
   # GET /patients
   def index
@@ -84,11 +84,11 @@ class PatientsController < ApplicationController
     add_breadcrumb current_hospital.name, hospital_index_path
   end
 
-  def patient_index_page_breadcrumb
+  def index_page_breadcrumb
     add_breadcrumb t('patient.breadcrumb.index'), patients_path
   end
 
-  def patient_show_page_breadcrumb
+  def show_page_breadcrumb
     add_breadcrumb t('patient.breadcrumb.show'), patient_path
   end
 
