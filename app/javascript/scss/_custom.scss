@@ -1,17 +1,46 @@
 .btn-spacing {
   margin-left: 1em
 }
+
 .float-right-arrow {
   float: right;
-  padding: 6 0;
+  margin: 6px;
 }
+
 .vertical-icon {
   display: block;
   margin-right: -5px !important;
 }
+
 .vertical-span {
-  display: none
+  display: none;
 }
+
 .vertical-block {
-  text-align: right
+  text-align: right;
+}
+
+.sidebar-nav-item {
+  font-size: 1.2em;
+
+}
+
+.layout-fullwidth {
+  left: -200px;
+}
+
+.content-with-sidebar {
+  position: relative;
+  padding-left: 260px;
+  padding-top: 100px;
+}
+.custom-sidebar {
+  margin-top: 0px !important;
+  padding-top: 80px !important;
+}
+
+.btn-toggle-fullwidth {
+  color: #00AAFF; 
+  background-color: #2B333E;
+  font-size: 28px;
 }

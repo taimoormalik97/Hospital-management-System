@@ -14,6 +14,8 @@ import 'bootstrap'
 import 'scss/site'
 // JS
 import('js/site')
+// fontawesome
+import "@fortawesome/fontawesome-free/js/all";
 // Images
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)

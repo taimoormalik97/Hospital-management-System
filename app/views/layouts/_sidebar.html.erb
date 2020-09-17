@@ -1,45 +1,132 @@
 <!-- LEFT SIDEBAR -->
-<div id="sidebar-nav" class="sidebar">
+<div id="sidebar-nav" class="sidebar custom-sidebar">
   <div class="sidebar-scroll">
     <nav>
-      <ul class="nav">
+      <ul class="navbar-nav ">
         <!-- Medicines -->
         <% if can?(:index, Medicine) %>
-        <li><a href="#" class="sidebar-row"><i class="lnr lnr-leaf"></i><span class="sidebar-text">Medicines</span></a></li>
+          <li class="mb-4">
+            <a class="sidebar-row" href=<%= doctors_path %> >
+              <div class="row sidebar-nav-item text-light">
+                <div class="col-1 ml-5 mr-1">
+                  <i class="fas fa-user-md"></i>
+                </div>
+                <div class="col-8 mr-1 ml-1">
+                  <span class="sidebar-text">Medicines</span>
+                </div>
+              </div>
+            </a>
+          </li>
         <% end %>
         <!-- Purchase Orders -->
         <% if can?(:index, PurchaseOrder) %>
-        <li><a href="#" class="sidebar-row"><i class="lnr lnr-cart"></i> <span class="sidebar-text">Purchase Orders</span></a></li>
+          <li class="mb-4">
+            <a class="sidebar-row" href=<%= doctors_path %> >
+              <div class="row sidebar-nav-item text-light">
+                <div class="col-1 ml-5 mr-1">
+                  <i class="fas fa-user-md"></i>
+                </div>
+                <div class="col-8 mr-1 ml-1">
+                  <span class="sidebar-text">Purchase Orders</span>
+                </div>
+              </div>
+            </a>
+          </li>
         <% end %>
         <!-- Sale Orders -->
         <% if can?(:index, Bill) %>
-        <li><a href="#" class="sidebar-row"><i class="lnr lnr-chart-bars"></i> <span class="sidebar-text">Sale Orders</span></a></li>
+          <li class="mb-4">
+            <a class="sidebar-row" href=<%= doctors_path %> >
+              <div class="row sidebar-nav-item text-light">
+                <div class="col-1 ml-5 mr-1">
+                  <i class="fas fa-user-md"></i>
+                </div>
+                <div class="col-8 mr-1 ml-1">
+                  <span class="sidebar-text">Sale Orders</span>
+                </div>
+              </div>
+            </a>
+          </li>
         <% end %>
         <!-- Doctor -->
         <% if can?(:index, Doctor) %>
-          <li><a class="sidebar-row active" href=<%= doctors_path %> ><i class="lnr lnr-heart-pulse"></i> <span class="sidebar-text">Doctors</span></a></li>
+          <li class="mb-4">
+            <a class="sidebar-row" href=<%= doctors_path %> >
+              <div class="row sidebar-nav-item text-light">
+                <div class="col-1 ml-5 mr-1">
+                  <i class="fas fa-user-md"></i>
+                </div>
+                <div class="col-8 mr-1 ml-1">
+                  <span class="sidebar-text">Doctors</span>
+                </div>
+              </div>
+            </a>
+          </li>
         <% end %>
         <!-- Patient -->
         <% if can?(:index, Patient) %>
-          <li><a class="sidebar-row" href=<%= patients_path %> ><i class="lnr lnr-wheelchair"></i><span class="sidebar-text">Patients</span></a></li>
+          <li>
+            <a class="sidebar-row" href=<%= patients_path %> >
+              <div class="row sidebar-nav-item text-light">
+                <div class="col-1 ml-5 mr-1">
+                  <i class="fas fa-user-injured"></i>
+                </div>
+                <div class="col-8 mr-1 ml-1">
+                  <span class="sidebar-text">Patients</span>
+                </div>
+              </div>
+            </a>
+          </li>
         <% end %>
         <!-- Appointments -->
         <% if can?(:index, Appointment) %>
-          <li><a href="#" class="sidebar-row"><i class="lnr lnr-calendar-full"></i> <span class="sidebar-text">Appointments</span></a></li>
+          <li>
+            <a href="#" class="sidebar-row">
+              <div class="row sidebar-nav-item text-light">
+                <div class="col-1 ml-5 mr-1">
+                  <i class="lnr lnr-calendar-full"></i> 
+                </div>
+                <div class="col-8 mr-1 ml-1">
+                    <span class="sidebar-text">Appointments</span>
+                </div>
+              </div>
+            </a>
+          </li>
         <% end %>
         <!-- Prescriptions -->
         <% if can?(:index, PrescribedMedicine) %>
-          <li><a href="#" class="sidebar-row"><i class="lnr lnr-list"></i> <span class="sidebar-text">Prescriptions</span></a></li>
+          <li>
+            <a href="#" class="sidebar-row">
+              <div class="row sidebar-nav-item text-light">
+                <div class="col-1 ml-5 mr-1">
+                  <i class="lnr lnr-calendar-full"></i> 
+                </div>
+                <div class="col-8 mr-1 ml-1">
+                  <span class="sidebar-text">Prescriptions</span>
+                </div>
+              </div>
+            </a>
+          </li>
         <% end %>
         <!-- Reports -->
         <% if can?(:index, Test) %>
-          <li><a href="#" class="sidebar-row"><i class="lnr lnr-file-empty"></i> <span class="sidebar-text">Reports</span></a></li>
+          <li>
+            <a href="#" class="sidebar-row">
+              <div class="row sidebar-nav-item text-light">
+                <div class="col-1 ml-5 mr-1">
+                  <i class="lnr lnr-calendar-full"></i> 
+                </div>
+                <div class="col-8 mr-1 ml-1">
+                  <span class="sidebar-text">Reports</span>
+                </div>
+              </div>
+            </a>
+          </li>
         <% end %>
       </ul>
     </nav>
     <div class="container-fluid">
-      <div class="float-right-arrow navbar-btn ">
-        <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+      <div class="float-right-arrow navbar-btn "><i class="fas fa-arrow-circle-left btn-toggle-fullwidth "></i>
       </div>
     </div>
   </div>

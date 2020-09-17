@@ -11,10 +11,10 @@
 
   <body>
     <div id="wrapper">
-      <%= render partial: 'layouts/header' %>
+      <%= render partial: 'layouts/navbar' %>
       <%= render partial: 'layouts/sidebar' %>
-      <div class="main">
-        <div class="main-content">
+      <div class="content-with-sidebar">
+        <div class="content">
           <%= yield %>
         </div>
       </div>
