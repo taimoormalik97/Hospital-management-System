@@ -15,10 +15,11 @@
       <%= render partial: 'layouts/sidebar' %>
       <div class="content-with-sidebar">
         <div class="content">
+
+          <%= render partial: 'layouts/flash', flash: flash %>
           <%= yield %>
         </div>
-      </div>
-      <%= render partial: 'layouts/flash', flash: flash %> 
+      </div> 
       <%= render_breadcrumbs separator: ' / ', class: 'breadcrumb'%>
     </div>
   </body>

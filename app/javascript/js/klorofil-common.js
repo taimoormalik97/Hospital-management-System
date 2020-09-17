@@ -7,18 +7,27 @@ $(document).ready(function() {
   $('.btn-toggle-fullwidth').on('click', function() {
     if(!$('body').hasClass('layout-fullwidth')) {
       $('body').addClass('layout-fullwidth');
-      $('.sidebar .nav i').addClass('vertical-icon');
+      $('.sidebar-icon').addClass('vertical-icon');
       $('.sidebar-text').addClass('vertical-span');
       $('.sidebar-row').addClass('vertical-block');
+      $('.sidebar-icon').removeClass('col-1');
+      $('.sidebar-text').removeClass('col-8');
+      $('.sidebar-nav-item').removeClass('row');
 
     } else {
       $('body').removeClass('layout-fullwidth');
-      $('.sidebar .nav i').removeClass('vertical-icon');
+      $('.sidebar-icon').removeClass('vertical-icon');
       $('.sidebar-text').removeClass('vertical-span');
       $('.sidebar-row').removeClass('vertical-block');
+      $('.sidebar-icon').addClass('col-1');
+      $('.sidebar-text').addClass('col-8');
+      $('.sidebar-nav-item').addClass('row');
+
     }
 
-    $(this).find('.lnr').toggleClass('lnr-arrow-left-circle lnr-arrow-right-circle');
+    $('.arrow').toggleClass('fa-arrow-circle-left fa-arrow-circle-right');
+
+    $('.navbar-btn').toggleClass('justify-content-center justify-content-end');
 
     if($(window).innerWidth() < 1025) {
       if(!$('body').hasClass('offcanvas-active')) {
@@ -117,19 +126,19 @@ $(document).ready(function() {
   /*  PANEL SCROLLING
   /*----------------------------------*/
 
-  if( $('.panel-scrolling').length > 0) {
-    $('.panel-scrolling .panel-body').slimScroll({
-      height: '430px',
-      wheelStep: 2,
-    });
-  }
+  // if( $('.panel-scrolling').length > 0) {
+  //   $('.panel-scrolling .panel-body').slimScroll({
+  //     height: '430px',
+  //     wheelStep: 2,
+  //   });
+  // }
 
-  if( $('#panel-scrolling-demo').length > 0) {
-    $('#panel-scrolling-demo .panel-body').slimScroll({
-      height: '175px',
-      wheelStep: 2,
-    });
-  }
+  // if( $('#panel-scrolling-demo').length > 0) {
+  //   $('#panel-scrolling-demo .panel-body').slimScroll({
+  //     height: '175px',
+  //     wheelStep: 2,
+  //   });
+  // }
 
   /*-----------------------------------/
   /*  TODO LIST

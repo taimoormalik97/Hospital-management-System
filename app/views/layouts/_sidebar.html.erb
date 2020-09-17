@@ -8,11 +8,11 @@
           <li class="mb-4">
             <a class="sidebar-row" href=<%= doctors_path %> >
               <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1">
+                <div class="col-1 ml-5 mr-1 sidebar-icon">
                   <i class="fas fa-user-md"></i>
                 </div>
-                <div class="col-8 mr-1 ml-1">
-                  <span class="sidebar-text">Medicines</span>
+                <div class="col-8 mr-1 ml-1 sidebar-text">
+                  <span class="">Medicines</span>
                 </div>
               </div>
             </a>
@@ -23,11 +23,11 @@
           <li class="mb-4">
             <a class="sidebar-row" href=<%= doctors_path %> >
               <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1">
+                <div class="col-1 ml-5 mr-1 sidebar-icon">
                   <i class="fas fa-user-md"></i>
                 </div>
-                <div class="col-8 mr-1 ml-1">
-                  <span class="sidebar-text">Purchase Orders</span>
+                <div class="col-8 mr-1 ml-1 sidebar-text">
+                  <span class="">Purchase Orders</span>
                 </div>
               </div>
             </a>
@@ -38,11 +38,11 @@
           <li class="mb-4">
             <a class="sidebar-row" href=<%= doctors_path %> >
               <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1">
+                <div class="col-1 ml-5 mr-1 sidebar-icon">
                   <i class="fas fa-user-md"></i>
                 </div>
-                <div class="col-8 mr-1 ml-1">
-                  <span class="sidebar-text">Sale Orders</span>
+                <div class="col-8 mr-1 ml-1 sidebar-text">
+                  <span class="">Sale Orders</span>
                 </div>
               </div>
             </a>
@@ -53,11 +53,11 @@
           <li class="mb-4">
             <a class="sidebar-row" href=<%= doctors_path %> >
               <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1">
+                <div class="col-1 ml-5 mr-1 sidebar-icon">
                   <i class="fas fa-user-md"></i>
                 </div>
-                <div class="col-8 mr-1 ml-1">
-                  <span class="sidebar-text">Doctors</span>
+                <div class="col-8 mr-1 ml-1 sidebar-text">
+                  <span class="">Doctors</span>
                 </div>
               </div>
             </a>
@@ -65,14 +65,14 @@
         <% end %>
         <!-- Patient -->
         <% if can?(:index, Patient) %>
-          <li>
+          <li class="mb-4">
             <a class="sidebar-row" href=<%= patients_path %> >
               <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1">
+                <div class="col-1 ml-5 mr-1 sidebar-icon">
                   <i class="fas fa-user-injured"></i>
                 </div>
-                <div class="col-8 mr-1 ml-1">
-                  <span class="sidebar-text">Patients</span>
+                <div class="col-8 mr-1 ml-1 sidebar-text">
+                  <span class="">Patients</span>
                 </div>
               </div>
             </a>
@@ -80,14 +80,14 @@
         <% end %>
         <!-- Appointments -->
         <% if can?(:index, Appointment) %>
-          <li>
+          <li class="mb-4">
             <a href="#" class="sidebar-row">
               <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1">
+                <div class="col-1 ml-5 mr-1 sidebar-icon">
                   <i class="lnr lnr-calendar-full"></i> 
                 </div>
-                <div class="col-8 mr-1 ml-1">
-                    <span class="sidebar-text">Appointments</span>
+                <div class="col-8 mr-1 ml-1 sidebar-text">
+                    <span class="">Appointments</span>
                 </div>
               </div>
             </a>
@@ -95,14 +95,14 @@
         <% end %>
         <!-- Prescriptions -->
         <% if can?(:index, PrescribedMedicine) %>
-          <li>
+          <li class="mb-4">
             <a href="#" class="sidebar-row">
               <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1">
+                <div class="col-1 ml-5 mr-1 sidebar-icon">
                   <i class="lnr lnr-calendar-full"></i> 
                 </div>
-                <div class="col-8 mr-1 ml-1">
-                  <span class="sidebar-text">Prescriptions</span>
+                <div class="col-8 mr-1 ml-1 sidebar-text">
+                  <span class="">Prescriptions</span>
                 </div>
               </div>
             </a>
@@ -110,14 +110,14 @@
         <% end %>
         <!-- Reports -->
         <% if can?(:index, Test) %>
-          <li>
+          <li class="mb-4">
             <a href="#" class="sidebar-row">
               <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1">
+                <div class="col-1 ml-5 mr-1 sidebar-icon">
                   <i class="lnr lnr-calendar-full"></i> 
                 </div>
-                <div class="col-8 mr-1 ml-1">
-                  <span class="sidebar-text">Reports</span>
+                <div class="col-8 mr-1 ml-1 sidebar-text">
+                  <span class="">Reports</span>
                 </div>
               </div>
             </a>
@@ -125,8 +125,8 @@
         <% end %>
       </ul>
     </nav>
-    <div class="container-fluid">
-      <div class="float-right-arrow navbar-btn "><i class="fas fa-arrow-circle-left btn-toggle-fullwidth "></i>
+    <div class="container-fluid float-right-arrow ">
+      <div class="navbar-btn d-flex justify-content-center btn-toggle-fullwidth "><i class="fas fa-arrow-circle-left arrow"></i>
       </div>
     </div>
   </div>

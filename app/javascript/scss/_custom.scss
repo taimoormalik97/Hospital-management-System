@@ -3,13 +3,14 @@
 }
 
 .float-right-arrow {
-  float: right;
-  margin: 6px;
+  margin: 20px 0;
+  position: absolute; 
+  bottom: 0px;
 }
 
 .vertical-icon {
   display: block;
-  margin-right: -5px !important;
+  padding-right: 20px !important;
 }
 
 .vertical-span {
@@ -21,7 +22,7 @@
 }
 
 .sidebar-nav-item {
-  font-size: 1.2em;
+  font-size: 1em;
 
 }
 
@@ -43,4 +44,12 @@
   color: #00AAFF; 
   background-color: #2B333E;
   font-size: 28px;
+}
+
+.btn-outline {
+  color: #00aaff;
+  border-color: #00aaff;
+}
+.navbar-brand{
+  margin-right: 0;
 }
