@@ -10,7 +10,10 @@ class Ability
     if user.admin?
       can :manage, Patient, hospital_id: user.hospital_id
       can :manage, Doctor, hospital_id: user.hospital_id
+      can :manage, Medicine, hospital_id: user.hospital_id
+      can :manage, PurchaseOrder, hospital_id: user.hospital_id
       can %i[read update], Admin, hospital_id: user.hospital_id, id: user.id
+
     elsif user.doctor?
       can :read, Patient, hospital_id: user.hospital_id # add appointment ability
       can :read, Doctor, hospital_id: user.hospital_id, id: user.id
