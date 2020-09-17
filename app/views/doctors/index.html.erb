@@ -27,9 +27,12 @@
             <td><%= doctor.speciality %></td>  
             <td><%= doctor.consultancy_fee %></td>   
           </tr>   
-        <% end %>   
+        <% end %>  
         </tbody>   
       </table> 
     </div>
   </div>
-</div> 
+</div>
+<div class="pagination justify-content-center" class="pagination-spacing">
+  <%= will_paginate @doctors, previous_label: t('paginate.previous'), next_label: t('paginate.next') %> 
+</div>
