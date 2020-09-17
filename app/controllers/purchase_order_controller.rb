@@ -1,10 +1,16 @@
 class PurchaseOrderController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
 
-  def index    
+  def index
+    respond_to do |format|
+      format.html
+    end    
   end
 
   def new
+    respond_to do |format|
+      format.html
+    end
   end
 
   def addmed
@@ -21,9 +27,15 @@ class PurchaseOrderController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+    end
   end
 
   def edit
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create

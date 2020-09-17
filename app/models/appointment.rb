@@ -1,5 +1,5 @@
 class Appointment < ApplicationRecord
-	sequenceid :hospital , :appointments
+  sequenceid :hospital , :appointments
   belongs_to :hospital
   belongs_to :doctor
   belongs_to :patient

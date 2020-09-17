@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-	sequenceid :hospital , :users
+  sequenceid :hospital , :users
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable, 
   belongs_to :hospital

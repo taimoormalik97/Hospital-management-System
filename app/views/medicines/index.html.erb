@@ -1,35 +1,35 @@
 <!DOCTYPE html>   
 <html>   
-<body>   
- <div class="container">   
-  <h1>Medicines</h1> 
-  <%= link_to 'Add', new_medicine_path%>  
-</div>
-<div class="container">
- <table border="2">   
-  <thead>   
-    <tr>   
-      <th>Name</th>   
-      <th>Price</th>   
-      <th>Quantity</th>    
-    </tr>   
-  </thead>   
-  <tbody>   
-    <% @medicine.each do |medicine| %>   
-    <tr>   
-      <td><%= link_to medicine.name, medicine_path(medicine) %></td>   
-      <td><%= medicine.price %></td>   
-      <td><%= medicine.quantity%></td> 
-      <div>   
-       <td>   
-        <%= link_to 'Edit', edit_medicine_path(medicine) %> 
-        <%= link_to 'Delete', medicine_path(medicine), method: :delete %>   
-      </div>   
-    </td>        
-  </tr>   
-  <% end %>   
-</tbody>   
-</table>  
-</div>
-</body>
+  <body>   
+    <div class="container">   
+      <h1>Medicines</h1> 
+      <%= link_to 'Add', new_medicine_path%>  
+    </div>
+    <div class="container">
+      <table border="2">   
+        <thead>   
+          <tr>   
+            <th>Name</th>   
+            <th>Price</th>   
+            <th>Quantity</th>    
+          </tr>   
+        </thead>   
+        <tbody>   
+          <% @medicine.each do |medicine| %>   
+          <tr>   
+            <td><%= link_to medicine.name, medicine_path(medicine) %></td>   
+            <td><%= medicine.price %></td>   
+            <td><%= medicine.quantity%></td> 
+          <div>   
+            <td>   
+              <%= link_to 'Edit', edit_medicine_path(medicine) %> 
+              <%= link_to 'Delete', medicine_path(medicine), method: :delete %>      
+            </td>
+          </div>       
+         </tr>   
+        <% end %>   
+        </tbody>   
+      </table>  
+    </div>
+  </body>
 </html>

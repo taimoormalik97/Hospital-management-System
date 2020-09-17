@@ -8,9 +8,15 @@ class MedicinesController < ApplicationController
   end
 
   def new
+    respond_to do |format|
+      format.html
+    end
   end
 
   def show
+    respond_to do |format|
+      format.html
+    end
   end
 
   def search_pred
@@ -35,7 +41,7 @@ class MedicinesController < ApplicationController
   end
 
   def create
-    @medicine.hospital=current_hospital
+    @medicine.hospital = current_hospital
     if @medicine.save   
       flash[:notice] = t('medicine.add.success')
       redirect_to medicine_path(@medicine)
