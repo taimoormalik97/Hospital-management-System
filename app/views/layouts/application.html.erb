@@ -5,14 +5,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' %>  
-    <%= stylesheet_link_tag 'https://cdn.datatables.net/s/dt/dt-1.10.10,r-2.0.0/datatables.min.css' %> 
-    <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "jquery.tokeninput" %>
-  </head>
-  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js' %>  
-  <%= javascript_include_tag 'https://cdn.datatables.net/s/dt/dt-1.10.10,r-2.0.0/datatables.min.js' %> 
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> 
+    <%#= stylesheet_link_tag 'https://cdn.datatables.net/s/dt/dt-1.10.10,r-2.0.0/datatables.min.css' %> 
+    
+  </head> 
+  <%#= javascript_include_tag 'https://cdn.datatables.net/s/dt/dt-1.10.10,r-2.0.0/datatables.min.js' %> 
   <body>
     <%= render_breadcrumbs separator: ' / ', class: 'breadcrumb'%>
     <%= render partial: 'layouts/flash', flash: flash %> 

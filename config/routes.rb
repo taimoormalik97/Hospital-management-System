@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   resources :purchase_order do
     member do
       post 'addmed'
-
+    end
+  end
   root 'public_pages#index'
   get '/hospital/index', to: 'hospital#index'
   get 'find', to: 'public_pages#find'
@@ -23,6 +24,5 @@ Rails.application.routes.draw do
   resources :doctors
   resources :patients
   devise_for :users
-end
 end
 

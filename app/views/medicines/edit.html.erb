@@ -1,24 +1,24 @@
 <div class="container">   
   
-<%= form_for @medicine, url: {action: :update} do |f| %>   
-     
-   <h3>Add Medicine</h3>         
-     <div>   
-            <label>Name</label>   
-            <%= f.text_field :name %>   
-     </div>   
+  <%= form_for @medicine, url: {action: :update} do |f| %>   
   
-     <div>   
-            <label>Price</label>   
-            <%= f.text_field :price %>   
-     </div>   
-        
-     <div>   
-            <label>Quantity</label>   
-            <%= f.text_field :quantity %>   
-     </div>     
-   <div>   
-      <%= link_to 'Back', { controller: 'medicines', action: 'index'} %>   
-      <%= f.submit 'Update' %>   
-    </div>   
-<% end %>   
+  <h3>Add Medicine</h3>         
+  <div>   
+    <label>Name</label>   
+    <%= f.text_field :name %>   
+  </div>   
+  
+  <div>   
+    <label>Price</label>   
+    <%= f.text_field :price %>   
+  </div>   
+  
+  <div>   
+    <label>Quantity</label>   
+    <%= f.text_field :quantity %>   
+  </div>     
+  <div>   
+    <%= link_to 'Back', { controller: 'medicines', action: 'index'} %>   
+    <%= f.submit 'Update' %>   
+  </div>   
+  <% end %>   

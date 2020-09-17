@@ -13,8 +13,7 @@ import 'bootstrap'
 import 'scss/site'
 // JS
 import('js/site')
-
-
+import('js/token_input')
 // Images
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
@@ -27,7 +26,9 @@ const imagePath = (name) => images(name, true)
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-
+//= require jquery
+//= require jquery_ujs
 document.addEventListener("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip()
 })
+

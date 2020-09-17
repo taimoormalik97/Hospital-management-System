@@ -1,24 +1,24 @@
 <div class="container">   
-  
-<%= form_for @purchase_order, url: {action: :create} do |f| %>   
-     
-   <h3>Add Order</h3>         
-     <div class="container">   
-            <label>Vendor Name</label>   
-            <%= f.text_field :vendorname %>   
-     </div>   
-  
-     <div class="container">   
-            <label class="input">Price</label>   
-            <%= f.text_field :price %>   
-     </div>   
-        
-     <div class="container">   
-            <label>State</label>   
-             <%= f.select :state, options_for_select(['drafted']), { prompt: true, selected: 'drafted' }, required: true %> 
-     </div>     
-   <div>   
-      <%= link_to 'Back', { controller: 'purchase_order', action: 'index'} %>   
-      <%= f.submit 'Create' %>   
-    </div>   
-<% end %>   
+	
+	<%= form_for @purchase_order, url: {action: :create} do |f| %>   
+	
+	<h3>Add Order</h3>         
+	<div class="container">   
+		<label>Vendor Name</label>   
+		<%= f.text_field :vendorname %>   
+	</div>   
+	
+	<div class="container">   
+		<label class="input">Price</label>   
+		<%= f.text_field :price %>   
+	</div>   
+	
+	<div class="container">   
+		<label>State</label>   
+		<%= f.select :state, options_for_select(['drafted']), { prompt: true, selected: 'drafted' }, required: true %> 
+	</div>     
+	<div>   
+		<%= link_to 'Back', { controller: 'purchase_order', action: 'index'} %>   
+		<%= f.submit 'Create' %>   
+	</div>   
+	<% end %>   

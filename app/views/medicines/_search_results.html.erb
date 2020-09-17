@@ -1,19 +1,24 @@
 <div class="container">
  <table border="2">   
-      <thead>   
-      <tr>   
-        <th>Name</th>   
-        <th>Price</th>   
-        <th>Quantity</th>    
-      </tr>   
-      </thead>   
-      <tbody>     
-          <tr>   
-            <td><%= @medicine.name %></td>   
-            <td><%= @medicine.price %></td>   
-            <td><%= @medicine.quantity%></td> 
-            <td><%=link_to "Add",addmed_purchase_order_path(params[:purchase_order_id], medicine_id:@medicine.id), method: :post, remote: true%></td>     
-          </tr>   
-      </tbody>   
-    </table>  
+  <thead>   
+    <tr>   
+      <th>Name</th>   
+      <th>Price</th>   
+      <th>Available Quantity</th>   
+    </tr>   
+  </thead>   
+  <tbody>     
+    <tr>   
+      <td><%= @medicine.name %></td>   
+      <td><%= @medicine.price %></td>   
+      <td><%= @medicine.quantity%></td> 
+      <td><div class="form-increment" data-quantity-change="">
+        <%= form_tag(addmed_purchase_order_path(params[:purchase_order_sequence_num], medicine_id:@medicine.id), method: 'post', remote: true, class: 'navbar-form navbar-left') do %> 
+        <%= number_field_tag :quantity, 1, required: true %>
+        <%= submit_tag "Add"%>  
+        <% end %> 
+    </div></td>       
+    </tr>   
+  </tbody>   
+</table>  
 </div>
