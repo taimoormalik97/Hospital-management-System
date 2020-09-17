@@ -7,25 +7,19 @@ $(document).ready(function() {
   $('.btn-toggle-fullwidth').on('click', function() {
     if(!$('body').hasClass('layout-fullwidth')) {
       $('body').addClass('layout-fullwidth');
-      $('.sidebar-icon').addClass('vertical-icon');
-      $('.sidebar-text').addClass('vertical-span');
       $('.sidebar-row').addClass('vertical-block');
-      $('.sidebar-icon').removeClass('col-1');
-      $('.sidebar-text').removeClass('col-8');
       $('.sidebar-nav-item').removeClass('row');
 
     } else {
       $('body').removeClass('layout-fullwidth');
-      $('.sidebar-icon').removeClass('vertical-icon');
-      $('.sidebar-text').removeClass('vertical-span');
       $('.sidebar-row').removeClass('vertical-block');
-      $('.sidebar-icon').addClass('col-1');
-      $('.sidebar-text').addClass('col-8');
       $('.sidebar-nav-item').addClass('row');
 
     }
 
     $('.arrow').toggleClass('fa-arrow-circle-left fa-arrow-circle-right');
+    $('.sidebar-icon').toggleClass('vertical-icon col-1');
+    $('.sidebar-text').toggleClass('vertical-span col-8');
 
     $('.navbar-btn').toggleClass('justify-content-center justify-content-end');
 
