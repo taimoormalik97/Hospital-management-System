@@ -34,5 +34,5 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-
-/db/schema.rb
+db/schema.rb $ git rm --cached db/schema.rb rm db/schema.rb $ git commit -m Start ignoring schema.rb
+vendor/bundle

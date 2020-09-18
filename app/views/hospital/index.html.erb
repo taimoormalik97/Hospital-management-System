@@ -2,7 +2,7 @@
 <% if user_signed_in? %>
   Logged in as <strong><%= current_user.email %></strong>.
   <% if current_user.admin? %>
-  	<%= link_to 'Show Profile', admin_path(current_user), class: 'navbar-link' %>
+  	<%= link_to 'Show Profile', admin_path(current_user.id), class: 'navbar-link' %>
   <% end %>
   <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link'  %>
 <% else %>

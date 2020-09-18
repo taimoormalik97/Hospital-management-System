@@ -31,6 +31,32 @@
 
 en:
   hello: "Hello world"
+  purchase_order:
+    add:
+      success: "Purchase order has been added successfully"
+      failure: "Failed to add!"
+    delete:
+      success: "Purchase order has been deleted successfully"
+      failure: "Failed to delete!"
+    update:
+      success: "Purchase order has been updated successfully"
+      failure: "Failed to update!"
+    addmed:
+      success: "Medicine successfully added to the purchase_order"
+      failure: "Unable to add medicine to the purchase order"
+  medicine:
+    add:
+      success: "Medicine has been added successfully"
+      failure: "Failed to add!"
+    delete:
+      success: "Medicine has been deleted successfully"
+      failure: "Failed to delete!"
+    update:
+      success: "Medicine has been updated successfully"
+      failure: "Failed to update!"
+    search:
+      success: "Medicine found!"
+      failure: "Medicine not found"
   paginate:
     previous: "Previous"
     next: "Next"
