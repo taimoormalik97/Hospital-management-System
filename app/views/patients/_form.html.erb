@@ -1,4 +1,4 @@
-<%= form_for(@patient, method: @patient.persisted? ? "patch" : "post") do |f| %> 
+<%= form_for(@patient, method: @patient.persisted? ? 'patch' : 'post') do |f| %> 
   <div class="container  pt-3"> 
     <div class="card">
       <div class="card-header p-3 container-fluid">
@@ -9,7 +9,6 @@
         </div>
       </div>
       <div class="card-body">     
-        <p><%= flash[:error] %></p>   
         <p>   
           <div class="form-group">   
             <label>Patient Name</label>   

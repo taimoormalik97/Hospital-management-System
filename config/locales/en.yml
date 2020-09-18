@@ -97,3 +97,6 @@ en:
     breadcrumb:
       show: "Profile"
       edit: "Edit Profile"
+  guest:
+    find:
+      error: "Email was not found!"
