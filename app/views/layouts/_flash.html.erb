@@ -1,8 +1,17 @@
-<div class="container">
+<div class="container  pt-3">
   <% flash.each do |type, msg| %>
     <div class="alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show">
-      <%= msg %>
       <button class="close" data-dismiss="alert">x</button>
+      <% if msg.is_a?(String) %>
+        <%= msg %>
+      <% else %>
+        <h5><strong>Errors</strong></h5>
+        <ul>
+          <% msg.each do |m| %>
+            <li><%= m %></li>
+          <% end %>
+        </ul>
+      <% end %>
     </div>
   <% end %> 
 </div>

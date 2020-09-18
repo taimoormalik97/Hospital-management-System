@@ -1,21 +1,37 @@
-<h2>Edit Profile </h2>
-
+<%= render "users/shared/error_messages", resource: @admin %>
 <%= form_for @admin, url: admin_path(@admin), method: "patch" do |f| %>
-  <%= render "users/shared/error_messages", resource: @admin %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name ,autofocus: true, required: true %>
+  <div class="container  pt-3"> 
+    <div class="card">
+      <div class="card-header p-3 container-fluid">
+        <div class="row">
+          <h3 class="col-md-9">
+            Edit Profile
+          </h3> 
+        </div>
+      </div>
+      <div class="card-body">  
+        <p>
+          <div class="form-group">
+            <label>Name</label>  
+            <%= f.text_field :name ,autofocus: true, required: true, class: "form-control" %>
+          </div> 
+          <div class="form-group">
+            <label>Email</label> 
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
+          </div>
+        </p> 
+      </div>
+      <div class="card-footer p-3 container-fluid">
+        <div class="row d-flex justify-content-md-end">
+          <div class="col-md-3 d-flex justify-content-md-end">
+            <%= f.submit "Update" , class: "btn btn-primary " %>
+            <%= link_to 'Cancel', :back , class: "btn btn-secondary btn-spacing" %>
+          </div>
+        </div>
+      </div>       
+    </div>    
   </div>
+<% end %>   
 
-   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
 
-<%= link_to "Back", :back %>

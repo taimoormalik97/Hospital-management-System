@@ -34,4 +34,9 @@ class User < ApplicationRecord
   def patient?
   	type == ROLES[:patient]
   end
+
+  def set_reset_password_token
+    super
+  end
+
 end

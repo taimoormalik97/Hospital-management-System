@@ -1,12 +1,28 @@
-
 <%= form_for @user, url: check_email_path(@user), method: "post"  do |f| %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Continue" %>
+  <div class="container  pt-3"> 
+    <div class="card">
+      <div class="card-header p-3 container-fluid">
+        <div class="row">
+          <h3 class="col-md-9">
+            <%= "Find User" %>
+          </h3> 
+        </div>
+      </div>
+      <div class="card-body">  
+        <p>   
+          <div class="field">
+            <label>Email</label> 
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
+          </div>
+        </p> 
+      </div>
+      <div class="card-footer p-3 container-fluid">
+        <div class="row">
+          <div class="col-md-9">
+            <%= f.submit 'Continue' , class: "btn btn-primary " %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
