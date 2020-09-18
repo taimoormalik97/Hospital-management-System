@@ -1,0 +1,35 @@
+<!DOCTYPE html>   
+<html>   
+<body>   
+  <div class="container">   
+      <h1>Purchase Orders</h1> 
+    <%= link_to 'Add', new_purchase_order_path%>  
+  </div>
+  <div class="container">
+    <table border="2">   
+      <thead>   
+        <tr>   
+          <th>Vendor Name</th>   
+          <th>Price</th>   
+          <th>State</th>    
+        </tr>   
+      </thead>   
+      <tbody>   
+        <% @purchase_orders.each do |po| %>   
+        <tr>   
+          <td><%=link_to po.vendorname, purchase_order_path(po)%></td>   
+          <td><%= po.price%></td>   
+          <td><%= po.state%></td> 
+          <div>   
+            <td>   
+              <%= link_to_if po.drafted?, 'Edit', edit_purchase_order_path(po) %>  
+              <%= link_to 'Delete', purchase_order_path(po), method: :delete %>   
+            </div>   
+          </td>        
+        </tr>   
+        <% end %>   
+      </tbody>   
+    </table>  
+  </div>
+</body>
+</html>

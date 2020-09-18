@@ -31,6 +31,35 @@
 
 en:
   hello: "Hello world"
+  purchase_order:
+    add:
+      success: "Purchase order has been added successfully"
+      failure: "Failed to add!"
+    delete:
+      success: "Purchase order has been deleted successfully"
+      failure: "Failed to delete!"
+    update:
+      success: "Purchase order has been updated successfully"
+      failure: "Failed to update!"
+    addmed:
+      success: "Medicine successfully added to the purchase_order"
+      failure: "Unable to add medicine to the purchase order"
+  medicine:
+    add:
+      success: "Medicine has been added successfully"
+      failure: "Failed to add!"
+    delete:
+      success: "Medicine has been deleted successfully"
+      failure: "Failed to delete!"
+    update:
+      success: "Medicine has been updated successfully"
+      failure: "Failed to update!"
+    search:
+      success: "Medicine found!"
+      failure: "Medicine not found"
+  paginate:
+    previous: "Previous"
+    next: "Next"
   doctor:
     add:
       success: "Doctor has been added successfully"
@@ -41,6 +70,11 @@ en:
     update:
       success: "Doctor has been updated successfully"
       failure: "Doctor is not updated!"
+    breadcrumb:
+      index: "Doctors"
+      new: "New Doctor"
+      show: "Doctor Details"
+      edit: "Edit Doctor"
   patient:
     add:
       success: "Patient has been added successfully"
@@ -51,7 +85,15 @@ en:
     update:
       success: "Patient has been updated successfully"
       failure: "Patient is not updated!"
+    breadcrumb:
+      index: "Patients"
+      new: "New Patient"
+      show: "Patient Details"
+      edit: "Edit Patient"
   admin:
     update:
       success: "Profile has been updated successfully"
       failure: "Profile is not updated!"
+    breadcrumb:
+      show: "Profile"
+      edit: "Edit Profile"

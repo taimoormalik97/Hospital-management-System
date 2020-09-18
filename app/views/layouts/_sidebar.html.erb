@@ -6,10 +6,10 @@
         <!-- Medicines -->
         <% if can?(:index, Medicine) %>
           <li class="mb-4">
-            <a class="sidebar-row" href=<%= doctors_path %> >
+            <a class="sidebar-row" href="#">
               <div class="row sidebar-nav-item text-light">
                 <div class="col-1 ml-5 mr-1 sidebar-icon">
-                  <i class="fas fa-user-md"></i>
+                  <i class="fas fa-capsules"></i>
                 </div>
                 <div class="col-8 mr-1 ml-1 sidebar-text">
                   <span class="">Medicines</span>
@@ -21,10 +21,10 @@
         <!-- Purchase Orders -->
         <% if can?(:index, PurchaseOrder) %>
           <li class="mb-4">
-            <a class="sidebar-row" href=<%= doctors_path %> >
+            <a class="sidebar-row" href="#" >
               <div class="row sidebar-nav-item text-light">
                 <div class="col-1 ml-5 mr-1 sidebar-icon">
-                  <i class="fas fa-user-md"></i>
+                  <i class="far fa-credit-card"></i>
                 </div>
                 <div class="col-8 mr-1 ml-1 sidebar-text">
                   <span class="">Purchase Orders</span>
@@ -36,10 +36,10 @@
         <!-- Sale Orders -->
         <% if can?(:index, Bill) %>
           <li class="mb-4">
-            <a class="sidebar-row" href=<%= doctors_path %> >
+            <a class="sidebar-row" href="#" >
               <div class="row sidebar-nav-item text-light">
                 <div class="col-1 ml-5 mr-1 sidebar-icon">
-                  <i class="fas fa-user-md"></i>
+                  <i class="fas fa-cash-register"></i>
                 </div>
                 <div class="col-8 mr-1 ml-1 sidebar-text">
                   <span class="">Sale Orders</span>
@@ -84,7 +84,7 @@
             <a href="#" class="sidebar-row">
               <div class="row sidebar-nav-item text-light">
                 <div class="col-1 ml-5 mr-1 sidebar-icon">
-                  <i class="lnr lnr-calendar-full"></i> 
+                  <i class="far fa-clock"></i> 
                 </div>
                 <div class="col-8 mr-1 ml-1 sidebar-text">
                     <span class="">Appointments</span>
@@ -99,7 +99,7 @@
             <a href="#" class="sidebar-row">
               <div class="row sidebar-nav-item text-light">
                 <div class="col-1 ml-5 mr-1 sidebar-icon">
-                  <i class="lnr lnr-calendar-full"></i> 
+                  <i class="fas fa-prescription-bottle"></i> 
                 </div>
                 <div class="col-8 mr-1 ml-1 sidebar-text">
                   <span class="">Prescriptions</span>
@@ -114,7 +114,7 @@
             <a href="#" class="sidebar-row">
               <div class="row sidebar-nav-item text-light">
                 <div class="col-1 ml-5 mr-1 sidebar-icon">
-                  <i class="lnr lnr-calendar-full"></i> 
+                  <i class="far fa-file-alt"></i> 
                 </div>
                 <div class="col-8 mr-1 ml-1 sidebar-text">
                   <span class="">Reports</span>

@@ -33,7 +33,7 @@
 .content-with-sidebar {
   position: relative;
   padding-left: 260px;
-  padding-top: 100px;
+  padding-top: 70px;
 }
 
 .custom-sidebar {
@@ -54,4 +54,12 @@
 
 .navbar-brand{
   margin-right: 0;
+}
+
+.pagination-spacing {
+  margin: 20px 0;
+}
+
+.breadcrumb {
+  margin: 0 60px;
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>   
+<html>   
+<body>   
+ <div class="container">   
+  <h1>Purchase order</h1> 
+  <%= link_to 'Back', { controller: 'purchase_order', action: 'index'} %> 
+  <%= link_to_if @purchase_order.drafted?, 'Edit', edit_purchase_order_path(@purchase_order) %> 
+</div>
+<div class="container">
+ <table border="2">   
+  <thead>   
+    <tr>   
+      <th>Name</th>   
+      <th>Price</th>   
+      <th>State</th>    
+    </tr>   
+  </thead>   
+  <tbody>     
+    <tr>   
+      <td><%= @purchase_order.vendorname %></td>   
+      <td><%= @purchase_order.price %></td>   
+      <td><%= @purchase_order.state%></td>
+    </tr>   
+  </tbody>   
+</table>  
+</div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>   
+<html>   
+<body>   
+ <div class="container">   
+  <h1>Medicine</h1> 
+  <%= link_to 'Back', { controller: 'medicines', action: 'index'} %>
+  <%= link_to 'Edit', edit_medicine_path(@medicine) %>  
+</div>
+<div class="container">
+ <table border="2">   
+  <thead>   
+    <tr>   
+      <th>Name</th>   
+      <th>Price</th>   
+      <th>Quantity</th>    
+    </tr>   
+  </thead>   
+  <tbody>     
+    <tr>   
+      <td><%= @medicine.name %></td>   
+      <td><%= @medicine.price %></td>   
+      <td><%= @medicine.quantity%></td>
+    </tr>   
+  </tbody>   
+</table>  
+</div>
+
+</body>
+</html>

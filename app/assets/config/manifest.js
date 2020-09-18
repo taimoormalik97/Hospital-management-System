@@ -1,3 +1,4 @@
 //= link_tree ../images
 //= link_directory ../stylesheets .css
-//= link users/signup.js
+//= link application.js
+//= link jquery.tokeninput.js
