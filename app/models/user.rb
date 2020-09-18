@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :name, length: { minimum: 3 }, presence: true
   validates :password, confirmation: true
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable,
+         :recoverable, :rememberable, :timeoutable,
          :confirmable, :validatable
   default_scope { where(hospital_id: Hospital.current_id) }
   ROLES = { admin: 'Admin', doctor: 'Doctor', patient: 'Patient' }.freeze
