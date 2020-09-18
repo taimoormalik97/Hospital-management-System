@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_091725) do
+ActiveRecord::Schema.define(version: 2020_09_15_072948) do
 
   create_table "appointments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "date", null: false
@@ -182,7 +182,6 @@ ActiveRecord::Schema.define(version: 2020_09_16_091725) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
-    t.string "email", null: false
     t.string "type", null: false
     t.string "gender"
     t.date "dob"
@@ -193,7 +192,7 @@ ActiveRecord::Schema.define(version: 2020_09_16_091725) do
     t.bigint "hospital_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "sequence_num", null: false
+    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -202,7 +201,9 @@ ActiveRecord::Schema.define(version: 2020_09_16_091725) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.integer "sequence_num", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email", "hospital_id"], name: "index_users_on_email_and_hospital_id"
     t.index ["email"], name: "index_users_on_email"
     t.index ["hospital_id", "email"], name: "index_users_on_hospital_id_and_email"
     t.index ["hospital_id"], name: "index_users_on_hospital_id"
