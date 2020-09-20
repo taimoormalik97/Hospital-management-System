@@ -1,3 +1,6 @@
+$color-back: #2B333E;
+$color-primary-btn: #00AAFF;
+
 .btn-spacing {
   margin-left: 1em
 }
@@ -42,14 +45,14 @@
 }
 
 .btn-toggle-fullwidth {
-  color: #00AAFF; 
-  background-color: #2B333E;
+  color: $color-primary-btn; 
+  background-color: $color-back;
   font-size: 28px;
 }
 
 .btn-outline {
-  color: #00aaff;
-  border-color: #00aaff;
+  color: $color-primary-btn;
+  border-color: $color-primary-btn;
 }
 
 .navbar-brand{

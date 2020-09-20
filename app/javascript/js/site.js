@@ -1,3 +1,3 @@
 require("./signup")
-require("./klorofil-common")
+require("./common")
 require("./jquery.tokeninput")

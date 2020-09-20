@@ -3,126 +3,14 @@
   <div class="sidebar-scroll">
     <nav>
       <ul class="navbar-nav ">
-        <!-- Medicines -->
-        <% if can?(:index, Medicine) %>
-          <li class="mb-4">
-            <a class="sidebar-row" href="#">
-              <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1 sidebar-icon">
-                  <i class="fas fa-capsules"></i>
-                </div>
-                <div class="col-8 mr-1 ml-1 sidebar-text">
-                  <span class="">Medicines</span>
-                </div>
-              </div>
-            </a>
-          </li>
-        <% end %>
-        <!-- Purchase Orders -->
-        <% if can?(:index, PurchaseOrder) %>
-          <li class="mb-4">
-            <a class="sidebar-row" href="#" >
-              <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1 sidebar-icon">
-                  <i class="far fa-credit-card"></i>
-                </div>
-                <div class="col-8 mr-1 ml-1 sidebar-text">
-                  <span class="">Purchase Orders</span>
-                </div>
-              </div>
-            </a>
-          </li>
-        <% end %>
-        <!-- Sale Orders -->
-        <% if can?(:index, Bill) %>
-          <li class="mb-4">
-            <a class="sidebar-row" href="#" >
-              <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1 sidebar-icon">
-                  <i class="fas fa-cash-register"></i>
-                </div>
-                <div class="col-8 mr-1 ml-1 sidebar-text">
-                  <span class="">Sale Orders</span>
-                </div>
-              </div>
-            </a>
-          </li>
-        <% end %>
-        <!-- Doctor -->
-        <% if can?(:index, Doctor) %>
-          <li class="mb-4">
-            <a class="sidebar-row" href=<%= doctors_path %> >
-              <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1 sidebar-icon">
-                  <i class="fas fa-user-md"></i>
-                </div>
-                <div class="col-8 mr-1 ml-1 sidebar-text">
-                  <span class="">Doctors</span>
-                </div>
-              </div>
-            </a>
-          </li>
-        <% end %>
-        <!-- Patient -->
-        <% if can?(:index, Patient) %>
-          <li class="mb-4">
-            <a class="sidebar-row" href=<%= patients_path %> >
-              <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1 sidebar-icon">
-                  <i class="fas fa-user-injured"></i>
-                </div>
-                <div class="col-8 mr-1 ml-1 sidebar-text">
-                  <span class="">Patients</span>
-                </div>
-              </div>
-            </a>
-          </li>
-        <% end %>
-        <!-- Appointments -->
-        <% if can?(:index, Appointment) %>
-          <li class="mb-4">
-            <a href="#" class="sidebar-row">
-              <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1 sidebar-icon">
-                  <i class="far fa-clock"></i> 
-                </div>
-                <div class="col-8 mr-1 ml-1 sidebar-text">
-                    <span class="">Appointments</span>
-                </div>
-              </div>
-            </a>
-          </li>
-        <% end %>
-        <!-- Prescriptions -->
-        <% if can?(:index, PrescribedMedicine) %>
-          <li class="mb-4">
-            <a href="#" class="sidebar-row">
-              <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1 sidebar-icon">
-                  <i class="fas fa-prescription-bottle"></i> 
-                </div>
-                <div class="col-8 mr-1 ml-1 sidebar-text">
-                  <span class="">Prescriptions</span>
-                </div>
-              </div>
-            </a>
-          </li>
-        <% end %>
-        <!-- Reports -->
-        <% if can?(:index, Test) %>
-          <li class="mb-4">
-            <a href="#" class="sidebar-row">
-              <div class="row sidebar-nav-item text-light">
-                <div class="col-1 ml-5 mr-1 sidebar-icon">
-                  <i class="far fa-file-alt"></i> 
-                </div>
-                <div class="col-8 mr-1 ml-1 sidebar-text">
-                  <span class="">Reports</span>
-                </div>
-              </div>
-            </a>
-          </li>
-        <% end %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('medicine.name'), call: Medicine, icon: 'fa-capsules', path: "#"} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('purchase_order.name'), call: PurchaseOrder, icon: 'fa-credit-card', path: "#"} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('sale_order.name'), call: Bill, icon: 'fa-cash-register', path: "#"} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('doctor.name'), call: Doctor, icon: 'fa-user-md', path: doctors_path} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('patient.name'), call: Patient, icon: 'fa-user-injured', path: patients_path} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('appointment.name'), call: Appointment, icon: 'fa-clock', path: "#"} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('prescription.name'), call: PrescribedMedicine, icon: 'fa-prescription-bottle', path: "#"} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('test_report.name'), call: Test, icon: 'fa-file-alt', path: "#"} %>
       </ul>
     </nav>
     <div class="container-fluid float-right-arrow ">

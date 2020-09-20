@@ -25,10 +25,12 @@ class DoctorsController < ApplicationController
   def create
     respond_to do |format|
       if @doctor.save
-        flash[:notice] = t('doctor.add.success')
+        flash[:notice] = [t('doctor.add.success')]
+        flash[:notice] += @doctor.errors.full_messages
         format.html { redirect_to doctors_path }
       else
-        flash[:error] = t('doctor.add.failure')
+        flash[:error] = [t('doctor.add.failure')]
+        flash[:error] += @doctor.errors.full_messages
         format.html { render :new }
       end
     end
@@ -53,10 +55,12 @@ class DoctorsController < ApplicationController
   def update
     respond_to do |format|
       if @doctor.update(doctor_params)
-        flash[:notice] = t('doctor.update.success')
+        flash[:notice] = [t('doctor.update.success')]
+        flash[:notice] += @doctor.errors.full_messages
         format.html { redirect_to doctor_path(@doctor) }
       else
-        flash[:error] = t('doctor.update.failure')
+        flash[:error] = [t('doctor.update.failure')]
+        flash[:error] += @doctor.errors.full_messages
         format.html { render :edit }
       end
     end
@@ -67,10 +71,12 @@ class DoctorsController < ApplicationController
     @doctor.destroy
     respond_to do |format|
       if @doctor.destroyed?
-        flash[:notice] = t('doctor.delete.success')
+        flash[:notice] = [t('doctor.delete.success')]
+        flash[:notice] += @doctor.errors.full_messages
         format.html { redirect_to doctors_path }
       else
-        flash[:error] = t('doctor.delete.failure')
+        flash[:error] = [t('doctor.delete.failure')]
+        flash[:error] += @doctor.errors.full_messages
         format.html { render :show }
       end
     end

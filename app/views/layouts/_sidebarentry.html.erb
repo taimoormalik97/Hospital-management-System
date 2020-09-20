@@ -1,0 +1,14 @@
+<% if can?(:index, call) %>
+  <li class="mb-4">
+    <a class="sidebar-row" href=<%= path %> >
+      <div class="row sidebar-nav-item text-light">
+        <div class="col-1 ml-5 mr-1 sidebar-icon">
+          <i class="fas <%= icon %>"></i>
+        </div>
+        <div class="col-8 mr-1 ml-1 sidebar-text">
+          <span class=""><%= name %></span>
+        </div>
+      </div>
+    </a>
+  </li>
+<% end %>
