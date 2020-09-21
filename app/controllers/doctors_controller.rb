@@ -1,5 +1,5 @@
 class DoctorsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource find_by: :sequence_num
 
   before_action :root_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
@@ -23,6 +23,7 @@ class DoctorsController < ApplicationController
 
   # POST /doctors
   def create
+    @doctor.password = Devise.friendly_token.first(8)
     respond_to do |format|
       if @doctor.save
         flash[:notice] = t('doctor.add.success')

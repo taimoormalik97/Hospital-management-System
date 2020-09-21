@@ -1,57 +1,75 @@
-<h2>Sign up</h2>
-
+<%= render "users/shared/error_messages", resource: resource %>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+  <div class="container  pt-3"> 
+    <div class="card">
+      <div class="card-header p-3 container-fluid">
+        <div class="row">
+          <h3 class="col-md-9 ">
+            <%= t('guest.signup') %>
+          </h3>  
+        </div>
+      </div>
+      <div class="card-body">     
+        <p>   
+          <div class="form-group">
+            <label><%= t('guest.profile.name') %></label>  
+            <%= f.text_field :name ,autofocus: true, required: true, class: "form-control" %>
+          </div> 
+          <div cclass="form-group">
+            <label><%= t('guest.profile.email') %></label>
+            <%= f.email_field :email, autocomplete: "email", required: true, class: "form-control" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name ,autofocus: true, required: true %>
+          <div class="form-group">
+            <label><%= t('guest.profile.password') %></label>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password", required: true, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <label><%= t('guest.profile.confirm_password') %></label>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "form-control" %>
+          </div>
+
+          <%= f.fields_for :hospital, resource.build_hospital do |h| %>
+            <div class="form-group">
+            <label><%= t('guest.profile.hospital_name') %></label>
+            <%= h.text_field :name, required: true, id: "hospital_name", class: "form-control"  %>
+            </div>
+
+            <div class="form-group">
+            <label><%= t('guest.profile.hospital_sub_domain') %></label>
+            <%= h.text_field :sub_domain, id: "sub_domain", readonly: true, class: "form-control"  %>
+            </div>
+
+            <div class="form-group">
+            <label><%= t('guest.profile.hospital_address') %></label>
+            <%= h.text_field :address, required: true, class: "form-control"  %>
+            </div>
+
+            <div class="form-group">
+            <label><%= t('guest.profile.hospital_phone_number') %></label>
+            <%= h.text_field :phone_number, required: true, class: "form-control"  %>
+            </div>
+           
+          <% end %>
+          <%= f.hidden_field :type, value: "Admin" %>
+        </p> 
+      </div> 
+      <div class="card-footer p-3 container-fluid">
+        <div class="row">
+          <div class="col-md-9">
+            <%= f.submit 'Sign up' , class: "btn btn-primary" %>
+          </div>
+        </div>
+        <div class="row"> 
+          <div class="col-md">
+           <%= link_to 'Already have an Account', new_user_session_path %>
+          </div>
+        </div>  
+      </div>    
+    </div>    
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email", required: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", required: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
-  </div>
-  <%= f.fields_for :hospital, resource.build_hospital do |h| %>
-    <div class="field">
-    <%= h.label :hospital_name %><br />
-    <%= h.text_field :name, required: true, :id => "hospital_name" %>
-    </div>
-
-    <div class="field">
-    <%= h.label :hospital_domain%><br />
-    <%= h.text_field :sub_domain, :id => "sub_domain", readonly: true %>
-    </div>
-
-    <div class="field">
-    <%= h.label :address %><br />
-    <%= h.text_field :address, required: true %>
-    </div>
-
-    <div class="field">
-    <%= h.label :phone_number %><br />
-    <%= h.text_field :phone_number, required: true %>
-    </div>
-   
-  <% end %>
-  <%= f.hidden_field :type, value: "Admin" %>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+<%end%>

@@ -1,4 +1,4 @@
-<%= form_for @doctor do |f| %> 
+<%= form_for(@doctor, method: @doctor.persisted? ? 'patch' : 'post') do |f| %> 
   <div class="container  pt-3"> 
     <div class="card">
       <div class="card-header p-3 container-fluid">
@@ -8,8 +8,7 @@
           </h3> 
         </div>
       </div>
-      <div class="card-body"> 
-        <p><%= flash[:error] %></p>   
+      <div class="card-body">  
         <p>   
           <div class="form-group">   
             <label>Doctor Name</label>   
@@ -19,10 +18,6 @@
             <label>Email</label>   
             <%= f.email_field :email, :required => true, class: "form-control" %>   
           </div>   
-          <div class="form-group">   
-            <label>Password</label>   
-            <%= f.password_field :password, :required => true, class: "form-control"  %>
-          </div> 
           <div class="form-group">   
             <label>Registration no.</label>   
             <%= f.text_field :registration_no, :required => true, class: "form-control" %>   

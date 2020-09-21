@@ -1,16 +1,36 @@
-<h2>Forgot your password?</h2>
-
+<%= render "users/shared/error_messages", resource: resource %>
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="container pt-3"> 
+    <div class="card">
+      <div class="card-header p-3 container-fluid">
+        <div class="row">
+          <h3 class="col-md-9">
+            <%= t('guest.forgot_password') %>
+          </h3> 
+        </div>
+      </div>
+      <div class="card-body">  
+        <p>   
+          <div class="form-group">
+            <label><%= t('guest.profile.email') %></label> 
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
+          </div>
+        </p> 
+      </div>
+      <div class="card-footer p-3 container-fluid">
+        <div class="row">
+          <div class="col-md-9">
+            <%= f.submit "Send me reset password instructions" , class: "btn btn-primary" %>
+          </div>
+        </div>
+        <div class="row"> 
+          <div class="col-md-9">
+            <%= render "users/shared/links" %> 
+          </div>
+        </div>  
+      </div>       
+    </div>    
   </div>
+<% end %>   
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
 
-<%= render "users/shared/links" %>

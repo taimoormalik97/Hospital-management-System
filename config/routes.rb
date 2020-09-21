@@ -21,8 +21,6 @@ Rails.application.routes.draw do
   post 'find', to: 'public_pages#check_email', as: 'check_email'
   get '/find/select_domain', to: 'hospital#select_domain', as: 'select_domain'
   resources :admin, only: [:show, :edit, :update]
-  resources :doctors
-  resources :patients
   devise_for :users
+  
 end
-

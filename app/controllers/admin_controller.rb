@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource find_by: :sequence_num
 
   before_action :root_page_breadcrumb, only: [:show, :edit]
   before_action :show_page_breadcrumb, only: [:show, :edit]

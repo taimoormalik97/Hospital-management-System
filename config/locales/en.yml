@@ -97,3 +97,33 @@ en:
     breadcrumb:
       show: "Profile"
       edit: "Edit Profile"
+    profile:
+      name: "Name"
+      email: "Email"
+      password: "Password"
+      confirm_password: "Confirm Password"
+      hospital_name: "Hospital Name"
+      hospital_sub_domain: "Hospital Sub Domain"
+      hospital_address: "Hospital Address"
+      hospital_phone_number: "Phone Number"
+      edit: "Edit Profile"
+  guest:
+    find:
+      error: "Email was not found!"
+      user: "Find User"
+    select_hospital: "Choose Your Hospital"
+    signup: "Sign Up"
+    login: "Login"
+    change_password: "Change Your Password"
+    forgot_password: "Forgot Password"
+    profile:
+      name: "Name"
+      email: "Email"
+      password: "Password"
+      confirm_password: "Confirm Password"
+      new_password: "New Password"
+      confirm_new_password: "Confirm New Password"
+      hospital_name: "Hospital Name"
+      hospital_sub_domain: "Hospital Sub Domain"
+      hospital_address: "Hospital Address"
+      hospital_phone_number: "Phone Number"
