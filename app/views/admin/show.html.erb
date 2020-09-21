@@ -1,41 +1,41 @@
-<div class="container  pt-3"> 
-    <div class="card">
-      <div class="card-header p-3 container-fluid">
-        <div class="row">
-          <h3 class="col-md-8"><%= @admin.name %></h3> 
-          <div class="col-md-4 d-flex justify-content-md-end"> 
-            <%= link_to 'Edit Profile', edit_admin_path(@admin) , class: "btn btn-primary " %> 
-            <%= link_to "Back", hospital_index_path , class: "btn btn-secondary btn-spacing" %>
-          </div>
+<div class="container pt-3"> 
+  <div class="card">
+    <div class="card-header p-3 container-fluid">
+      <div class="row">
+        <h3 class="col-md-8"><%= @admin.name %></h3> 
+        <div class="col-md-4 d-flex justify-content-md-end"> 
+          <%= link_to 'Edit Profile', edit_admin_path(@admin) , class: "btn btn-primary" %> 
+          <%= link_to "Back", hospital_index_path , class: "btn btn-secondary btn-spacing" %>
         </div>
       </div>
-      <div class="card-body">
+    </div>
+    <div class="card-body">
       <dl class="row">
         <dt class="col-sm-2">  
-          <label>Email: </label>
+          <label><%=t('admin.profile.email')%>: </label>
         </dt>
         <dd class="col-sm-9">   
           <%= @admin.email %>   
         </dd>
         <dt class="col-sm-2">  
-          <label>Hospital Name: </label>
+          <label><%=t('admin.profile.hospital_name')%>: </label>
         </dt>
         <dd class="col-sm-9">   
           <%= @admin.hospital.name %>   
         </dd>
         <dt class="col-sm-2">  
-          <label>Hospital Address: </label>
+          <label><%=t('admin.profile.hospital_address')%>: </label>
         </dt>
         <dd class="col-sm-9">   
           <%= @admin.hospital.address %>   
         </dd>
         <dt class="col-sm-2">  
-          <label>Phone Number: </label>
+          <label><%=t('admin.profile.hospital_phone_number')%>: </label>
         </dt>
         <dd class="col-sm-9">   
           <%= @admin.hospital.phone_number %>   
         </dd>
       </dl>
-    </div>    
+    </div>
   </div>   
 </div> 

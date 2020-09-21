@@ -1,21 +1,21 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="container  pt-3"> 
+  <div class="container pt-3"> 
     <div class="card">
       <div class="card-header p-3 container-fluid">
         <div class="row">
           <h3 class="col-md-9">
-            Login
+            <%=t('guest.login')%>
           </h3> 
         </div>
       </div>
       <div class="card-body">  
         <p>   
           <div class="form-group">
-            <label>Email</label> 
+            <label><%=t('guest.profile.email')%></label> 
             <%= f.email_field :email, autofocus: true, autocomplete: "email", value: params[:email], required: true, class: "form-control" %>
           </div>
           <div class="form-group">
-            <label>Password</label>
+            <label><%=t('guest.profile.password')%></label>
             <%= f.password_field :password, autocomplete: "current-password", required: true, class: "form-control" %>
           </div>
           <% if devise_mapping.rememberable? %>
@@ -29,7 +29,7 @@
       <div class="card-footer p-3 container-fluid">
         <div class="row">
           <div class="col-md-9">
-            <%= f.submit 'Login' , class: "btn btn-primary " %>
+            <%= f.submit 'Login' , class: "btn btn-primary" %>
           </div>
         </div>
         <div class="row">

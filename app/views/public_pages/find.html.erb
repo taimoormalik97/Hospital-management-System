@@ -1,18 +1,18 @@
 <%= render "users/shared/error_messages", resource: @user %>
 <%= form_for @user, url: check_email_path(@user), method: "post"  do |f| %>
-  <div class="container  pt-3">
+  <div class="container pt-3">
     <div class="card">
       <div class="card-header p-3 container-fluid">
         <div class="row">
           <h3 class="col-md-9">
-            Find User
+            <%=t('guest.find.user')%>
           </h3> 
         </div>
       </div>
       <div class="card-body">
         <p>
           <div class="field">
-            <label>Email</label>
+            <label><%=t('guest.profile.email')%></label>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
           </div>
         </p> 
@@ -20,7 +20,7 @@
       <div class="card-footer p-3 container-fluid">
         <div class="row">
           <div class="col-md-9">
-            <%= f.submit 'Continue' , class: "btn btn-primary " %>
+            <%= f.submit 'Continue' , class: "btn btn-primary" %>
           </div>
         </div>
       </div>

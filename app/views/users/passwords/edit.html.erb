@@ -1,26 +1,26 @@
 <%= render "users/shared/error_messages", resource: resource %>
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.hidden_field :reset_password_token %>
-  <div class="container  pt-3"> 
+  <div class="container pt-3"> 
     <div class="card">
       <div class="card-header p-3 container-fluid">
         <div class="row">
           <h3 class="col-md-9">
-            Change your password
+            <%=t('guest.change_password')%>
           </h3> 
         </div>
       </div>
       <div class="card-body">  
         <p>
           <div class="form-group">
-            <label>New Password</label> 
+            <label><%=t('guest.profile.new_password')%></label> 
             <% if @minimum_password_length %>
               <em>(<%= @minimum_password_length %> characters minimum)</em><br />
             <% end %>
             <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control" %>
           </div>
           <div class="form-group">
-            <label>Confirm New Password</label> 
+            <label><%=t('guest.profile.confirm_new_password')%></label> 
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
           </div>
         </p> 

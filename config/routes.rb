@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   get '/find/select_domain', to: 'hospital#select_domain', as: 'select_domain'
   resources :admin, only: [:show, :edit, :update]
   devise_for :users
+  
 end
-
