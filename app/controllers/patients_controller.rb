@@ -23,6 +23,7 @@ class PatientsController < ApplicationController
 
   # POST /patients
   def create
+    @patient.password = Devise.friendly_token.first(8)
     respond_to do |format|
       if @patient.save
         flash[:notice] = [t('patient.add.success')]

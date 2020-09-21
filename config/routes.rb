@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   resources :patients
   get 'dashboard' => 'dashboards#dashboard' 
   devise_for :users
+  
 end
-

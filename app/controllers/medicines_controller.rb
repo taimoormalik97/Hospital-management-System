@@ -1,5 +1,5 @@
 class MedicinesController < ApplicationController
-
+  
   include ActionController::MimeResponds
   load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
 

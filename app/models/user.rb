@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  sequenceid :hospital , :users
+  sequenceid :hospital, :users
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable, 
   belongs_to :hospital
@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :name, length: { minimum: 3 }, presence: true
   validates :password, confirmation: true
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable,
+         :recoverable, :rememberable, :timeoutable,
          :confirmable, :validatable
   default_scope { where(hospital_id: Hospital.current_id) }
   ROLES = { admin: 'Admin', doctor: 'Doctor', patient: 'Patient' }.freeze
@@ -35,4 +35,9 @@ class User < ApplicationRecord
   def patient?
   	type == ROLES[:patient]
   end
+
+  def set_reset_password_token
+    super
+  end
+
 end
