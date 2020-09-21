@@ -20,12 +20,12 @@ class PublicPagesController < ApplicationController
     respond_to do |format|
       user = user_email_in_params
       if User.unscoped.where(email: user[:email]).count(:hospital_id) == 1
-        format.html{redirect_to new_user_session_url(email: user[:email], subdomain: User.unscoped.find_by_email(user[:email]).hospital.sub_domain)}
+        format.html{ redirect_to new_user_session_url(email: user[:email], subdomain: User.unscoped.find_by_email(user[:email]).hospital.sub_domain) }
       elsif User.unscoped.where(email: user[:email]) == []
         flash[:error] = t('guest.find.error')
-        format.html{redirect_to :find}
+        format.html { redirect_to :find }
       else
-        format.htmlredirect_to select_domain_url(email: user[:email])}
+        format.html { redirect_to select_domain_url(email: user[:email]) }
       end
     end
   end
