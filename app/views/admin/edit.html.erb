@@ -5,18 +5,18 @@
       <div class="card-header p-3 container-fluid">
         <div class="row">
           <h3 class="col-md-9">
-            Edit Profile
+            <%= t('admin.profile.edit') %>
           </h3> 
         </div>
       </div>
       <div class="card-body">  
         <p>
           <div class="form-group">
-            <label>Name</label>  
+            <label><%= t('admin.profile.name') %></label>  
             <%= f.text_field :name ,autofocus: true, required: true, class: "form-control" %>
           </div> 
           <div class="form-group">
-            <label>Email</label>
+            <label><%= t('admin.profile.email') %></label>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
           </div>
         </p> 

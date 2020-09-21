@@ -5,14 +5,14 @@
       <div class="card-header p-3 container-fluid">
         <div class="row">
           <h3 class="col-md-9">
-            <%=t('guest.find.user')%>
+            <%= t('guest.find.user') %>
           </h3> 
         </div>
       </div>
       <div class="card-body">
         <p>
           <div class="field">
-            <label><%=t('guest.profile.email')%></label>
+            <label><%= t('guest.profile.email') %></label>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
           </div>
         </p> 

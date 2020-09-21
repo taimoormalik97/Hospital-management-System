@@ -106,6 +106,7 @@ en:
       hospital_sub_domain: "Hospital Sub Domain"
       hospital_address: "Hospital Address"
       hospital_phone_number: "Phone Number"
+      edit: "Edit Profile"
   guest:
     find:
       error: "Email was not found!"

@@ -4,18 +4,18 @@
       <div class="card-header p-3 container-fluid">
         <div class="row">
           <h3 class="col-md-9">
-            <%=t('guest.login')%>
+            <%= t('guest.login') %>
           </h3> 
         </div>
       </div>
       <div class="card-body">  
         <p>   
           <div class="form-group">
-            <label><%=t('guest.profile.email')%></label> 
+            <label><%= t('guest.profile.email') %></label> 
             <%= f.email_field :email, autofocus: true, autocomplete: "email", value: params[:email], required: true, class: "form-control" %>
           </div>
           <div class="form-group">
-            <label><%=t('guest.profile.password')%></label>
+            <label><%= t('guest.profile.password') %></label>
             <%= f.password_field :password, autocomplete: "current-password", required: true, class: "form-control" %>
           </div>
           <% if devise_mapping.rememberable? %>
