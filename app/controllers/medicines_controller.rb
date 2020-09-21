@@ -2,12 +2,16 @@ class MedicinesController < ApplicationController
 
   include ActionController::MimeResponds
   load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
+  before_action :root_page_breadcrumb, only: [:index, :new, :show, :edit]
+  before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
+  before_action :show_page_breadcrumb, only: [:show]
 
   def index
-    @medicine = Medicine.all
+    @medicines = @medicines.paginate(page: params[:page], per_page: 5)
   end
 
   def new
+    add_breadcrumb t('medicine.breadcrumb.new'), new_medicine_path
     respond_to do |format|
       format.html
     end
@@ -31,7 +35,7 @@ class MedicinesController < ApplicationController
     @medicine = Medicine.find_by(id: params[:search])
     if @medicine.blank?
       flash[:notice] = t('medicine.search.failure')
-      redirect_to medicines_path
+      #redirect_to medicines_path
     else
       flash[:notice] = t('medicine.search.success')   
       respond_to do |format|
@@ -51,6 +55,10 @@ class MedicinesController < ApplicationController
   end
 
   def edit
+    add_breadcrumb t('medicine.breadcrumb.edit'), edit_medicine_path
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update  
@@ -73,6 +81,19 @@ class MedicinesController < ApplicationController
 
   def medicine_params   
     params.require(:medicine).permit(:name, :price, :quantity, :search)   
-  end  
+  end 
+
+  def root_page_breadcrumb
+    add_breadcrumb current_hospital.name, hospital_index_path
+  end
+
+  def index_page_breadcrumb
+    add_breadcrumb t('medicine.breadcrumb.index'), medicines_path
+  end
+
+  def show_page_breadcrumb
+    add_breadcrumb t('medicine.breadcrumb.show'), medicine_path
+  end
+ 
 
 end

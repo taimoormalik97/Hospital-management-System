@@ -1,13 +1,18 @@
 class PurchaseOrderController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
+  before_action :root_page_breadcrumb, only: [:index, :new, :show, :edit]
+  before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
+  before_action :show_page_breadcrumb, only: [:show]
 
   def index
+    @purchase_orders = @purchase_orders.paginate(page: params[:page], per_page: 5)
     respond_to do |format|
       format.html
     end    
   end
 
   def new
+    add_breadcrumb t('purchase_order.breadcrumb.new'), new_purchase_order_path
     respond_to do |format|
       format.html
     end
@@ -33,6 +38,7 @@ class PurchaseOrderController < ApplicationController
   end
 
   def edit
+    add_breadcrumb t('purchase_order.breadcrumb.edit'), edit_purchase_order_path
     respond_to do |format|
       format.html
     end
@@ -67,8 +73,40 @@ class PurchaseOrderController < ApplicationController
     end
   end
 
+  def confirm
+    if @purchase_order.can_confirmed?
+      @purchase_order.confirmed!
+      flash[:notice] = t('purchase_order.confirm.success') 
+      redirect_to @purchase_order
+    else   
+      flash[:error] = t('purchase_order.confirm.failure')   
+    end
+  end
+
+  def deliver
+    if @purchase_order.can_delivered?
+      @purchase_order.delivered!
+      flash[:notice] = t('purchase_order.deliver.success') 
+      redirect_to @purchase_order
+    else   
+      flash[:error] = t('purchase_order.deliver.failure')   
+    end
+  end
+
   def purchase_order_params   
     params.require(:purchase_order).permit(:vendorname, :price, :state)   
+  end
+
+  def root_page_breadcrumb
+    add_breadcrumb current_hospital.name, hospital_index_path
+  end
+
+  def index_page_breadcrumb
+    add_breadcrumb t('purchase_order.breadcrumb.index'), purchase_order_index_path
+  end
+
+  def show_page_breadcrumb
+    add_breadcrumb t('purchase_order.breadcrumb.show'), purchase_order_path
   end
 
 end

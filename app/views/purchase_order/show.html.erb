@@ -1,29 +1,66 @@
-<!DOCTYPE html>   
-<html>   
-<body>   
- <div class="container">   
-  <h1>Purchase order</h1> 
-  <%= link_to 'Back', { controller: 'purchase_order', action: 'index'} %> 
-  <%= link_to_if @purchase_order.drafted?, 'Edit', edit_purchase_order_path(@purchase_order) %> 
+<div class="container  pt-3"> 
+    <div class="card">
+      <div class="card-header p-3 container-fluid">
+        <div class="row">
+          <h3 class="col-md-8"><%= @purchase_order.vendorname %></h3> 
+          <div class="col-md-4 d-flex justify-content-md-end"> 
+           <%= link_to 'Back', { controller: 'purchase_order', action: 'index'}, class: "btn btn-secondary" %> 
+           <% if @purchase_order.drafted? || @purchase_order.confirmed?%>
+            <%= link_to 'Edit', edit_purchase_order_path(@purchase_order), class: "btn btn-primary btn-spacing" %> 
+           <%end%>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-2">  
+          <label>Vendor Name</label>
+        </dt>
+        <dd class="col-sm-9">   
+          <%=@purchase_order.vendorname %>   
+        </dd>
+        <dt class="col-sm-2">  
+          <label>Price</label>   
+        </dt>
+        <dd class="col-sm-9">   
+          <%=@purchase_order.price%>   
+        </dd>
+        <dt class="col-sm-2">  
+          <label>State</label>
+        </dt>
+        <dd class="col-sm-9">   
+          <%=@purchase_order.state%>   
+        </dd>
+        <%if @purchase_order.medicines.present?%>
+        <dt class="col-sm-2">  
+            <label>Medicines</label>
+        </dt>
+        <dd>
+          <table class="table">
+            <thead class="thead-dark">
+            <tr>
+              <th class="col-sm-9">
+                Name
+              </th>
+              <th>
+                Quantity
+              </th>
+            </tr>  
+            </thead>
+            <%@purchase_order.purchase_details.each do |pd|%>
+            <tr>
+              <td class="col-sm-9">
+                <%=pd.medicine.name%>
+              </td>
+              <td>
+                <%=pd.quantity%>
+              </td>
+            </tr> 
+            <%end%>
+          </table>
+        </dd>
+        <%end%>
+    </dl>
+    </div>    
+  </div>   
 </div>
-<div class="container">
- <table border="2">   
-  <thead>   
-    <tr>   
-      <th>Name</th>   
-      <th>Price</th>   
-      <th>State</th>    
-    </tr>   
-  </thead>   
-  <tbody>     
-    <tr>   
-      <td><%= @purchase_order.vendorname %></td>   
-      <td><%= @purchase_order.price %></td>   
-      <td><%= @purchase_order.state%></td>
-    </tr>   
-  </tbody>   
-</table>  
-</div>
-
-</body>
-</html>

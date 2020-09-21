@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :purchase_order do
     member do
       post 'addmed'
+      put 'confirm'
+      put 'deliver'
     end
   end
   root 'public_pages#index'

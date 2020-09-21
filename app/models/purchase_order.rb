@@ -22,10 +22,15 @@ class PurchaseOrder < ApplicationRecord
   has_many :medicines, through: :purchase_details
   default_scope { where(hospital_id: Hospital.current_id) }
   def add_medicine(medicine, quantity_added)
-    if medicine.quantity>0
+    if medicine.quantity>0 && quantity_added<=medicine.quantity
       if medicine.update(quantity: medicine.quantity-quantity_added)
-        self.update(price: self.price+=medicine.price*quantity_added)   
-        purchase_details.create(quantity: quantity_added, medicine: medicine, hospital: medicine.hospital)        
+        self.update(price: self.price+=medicine.price*quantity_added)
+        curr_pd=purchase_details.find_by(medicine: medicine)
+        if curr_pd
+          curr_pd.update(quantity:quantity_added+curr_pd.quantity)
+        else
+          purchase_details.create(quantity: quantity_added, medicine: medicine, hospital: medicine.hospital) 
+        end       
       end
     else
       flash[:error]= t('medicine.add.failure')
