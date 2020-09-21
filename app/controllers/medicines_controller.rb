@@ -35,7 +35,6 @@ class MedicinesController < ApplicationController
     @medicine = Medicine.find_by(id: params[:search])
     if @medicine.blank?
       flash[:notice] = t('medicine.search.failure')
-      #redirect_to medicines_path
     else
       flash[:notice] = t('medicine.search.success')   
       respond_to do |format|

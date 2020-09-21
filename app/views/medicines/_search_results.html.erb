@@ -20,12 +20,14 @@
         <dd class="col-sm-9">   
           <%=@medicine.quantity %>   
         </dd>
-        <dd><div class="form-increment" data-quantity-change="">
-        <%= form_tag(addmed_purchase_order_path(params[:purchase_order_sequence_num], medicine_id:@medicine.id), method: 'post', remote: true, class: 'navbar-form navbar-left') do %> 
-        <%= number_field_tag :quantity, 1, required: true, class: "form-control" %>
-        <%= submit_tag "Add", class: "btn btn-primary"%>  
-        <% end %> 
-    </div></dd>
+        <dd>
+          <div class="form-increment" data-quantity-change="">
+            <%= form_tag(addmed_purchase_order_path(params[:purchase_order_sequence_num], medicine_id:@medicine.id), method: 'post', remote: true, class: 'navbar-form navbar-left') do %> 
+            <%= number_field_tag :quantity, 1, required: true, class: "form-control" %>
+            <%= submit_tag "Add", class: "btn btn-primary"%>  
+            <% end %> 
+         </div>
+        </dd>
       </dl>
     </div>    
   </div>   
