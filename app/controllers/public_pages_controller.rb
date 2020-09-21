@@ -23,9 +23,9 @@ class PublicPagesController < ApplicationController
         format.html{redirect_to new_user_session_url(email: user[:email], subdomain: User.unscoped.find_by_email(user[:email]).hospital.sub_domain)}
       elsif User.unscoped.where(email: user[:email]) == []
         flash[:error] = t('guest.find.error')
-        format.html {redirect_to :find}
+        format.html{redirect_to :find}
       else
-        format.html {redirect_to select_domain_url(email: user[:email])}
+        format.htmlredirect_to select_domain_url(email: user[:email])}
       end
     end
   end
