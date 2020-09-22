@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/find/select_domain', to: 'hospital#select_domain', as: 'select_domain'
   resources :admin, only: [:show, :edit, :update]
   resources :doctors
+  resources :availabilities
   resources :patients
   get 'dashboard' => 'dashboards#dashboard' 
   devise_for :users

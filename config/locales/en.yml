@@ -102,6 +102,16 @@ en:
     name: "Prescriptions"
   test_report:
     name: "Test Reports"
+  availability:
+    name: "Availabilities"
+    breadcrumb: "Availabilities"
+    add:
+      success: "Availability slot has been added successfully"
+      failure: "Availability slot is not added!"
+    delete:
+      success: "Availability slot has been deleted successfully"
+      failure: "Availability slot is not deleted!"
+
   admin:
     update:
       success: "Profile has been updated successfully"

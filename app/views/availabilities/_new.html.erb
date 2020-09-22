@@ -1,0 +1,30 @@
+<%= form_for(@availability, method: 'post') do |f| %> 
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">New Availability slot</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div class="form-group">
+        <label class="col-form-label">Day:</label>
+        <% days = Date::DAYNAMES%>
+        <%= f.select :week_day, options_for_select(days), {:required => true}, {:class => 'form-control'}  %>  
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">Start:</label>
+        <div >
+          <%= f.time_select :start_slot, {:minute_step => 30}, class: 'form-control time' %> 
+        </div>
+      <div class="form-group">
+        <label class="col-form-label">End:</label>
+        <div >
+          <%= f.time_select :end_slot, {:minute_step => 30}, class: 'form-control time' %> 
+        </div>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+    <%= f.submit 'Add' , class: "btn btn-primary " %>
+  </div>
+<% end %>

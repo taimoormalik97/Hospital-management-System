@@ -26,8 +26,7 @@ class PatientsController < ApplicationController
     @patient.password = Devise.friendly_token.first(8)
     respond_to do |format|
       if @patient.save
-        flash[:notice] = [t('patient.add.success')]
-        flash[:notice] += @patient.errors.full_messages
+        flash[:notice] = t('patient.add.success')
         format.html { redirect_to patients_path }
       else
         flash[:error] = [t('patient.add.failure')]
@@ -56,8 +55,7 @@ class PatientsController < ApplicationController
   def update
     respond_to do |format|
       if @patient.update(patient_params)
-        flash[:notice] = [t('patient.update.success')]
-        flash[:notice] += @patient.errors.full_messages
+        flash[:notice] = t('patient.update.success')
         format.html { redirect_to patient_path(@patient) }
       else
         flash[:error] = [t('patient.update.failure')]
@@ -72,8 +70,7 @@ class PatientsController < ApplicationController
     @patient.destroy
     respond_to do |format|
       if @patient.destroyed?
-        flash[:notice] = [t('patient.delete.success')]
-        flash[:notice] += @patient.errors.full_messages
+        flash[:notice] = t('patient.delete.success')
         format.html { redirect_to patients_path }
       else
         flash[:error] = [t('patient.delete.failure')]

@@ -1,5 +1,5 @@
 $color-back: #2B333E;
-$color-primary-btn: #00AAFF;
+$color-primary-btn: #007bff;
 
 .btn-spacing {
   margin-left: 1em
@@ -74,4 +74,9 @@ $color-primary-btn: #00AAFF;
 
 .select_domain_hover:hover{
   text-decoration-color: black;
+}
+
+.time {
+  width: 48% !important;
+  display: inline !important;
 }

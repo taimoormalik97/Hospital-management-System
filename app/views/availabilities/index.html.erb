@@ -1,0 +1,32 @@
+<div class="container  pt-3"> 
+  <div class="card">
+    <div class="vertical-tabs">
+      <ul class="nav nav-tabs" role="tablist">
+        <%= render partial: "availability_tab_row.html", locals:{ num: 0, addclass: 'active' } %>
+        <%= render partial: "availability_tab_row.html", locals:{ num: 1, addclass: '' } %>
+        <%= render partial: "availability_tab_row.html", locals:{ num: 2, addclass: '' } %>
+        <%= render partial: "availability_tab_row.html", locals:{ num: 3, addclass: '' } %>
+        <%= render partial: "availability_tab_row.html", locals:{ num: 4, addclass: '' } %>
+        <%= render partial: "availability_tab_row.html", locals:{ num: 5, addclass: '' } %>
+        <%= render partial: "availability_tab_row.html", locals:{ num: 6, addclass: '' } %>
+      </ul>
+      <div class="tab-content">
+        <%= render partial: "availability_tab", locals:{ num: 0, addclass: 'active' } %>
+        <%= render partial: "availability_tab", locals:{ num: 1, addclass: '' } %>
+        <%= render partial: "availability_tab", locals:{ num: 2, addclass: '' } %>
+        <%= render partial: "availability_tab", locals:{ num: 3, addclass: '' } %>
+        <%= render partial: "availability_tab", locals:{ num: 4, addclass: '' } %>
+        <%= render partial: "availability_tab", locals:{ num: 5, addclass: '' } %>
+        <%= render partial: "availability_tab", locals:{ num: 6, addclass: '' } %>
+      </div>
+    </div>
+  </div>
+  <div class="p-3 container-fluid">
+        <div class="row d-flex justify-content-md-end">
+          <div class="col-md-3 d-flex justify-content-md-end">
+            <%= link_to '+', new_availability_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#exampleModal', class: 'btn btn-primary btn-lg btn-modal rounded-circle font-weight-bold'} %>
+            <%= render partial: "availability_modal" %>
+          </div>
+        </div>
+      </div>
+</div>
