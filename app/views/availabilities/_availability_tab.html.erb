@@ -1,8 +1,8 @@
 <div class="tab-pane <%= addclass %>" id="<%= "pag#{num+1}" %>" role="tabpanel">
   <div class="sv-tab-panel">
     <div class="container  pt-3"> 
-      <div class="card">
-        <div class="card-body">
+      <div class="card scroll">
+        <div class="card-body table-responsive">
           <table class="table">   
             <thead >   
               <tr>   
@@ -11,7 +11,7 @@
                 <th></th> 
               </tr>   
             </thead>   
-            <tbody>   
+            <tbody>
             <% @availabilities.each do |availability| %>
               <% days = Date::DAYNAMES%>
               <% if availability.week_day == days[num] %>  
