@@ -1,8 +1,19 @@
-<div class="container">
-  <% flash.each do |type, msg| %>
-    <div class="alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show">
-      <%= msg %>
-      <button class="close" data-dismiss="alert">x</button>
-    </div>
-  <% end %> 
+<div class="container pt-3">
+  <% flash.each do |type, message| %>
+    <% unless type == 'timedout'%>
+      <div class="alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show">
+        <button class="close" data-dismiss="alert">x</button>
+        <% if message.is_a?(String) %>
+          <%= message %>
+        <% elsif message.is_a?(Array)%>
+          <h5><strong>Errors</strong></h5>
+          <ul>
+            <% message.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
 </div>
