@@ -21,6 +21,14 @@ class PatientsController < ApplicationController
     end
   end
 
+  def search_pred
+    @patients = Patient.search(params[:q])
+    respond_to do |format|
+      format.html 
+      format.json { render json: @patients }
+    end
+  end
+
   # POST /patients
   def create
     @patient.password = Devise.friendly_token.first(8)
@@ -29,7 +37,8 @@ class PatientsController < ApplicationController
         flash[:notice] = t('patient.add.success')
         format.html { redirect_to patients_path }
       else
-        flash[:error] = t('patient.add.failure')
+        flash[:error] = [t('patient.add.failure')]
+        flash[:error] += @patient.errors.full_messages
         format.html { render :new }
       end
     end

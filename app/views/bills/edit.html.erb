@@ -1,0 +1,47 @@
+<%= form_for @bill, url: {action: :update} do |f| %> 
+  <div class="container  pt-3"> 
+      <div class="card">
+        <div class="card-header p-3 container-fluid">
+          <div class="row">
+            <h3 class="col-md-9">
+              Add Order
+            </h3> 
+          </div>
+        </div> 
+        <div class="card-body"> 
+          <p><%= flash[:error] %></p>   
+          <p>   
+            <div class="form-group">   
+              <label>Patient Name</label>   
+              <%= f.text_field :patient_id, :required => true, class: "form-control", id: "patient_search1" %>   
+            </div>   
+            <div class="form-group">   
+              <label>Price</label>   
+              <%= f.number_field :price, :required => true, class: "form-control" %>   
+            </div> 
+            <div class="form-group">   
+              <label>Type</label>   
+              <%= f.text_field :billable_type, readonly: true, class: "form-control" %> 
+            </div>    
+          </p>
+        </div> 
+      </div>
+      <div class="card-footer p-3 container-fluid">
+        <div class="row d-flex justify-content-md-end">
+          <div>   
+            <%= link_to 'Back', { controller: 'bills', action: 'index'}, class: "btn btn-secondary" %>   
+            <%= f.submit 'Update', class: "btn btn-primary btn-spacing"%>   
+          </div> 
+        </div>
+      </div>    
+    </div>    
+  </div>
+<% end %>
+<% if @bill.billable_type=="medicine"%>
+  <%= render 'medicinesearch'%>
+<% elsif @bill.billable_type=="doctor"%>
+  <%= render 'doctorssearch'%>
+<%end%>
+<%= javascript_tag do %> 
+$('#patient_search1').tokenInput("/patients/search_pred", {preventDuplicates: true, prePopulate: <%= [{id: @bill.patient_id, name: @bill.patient.name }].to_json.html_safe %>});
+<% end %>

@@ -36,10 +36,16 @@ class MedicinesController < ApplicationController
     if @medicine.blank?
       flash[:notice] = t('medicine.search.failure')
     else
-      flash[:notice] = t('medicine.search.success')   
-      respond_to do |format|
-        format.js{ render 'purchase_order/search' }
-      end
+      flash[:notice] = t('medicine.search.success')
+      if params[:purchase_order_sequence_num]  
+        respond_to do |format|
+          format.js{ render 'purchase_order/search'  }
+        end
+      elsif params[:bill_sequence_num]
+        respond_to do |format|
+          format.js{ render 'bills/searchmed'}
+        end
+      end     
     end
   end
 
@@ -49,7 +55,8 @@ class MedicinesController < ApplicationController
       flash[:notice] = t('medicine.add.success')
       redirect_to medicine_path(@medicine)
     else   
-      flash[:error] = t('medicine.add.failure')     
+      flash[:error] = [t('medicine.add.failure')] 
+      flash[:error] += @medicine.errors.full_messages   
     end   
   end
 
@@ -65,7 +72,8 @@ class MedicinesController < ApplicationController
       flash[:notice] = t('medicine.update.success')   
       redirect_to @medicine
     else   
-      flash[:error] = t('medicine.update.failure')       
+      flash[:error] = [t('medicine.update.failure')]
+      flash[:error] += @medicine.errors.full_messages       
     end   
   end
 
@@ -74,7 +82,8 @@ class MedicinesController < ApplicationController
       flash[:notice] = t('medicine.delete.success')     
       redirect_to medicines_path   
     else   
-      flash[:error] = t('medicine.delete.failure')       
+      flash[:error] = [t('medicine.delete.failure')]
+      flash[:error] += @medicine.errors.full_messages 
     end   
   end
 

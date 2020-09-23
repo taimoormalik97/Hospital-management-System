@@ -1,0 +1,27 @@
+<div class="container  pt-3"> 
+    <div class="card">
+      <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-2">  
+          <label>Name</label>
+        </dt>
+        <dd class="col-sm-9">   
+          <%=@doctor.name %>   
+        </dd>
+        <dt class="col-sm-2">  
+          <label>Consultancy fee</label>   
+        </dt>
+        <dd class="col-sm-9">   
+          <%=@doctor.consultancy_fee%>   
+        </dd>
+        <dd>
+          <div class="form-increment" data-quantity-change="">
+            <%= form_tag(adddoc_bill_path(params[:bill_sequence_num], doctor_id:@doctor.id), method: 'post', remote: true, class: 'navbar-form navbar-left') do %> 
+            <%= submit_tag "Add", class: "btn btn-primary"%>  
+            <% end %> 
+         </div>
+        </dd>
+      </dl>
+    </div>    
+  </div>   
+</div> 

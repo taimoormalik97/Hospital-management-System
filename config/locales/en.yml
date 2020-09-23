@@ -55,6 +55,36 @@ en:
       new: "New Order"
       show: "Order Details"
       edit: "Edit Order"
+  sales_order:
+    add:
+      success: "Sales order has been added successfully"
+      failure: "Failed to add!"
+    delete:
+      success: "Sales order has been deleted successfully"
+      failure: "Failed to delete!"
+    update:
+      success: "Sales order has been updated successfully"
+      failure: "Failed to update!"
+    addmed:
+      success: "Sales successfully added to the purchase order"
+      failure: "Unable to add medicine to the purchase order"
+    confirm:
+      success: "Sales Order successfully confirmed"
+      failure: "Failed to confirm Purchase Order"
+    deliver:
+      success: "Sales Order successfully delivered"
+      failure: "Failed to deliver Purchase Order"
+    breadcrumb:
+      index: "Sales Orders"
+      new: "New Order"
+      show: "Order Details"
+      edit: "Edit Order"
+    addmed:
+      success: "Medicine successfully added to the sales order"
+      failure: "Unable to add medicine to the sales order"
+    adddoc:
+      success: "Doctor successfully added to the sales order"
+      failure: "Unable to add doctor to the sales order"
   medicine:
     add:
       success: "Medicine has been added successfully"

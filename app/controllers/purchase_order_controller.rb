@@ -27,7 +27,8 @@ class PurchaseOrderController < ApplicationController
         format.js{ render 'purchase_order/update_price' }
       end            
     else   
-      flash[:error] = t('purchase_order.addmed.failure')     
+      flash[:error] = [t('purchase_order.addmed.failure')]
+      flash[:error] += @purchase_order.errors.full_messages      
     end 
   end
 
@@ -51,7 +52,8 @@ class PurchaseOrderController < ApplicationController
       flash[:notice] = t('purchase_order.add.success')   
       redirect_to @purchase_order
     else   
-      flash[:error] = t('purchase_order.add.failure')    
+      flash[:error] = [t('purchase_order.add.failure')]
+      flash[:error] += @purchase_order.errors.full_messages     
     end
   end
 
@@ -60,7 +62,8 @@ class PurchaseOrderController < ApplicationController
       flash[:notice] = t('purchase_order.update.success') 
       redirect_to @purchase_order        
     else   
-      flash[:error] = t('purchase_order.update.failure')     
+      flash[:error] = [t('purchase_order.update.failure')]
+      flash[:error] += @purchase_order.errors.full_messages      
     end   
   end
 
@@ -69,7 +72,8 @@ class PurchaseOrderController < ApplicationController
       flash[:notice] = t('purchase_order.delete.success')  
       redirect_to purchase_order_index_path    
     else   
-      flash[:error] = t('purchase_order.delete.failure')   
+      flash[:error] = [t('purchase_order.delete.failure')]
+      flash[:error] += @purchase_order.errors.full_messages    
     end
   end
 
@@ -79,7 +83,8 @@ class PurchaseOrderController < ApplicationController
       flash[:notice] = t('purchase_order.confirm.success') 
       redirect_to @purchase_order
     else   
-      flash[:error] = t('purchase_order.confirm.failure')   
+      flash[:error] = [t('purchase_order.confirm.failure')]
+      flash[:error] += @purchase_order.errors.full_messages    
     end
   end
 
@@ -89,7 +94,8 @@ class PurchaseOrderController < ApplicationController
       flash[:notice] = t('purchase_order.deliver.success') 
       redirect_to @purchase_order
     else   
-      flash[:error] = t('purchase_order.deliver.failure')   
+      flash[:error] = [t('purchase_order.deliver.failure')]
+      flash[:error] += @purchase_order.errors.full_messages    
     end
   end
 

@@ -21,6 +21,26 @@ class DoctorsController < ApplicationController
     end
   end
 
+  def search_pred
+    @doctors = Doctor.search(params[:q])
+    respond_to do |format|
+      format.html 
+      format.json { render json: @doctors }
+    end
+  end
+
+  def search
+    @doctor = Doctor.find_by(id: params[:search])
+    if @doctor.blank?
+      flash[:notice] = t('medicine.search.failure')
+    else
+      flash[:notice] = t('medicine.search.success')   
+      respond_to do |format|
+        format.js{ render 'bills/searchdoc' }
+      end
+    end
+  end
+
   # POST /doctors
   def create
     @doctor.password = Devise.friendly_token.first(8)

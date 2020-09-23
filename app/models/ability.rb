@@ -12,6 +12,7 @@ class Ability
       can :manage, Doctor, hospital_id: user.hospital_id
       can :manage, Medicine, hospital_id: user.hospital_id
       can :manage, PurchaseOrder, hospital_id: user.hospital_id
+      can :manage, Bill, hospital_id: user.hospital_id
       #ability to not delete a medicine if it exists in a purchase detail
       cannot :destroy, Medicine do |medicine|
         PurchaseDetail.find_by(medicine_id: medicine.id)
