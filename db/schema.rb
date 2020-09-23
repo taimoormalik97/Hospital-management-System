@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_15_072948) do
+ActiveRecord::Schema.define(version: 2020_09_23_074756) do
 
   create_table "appointments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.date "date", null: false
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_072948) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sequence_num", null: false
     t.index ["availability_id"], name: "index_appointments_on_availability_id"
+    t.index ["date", "availability_id"], name: "index_appointments_on_date_and_availability_id", unique: true
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["hospital_id"], name: "index_appointments_on_hospital_id"
     t.index ["patient_id"], name: "index_appointments_on_patient_id"

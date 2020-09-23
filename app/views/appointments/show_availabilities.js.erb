@@ -1,0 +1,6 @@
+$(".availability-list").html("<%= escape_javascript(render partial: 'appointments/availabilities_list') %>");
+$(".availability-list").removeClass('collapse');
+$(".availability-list").addClass('show');
+$(".final-footer").removeClass('collapse');
+$(".next-footer").addClass('collapse');
+$(".final-footer").addClass('show');

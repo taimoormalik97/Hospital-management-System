@@ -148,8 +148,18 @@ function arrow() {
     });
   }
 }
+function appointment() {
+  
+  $('body').on('click', '.next', function(){
+    var data = { doctor_id: $('#doctor').val(), date: $('#date').val() };
+    $.ajax({ type: "POST", url: '/appointments/show_availabilities', dataType: 'script', data: data });
+  });
+}
+
 $(document).on('turbolinks:load', arrow)
 $(document).ready(arrow)
+$(document).on('turbolinks:load', appointment)
+$(document).ready(appointment)
 // toggle function
 $.fn.clickToggle = function( f1, f2 ) {
   return this.each( function() {

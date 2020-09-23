@@ -1,10 +1,12 @@
+require 'date'
 class AppointmentsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num
 
   before_action :root_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :show_page_breadcrumb, only: [:show, :edit]
-  
+  helper_method :date_to_day
+
   # GET /appointments
   def index
     @appointments = @appointments.paginate(page: params[:page], per_page: 10)
@@ -18,12 +20,12 @@ class AppointmentsController < ApplicationController
     add_breadcrumb t('appointment.breadcrumb.new'), new_appointment_path
     respond_to do |format|
       format.html
+      format.js
     end
   end
 
   # POST /appointments
   def create
-    @appointment.password = Devise.friendly_token.first(8)
     respond_to do |format|
       if @appointment.save
         flash[:notice] = t('appointment.add.success')
@@ -31,7 +33,8 @@ class AppointmentsController < ApplicationController
       else
         flash[:error] = [t('appointment.add.failure')]
         flash[:error] += @appointment.errors.full_messages
-        format.html { render :new }
+        format.html { redirect_to appointments_path }
+        format.js
       end
     end
   end
@@ -81,7 +84,7 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:name, :email, :password, :registration_no, :speciality, :consultancy_fee)
+    params.require(:appointment).permit(:date)
   end
 
   def root_page_breadcrumb
@@ -94,6 +97,19 @@ class AppointmentsController < ApplicationController
 
   def show_page_breadcrumb
     add_breadcrumb t('appointment.breadcrumb.show'), appointment_path
+  end
+
+  def date_to_day(date)
+    if(!date.nil?)
+      date.to_date.strftime("%A")
+    end
+  end
+
+  def show_availabilities
+    params[:date] = date_to_day(params[:date])
+    respond_to do |format|
+      format.js
+    end
   end
 
 end

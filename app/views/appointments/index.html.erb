@@ -1,5 +1,44 @@
 <div class="container  pt-3"> 
   <div class="card">
-  	index
+    <div class="card-header p-3 container-fluid">
+      <div class="row">
+        <h3 class="col-md-10">Appointments</h3> 
+        <% if current_user.type == 'Patient' %>
+          <div class="col-md-2 d-flex justify-content-md-end">
+            <%= link_to 'Add', new_appointment_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#exampleModal', class: 'btn btn-primary'} %>
+            <%= render partial: "appointment_modal" %>   
+          </div> 
+        <% end %>  
+      </div>
+    </div> 
+    <div class="card-body">
+      <table  class="table">   
+        <thead >   
+          <tr>
+            <th>Date</th> 
+            <th>Start</th>   
+            <th>End</th>
+            <% if current_user.type == 'Patient' %>   
+              <th>Doctor</th>   
+            <% elsif current_user.type == 'Doctor' %>
+              <th>Patient</th>  
+            <% end %>
+          </tr>   
+        </thead>   
+        <tbody>   
+        <% @appointments.each do |appointment| %>   
+          <tr> 
+            <td><%= appointment.date %></td>   
+            <td><%= Availability.find(appointment.availability_id) %></td>  
+            <td><%= Doctor.find(appointment.doctor_id) %></td>  
+            <td><%= Patient.find(appointment.patient_id) %></td>   
+          </tr>   
+        <% end %>  
+        </tbody>   
+      </table> 
+    </div>
   </div>
+</div>
+<div class="pagination justify-content-center" class="pagination-spacing">
+  <%= will_paginate @appointments, previous_label: t('paginate.previous'), next_label: t('paginate.next') %> 
 </div>

@@ -18,10 +18,12 @@ class Ability
       can :read, Doctor, hospital_id: user.hospital_id, id: user.id
       can :update, Doctor, hospital_id: user.hospital_id, id: user.id
       can :manage, Availability, hospital_id: user.hospital_id, doctor_id: user.id
+      can :manage, Appointment, hospital_id: user.hospital_id, doctor_id: user.id
     elsif user.patient?
       can :show, Patient, hospital_id: user.hospital_id, id: user.id
       can :update, Patient, hospital_id: user.hospital_id, id: user.id
       can :read, Doctor, hospital_id: user.hospital_id
+      can :manage, Appointment, hospital_id: user.hospital_id, patient_id: user.id
     end
     #
     # The first argument to `can` is the action you are giving the user

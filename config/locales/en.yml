@@ -98,6 +98,18 @@ en:
     name: "Sales Orders"
   appointment:
     name: "Appointments"
+    breadcrumb: "Appointments"
+    breadcrumb:
+      index: "Appointments"
+      new: "New Appointment"
+      show: "Appointment Details"
+      edit: "Edit Appointment"
+    add:
+      success: "Appointment has been added successfully"
+      failure: "Appointment is not added!"
+    delete:
+      success: "Appointment has been deleted successfully"
+      failure: "Appointment is not deleted!"
   prescription:
     name: "Prescriptions"
   test_report:

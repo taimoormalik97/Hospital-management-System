@@ -29,7 +29,7 @@ class AvailabilitiesController < ApplicationController
         flash[:error] += @availability.errors.full_messages
         format.html { redirect_to availabilities_path }
         format.js
-      elsif @availability.save
+      elsif breakslots
         flash[:notice] = t('availability.add.success')
         format.html { redirect_to availabilities_path }
       else
@@ -69,8 +69,8 @@ class AvailabilitiesController < ApplicationController
   end
 
   def invalid_slot?
-    starting = @availability.start_slot.strftime("%H%M")
-    ending = @availability.end_slot.strftime("%H%M")
+    starting = ((@availability.start_slot)+1.minute).strftime("%H%M")
+    ending = ((@availability.end_slot)-1.minute).strftime("%H%M")
     if starting >= ending
       flash[:error] = ['End should be greater then Start!']
       return true
@@ -83,5 +83,27 @@ class AvailabilitiesController < ApplicationController
       end
     end
     return false
+  end
+
+  def breakslots
+    weekday = @availability.week_day
+    doctor = @availability.doctor_id
+    check_end = @availability.end_slot
+    starting = @availability.start_slot
+    ending = @availability.start_slot+30.minute
+    @availability.end_slot = @availability.start_slot+30.minute
+    until ending > check_end 
+      if !@availability.save
+        return false
+      end
+      @availability = Availability.new
+      @availability.week_day = weekday
+      @availability.doctor_id= doctor
+      starting = ending
+      ending = starting+30.minute
+      @availability.start_slot = starting
+      @availability.end_slot = ending
+    end
+    return true
   end
 end

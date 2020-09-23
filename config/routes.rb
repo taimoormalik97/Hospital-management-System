@@ -20,6 +20,11 @@ Rails.application.routes.draw do
   resources :admin, only: [:show, :edit, :update]
   resources :doctors
   resources :availabilities
+  resources :appointments do
+    collection do
+      post 'show_availabilities'
+    end
+  end
   resources :patients
   get 'dashboard' => 'dashboards#dashboard' 
   devise_for :users

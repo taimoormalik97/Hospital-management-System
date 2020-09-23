@@ -1,0 +1,4 @@
+<% Availability.where(doctor_id: params[:doctor_id], week_day: params[:date]).each do |availability| %>
+  <%= radio_button_tag 'params[:appointment][:availability_id]', availability.id %> 
+  <%= label_tag "availability_id", "#{availability.start_slot} - #{availability.end_slot}", value: availability.id %>
+<% end %>
