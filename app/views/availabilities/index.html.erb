@@ -1,10 +1,16 @@
-<div class="container  pt-3"> 
+<div class="container pt-3"> 
   <div class="card">
     <div class="card-header p-3 container-fluid">
-      <div class="row">
-        <h3 class="col-md-10">Availability Slots</h3> 
+        <div class="row">
+          <h3 class="col-md-9">
+            <%= t('availability.name') %>
+          </h3> 
+          <div class="col-md-3 d-flex justify-content-md-end">
+            <%= link_to 'Add', new_doctor_availability_path(@doctor),  {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#exampleModal', class: 'btn btn-primary'} %>
+            <%= render partial: "availability_modal" %>   
+          </div>
+        </div>
       </div>
-    </div> 
     <div class="vertical-tabs">
       <ul class="nav nav-tabs" role="tablist">
         <%= render partial: "availability_tab_row.html", locals:{ num: 0, addclass: 'active' } %>
@@ -23,14 +29,6 @@
         <%= render partial: "availability_tab", locals:{ num: 4, addclass: '' } %>
         <%= render partial: "availability_tab", locals:{ num: 5, addclass: '' } %>
         <%= render partial: "availability_tab", locals:{ num: 6, addclass: '' } %>
-      </div>
-    </div>
-  </div>
-  <div class="p-3 container-fluid">
-    <div class="row d-flex justify-content-md-end">
-      <div class="col-md-3 d-flex justify-content-md-end">
-        <%= link_to '+', new_availability_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#exampleModal', class: 'btn btn-primary btn-lg btn-modal rounded-circle font-weight-bold'} %>
-        <%= render partial: "availability_modal" %>
       </div>
     </div>
   </div>

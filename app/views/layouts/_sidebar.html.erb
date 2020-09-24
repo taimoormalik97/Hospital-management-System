@@ -11,7 +11,7 @@
         <%= render partial: 'layouts/sidebarentry', locals: {name: t('appointment.name'), call: Appointment, icon: 'fa-clock', path: appointments_path} %>
         <%= render partial: 'layouts/sidebarentry', locals: {name: t('prescription.name'), call: PrescribedMedicine, icon: 'fa-prescription-bottle', path: "#"} %>
         <%= render partial: 'layouts/sidebarentry', locals: {name: t('test_report.name'), call: Test, icon: 'fa-file-alt', path: "#"} %>
-        <%= render partial: 'layouts/sidebarentry', locals: {name: t('availability.name'), call: Availability, icon: 'fa-calendar-alt', path: availabilities_path} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('availability.name'), call: Availability, icon: 'fa-calendar-alt', path: doctor_availabilities_path(current_user)} %>
       </ul>
     </nav>
     <div class="container-fluid float-right-arrow ">

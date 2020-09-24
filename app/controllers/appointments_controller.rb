@@ -8,7 +8,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments
   def index
-    @appointments = @appointments.paginate(page: params[:page], per_page: 10)
+    @appointments = @appointments.paginate(page: params[:page], per_page: PAGINATION_SIZE)
     respond_to do |format|
       format.html
     end
@@ -27,13 +27,11 @@ class AppointmentsController < ApplicationController
   def create
     respond_to do |format|
       if @appointment.save
-        flash[:notice] = t('appointment.add.success')
-        format.html { redirect_to appointments_path }
+        format.html { redirect_to appointments_path, notice: t('appointment.add.success') }
       else
         flash[:error] = [t('appointment.add.failure')]
-        flash[:error] += @appointment.errors.full_messages
-        format.html { redirect_to appointments_path }
-        format.js
+        flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
+        format.html { render :new }
       end
     end
   end
@@ -57,11 +55,10 @@ class AppointmentsController < ApplicationController
   def update
     respond_to do |format|
       if @appointment.update(appointment_params)
-        flash[:notice] = t('appointment.update.success')
-        format.html { redirect_to appointment_path(@appointment) }
+        format.html { redirect_to appointment_path(@appointment), notice: t('appointment.update.success') }
       else
         flash[:error] = [t('appointment.update.failure')]
-        flash[:error] += @appointment.errors.full_messages
+        flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
         format.html { render :edit }
       end
     end
@@ -72,11 +69,10 @@ class AppointmentsController < ApplicationController
     @appointment.destroy
     respond_to do |format|
       if @appointment.destroyed?
-        flash[:notice] = t('appointment.delete.success')
-        format.html { redirect_to appointments_path }
+        format.html { redirect_to appointments_path, notice: t('appointment.delete.success') }
       else
         flash[:error] = [t('appointment.delete.failure')]
-        flash[:error] += @appointment.errors.full_messages
+        flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
         format.html { render :show }
       end
     end
@@ -106,5 +102,4 @@ class AppointmentsController < ApplicationController
       format.js
     end
   end
-
 end
