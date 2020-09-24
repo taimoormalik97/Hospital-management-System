@@ -2,7 +2,6 @@ require 'date'
 class AppointmentsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num
 
-  before_action :root_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :show_page_breadcrumb, only: [:show, :edit]
   helper_method :date_to_day
@@ -85,10 +84,6 @@ class AppointmentsController < ApplicationController
 
   def appointment_params
     params.require(:appointment).permit(:date, :doctor_id, :availability_id)
-  end
-
-  def root_page_breadcrumb
-    add_breadcrumb current_hospital.name, hospital_index_path
   end
 
   def index_page_breadcrumb

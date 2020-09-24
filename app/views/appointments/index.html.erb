@@ -29,9 +29,14 @@
         <% @appointments.each do |appointment| %>   
           <tr> 
             <td><%= appointment.date %></td>   
-            <td><%= Availability.find(appointment.availability_id) %></td>  
-            <td><%= Doctor.find(appointment.doctor_id) %></td>  
-            <td><%= Patient.find(appointment.patient_id) %></td>   
+            <% availability = Availability.find(appointment.availability_id) %>
+            <td><%= availability.start_slot.strftime("%I:%M%p") %></td>  
+            <td><%= availability.end_slot.strftime("%I:%M%p") %></td>
+            <% if current_user.type == 'Patient' %>
+              <td><%= Doctor.find(appointment.doctor_id).name %></td> 
+            <% elsif current_user.type == 'Doctor' %>
+              <td><%= Patient.find(appointment.patient_id).name %></td>
+            <% end %>       
           </tr>   
         <% end %>  
         </tbody>   

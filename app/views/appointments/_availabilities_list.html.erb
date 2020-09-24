@@ -1,3 +1,2 @@
 <% list = Availability.where(doctor_id: params[:doctor_id], week_day: params[:date]).all %>
-<%binding.pry%>
-<%= select_tag 'params[:appointment][:availability_id]', options_for_select(list.map { |availability| ["#{availability.start_slot} - #{availability.end_slot}", availability.id]}), {class: "form-control"} %> 
+<%= select_tag 'appointment[availability_id]', options_for_select(list.map { |availability| ["#{availability.start_slot.strftime("%I:%M%p")} - #{availability.end_slot.strftime("%I:%M%p")}", availability.id]}), {class: "form-control"} %> 

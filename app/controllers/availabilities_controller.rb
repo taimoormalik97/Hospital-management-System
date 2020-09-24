@@ -1,7 +1,6 @@
 class AvailabilitiesController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num
 
-  before_action :root_page_breadcrumb, only: [:index, :new]
   before_action :index_page_breadcrumb, only: [:index, :new]
 
   # GET /availabilities
@@ -58,10 +57,6 @@ class AvailabilitiesController < ApplicationController
 
   def availability_params
     params.require(:availability).permit(:start_slot, :end_slot, :week_day)
-  end
-
-  def root_page_breadcrumb
-    add_breadcrumb current_hospital.name, hospital_index_path
   end
 
   def index_page_breadcrumb
