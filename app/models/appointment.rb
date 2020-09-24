@@ -1,5 +1,23 @@
 class Appointment < ApplicationRecord
-  sequenceid :hospital , :appointments
+  include ActiveModel::Transitions
+
+  state_machine :initial => :pending do
+    state :pending
+    state :approved
+    state :completed
+    state :cancle
+    event :approve do
+      transitions to: :approved, from: :pending
+    end
+    event :complete do
+      transitions to: :completed, from: :approved
+    end
+    event :cancel do
+      transitions to: :cancel, from: :pending
+    end
+  end
+
+  sequenceid :hospital, :appointments
   belongs_to :hospital
   belongs_to :doctor
   belongs_to :patient

@@ -1,6 +1,9 @@
 $color-back: #2B333E;
 $color-primary-btn: #007bff;
-
+$color-danger: #dc3545;
+$color-success: #28a745;
+$color-notice: #ffc107;
+$color-ready: #545b62;
 .btn-spacing {
   margin-left: 1em
 }
@@ -92,5 +95,24 @@ $color-primary-btn: #007bff;
   overflow-y: auto;
 }
 
+.color-primary {
+  color: $color-primary-btn; 
+}
+
+.color-danger {
+  color: $color-danger; 
+}
+
+.color-notice {
+  color: $color-notice; 
+}
+
+.color-ready {
+  color: $color-ready; 
+}
+
+.color-success {
+  color: $color-success; 
+}
 
 .hidden { display: none; }

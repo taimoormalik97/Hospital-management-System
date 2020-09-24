@@ -20,8 +20,8 @@
       <li class="nav-item dropdown ">
         <% if user_signed_in? %>
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_pack_tag 'user.png', class: "rounded-circle", alt: "Avatar" %>
-            <%= current_user.name %>
+            <i class="fas fa-user-circle"></i>
+            <%= current_user.name.titleize %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <div class="dropdown-divider"></div>

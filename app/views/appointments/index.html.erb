@@ -19,10 +19,13 @@
             <th><%= t('appointment.label.start') %></th>   
             <th><%= t('appointment.label.end') %></th>
             <% if current_user.patient? %>   
-              <th><%= t('doctor.name') %></th>   
+              <th><%= t('doctor.name') %></th> 
+              <th><%= t('appointment.label.status') %></th>
             <% elsif current_user.doctor? %>
               <th><%= t('patient.name') %></th>  
+              <th></th>
             <% end %>
+            <th></th>
           </tr>   
         </thead>   
         <tbody>   
@@ -33,10 +36,36 @@
               <td><%= availability.start_slot.strftime("%I:%M%p") %></td>  
               <td><%= availability.end_slot.strftime("%I:%M%p") %></td>
               <% if current_user.patient? %>
-                <td><%= Doctor.find(appointment.doctor_id).name %></td> 
+                <td><%= Doctor.find(appointment.doctor_id).name %></td>
+                <td><%= appointment.current_state.capitalize %></td> 
               <% elsif current_user.doctor? %>
                 <td><%= Patient.find(appointment.patient_id).name %></td>
-              <% end %>       
+                <td>
+                  <% if appointment.pending? %>
+                    <%= link_to approve_appointment_path(appointment), method: 'put' do %>
+                      <i class="far fa-check-circle color-ready" title="pending"></i>
+                    <% end %>
+                  <% elsif appointment.approved? %>
+                    <%= link_to complete_appointment_path(appointment), method: 'put' do %>
+                      <i class="far fa-check-circle color-notice" title="approved"></i>
+                    <% end %>
+                  <% elsif appointment.completed? %>
+                      <i class="far fa-check-circle color-success" title="completed"></i>
+                  <% end %>
+                </td> 
+              <% end %>
+              <td>
+                <% if appointment.pending? %>
+                  <%= link_to appointment_path(appointment), method: :delete do %>
+                    <i class="far fa-times-circle color-danger" title="cancel"></i>
+                  <% end %>
+                <% elsif appointment.approved? %>
+                  <%= link_to "#" do %>
+                    <i class="fas fa-pen color-primary-btn" title="prescription"></i>
+                  <% end %>
+                <% end %> 
+
+              </td>       
             </tr>   
           <% end %>  
         </tbody>   

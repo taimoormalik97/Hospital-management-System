@@ -92,7 +92,7 @@ class AppointmentsController < ApplicationController
 
   def date_to_day(date)
     if date.present?
-      date.to_date.strftime("%A")
+      date.to_date.strftime('%A')
     end
   end
 
@@ -101,6 +101,45 @@ class AppointmentsController < ApplicationController
     params[:date] = date_to_day(params[:date])
     respond_to do |format|
       format.js
+    end
+  end
+
+  # PUT /appointments/:id/approve
+  def approve
+    if @appointment.can_approve?
+      @appointment.approve!
+      flash[:notice] = t('appointment.approve.success')
+      redirect_to appointments_path
+    else
+      flash[:error] = [t('appointment.approve.failure')]
+      flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
+      redirect_to(request.env['HTTP_REFERER'])
+    end
+  end
+
+  # PUT /appointments/:id/complete
+  def complete
+    if @appointment.can_complete?
+      @appointment.complete!
+      flash[:notice] = t('appointment.complete.success')
+      redirect_to appointments_path
+    else
+      flash[:error] = [t('appointment.complete.failure')]
+      flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
+      redirect_to(request.env['HTTP_REFERER'])
+    end
+  end
+
+  # PUT /appointments/:id/complete
+  def cancel
+    if @appointment.can_cancel?
+      @appointment.cancel!
+      flash[:notice] = t('appointment.cancel.success')
+      redirect_to appointments_path
+    else
+      flash[:error] = [t('appointment.cancel.failure')]
+      flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
+      redirect_to(request.env['HTTP_REFERER'])
     end
   end
 end

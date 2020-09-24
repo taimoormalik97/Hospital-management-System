@@ -101,6 +101,7 @@ en:
       start: 'Start'
       end: 'End'
       date: 'Date'
+      status: 'Status'
     name: "Appointments"
     breadcrumb: "Appointments"
     breadcrumb:
@@ -111,9 +112,15 @@ en:
     add:
       success: "Appointment has been added successfully"
       failure: "Appointment is not added!"
-    delete:
-      success: "Appointment has been deleted successfully"
-      failure: "Appointment is not deleted!"
+    approve:
+      success: "Appointment has been approved"
+      failure: "Appointment is not approved!"
+    complete:
+      success: "Appointment has been completed"
+      failure: "Appointment is not complete!"
+    cancel:
+      success: "Appointment has been canceled"
+      failure: "Appointment is not canceled!"
   prescription:
     name: "Prescriptions"
   test_report:
