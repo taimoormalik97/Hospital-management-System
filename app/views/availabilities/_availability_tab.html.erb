@@ -1,0 +1,35 @@
+<div class="tab-pane <%= addclass %>" id="<%= "pag#{num+1}" %>" role="tabpanel">
+  <div class="sv-tab-panel">
+    <div class="container pt-3"> 
+      <div class="card scroll">
+        <div class="card-body table-responsive">
+          <table class="table">   
+            <thead >   
+              <tr>   
+                <th><%= t('availability.label.start') %></th>   
+                <th><%= t('availability.label.end') %></th> 
+                <th></th> 
+              </tr>   
+            </thead>   
+            <tbody>
+            <% @availabilities.each do |availability| %>
+              <% days = Date::DAYNAMES %>
+              <% if availability.week_day == days[num] %>  
+                <tr>  
+                  <td><%= availability.start_slot.strftime("%I:%M%p") %></td>  
+                  <td><%= availability.end_slot.strftime("%I:%M%p") %></td>
+                  <td>
+                    <%= link_to doctor_availability_path(@doctor, availability), method: :delete do %>
+                      <i class="fas fa-trash-alt"></i>
+                    <% end %>
+                  </td>     
+                </tr>   
+              <% end %>     
+            <% end %>  
+            </tbody>   
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
