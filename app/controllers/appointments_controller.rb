@@ -84,7 +84,7 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:date)
+    params.require(:appointment).permit(:date, :doctor_id, :availability_id)
   end
 
   def root_page_breadcrumb

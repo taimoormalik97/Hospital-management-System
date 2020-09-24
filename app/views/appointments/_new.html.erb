@@ -12,7 +12,6 @@
       </div>
       <div class="form-group">
         <label class="col-form-label">Doctor: </label>
-        <% list = Doctor.all.collect { |doc| doc.name } %>
         <%= f.select :doctor_id, options_for_select(Doctor.all.map{ |doc| [doc.name, doc.id]}), {}, class: "form-control", id: 'doctor' %> 
       </div>
       <div class="form-group availability-list collapse">
