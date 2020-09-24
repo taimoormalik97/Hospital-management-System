@@ -66,10 +66,6 @@ $color-ready: #545b62;
   margin: 20px 0;
 }
 
-.breadcrumb {
-  margin: 0 60px;
-}
-
 .select_domain {
   background-color: #f2f2f2;
   color: #000000;
@@ -113,6 +109,12 @@ $color-ready: #545b62;
 
 .color-success {
   color: $color-success; 
+}
+
+.breadcrumb {
+  a {
+    padding: 0px 4px;
+  }
 }
 
 .hidden { display: none; }
