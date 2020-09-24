@@ -28,9 +28,9 @@
   class: 'navbar-form navbar-left') do %>  
   <div class="input-group">  
     <%= text_field_tag :search, nil, required: true, id: 'search_medicines', placeholder: "Search by Description..." %>
-    <%= hidden_field_tag :purchase_order_sequence_num, @purchase_order.sequence_num%> 
+    <%= hidden_field_tag :purchase_order_sequence_num, @purchase_order.sequence_num %> 
     <div class="input-group-btn">  
-      <%= submit_tag "Submit", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
+      <%= submit_tag "Submit", class: 'btn btn-info glyphicon glyphicon-search',name: nil %>  
     </div> 
   </div>  
   <% end %> 
