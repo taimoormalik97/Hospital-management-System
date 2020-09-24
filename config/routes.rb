@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :admin, only: [:show, :edit, :update]
   resources :appointments do
     collection do
-      post 'show_availabilities'
+      get 'show_availabilities'
     end
   end
   resources :doctors do

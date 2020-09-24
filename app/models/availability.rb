@@ -4,6 +4,7 @@ class Availability < ApplicationRecord
   belongs_to :hospital
   has_many :appointments, dependent: :destroy
   default_scope { where(hospital_id: Hospital.current_id) }
+  scope :slots_for_a_day, ->(days_num) { where(week_day: days_num) }
   validate :invalid_slot
   validates_presence_of %i[start_slot end_slot week_day]
 

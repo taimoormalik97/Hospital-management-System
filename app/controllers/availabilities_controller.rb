@@ -65,7 +65,7 @@ class AvailabilitiesController < ApplicationController
     ending = @availability.start_slot+30.minute
     @availability.end_slot = @availability.start_slot+30.minute
     until ending > check_end 
-      if !@availability.save
+      unless @availability.save
         return false
       end
       @availability = Availability.new

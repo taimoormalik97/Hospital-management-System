@@ -3,9 +3,9 @@
     <div class="card-header p-3 container-fluid">
       <div class="row">
         <h3 class="col-md-10">Appointments</h3> 
-        <% if current_user.type == 'Patient' %>
+        <% if current_user.patient? %>
           <div class="col-md-2 d-flex justify-content-md-end">
-            <%= link_to 'Add', new_appointment_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#exampleModal', class: 'btn btn-primary'} %>
+            <%= link_to 'Add', new_appointment_path,  {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#exampleModal', class: 'btn btn-primary'} %>
             <%= render partial: "appointment_modal" %>   
           </div> 
         <% end %>  
@@ -15,30 +15,30 @@
       <table  class="table">   
         <thead >   
           <tr>
-            <th>Date</th> 
-            <th>Start</th>   
-            <th>End</th>
-            <% if current_user.type == 'Patient' %>   
-              <th>Doctor</th>   
-            <% elsif current_user.type == 'Doctor' %>
-              <th>Patient</th>  
+            <th><%= t('appointment.label.date') %></th> 
+            <th><%= t('appointment.label.start') %></th>   
+            <th><%= t('appointment.label.end') %></th>
+            <% if current_user.patient? %>   
+              <th><%= t('doctor.name') %></th>   
+            <% elsif current_user.doctor? %>
+              <th><%= t('patient.name') %></th>  
             <% end %>
           </tr>   
         </thead>   
         <tbody>   
-        <% @appointments.each do |appointment| %>   
-          <tr> 
-            <td><%= appointment.date %></td>   
-            <% availability = Availability.find(appointment.availability_id) %>
-            <td><%= availability.start_slot.strftime("%I:%M%p") %></td>  
-            <td><%= availability.end_slot.strftime("%I:%M%p") %></td>
-            <% if current_user.type == 'Patient' %>
-              <td><%= Doctor.find(appointment.doctor_id).name %></td> 
-            <% elsif current_user.type == 'Doctor' %>
-              <td><%= Patient.find(appointment.patient_id).name %></td>
-            <% end %>       
-          </tr>   
-        <% end %>  
+          <% @appointments.each do |appointment| %>   
+            <tr> 
+              <td><%= appointment.date %></td>   
+              <% availability = Availability.find(appointment.availability_id) %>
+              <td><%= availability.start_slot.strftime("%I:%M%p") %></td>  
+              <td><%= availability.end_slot.strftime("%I:%M%p") %></td>
+              <% if current_user.patient? %>
+                <td><%= Doctor.find(appointment.doctor_id).name %></td> 
+              <% elsif current_user.doctor? %>
+                <td><%= Patient.find(appointment.patient_id).name %></td>
+              <% end %>       
+            </tr>   
+          <% end %>  
         </tbody>   
       </table> 
     </div>

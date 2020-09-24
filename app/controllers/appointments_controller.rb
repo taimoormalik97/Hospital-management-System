@@ -4,7 +4,6 @@ class AppointmentsController < ApplicationController
 
   before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :show_page_breadcrumb, only: [:show, :edit]
-  helper_method :date_to_day
 
   # GET /appointments
   def index
@@ -31,7 +30,8 @@ class AppointmentsController < ApplicationController
       else
         flash[:error] = [t('appointment.add.failure')]
         flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
-        format.html { render :new }
+        format.html { redirect_to appointments_path }
+        format.js
       end
     end
   end
@@ -91,11 +91,12 @@ class AppointmentsController < ApplicationController
   end
 
   def date_to_day(date)
-    if(!date.nil?)
+    if date.present?
       date.to_date.strftime("%A")
     end
   end
 
+  # GET /show_availabilities
   def show_availabilities
     params[:date] = date_to_day(params[:date])
     respond_to do |format|

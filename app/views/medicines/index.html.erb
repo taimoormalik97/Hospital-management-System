@@ -16,18 +16,18 @@
         </thead>   
         <tbody>   
           <% @medicine.each do |medicine| %>   
-          <tr>   
-            <td><%= link_to medicine.name, medicine_path(medicine) %></td>   
-            <td><%= medicine.price %></td>   
-            <td><%= medicine.quantity%></td> 
-          <div>   
-            <td>   
-              <%= link_to 'Edit', edit_medicine_path(medicine) %> 
-              <%= link_to 'Delete', medicine_path(medicine), method: :delete %>      
-            </td>
-          </div>       
-         </tr>   
-        <% end %>   
+            <tr>   
+              <td><%= link_to medicine.name, medicine_path(medicine) %></td>   
+              <td><%= medicine.price %></td>   
+              <td><%= medicine.quantity%></td> 
+              <div>   
+                <td>   
+                  <%= link_to 'Edit', edit_medicine_path(medicine) %> 
+                  <%= link_to 'Delete', medicine_path(medicine), method: :delete %>      
+                </td>
+              </div>       
+            </tr>   
+          <% end %>   
         </tbody>   
       </table>  
     </div>

@@ -6,17 +6,17 @@
     </button>
   </div>
   <div class="modal-body">
-      <div class="form-group">
-        <label class="col-form-label">Date: </label> 
-        <%= f.date_field :date, :required => true, class: "form-control" , id: 'date' %>     
-      </div>
-      <div class="form-group">
-        <label class="col-form-label">Doctor: </label>
-        <%= f.select :doctor_id, options_for_select(Doctor.all.map{ |doc| [doc.name, doc.id]}), {}, class: "form-control", id: 'doctor' %> 
-      </div>
-      <div class="form-group availability-list collapse">
-        
-      </div>
+    <div class="form-group">
+      <label class="col-form-label">Date: </label> 
+      <%= f.date_field :date, required: true, class: "form-control" , id: 'date' %>     
+    </div>
+    <div class="form-group">
+      <label class="col-form-label">Doctor: </label>
+      <%= f.select :doctor_id, options_for_select(Doctor.all.map{ |doc| [doc.name, doc.id]}), {}, class: "form-control", id: 'doctor' %> 
+    </div>
+    <div class="form-group availability-list collapse">
+      
+    </div>
   </div>
   <div class="modal-footer next-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
