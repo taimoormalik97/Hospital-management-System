@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  load_and_authorize_resource find_by: :sequence_num
+  load_and_authorize_resource 
 
   before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :show_page_breadcrumb, only: [:show, :edit]
