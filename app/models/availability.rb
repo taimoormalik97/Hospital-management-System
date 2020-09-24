@@ -16,7 +16,7 @@ class Availability < ApplicationRecord
     all_availability = doctor.availabilities.where(week_day: week_day)
     all_availability.each do |event|
       if starting.between?(event.start_slot.strftime("%H%M"), event.end_slot.strftime("%H%M")) || ending.between?(event.start_slot.strftime("%H%M"), event.end_slot.strftime("%H%M"))
-      	errors.add(:base, I18n.t('availability.overlapping_error'))
+        errors.add(:base, I18n.t('availability.overlapping_error'))
       end
     end
   end
