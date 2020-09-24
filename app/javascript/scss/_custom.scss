@@ -1,5 +1,5 @@
 $color-back: #2B333E;
-$color-primary-btn: #007bff;
+$color-primary-btn: #00AAFF;
 
 .btn-spacing {
   margin-left: 1em
@@ -74,15 +74,4 @@ $color-primary-btn: #007bff;
 
 .select_domain_hover:hover{
   text-decoration-color: black;
-}
-
-.time {
-  width: 48% !important;
-  display: inline !important;
-}
-
-.scroll {
-  position: relative;
-  max-height: 224px;
-  overflow-y: auto;
 }

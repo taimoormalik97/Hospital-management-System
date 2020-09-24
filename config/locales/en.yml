@@ -102,23 +102,6 @@ en:
     name: "Prescriptions"
   test_report:
     name: "Test Reports"
-  availability:
-    label:
-      new_slot_label: 'New Availability slot'
-      start: 'Start'
-      end: 'End'
-      day: 'Day'
-    name: "Availabilities"
-    end_time_error: 'End should be greater then Start!'
-    overlapping_error: 'Current Slot Time is already taken!'
-    breadcrumb: "Availabilities"
-    add:
-      success: "Availability slot has been added successfully"
-      failure: "Availability slot is not added!"
-    delete:
-      success: "Availability slot has been deleted successfully"
-      failure: "Availability slot is not deleted!"
-
   admin:
     update:
       success: "Profile has been updated successfully"
@@ -136,7 +119,6 @@ en:
       hospital_address: "Hospital Address"
       hospital_phone_number: "Phone Number"
       edit: "Edit Profile"
-
   guest:
     find:
       error: "Email was not found!"

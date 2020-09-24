@@ -9,9 +9,7 @@
   <body>
     <div id="wrapper">
       <%= render partial: 'layouts/navbar' %>
-      <% if signed_in?  %>
-        <%= render partial: 'layouts/sidebar' %>
-      <% end %>
+      <%= render partial: 'layouts/sidebar' %>
       <div class="content-with-sidebar">
         <div class="content">
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-5">

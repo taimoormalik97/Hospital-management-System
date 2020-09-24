@@ -1,12 +1,13 @@
 class DoctorsController < ApplicationController
-  load_and_authorize_resource find_by: :sequence_num
+  load_and_authorize_resource 
 
+  before_action :root_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :show_page_breadcrumb, only: [:show, :edit]
   
   # GET /doctors
   def index
-    @doctors = @doctors.paginate(page: params[:page], per_page: PAGINATION_SIZE)
+    @doctors = @doctors.paginate(page: params[:page], per_page: 10)
     respond_to do |format|
       format.html
     end
@@ -25,10 +26,11 @@ class DoctorsController < ApplicationController
     @doctor.password = Devise.friendly_token.first(8)
     respond_to do |format|
       if @doctor.save
-        format.html { redirect_to doctors_path, notice: t('doctor.add.success') }
+        flash[:notice] = t('doctor.add.success')
+        format.html { redirect_to doctors_path }
       else
         flash[:error] = [t('doctor.add.failure')]
-        flash[:error] += @doctor.errors.full_messages.first(5) if @doctor.errors.any?
+        flash[:error] += @doctor.errors.full_messages
         format.html { render :new }
       end
     end
@@ -53,10 +55,11 @@ class DoctorsController < ApplicationController
   def update
     respond_to do |format|
       if @doctor.update(doctor_params)
-        format.html { redirect_to doctor_path(@doctor), notice: t('doctor.update.success') }
+        flash[:notice] = t('doctor.update.success')
+        format.html { redirect_to doctor_path(@doctor) }
       else
         flash[:error] = [t('doctor.update.failure')]
-        flash[:error] += @doctor.errors.full_messages.first(5) if @doctor.errors.any?
+        flash[:error] += @doctor.errors.full_messages
         format.html { render :edit }
       end
     end
@@ -67,10 +70,11 @@ class DoctorsController < ApplicationController
     @doctor.destroy
     respond_to do |format|
       if @doctor.destroyed?
-        format.html { redirect_to doctors_path, notice: t('doctor.delete.success') }
+        flash[:notice] = t('doctor.delete.success')
+        format.html { redirect_to doctors_path }
       else
         flash[:error] = [t('doctor.delete.failure')]
-        flash[:error] += @doctor.errors.full_messages.first(5) if @doctor.errors.any?
+        flash[:error] += @doctor.errors.full_messages
         format.html { render :show }
       end
     end
@@ -78,6 +82,10 @@ class DoctorsController < ApplicationController
 
   def doctor_params
     params.require(:doctor).permit(:name, :email, :password, :registration_no, :speciality, :consultancy_fee)
+  end
+
+  def root_page_breadcrumb
+    add_breadcrumb current_hospital.name, hospital_index_path
   end
 
   def index_page_breadcrumb
