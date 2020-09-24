@@ -1,10 +1,116 @@
-<h1>Welcome To Hospital Management System!</h1>
-<% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link'  %>
-<% else %>
-  <% unless request.subdomain.present? %>
-    <%= link_to "Sign up", new_user_registration_path, class: 'navbar-link'  %>
-  <% end %>
-  <%= link_to "Login", find_path, class: 'navbar-link'  %>
-<% end %>
+<html>
+  <head>
+    <title>Hospital</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script>
+      $(document).scroll(function () {
+        var $nav = $(".nav-transparent");
+        $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+        $(".main-sign-up-btn").toggleClass('scrolled-sign-up-btn-color', $(this).scrollTop() > $nav.height());
+      });
+    </script>
+  </head> 
+  <body>
+    <div class="home-page-bg">
+      <nav class="navbar nav-transparent navbar-expand-lg navbar-light fixed-top">
+        <a class="navbar-brand text-white ml-3" href=<%= root_path%> > HMS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link text-white" href= <%= about_path%> >About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href= <%= contact_path%> >Contact</a>
+            </li>
+          </ul>
+            <%= link_to "Sign in", find_path, class: "btn btn-outline-light my-0 my-sm-0 mr-2" %>
+            <%= link_to "Sign up", new_user_registration_path, class: "btn my-0 my-sm-0 main-sign-up-btn mr-3" %>
+        </div>
+      </nav>
+
+      <div class="d-flex col-md-12 no-padding-home-container">
+        <%= render 'layouts/flash' %> </div>
+        <div class="text-white text-left main-page-welcome-div">
+          <p class="welcome-font">Welcome to</p>
+          <h1 class="welcome-h1">Hospital Management System</h1>
+          <% if request.subdomain.empty? %>
+            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-md sign-up-button" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div id="demo" class="carousel slide" data-ride="carousel">
+        <div class="text-center"><h1 class="hear-reviews">Hear from Our Doctors</h1></div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row justify-content-center">
+              <div class="col-3"><%=image_pack_tag "public_pages/doctor1.png", class: "rounded-circle carousel-reviews" %></div>
+              <div class="col-1"></div>
+              <div class="col-md-7">
+                <blockquote class="blockquote blockquote-reviews">
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare congue odio. Donec aliquet bibendum odio, sed consequat quam rhoncus vitae. Maecenas cursus a lectus vel ultricies. Vestibulum quis vestibulum velit.</p>
+              </blockquote>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row justify-content-center">
+              <div class="col-3"><%=image_pack_tag "public_pages/doctor2.png", class: "rounded-circle carousel-reviews" %></div>
+              <div class="col-1"></div>
+              <div class="col-md-7">
+                <blockquote class="blockquote blockquote-reviews">
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare congue odio. Donec aliquet bibendum odio, sed consequat quam rhoncus vitae. Maecenas cursus a lectus vel ultricies. Vestibulum quis vestibulum velit.</p>
+              </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+    </div>
+    <div class="why-use-main-bg">
+      <div class="text-center"><h1 class="why-hms">Why Use HMS?</h1></div>
+      <div class="row why-row justify-content-center">
+        <div class="col-4 text-center">
+          <i class="fa fa-medkit fa-5x text-light"></i>
+          <h2 class="text-light why-us-content">Buy Medicines</h2>
+          <p class="why-us-decriptions"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare congue odio</p>
+        </div>
+        <div class="col-4 text-center">
+          <i class="fa fa-stethoscope fa-5x text-light"></i>
+          <h2 class="text-light why-us-content">Consult with Doctors</h2>
+          <p class="why-us-decriptions"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare congue odio</p>
+        </div>
+        <div class="col-4 text-center">
+          <i class="fa fa-calendar fa-5x text-light"></i>
+          <h2 class="text-light why-us-content">Book Appointmnets</h2>
+          <p class="why-us-decriptions"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare congue odio</p>
+        </div>
+      </div>
+    </div>
+    <footer class="py-4 bg-light text-dark-50">
+      <div class="container text-center">
+        <small><%= link_to 'Home', root_path, class: "text-dark-50" %></small> |
+        <small><%= link_to 'About', about_path, class: "text-dark-50" %></small> |
+        <small><%= link_to 'Contact', contact_path, class: "text-dark-50" %></small> |
+      </div>
+      <div class="container text-center">
+        <small>Copyright &copy; Hospital Management System</small>
+      </div>
+    </footer>
+  </body>
+ </html>

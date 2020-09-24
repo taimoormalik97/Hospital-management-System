@@ -150,6 +150,7 @@ function arrow() {
 }
 $(document).on('turbolinks:load', arrow)
 $(document).ready(arrow)
+
 // toggle function
 $.fn.clickToggle = function( f1, f2 ) {
   return this.each( function() {

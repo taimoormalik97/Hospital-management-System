@@ -86,3 +86,202 @@ $color-primary-btn: #007bff;
   max-height: 224px;
   overflow-y: auto;
 }
+
+.home-page-bg {
+  background-image: linear-gradient(to left, rgba(94, 114, 228, 0.50), rgba(0,0,0, 0.6)),
+  url('../images/public_pages/hospital_main.jpeg');
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main-page-welcome-div {
+  margin-top: 200px;
+  margin-left: 40px;
+  height: 25%;
+  width: 52%;
+  padding-top: 30px;
+  margin-bottom: 200px;
+}
+
+.welcome-font {
+  font-size: 1.5em;
+}
+
+.welcome-h1 {
+  text-align: left !important;
+}
+
+.sign-up-button {
+  background-color: #5e72e4;
+  margin-top: 15px;
+  width: 150px;
+  height: 40px;
+  color: white;
+}
+
+.why-hms {
+color: white !important;
+  padding-top: 60px;
+  padding-bottom: 20px;
+}
+
+.why-us-content {
+padding-top: 20px;
+}
+
+.why-us-decriptions {
+  color: white;
+  padding-right: 60px;
+  padding-left: 60px;
+  padding-bottom: 40px;
+}
+
+.no-padding-home-container {
+  padding: 0px;
+}
+
+.why-row {
+  margin: 0px !important;
+}
+
+.carousel-img {
+  height: 500px;
+}
+
+.nav-transparent {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0)) !important;
+  background-color: transparent !important;
+}
+
+.nav-transparent.scrolled {
+  background-image: none !important;
+  background-color: #5e72e4 !important;
+  box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2)
+}
+
+.main-sign-up-btn {
+  background-color: #5e72e4;
+  border-color: white;
+  color: white;
+}
+
+.main-sign-up-btn.scrolled-sign-up-btn-color {
+  background-color: white;
+  border-color: white;
+  color: black;
+}
+
+.main-sign-in-btn {
+  background-color: Tan;
+  color: white;
+  border-color: Tan;
+}
+
+.carousel-reviews {
+  margin-left: 70px;
+  margin-bottom: 50px;
+  object-fit: contain;
+  width: 250px;
+  height: 250px;
+  background-color: #5e72e4;
+}
+
+blockquote {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+blockquote p {
+display: inline;
+}
+
+.hear-reviews {
+  margin-top: 50px;
+  color: DimGrey !important;
+}
+
+.blockquote-reviews {
+  background: none !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: -10px;
+  margin-right: 20px;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  filter: invert(100%);
+}
+
+.why-use-main-bg {
+  background-color: #5e72e4 !important;
+}
+
+.nav-static-pages {
+  background-color: #5e72e4 !important;
+}
+
+.contact-img {
+   width: 400px;
+  height: 500px;
+  opacity: 0.6;
+  object-fit: cover;
+}
+
+.public_pages_without_links {
+  a {
+    text-decoration: none;
+    color: grey;
+  }
+}
+
+.my {
+  padding-left: ($spacer * 10) !important;
+}
+
+.card_center {
+  margin-top: 100px !important;
+}
+
+.box {
+  background: #5e72e4 !important;
+  margin-top: -40px;
+  padding: 5% 20px; /* Added a percentage value for top/bottom padding to keep the wrapper inside of the parent */
+  
+  -webkit-transform: skewY(-5deg);
+  -moz-transform: skewY(-5deg);
+  -ms-transform: skewY(-5deg);
+  -o-transform: skewY(-5deg);
+  transform: skewY(-5deg);
+}
+
+.box > .wrapper {
+  -webkit-transform: skewY(5deg);
+  -moz-transform: skewY(5deg);
+  -ms-transform: skewY(5deg);
+  -o-transform: skewY(5deg);
+  transform: skewY(5deg);
+}
+
+.dark_background {
+  background-color: #172b4d;
+}
