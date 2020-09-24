@@ -25,27 +25,8 @@ class MedicinesController < ApplicationController
 
   def search_pred
     @medicines = Medicine.search(params[:q])
-    respond_to do |format|
-      format.html 
+    respond_to do |format| 
       format.json { render json: @medicines }
-    end
-  end
-
-  def search
-    @medicine = Medicine.find_by(id: params[:search])
-    if @medicine.blank?
-      flash[:notice] = t('medicine.search.failure')
-    else
-      flash[:notice] = t('medicine.search.success')
-      if params[:purchase_order_sequence_num]  
-        respond_to do |format|
-          format.js{ render 'purchase_order/search'  }
-        end
-      elsif params[:bill_sequence_num]
-        respond_to do |format|
-          format.js{ render 'bills/searchmed'}
-        end
-      end     
     end
   end
 
@@ -56,7 +37,10 @@ class MedicinesController < ApplicationController
       redirect_to medicine_path(@medicine)
     else   
       flash[:error] = [t('medicine.add.failure')] 
-      flash[:error] += @medicine.errors.full_messages   
+      if @medicine.errors.full_messages.present?
+        flash[:error] += @medicine.errors.full_messages
+      end
+      redirect_to(request.env['HTTP_REFERER'])    
     end   
   end
 
@@ -73,7 +57,10 @@ class MedicinesController < ApplicationController
       redirect_to @medicine
     else   
       flash[:error] = [t('medicine.update.failure')]
-      flash[:error] += @medicine.errors.full_messages       
+      if @medicine.errors.full_messages.present?
+        flash[:error] += @medicine.errors.full_messages
+      end
+      redirect_to(request.env['HTTP_REFERER'])        
     end   
   end
 
@@ -83,7 +70,10 @@ class MedicinesController < ApplicationController
       redirect_to medicines_path   
     else   
       flash[:error] = [t('medicine.delete.failure')]
-      flash[:error] += @medicine.errors.full_messages 
+      if @medicine.errors.full_messages.present?
+        flash[:error] += @medicine.errors.full_messages
+      end
+      redirect_to(request.env['HTTP_REFERER'])  
     end   
   end
 

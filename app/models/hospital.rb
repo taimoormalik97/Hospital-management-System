@@ -1,5 +1,8 @@
 class Hospital < ApplicationRecord
-  has_many :users, dependent: :destroy
+  #has_many :users, dependent: :destroy
+  has_many :doctors, dependent: :destroy, class_name: 'User'
+  has_many :admins, dependent: :destroy, class_name: 'User'
+  has_many :patients, dependent: :destroy, class_name: 'User'
   has_many :appointments, dependent: :destroy
   has_many :feedbacks, dependent: :destroy
   has_many :availabilities, dependent: :destroy

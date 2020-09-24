@@ -4,7 +4,7 @@
         <div class="card-header p-3 container-fluid">
           <div class="row">
             <h3 class="col-md-9">
-              Edit Medicine
+              <%= t('edit_medicine_label') %>
             </h3> 
           </div>
         </div> 
@@ -12,15 +12,15 @@
           <p><%= flash[:error] %></p>   
           <p>   
             <div class="form-group">   
-              <label>Medicine Name</label>   
+              <label><%= t('medicine.name_label') %></label>   
               <%= f.text_field :name, :required => true, class: "form-control" %>   
             </div>   
             <div class="form-group">   
-              <label>Price</label>   
+              <label><%= t('medicine.price_label') %></label>   
               <%= f.number_field :price, :required => true, class: "form-control" %>   
             </div>   
             <div class="form-group">   
-              <label>Quantity</label>   
+              <label><%= t('medicine.quantity_label') %></label>   
               <%= f.number_field :quantity, :required => true, class: "form-control"  %>
             </div>     
           </p>
@@ -29,11 +29,11 @@
       <div class="card-footer p-3 container-fluid">
         <div class="row d-flex justify-content-md-end">
           <div class="col-md-3 d-flex justify-content-md-end">
-            <%= link_to 'Back', { controller: 'medicines', action: 'index'}, class: "btn btn-secondary" %>   
-            <%= f.submit 'Update', class: "btn btn-primary"%> 
+            <%= link_to t('back'), { controller: 'medicines', action: 'index'}, class: "btn btn-secondary" %>   
+            <%= f.submit t('update'), class: "btn btn-primary"%> 
           </div>
         </div>
       </div>    
     </div>    
   </div>
-<% end %>   
+<%end%> 

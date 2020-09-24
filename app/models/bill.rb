@@ -11,21 +11,26 @@ class Bill < ApplicationRecord
     if medicine.quantity>0 && quantity_added<=medicine.quantity
       if medicine.update(quantity: medicine.quantity-quantity_added)
         self.update(price: self.price+=medicine.price*quantity_added)
-        curr_bd=bill_details.find_by(billable: medicine)
-        if curr_bd
-          curr_bd.update(quantity:quantity_added+curr_bd.quantity)
+        curr_bill_detail=bill_details.find_by(billable: medicine)
+        if curr_bill_detail
+          curr_bill_detail.update(quantity:quantity_added+curr_bill_detail.quantity)
         else
           bill_details.create(quantity: quantity_added, billable:medicine, hospital: medicine.hospital) 
         end       
       end
     else
-      flash[:error]= t('medicine.add.failure')
+      self.errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
+      return false
     end
   end
 
   def add_doctor(doctor)
-    self.update(price: self.price+=doctor.consultancy_fee)
-    bill_details.create(billable: doctor, hospital: doctor.hospital)
+    if self.update(price: self.price+=doctor.consultancy_fee)
+      bill_details.create(billable: doctor, hospital: doctor.hospital)
+    else
+      self.errors.add(:unable_to_add, I18n.t('doctor.add.failure'))
+      return false
+    end
   end
 end
 

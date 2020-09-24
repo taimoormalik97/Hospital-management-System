@@ -4,47 +4,47 @@
         <div class="row">
           <h3 class="col-md-8"><%= @bill.patient.name %></h3> 
           <div class="col-md-4 d-flex justify-content-md-end"> 
-           <%= link_to 'Back', { controller: 'bills', action: 'index'}, class: "btn btn-secondary" %> 
-          <%= link_to 'Edit', edit_bill_path(@bill), class: "btn btn-primary btn-spacing" %> 
+           <%= link_to t('back'), { controller: 'bills', action: 'index'}, class: "btn btn-secondary" %> 
+          <%= link_to t('edit'), edit_bill_path(@bill), class: "btn btn-primary btn-spacing" %> 
           </div>
         </div>
       </div>
       <div class="card-body">
       <dl class="row">
         <dt class="col-sm-2">  
-          <label>Patient Name</label>
+          <label><%= t('sales_order.name_label') %></label>
         </dt>
         <dd class="col-sm-9">   
           <%=@bill.patient.name %>   
         </dd>
         <dt class="col-sm-2">  
-          <label>Total Bill</label>   
+          <label><%= t('sales_order.price_label') %></label>   
         </dt>
         <dd class="col-sm-9">   
           <%=@bill.price%>   
         </dd>
         <dt class="col-sm-2">  
-          <label>Type</label>
+          <label><%= t('sales_order.type_label') %></label>
         </dt>
         <dd class="col-sm-9">   
           <%=@bill.billable_type%>   
         </dd>
         <% if @bill.billable_type == "medicine"%>
           <dt class="col-sm-2">  
-            <label>Medicines</label>
+            <label><%= t('medicine.heading') %></label>
           </dt>
           <dd>
             <table class="table">
               <thead class="thead-dark">
               <tr>
                 <th class="col-sm-9">
-                  Name
+                  <%= t('medicine.name_label') %>
                 </th>
                 <th class="col-sm-9">
-                  Price
+                  <%= t('medicine.price_label') %>
                 </th>
                 <th>
-                  Quantity
+                  <%= t('medicine.quantity_label') %>
                 </th>
               </tr>  
               </thead>
@@ -65,17 +65,17 @@
           </dd>
         <% elsif @bill.billable_type == "doctor"%>
           <dt class="col-sm-2">  
-            <label>Doctor's appointments</label>
+            <label><%= t('doctor.appointments') %></label>
           </dt>
           <dd>
             <table class="table">
               <thead class="thead-dark">
               <tr>
                 <th class="col-sm-9">
-                  Name
+                  <%= t('doctor.name_label') %>
                 </th>
                 <th>
-                  Fee
+                  <%= t('doctor.fee') %>
                 </th>
               </tr>  
               </thead>

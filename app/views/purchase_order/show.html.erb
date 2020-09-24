@@ -4,9 +4,9 @@
         <div class="row">
           <h3 class="col-md-8"><%= @purchase_order.vendorname %></h3> 
           <div class="col-md-4 d-flex justify-content-md-end"> 
-           <%= link_to 'Back', { controller: 'purchase_order', action: 'index'}, class: "btn btn-secondary" %> 
+           <%= link_to t('back'), { controller: 'purchase_order', action: 'index'}, class: "btn btn-secondary" %> 
            <% if @purchase_order.drafted? || @purchase_order.confirmed?%>
-            <%= link_to 'Edit', edit_purchase_order_path(@purchase_order), class: "btn btn-primary btn-spacing" %> 
+             <%= link_to t('edit'), edit_purchase_order_path(@purchase_order), class: "btn btn-primary btn-spacing" %> 
            <%end%>
           </div>
         </div>
@@ -14,36 +14,36 @@
       <div class="card-body">
       <dl class="row">
         <dt class="col-sm-2">  
-          <label>Vendor Name</label>
+          <label><%= t('purchase_order.name_label') %></label>
         </dt>
         <dd class="col-sm-9">   
           <%=@purchase_order.vendorname %>   
         </dd>
         <dt class="col-sm-2">  
-          <label>Price</label>   
+          <label><%= t('purchase_order.name_label') %></label>   
         </dt>
         <dd class="col-sm-9">   
           <%=@purchase_order.price%>   
         </dd>
         <dt class="col-sm-2">  
-          <label>State</label>
+          <label><%= t('purchase_order.name_label') %></label>
         </dt>
         <dd class="col-sm-9">   
           <%=@purchase_order.state%>   
         </dd>
         <%if @purchase_order.medicines.present?%>
         <dt class="col-sm-2">  
-            <label>Medicines</label>
+            <label><%= t('medicine.heading') %></label>
         </dt>
         <dd>
           <table class="table">
             <thead class="thead-dark">
             <tr>
               <th class="col-sm-9">
-                Name
+                <%= t('medicine.name_label') %>
               </th>
               <th>
-                Quantity
+                <%= t('medicine.quantity_label') %>
               </th>
             </tr>  
             </thead>

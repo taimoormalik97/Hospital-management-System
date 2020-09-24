@@ -15,7 +15,7 @@ class Ability
       can :manage, Bill, hospital_id: user.hospital_id
       #ability to not delete a medicine if it exists in a purchase detail
       cannot :destroy, Medicine do |medicine|
-        PurchaseDetail.find_by(medicine_id: medicine.id)
+        PurchaseDetail.where(medicine_id: medicine.id).exists? || BillDetail.where(billable_id: medicine.id).exists?
       end
       
       can %i[read update], Admin, hospital_id: user.hospital_id, id: user.id

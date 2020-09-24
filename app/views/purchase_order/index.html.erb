@@ -2,9 +2,9 @@
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
-        <h3 class="col-md-10">Purchase Orders</h3> 
+        <h3 class="col-md-10"><%= t('purchase_order.heading') %></h3> 
         <div class="col-md-2 d-flex justify-content-md-end">
-          <%= link_to 'Add Order', new_purchase_order_path, class: "btn btn-primary" %>   
+          <%= link_to t('purchase_order.add_order_label'), new_purchase_order_path, class: "btn btn-primary" %>   
         </div>   
       </div>
     </div> 
@@ -13,9 +13,9 @@
       <table  class="table">   
         <thead >   
           <tr>   
-            <th>Vendor name</th>   
-            <th>Price</th>   
-            <th>State</th> 
+            <th><%= t('purchase_order.name_label') %></th>   
+            <th><%= t('purchase_order.price_label') %></th>   
+            <th><%= t('purchase_order.state_label') %></th> 
             <th></th>  
           </tr>   
         </thead>   
@@ -28,9 +28,9 @@
             <div>   
               <td>
                 <%if po.drafted?||po.confirmed?%>
-                  <%= link_to 'Edit', edit_purchase_order_path(po), class: "btn btn-primary" %>
+                  <%= link_to t('edit'), edit_purchase_order_path(po), class: "btn btn-primary" %>
                 <%end%>  
-                <%= link_to 'Delete', purchase_order_path(po), method: :delete, class: "btn btn-danger btn-spacing"%>      
+                <%= link_to t('delete'), purchase_order_path(po), method: :delete, class: "btn btn-danger btn-spacing"%>      
               </td> 
             </div>       
           </tr>   

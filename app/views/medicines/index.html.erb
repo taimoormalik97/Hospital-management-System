@@ -2,9 +2,9 @@
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
-        <h3 class="col-md-10">Medicines</h3> 
+        <h3 class="col-md-10"><%= t('medicine.heading') %></h3> 
         <div class="col-md-2 d-flex justify-content-md-end">
-          <%= link_to 'Add Medicine', new_medicine_path ,class: "btn btn-primary" %>   
+          <%= link_to t('medicine.add_medicine_label'), new_medicine_path ,class: "btn btn-primary" %>   
         </div>   
       </div>
     </div> 
@@ -13,9 +13,9 @@
       <table  class="table">   
         <thead >   
           <tr>   
-            <th>Name</th>   
-            <th>Price</th>   
-            <th>Quantity</th> 
+            <th><%= t('medicine.name_label') %></th>   
+            <th><%= t('medicine.price_label') %></th>   
+            <th><%= t('medicine.quantity_label') %></th> 
             <th></th>    
           </tr>   
         </thead>   
@@ -27,9 +27,9 @@
             <td><%= medicine.quantity%></td>
             <div>   
               <td>   
-                <%= link_to 'Edit', edit_medicine_path(medicine), class: "btn btn-primary" %> 
+                <%= link_to t('edit'), edit_medicine_path(medicine), class: "btn btn-primary" %> 
                 <% if can? :destroy, medicine %>
-                  <%= link_to 'Delete', medicine_path(medicine), method: :delete, class: "btn btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?' }%>
+                  <%= link_to t('delete'), medicine_path(medicine), method: :delete, class: "btn btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?' }%>
                 <% end %>      
               </td>
             </div>    

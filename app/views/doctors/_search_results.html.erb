@@ -16,7 +16,7 @@
         </dd>
         <dd>
           <div class="form-increment" data-quantity-change="">
-            <%= form_tag(adddoc_bill_path(params[:bill_sequence_num], doctor_id:@doctor.id), method: 'post', remote: true, class: 'navbar-form navbar-left') do %> 
+            <%= form_tag(add_doctor_bill_path(params[:bill_sequence_num], doctor_id:@doctor.id), method: 'post', remote: true, class: 'navbar-form navbar-left') do %> 
             <%= submit_tag "Add", class: "btn btn-primary"%>  
             <% end %> 
          </div>

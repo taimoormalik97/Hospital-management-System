@@ -31,7 +31,21 @@
 
 en:
   hello: "Hello world"
+  edit: 'Edit'
+  delete: 'Delete'
+  back: 'Back'
+  create: 'Create'
+  update: 'Update'
+  submit: 'Submit'
   purchase_order:
+    heading: 'Purchase Orders'
+    add_order_label: 'Add Order'
+    edit_order_label: 'Edit Order'
+    name_label: 'Vendor Name'
+    price_label: 'Price'
+    state_label: 'State'
+    confirm_button: 'Confirm'
+    deliver_button: 'Deliver'
     add:
       success: "Purchase order has been added successfully"
       failure: "Failed to add!"
@@ -56,6 +70,12 @@ en:
       show: "Order Details"
       edit: "Edit Order"
   sales_order:
+    heading: 'Sales Orders'
+    add_order_label: 'Add Order'
+    edit_order_label: 'Edit Order'
+    name_label: 'Patient Name'
+    type_label: 'Type'
+    price_label: 'Total Bill'
     add:
       success: "Sales order has been added successfully"
       failure: "Failed to add!"
@@ -86,6 +106,12 @@ en:
       success: "Doctor successfully added to the sales order"
       failure: "Unable to add doctor to the sales order"
   medicine:
+    heading: 'Medicines'
+    add_medicine_label: 'Add Medicine'
+    edit_medicine_label: 'Edit Medicine'
+    name_label: 'Name'
+    price_label: 'Price'
+    quantity_label: 'Quantity'
     add:
       success: "Medicine has been added successfully"
       failure: "Failed to add!"
@@ -107,6 +133,9 @@ en:
     previous: "Previous"
     next: "Next"
   doctor:
+    appointments: "Doctor's Appointments"
+    name_label: 'Name'
+    fee: 'fee'
     add:
       success: "Doctor has been added successfully"
       failure: "Doctor is not added!"

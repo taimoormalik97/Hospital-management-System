@@ -4,7 +4,7 @@
         <div class="card-header p-3 container-fluid">
           <div class="row">
             <h3 class="col-md-9">
-              Add Order
+              <%= t('purchase_order.edit_order_label') %>
             </h3> 
           </div>
         </div> 
@@ -12,19 +12,19 @@
           <p><%= flash[:error] %></p>   
           <p>   
             <div class="form-group">   
-              <label>Vendor Name</label>   
+              <label><%= t('purchase_order.name_label') %></label>   
               <%= f.text_field :vendorname, :required => true, class: "form-control" %>   
             </div>   
             <div class="form-group">   
-              <label>Price</label>   
+              <label><%= t('purchase_order.price_label') %></label>   
               <%= f.number_field :price, :required => true, class: "form-control" %>   
             </div>   
             <div class="form-group">   
-              <%if @purchase_order.drafted?%>   
-                <%= link_to "Confirm", confirm_purchase_order_path(@purchase_order), method: "put", class: "btn btn-success"%> 
-              <%elsif @purchase_order.confirmed?%>
-                <%= link_to "Deliver", deliver_purchase_order_path(@purchase_order), method: "put", class: "btn btn-success"%>
-              <%end%>
+              <% if @purchase_order.drafted? %>   
+                <%= link_to t('purchase_order.confirm_button'), confirm_purchase_order_path(@purchase_order), method: "put", class: "btn btn-success"%> 
+              <% elsif @purchase_order.confirmed? %>
+                <%= link_to t('purchase_order.deliver_button'), deliver_purchase_order_path(@purchase_order), method: "put", class: "btn btn-success"%>
+              <% end %>
             </div>    
           </p>
         </div> 
@@ -32,8 +32,8 @@
       <div class="card-footer p-3 container-fluid">
         <div class="row d-flex justify-content-md-end">
           <div>   
-            <%= link_to 'Back', { controller: 'purchase_order', action: 'index'}, class: "btn btn-secondary" %>   
-            <%= f.submit 'Update', class: "btn btn-primary btn-spacing"%>   
+            <%= link_to t('back'), { controller: 'purchase_order', action: 'index'}, class: "btn btn-secondary" %>   
+            <%= f.submit t('update'), class: "btn btn-primary btn-spacing"%>   
           </div> 
         </div>
       </div>    
@@ -42,16 +42,16 @@
 <% end %> 
 <%if @purchase_order.drafted?%> 
   <div class="container" id="search1">
-    <%= form_tag(search_medicines_path, method: 'get', remote: true, 
+    <%= form_tag(get_medicine_purchase_order_path, method: 'get', remote: true, 
     class: 'navbar-form navbar-left') do %>  
     <div class="input-group">  
       <%= text_field_tag :search, nil, required: true, id: 'search_medicines', placeholder: "Search by Description..." %>
-      <%= hidden_field_tag :purchase_order_sequence_num, @purchase_order.sequence_num%> 
+      <%= hidden_field_tag :purchase_order_sequence_num, @purchase_order.sequence_num %> 
       <div class="input-group-btn">  
-        <%= submit_tag "Submit", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
+        <%= submit_tag t('submit'), :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
       </div> 
     </div>  
     <% end %> 
   </div> 
   <div class="container" id="display_results"></div>
-<%end%>
+<% end %>

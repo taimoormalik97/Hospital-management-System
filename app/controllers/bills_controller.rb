@@ -17,8 +17,20 @@ class BillsController < ApplicationController
       format.html
     end
   end
+  
+  def get_medicine
+    @medicine = Medicine.find_by(id: params[:search])
+    if @medicine.blank?
+      flash[:notice] = t('medicine.search.failure')
+    else
+      flash[:notice] = t('medicine.search.success')
+      respond_to do |format|
+          format.js{ render 'searchmed'  }
+        end
+    end
+  end
 
-  def addmed
+  def add_medicine
     @medicine= Medicine.find_by(id: params[:medicine_id])
     quantity=params[:quantity].to_i
     if @bill.add_medicine(@medicine,quantity) 
@@ -26,13 +38,16 @@ class BillsController < ApplicationController
       respond_to do |format|
         format.js{ render 'bills/update_price' }
       end            
-    else   
+    else  
       flash[:error] = [t('sales_order.addmed.failure')]
-      flash[:error] += @bill.errors.full_messages      
+      if @bill.errors.full_messages.present?
+        flash[:error] += @bill.errors.full_messages
+      end
+      redirect_to(request.env['HTTP_REFERER'])     
     end 
   end
 
-  def adddoc
+  def add_doctor
     @doctor= Doctor.find_by(id: params[:doctor_id])
     if @bill.add_doctor(@doctor) 
       flash[:notice] = t('sales_order.addmed.success')  
@@ -41,7 +56,10 @@ class BillsController < ApplicationController
       end            
     else   
       flash[:error] = [t('sales_order.addmed.failure')]
-      flash[:error] += @bill.errors.full_messages      
+      if @bill.errors.full_messages.present?
+        flash[:error] += @bill.errors.full_messages
+      end
+      redirect_to(request.env['HTTP_REFERER'])      
     end 
   end
 
@@ -65,7 +83,10 @@ class BillsController < ApplicationController
       redirect_to @bill
     else   
       flash[:error] = [t('sales_order.add.failure')]
-      flash[:error] += @bill.errors.full_messages    
+      if @bill.errors.full_messages.present?
+        flash[:error] += @bill.errors.full_messages
+      end
+      redirect_to(request.env['HTTP_REFERER']) 
     end
   end
 
@@ -75,7 +96,10 @@ class BillsController < ApplicationController
       redirect_to @bill        
     else   
       flash[:error] = [t('sales_order.update.failure')]
-      flash[:error] += @bill.errors.full_messages     
+      if @bill.errors.full_messages.present?
+        flash[:error] += @bill.errors.full_messages
+      end
+      redirect_to(request.env['HTTP_REFERER'])      
     end   
   end
 
@@ -85,7 +109,10 @@ class BillsController < ApplicationController
       redirect_to bills_path    
     else   
       flash[:error] = [t('sales_order.delete.failure')]
-      flash[:error] += @bill.errors.full_messages   
+      if @bill.errors.full_messages.present?
+        flash[:error] += @bill.errors.full_messages
+      end
+      redirect_to(request.env['HTTP_REFERER'])    
     end
   end
 

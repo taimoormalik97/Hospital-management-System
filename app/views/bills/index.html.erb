@@ -2,9 +2,9 @@
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
-        <h3 class="col-md-10">Sales Orders</h3> 
+        <h3 class="col-md-10"><%= t('sales_order.heading') %></h3> 
         <div class="col-md-2 d-flex justify-content-md-end">
-          <%= link_to 'Add Order', new_bill_path, class: "btn btn-primary" %>   
+          <%= link_to t('sales_order.add_order_label') , new_bill_path, class: "btn btn-primary" %>   
         </div>   
       </div>
     </div> 
@@ -12,9 +12,9 @@
       <table  class="table">   
         <thead >   
           <tr>   
-            <th>Patient name</th>   
-            <th>Type</th>    
-            <th>Total bill</th>
+            <th><%= t('sales_order.name_label') %></th>   
+            <th><%= t('sales_order.type_label') %></th>    
+            <th><%= t('sales_order.price_label') %></th>
             <th></th>  
           </tr>   
         </thead>   
@@ -26,8 +26,8 @@
             <td><%= bill.price%></td>
             <div>   
               <td>
-                <%= link_to 'Edit', edit_bill_path(bill), class: "btn btn-primary" %> 
-                <%= link_to 'Delete', bill_path(bill), method: :delete, class: "btn btn-danger btn-spacing"%>      
+                <%= link_to t('edit'), edit_bill_path(bill), class: "btn btn-primary" %> 
+                <%= link_to t('delete'), bill_path(bill), method: :delete, class: "btn btn-danger btn-spacing"%>      
               </td> 
             </div>       
           </tr>   

@@ -4,27 +4,27 @@
         <div class="row">
           <h3 class="col-md-8"><%= @medicine.name %></h3> 
           <div class="col-md-4 d-flex justify-content-md-end"> 
-            <%= link_to 'Back', { controller: 'medicines', action: 'index'}, class: "btn btn-secondary " %>
-            <%= link_to 'Edit', edit_medicine_path(@medicine), class: "btn btn-primary "%> 
+            <%= link_to t('back'), { controller: 'medicines', action: 'index'}, class: "btn btn-secondary " %>
+            <%= link_to t('edit'), edit_medicine_path(@medicine), class: "btn btn-primary "%> 
           </div>
         </div>
       </div>
       <div class="card-body">
       <dl class="row">
         <dt class="col-sm-2">  
-          <label>Name</label>
+          <label><%= t('medicine.name_label') %></label>
         </dt>
         <dd class="col-sm-9">   
           <%=@medicine.name %>   
         </dd>
         <dt class="col-sm-2">  
-          <label>Price</label>   
+          <label><%= t('medicine.price_label') %></label>   
         </dt>
         <dd class="col-sm-9">   
           <%=@medicine.price%>   
         </dd>
         <dt class="col-sm-2">  
-          <label>Quantity</label>
+          <label><%= t('medicine.quantity_label') %></label>
         </dt>
         <dd class="col-sm-9">   
           <%=@medicine.quantity %>   
