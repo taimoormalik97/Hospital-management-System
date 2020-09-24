@@ -26,14 +26,12 @@
           <% path = "#{root_path}#{current_user.type.downcase}/#{current_user.id.to_s}" %>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <div class="dropdown-divider"></div>
-            <%= link_to "#{root_path}#{current_user.type.downcase}/#{current_user.sequence_num.to_s}" , class: "dropdown-item" do %>
+            <%= link_to path , class: "dropdown-item" do %>
               <i class="fas fa-user"></i>My Profile
             <% end %>
             <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
               <i class="fas fa-sign-out-alt"></i>Logout
             <% end %>
-<!--             <a class="dropdown-item" href=<%= path %>>My Profile</a>
-            <a class="dropdown-item" href=<%= destroy_user_session_path %> data-method= delete>Logout</a> -->
           </div>
         <% else %>
           <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-outline my-2 my-sm-0' %>

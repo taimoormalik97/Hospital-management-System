@@ -1,6 +1,6 @@
 <% if can?(:index, call) %>
   <li class="mb-4">
-    <a class="sidebar-row" href=<%= path %> >
+    <%= link_to  path, class: 'sidebar-row' do%>
       <div class="row sidebar-nav-item text-light">
         <div class="col-1 ml-5 mr-1 sidebar-icon">
           <i class="fas <%= icon %>"></i>
@@ -9,6 +9,6 @@
           <span class=""><%= name %></span>
         </div>
       </div>
-    </a>
+    <% end %>
   </li>
 <% end %>
