@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  load_and_authorize_resource find_by: :sequence_num
+  load_and_authorize_resource 
 
   before_action :root_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
@@ -29,7 +29,8 @@ class PatientsController < ApplicationController
         flash[:notice] = t('patient.add.success')
         format.html { redirect_to patients_path }
       else
-        flash[:error] = t('patient.add.failure')
+        flash[:error] = [t('patient.add.failure')]
+        flash[:error] += @patient.errors.full_messages
         format.html { render :new }
       end
     end
@@ -57,7 +58,8 @@ class PatientsController < ApplicationController
         flash[:notice] = t('patient.update.success')
         format.html { redirect_to patient_path(@patient) }
       else
-        flash[:error] = t('patient.update.failure')
+        flash[:error] = [t('patient.update.failure')]
+        flash[:error] += @patient.errors.full_messages
         format.html { render :edit }
       end
     end
@@ -71,7 +73,8 @@ class PatientsController < ApplicationController
         flash[:notice] = t('patient.delete.success')
         format.html { redirect_to patients_path }
       else
-        flash[:error] = t('patient.delete.failure')
+        flash[:error] = [t('patient.delete.failure')]
+        flash[:error] += @patient.errors.full_messages
         format.html { render :show }
       end
     end

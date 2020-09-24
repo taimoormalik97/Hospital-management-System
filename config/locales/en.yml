@@ -32,6 +32,7 @@
 en:
   hello: "Hello world"
   purchase_order:
+    name: "Purchase Orders"
     add:
       success: "Purchase order has been added successfully"
       failure: "Failed to add!"
@@ -45,6 +46,7 @@ en:
       success: "Medicine successfully added to the purchase_order"
       failure: "Unable to add medicine to the purchase order"
   medicine:
+    name: "Medicines"
     add:
       success: "Medicine has been added successfully"
       failure: "Failed to add!"
@@ -61,6 +63,7 @@ en:
     previous: "Previous"
     next: "Next"
   doctor:
+    name: "Doctors"
     add:
       success: "Doctor has been added successfully"
       failure: "Doctor is not added!"
@@ -76,6 +79,7 @@ en:
       show: "Doctor Details"
       edit: "Edit Doctor"
   patient:
+    name: "Patients"
     add:
       success: "Patient has been added successfully"
       failure: "Patient is not added!"
@@ -90,6 +94,14 @@ en:
       new: "New Patient"
       show: "Patient Details"
       edit: "Edit Patient"
+  sale_order:
+    name: "Sales Orders"
+  appointment:
+    name: "Appointments"
+  prescription:
+    name: "Prescriptions"
+  test_report:
+    name: "Test Reports"
   admin:
     update:
       success: "Profile has been updated successfully"

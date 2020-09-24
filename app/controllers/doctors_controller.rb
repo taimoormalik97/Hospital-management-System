@@ -1,5 +1,5 @@
 class DoctorsController < ApplicationController
-  load_and_authorize_resource find_by: :sequence_num
+  load_and_authorize_resource 
 
   before_action :root_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
@@ -29,7 +29,8 @@ class DoctorsController < ApplicationController
         flash[:notice] = t('doctor.add.success')
         format.html { redirect_to doctors_path }
       else
-        flash[:error] = t('doctor.add.failure')
+        flash[:error] = [t('doctor.add.failure')]
+        flash[:error] += @doctor.errors.full_messages
         format.html { render :new }
       end
     end
@@ -57,7 +58,8 @@ class DoctorsController < ApplicationController
         flash[:notice] = t('doctor.update.success')
         format.html { redirect_to doctor_path(@doctor) }
       else
-        flash[:error] = t('doctor.update.failure')
+        flash[:error] = [t('doctor.update.failure')]
+        flash[:error] += @doctor.errors.full_messages
         format.html { render :edit }
       end
     end
@@ -71,7 +73,8 @@ class DoctorsController < ApplicationController
         flash[:notice] = t('doctor.delete.success')
         format.html { redirect_to doctors_path }
       else
-        flash[:error] = t('doctor.delete.failure')
+        flash[:error] = [t('doctor.delete.failure')]
+        flash[:error] += @doctor.errors.full_messages
         format.html { render :show }
       end
     end

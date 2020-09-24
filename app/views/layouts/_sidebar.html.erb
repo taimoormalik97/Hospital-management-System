@@ -1,0 +1,22 @@
+<!-- LEFT SIDEBAR -->
+<div id="sidebar-nav" class="sidebar custom-sidebar">
+  <div class="sidebar-scroll">
+    <nav>
+      <ul class="navbar-nav ">
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('medicine.name'), call: Medicine, icon: 'fa-capsules', path: "#"} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('purchase_order.name'), call: PurchaseOrder, icon: 'fa-credit-card', path: "#"} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('sale_order.name'), call: Bill, icon: 'fa-cash-register', path: "#"} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('doctor.name'), call: Doctor, icon: 'fa-user-md', path: doctors_path} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('patient.name'), call: Patient, icon: 'fa-user-injured', path: patients_path} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('appointment.name'), call: Appointment, icon: 'fa-clock', path: "#"} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('prescription.name'), call: PrescribedMedicine, icon: 'fa-prescription-bottle', path: "#"} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('test_report.name'), call: Test, icon: 'fa-file-alt', path: "#"} %>
+      </ul>
+    </nav>
+    <div class="container-fluid float-right-arrow ">
+      <div class="navbar-btn d-flex justify-content-center btn-toggle-fullwidth "><i class="fas fa-arrow-circle-left arrow"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END LEFT SIDEBAR -->
