@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :scope_current_hospital
   before_action :validate_subdomain, :redirect_to_valid_signup, :redirect_to_valid_signin, :redirect_to_valid_password_reset, :redirect_to_valid_confirmation_email, :devise_edit_profile, :redirect_to_signin_subdomain
-  helper_method :user_profile_path
-
+  
   rescue_from ActiveRecord::RecordNotFound do
     respond_to do |format|
       format.html { render file: "#{Rails.root}/public/404", status: :not_found }
@@ -78,14 +77,6 @@ class ApplicationController < ActionController::Base
   def redirect_to_valid_confirmation_email
     unless request.subdomain.present?
       redirect_to find_path if (request.url.include? '/users/confirmation/new') || (request.url.include? '/users/confirmation')
-    end
-  end
-
-  def user_profile_path
-    if admin?
-      admin_path(sequence_num)
-    else
-      "#{root_path}#{current_user.type.downcase}/#{current_user.sequence_num.to_s}"
     end
   end
 end
