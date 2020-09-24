@@ -1,13 +1,12 @@
 class AppointmentsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num
 
-  before_action :root_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :show_page_breadcrumb, only: [:show, :edit]
   
   # GET /appointments
   def index
-    @appointments = @appointments.paginate(page: params[:page], per_page: 10)
+    @appointments = @appointments.paginate(page: params[:page], per_page: PAGINATION_SIZE)
     respond_to do |format|
       format.html
     end
@@ -23,14 +22,12 @@ class AppointmentsController < ApplicationController
 
   # POST /appointments
   def create
-    @appointment.password = Devise.friendly_token.first(8)
     respond_to do |format|
       if @appointment.save
-        flash[:notice] = t('appointment.add.success')
-        format.html { redirect_to appointments_path }
+        format.html { redirect_to appointments_path, notice: t('appointment.add.success') }
       else
         flash[:error] = [t('appointment.add.failure')]
-        flash[:error] += @appointment.errors.full_messages
+        flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
         format.html { render :new }
       end
     end
@@ -55,11 +52,10 @@ class AppointmentsController < ApplicationController
   def update
     respond_to do |format|
       if @appointment.update(appointment_params)
-        flash[:notice] = t('appointment.update.success')
-        format.html { redirect_to appointment_path(@appointment) }
+        format.html { redirect_to appointment_path(@appointment), notice: t('appointment.update.success') }
       else
         flash[:error] = [t('appointment.update.failure')]
-        flash[:error] += @appointment.errors.full_messages
+        flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
         format.html { render :edit }
       end
     end
@@ -70,11 +66,10 @@ class AppointmentsController < ApplicationController
     @appointment.destroy
     respond_to do |format|
       if @appointment.destroyed?
-        flash[:notice] = t('appointment.delete.success')
-        format.html { redirect_to appointments_path }
+        format.html { redirect_to appointments_path, notice: t('appointment.delete.success') }
       else
         flash[:error] = [t('appointment.delete.failure')]
-        flash[:error] += @appointment.errors.full_messages
+        flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
         format.html { render :show }
       end
     end
@@ -84,10 +79,6 @@ class AppointmentsController < ApplicationController
     params.require(:appointment).permit(:name, :email, :password, :registration_no, :speciality, :consultancy_fee)
   end
 
-  def root_page_breadcrumb
-    add_breadcrumb current_hospital.name, hospital_index_path
-  end
-
   def index_page_breadcrumb
     add_breadcrumb t('appointment.breadcrumb.index'), appointments_path
   end
@@ -95,5 +86,4 @@ class AppointmentsController < ApplicationController
   def show_page_breadcrumb
     add_breadcrumb t('appointment.breadcrumb.show'), appointment_path
   end
-
 end

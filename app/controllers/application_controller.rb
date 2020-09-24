@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :scope_current_hospital
   before_action :validate_subdomain, :redirect_to_valid_signup, :redirect_to_valid_signin, :redirect_to_valid_password_reset, :redirect_to_valid_confirmation_email, :devise_edit_profile, :redirect_to_signin_subdomain
-
+  
   rescue_from ActiveRecord::RecordNotFound do
     respond_to do |format|
       format.html { render file: "#{Rails.root}/public/404", status: :not_found }
