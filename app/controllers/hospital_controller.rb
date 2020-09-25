@@ -1,4 +1,6 @@
 class HospitalController < ApplicationController
+  layout 'static_pages_layout', only: [:select_domain]
+
   # GET /resource/index
   def index
     respond_to do |format|

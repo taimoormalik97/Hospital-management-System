@@ -1,9 +1,12 @@
 $color-back: #2B333E;
 $color-primary-btn: #007bff;
+$color-public-pages: #5DB2FF;
+$color-hear: #696969;
 $color-danger: #dc3545;
 $color-success: #28a745;
 $color-notice: #ffc107;
 $color-ready: #545b62;
+
 .btn-spacing {
   margin-left: 1em
 }
@@ -91,6 +94,195 @@ $color-ready: #545b62;
   overflow-y: auto;
 }
 
+.scroll_domain {
+  position: relative;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.home-page-bg {
+  background-image: linear-gradient(to left, rgba(70, 130, 180, 0.2), rgba(0,0,0, 0.6)),
+  url('../images/public_pages/hospital_main.jpeg');
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main-page-welcome-div {
+  margin-top: 200px;
+  margin-left: 40px;
+  height: 25%;
+  width: 52%;
+  padding-top: 30px;
+  margin-bottom: 200px;
+}
+
+.welcome-font {
+  font-size: 1.5em;
+}
+
+.welcome-h1 {
+  text-align: left !important;
+}
+
+.sign-up-button {
+  background-color: $color-public-pages;
+  margin-top: 15px;
+  width: 150px;
+  height: 40px;
+  color: white;
+}
+
+.why-hms {
+color: white !important;
+  padding-top: 60px;
+  padding-bottom: 20px;
+}
+
+.why-us-content {
+  padding-top: 20px;
+}
+
+.why-us-decriptions {
+  color: white;
+  padding-right: 60px;
+  padding-left: 60px;
+  padding-bottom: 40px;
+}
+
+.no-padding-home-container {
+  padding: 0px;
+}
+
+.why-row {
+  margin: 0px !important;
+}
+
+.carousel-img {
+  height: 500px;
+}
+
+.nav-transparent {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0)) !important;
+  background-color: transparent !important;
+}
+
+.nav-transparent.scrolled {
+  background-image: none !important;
+  background-color: $color-public-pages !important;
+  box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2)
+}
+
+.main-sign-up-btn {
+  background-color: $color-public-pages;
+  border-color: white;
+  color: white;
+}
+
+.main-sign-up-btn.scrolled-sign-up-btn-color {
+  background-color: white;
+  border-color: white;
+  color: black;
+}
+
+.main-sign-in-btn {
+  background-color: Tan;
+  color: white;
+  border-color: Tan;
+}
+
+.carousel-reviews {
+  margin-left: 70px;
+  margin-bottom: 50px;
+  object-fit: contain;
+  width: 250px;
+  height: 250px;
+  background-color: $color-public-pages;
+}
+
+blockquote {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+blockquote p {
+  display: inline;
+}
+
+.hear-reviews {
+  margin-top: 50px;
+  color: $color-hear !important;
+}
+
+.blockquote-reviews {
+  background: none !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: -10px;
+  margin-right: 20px;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  filter: invert(100%);
+}
+
+.why-use-main-bg {
+  background-color: $color-public-pages !important;
+}
+
+.nav-static-pages {
+  background-color: $color-public-pages !important;
+}
+
+.contact-img {
+  width: 400px;
+  height: 500px;
+  opacity: 0.6;
+  object-fit: cover;
+}
+
+.public_pages_without_links {
+  a {
+    text-decoration: none;
+    color: grey;
+  }
+}
+
+.my {
+  padding-left: ($spacer * 10) !important;
+}
+
+.card_center {
+  margin-top: 50px !important;
+}
+
+.dark_background {
+  background-color: #172b4d;
+}
+
+.hidden { 
+  display: none; 
+}
+
 .color-primary {
   color: $color-primary-btn; 
 }
@@ -116,5 +308,3 @@ $color-ready: #545b62;
     padding: 0px 4px;
   }
 }
-
-.hidden { display: none; }

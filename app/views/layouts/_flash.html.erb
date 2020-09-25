@@ -1,4 +1,4 @@
-<div class="container pt-3">
+<div class="container pt-3 <%= controller.class.send(:_layout) == 'static_pages_layout' ? 'mt-5' : '' %>">
   <% flash.each do |type, message| %>
     <% unless type == 'timedout' %>
       <div class="alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show">

@@ -148,6 +148,8 @@ function collapseSidebar() {
     });
   }
 }
+$(document).on('turbolinks:load', arrow)
+$(document).ready(arrow)
 
 function showAvailabilitiesForAppointment() {
   $('body').on('click', '.next', function(){

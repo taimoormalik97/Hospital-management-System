@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_074756) do
+ActiveRecord::Schema.define(version: 2020_09_23_091219) do
 
-  create_table "appointments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "appointments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "date", null: false
     t.bigint "doctor_id", null: false
     t.bigint "patient_id", null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_074756) do
     t.index ["sequence_num", "hospital_id"], name: "index_appointments_on_sequence_num_and_hospital_id", unique: true
   end
 
-  create_table "availabilities", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "availabilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "week_day", null: false
     t.datetime "start_slot", null: false
     t.datetime "end_slot", null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_074756) do
     t.index ["week_day"], name: "index_availabilities_on_week_day"
   end
 
-  create_table "bill_details", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "bill_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "quantity"
     t.bigint "bill_id", null: false
     t.string "billable_type", null: false
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_074756) do
     t.index ["sequence_num", "hospital_id"], name: "index_bill_details_on_sequence_num_and_hospital_id", unique: true
   end
 
-  create_table "bills", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "bills", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "billabe_type", null: false
     t.bigint "patient_id", null: false
     t.bigint "hospital_id", null: false
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_074756) do
     t.index ["sequence_num", "hospital_id"], name: "index_bills_on_sequence_num_and_hospital_id", unique: true
   end
 
-  create_table "feedbacks", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "feedbacks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "feedback_detail", null: false
     t.bigint "doctor_id", null: false
     t.bigint "appointment_id", null: false
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_074756) do
     t.index ["sequence_num", "hospital_id"], name: "index_feedbacks_on_sequence_num_and_hospital_id", unique: true
   end
 
-  create_table "hospitals", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "hospitals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "address", null: false
     t.bigint "phone_number", null: false
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_074756) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "lab_reports", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "lab_reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "patient_id", null: false
     t.bigint "hospital_id", null: false
     t.bigint "test_id", null: false
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_074756) do
     t.index ["test_id"], name: "index_lab_reports_on_test_id"
   end
 
-  create_table "medicines", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "medicines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.integer "quantity", null: false
     t.decimal "price", precision: 10, scale: 2, null: false
@@ -125,21 +125,34 @@ ActiveRecord::Schema.define(version: 2020_09_23_074756) do
     t.index ["sequence_num", "hospital_id"], name: "index_medicines_on_sequence_num_and_hospital_id", unique: true
   end
 
-  create_table "prescribed_medicines", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.bigint "appointment_id", null: false
+  create_table "prescribed_medicines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "medicine_id", null: false
     t.string "usage_instruction", null: false
     t.bigint "hospital_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sequence_num", null: false
-    t.index ["appointment_id"], name: "index_prescribed_medicines_on_appointment_id"
+    t.bigint "prescription_id", null: false
+    t.decimal "quantity", precision: 10, null: false
     t.index ["hospital_id"], name: "index_prescribed_medicines_on_hospital_id"
     t.index ["medicine_id"], name: "index_prescribed_medicines_on_medicine_id"
+    t.index ["prescription_id"], name: "index_prescribed_medicines_on_prescription_id"
     t.index ["sequence_num", "hospital_id"], name: "index_prescribed_medicines_on_sequence_num_and_hospital_id", unique: true
   end
 
-  create_table "purchase_details", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "prescriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.text "notes"
+    t.bigint "appointment_id"
+    t.bigint "hospital_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "sequence_num", null: false
+    t.index ["appointment_id"], name: "index_prescriptions_on_appointment_id"
+    t.index ["hospital_id"], name: "index_prescriptions_on_hospital_id"
+    t.index ["sequence_num", "hospital_id"], name: "index_prescriptions_on_sequence_num_and_hospital_id", unique: true
+  end
+
+  create_table "purchase_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "quantity"
     t.bigint "purchase_order_id", null: false
     t.bigint "medicine_id", null: false
@@ -154,7 +167,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_074756) do
     t.index ["sequence_num", "hospital_id"], name: "index_purchase_details_on_sequence_num_and_hospital_id", unique: true
   end
 
-  create_table "purchase_orders", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "purchase_orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "vendorname", null: false
     t.decimal "price", precision: 10, scale: 2, null: false
     t.string "state", null: false
@@ -168,7 +181,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_074756) do
     t.index ["sequence_num", "hospital_id"], name: "index_purchase_orders_on_sequence_num_and_hospital_id", unique: true
   end
 
-  create_table "tests", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "tests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "details", null: false
     t.decimal "price", precision: 10, scale: 2
@@ -181,7 +194,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_074756) do
     t.index ["sequence_num", "hospital_id"], name: "index_tests_on_sequence_num_and_hospital_id", unique: true
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "type", null: false
     t.string "gender"
@@ -204,6 +217,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_074756) do
     t.string "unconfirmed_email"
     t.integer "sequence_num", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email", "hospital_id"], name: "index_users_on_email_and_hospital_id"
     t.index ["email"], name: "index_users_on_email"
     t.index ["hospital_id", "email"], name: "index_users_on_hospital_id_and_email"
     t.index ["hospital_id"], name: "index_users_on_hospital_id"
@@ -212,4 +226,6 @@ ActiveRecord::Schema.define(version: 2020_09_23_074756) do
     t.index ["sequence_num", "hospital_id"], name: "index_users_on_sequence_num_and_hospital_id", unique: true
   end
 
+  add_foreign_key "prescribed_medicines", "prescriptions"
+  add_foreign_key "prescriptions", "appointments"
 end
