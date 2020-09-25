@@ -217,3 +217,7 @@ en:
     login: 'Sign In'
     search: 'Search'
 
+  popup:
+    approve: 'Are you sure you want to approve appointment?'
+    complete: 'Are you sure you want to complete appointment?'
+    cancel: 'Are you sure you want to cancel appointment?'

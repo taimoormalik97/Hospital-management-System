@@ -5,7 +5,7 @@ class Appointment < ApplicationRecord
     state :pending
     state :approved
     state :completed
-    state :cancle
+    state :canceled
     event :approve do
       transitions to: :approved, from: :pending
     end
@@ -13,7 +13,7 @@ class Appointment < ApplicationRecord
       transitions to: :completed, from: :approved
     end
     event :cancel do
-      transitions to: :cancel, from: :pending
+      transitions to: :canceled, from: :pending
     end
   end
 
