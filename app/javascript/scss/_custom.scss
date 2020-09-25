@@ -2,6 +2,10 @@ $color-back: #2B333E;
 $color-primary-btn: #007bff;
 $color-public-pages: #5DB2FF;
 $color-hear: #696969;
+$color-danger: #dc3545;
+$color-success: #28a745;
+$color-notice: #ffc107;
+$color-ready: #545b62;
 
 .btn-spacing {
   margin-left: 1em
@@ -63,10 +67,6 @@ $color-hear: #696969;
 
 .pagination-spacing {
   margin: 20px 0;
-}
-
-.breadcrumb {
-  margin: 0 60px;
 }
 
 .select_domain {
@@ -283,3 +283,28 @@ blockquote p {
   display: none; 
 }
 
+.color-primary {
+  color: $color-primary-btn; 
+}
+
+.color-danger {
+  color: $color-danger; 
+}
+
+.color-notice {
+  color: $color-notice; 
+}
+
+.color-ready {
+  color: $color-ready; 
+}
+
+.color-success {
+  color: $color-success; 
+}
+
+.breadcrumb {
+  a {
+    padding: 0px 4px;
+  }
+}

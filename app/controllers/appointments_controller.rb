@@ -97,4 +97,44 @@ class AppointmentsController < ApplicationController
       format.js
     end
   end
+
+  # PUT /appointments/:id/approve
+  def approve
+    if @appointment.approve!
+      flash[:notice] = t('appointment.approve.success')
+    else
+      flash[:error] = [t('appointment.approve.failure')]
+      flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
+    end
+      
+    respond_to do |format|
+      format.html { redirect_to appointments_path }
+    end
+  end
+
+  # PUT /appointments/:id/complete
+  def complete
+    if @appointment.complete!
+      flash[:notice] = t('appointment.complete.success')
+    else
+      flash[:error] = [t('appointment.complete.failure')]
+      flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
+    end
+    respond_to do |format|
+      format.html { redirect_to appointments_path }
+    end
+  end
+
+  # PUT /appointments/:id/complete
+  def cancel
+    if @appointment.cancel!
+      flash[:notice] = t('appointment.cancel.success')
+    else
+      flash[:error] = [t('appointment.cancel.failure')]
+      flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
+    end
+    respond_to do |format|
+      format.html { redirect_to appointments_path }
+    end
+  end
 end

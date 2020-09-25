@@ -24,6 +24,11 @@ Rails.application.routes.draw do
     collection do
       get 'show_availabilities'
     end
+    member do
+      put 'approve'
+      put 'complete'
+      put 'cancel'
+    end
   end
   resources :doctors do
     resources :availabilities, except: [:edit, :update, :show]

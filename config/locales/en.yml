@@ -31,6 +31,7 @@
 
 en:
   hello: "Hello world"
+
   purchase_order:
     name: "Purchase Orders"
     add:
@@ -45,6 +46,7 @@ en:
     addmed:
       success: "Medicine successfully added to the purchase_order"
       failure: "Unable to add medicine to the purchase order"
+
   medicine:
     name: "Medicines"
     add:
@@ -59,11 +61,22 @@ en:
     search:
       success: "Medicine found!"
       failure: "Medicine not found"
+
   paginate:
     previous: "Previous"
     next: "Next"
+
   doctor:
     name: "Doctors"
+    label: 
+      title:
+        add: 'Add Doctor'
+        edit: 'Edit Doctor'
+      name: 'Doctor Name'
+      email: 'Email'
+      registration_no: 'Registration no.'
+      speciality: 'Speciality'
+      consultancy_fee: 'Consultancy Fee'
     add:
       success: "Doctor has been added successfully"
       failure: "Doctor is not added!"
@@ -78,8 +91,18 @@ en:
       new: "New Doctor"
       show: "Doctor Details"
       edit: "Edit Doctor"
+
   patient:
     name: "Patients"
+    label: 
+      title:
+        add: 'Add Patient'
+        edit: 'Edit Patient'
+      name: 'Patient Name'
+      email: 'Email'
+      dob: 'Date of Birth'
+      family_history: 'Family History'
+      gender: 'Gender'
     add:
       success: "Patient has been added successfully"
       failure: "Patient is not added!"
@@ -94,13 +117,16 @@ en:
       new: "New Patient"
       show: "Patient Details"
       edit: "Edit Patient"
+
   sale_order:
     name: "Sales Orders"
+
   appointment:
     label:
       start: 'Start'
       end: 'End'
       date: 'Date'
+      status: 'Status'
     name: "Appointments"
     breadcrumb: "Appointments"
     breadcrumb:
@@ -111,13 +137,22 @@ en:
     add:
       success: "Appointment has been added successfully"
       failure: "Appointment is not added!"
-    delete:
-      success: "Appointment has been deleted successfully"
-      failure: "Appointment is not deleted!"
+    approve:
+      success: "Appointment has been approved"
+      failure: "Appointment is not approved!"
+    complete:
+      success: "Appointment has been completed"
+      failure: "Appointment is not complete!"
+    cancel:
+      success: "Appointment has been canceled"
+      failure: "Appointment is not canceled!"
+
   prescription:
     name: "Prescriptions"
+
   test_report:
     name: "Test Reports"
+
   availability:
     label:
       new_slot_label: 'New Availability slot'
@@ -177,3 +212,15 @@ en:
       hospital_sub_domain: "Hospital Sub Domain"
       hospital_address: "Hospital Address"
       hospital_phone_number: "Phone Number"
+
+  navbar:
+    profile: 'My Profile'
+    logout: 'Log Out'
+    signup: 'Sign Up'
+    login: 'Sign In'
+    search: 'Search'
+
+  popup:
+    approve: 'Are you sure you want to approve appointment?'
+    complete: 'Are you sure you want to complete appointment?'
+    cancel: 'Are you sure you want to cancel appointment?'
