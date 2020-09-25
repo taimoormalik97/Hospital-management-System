@@ -23,9 +23,10 @@ class BillsController < ApplicationController
   end
   
   def get_medicine
-    @medicine = Medicine.find_by(id: params[:search])
+    @medicine = current_hospital.medicines.find_by(id: params[:search])
     if @medicine.blank?
       flash[:notice] = t('medicine.search.failure')
+      redirect_to(request.env['HTTP_REFERER'])
     else
       flash[:notice] = t('medicine.search.success')
       respond_to do |format|
@@ -35,7 +36,7 @@ class BillsController < ApplicationController
   end
 
   def add_medicine
-    @medicine= Medicine.find_by(id: params[:medicine_id])
+    @medicine= current_hospital.medicines.find_by(id: params[:medicine_id])
     quantity=params[:quantity].to_i
     if @bill.add_medicine(@medicine,quantity) 
       flash[:notice] = t('sales_order.addmed.success')  
@@ -52,7 +53,7 @@ class BillsController < ApplicationController
   end
 
   def add_doctor
-    @doctor= Doctor.find_by(id: params[:doctor_id])
+    @doctor= current_hospital.doctors.find_by(id: params[:doctor_id])
     if @bill.add_doctor(@doctor) 
       flash[:notice] = t('sales_order.addmed.success')  
       respond_to do |format|

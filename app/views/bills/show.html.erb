@@ -4,8 +4,8 @@
         <div class="row">
           <h3 class="col-md-8"><%= @bill.patient.name %></h3> 
           <div class="col-md-4 d-flex justify-content-md-end"> 
-           <%= link_to t('back'), { controller: 'bills', action: 'index'}, class: "btn btn-secondary" %> 
-          <%= link_to t('edit'), edit_bill_path(@bill), class: "btn btn-primary btn-spacing" %> 
+            <%= link_to t('back'), { controller: 'bills', action: 'index'}, class: "btn btn-secondary" %> 
+            <%= link_to t('edit'), edit_bill_path(@bill), class: "btn btn-primary btn-spacing" %> 
           </div>
         </div>
       </div>
