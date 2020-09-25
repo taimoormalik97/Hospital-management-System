@@ -148,6 +148,7 @@ function arrow() {
     });
   }
 }
+
 function appointment() {
   
   $('body').on('click', '.next', function(){

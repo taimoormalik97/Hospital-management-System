@@ -1,42 +1,44 @@
 <div class="container pt-3"> 
-    <div class="card">
-      <div class="card-header p-3 container-fluid">
-        <div class="row">
-          <h3 class="col-md-8">Dr. <%= @doctor.name %></h3> 
-          <div class="col-md-4 d-flex justify-content-md-end"> 
+  <div class="card">
+    <div class="card-header p-3 container-fluid">
+      <div class="row">
+        <h3 class="col-md-8">Dr. <%= @doctor.name %></h3>
+        <div class="col-md-4 d-flex justify-content-md-end"> 
+          <% if current_user.admin? %> 
             <%= link_to 'Edit', edit_doctor_path(@doctor) , class: "btn btn-primary " %>
-            <%= link_to 'Delete', doctor_path(@doctor), method: :delete , class: "btn btn-danger btn-spacing" %>  
-            <%= link_to 'Back', doctors_path , class: "btn btn-secondary btn-spacing" %>
-          </div>
+            <%= link_to 'Delete', doctor_path(@doctor), method: :delete , class: "btn btn-danger btn-spacing" %>
+          <% end %>
+          <%= link_to 'Back', doctors_path , class: "btn btn-secondary btn-spacing" %>
         </div>
       </div>
-      <div class="card-body">
-      <dl class="row">
-        <dt class="col-sm-2">  
-          <label>Email: </label>
-        </dt>
-        <dd class="col-sm-9">   
-          <%= @doctor.email %>   
-        </dd>
-        <dt class="col-sm-2">  
-          <label>Registration no.: </label>   
-        </dt>
-        <dd class="col-sm-9">   
-          <%= @doctor.registration_no %>   
-        </dd>
-        <dt class="col-sm-2">  
-          <label>Speciality: </label>
-        </dt>
-        <dd class="col-sm-9">   
-          <%= @doctor.speciality %>   
-        </dd>
-        <dt class="col-sm-2">  
-          <label>Consultancy Fee: </label>
-        </dt>
-        <dd class="col-sm-9">   
-          <%= @doctor.consultancy_fee %>   
-        </dd>
-      </dl>
     </div>
+  <div class="card-body">
+    <dl class="row">
+      <dt class="col-sm-2">  
+        <label>Email: </label>
+      </dt>
+      <dd class="col-sm-9">   
+        <%= @doctor.email %>   
+      </dd>
+      <dt class="col-sm-2">  
+        <label>Registration no.: </label>   
+      </dt>
+      <dd class="col-sm-9">   
+        <%= @doctor.registration_no %>   
+      </dd>
+      <dt class="col-sm-2">  
+        <label>Speciality: </label>
+      </dt>
+      <dd class="col-sm-9">   
+        <%= @doctor.speciality %>   
+      </dd>
+      <dt class="col-sm-2">  
+        <label>Consultancy Fee: </label>
+      </dt>
+      <dd class="col-sm-9">   
+        <%= @doctor.consultancy_fee %>   
+      </dd>
+    </dl>
+  </div>
   </div>
 </div>

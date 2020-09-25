@@ -4,8 +4,10 @@
       <div class="row">
         <h3 class="col-md-8"><%= @patient.name.titleize %></h3> 
         <div class="col-md-4 d-flex justify-content-md-end"> 
+          <% if current_user.admin? %> 
           <%= link_to 'Edit', edit_patient_path(@patient) , class: "btn btn-primary" %> 
           <%= link_to 'Delete', patient_path(@patient), method: :delete , class: "btn btn-danger btn-spacing" %>  
+          <% end %>
           <%= link_to 'Back', patients_path , class: "btn btn-secondary btn-spacing" %>
         </div>
       </div>
