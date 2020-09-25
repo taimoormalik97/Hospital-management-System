@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
-        <h3 class="col-md-10"><%= t('medicine.heading') %></h3> 
+        <h3 class="col-md-10"><%= t('medicine.heading')%></h3> 
         <div class="col-md-2 d-flex justify-content-md-end">
           <%= link_to t('medicine.add_medicine_label'), new_medicine_path ,class: "btn btn-primary" %>   
         </div>   
@@ -27,9 +27,7 @@
             <td><%= medicine.quantity%></td>
             <div>   
               <td>   
-                <%= link_to edit_medicine_path(medicine) do %>
-                  <i class="fas fa-edit"></i>
-                <%end%> 
+                <%= link_to t('edit'), edit_medicine_path(medicine), class: "btn btn-primary" %> 
                 <% if can? :destroy, medicine %>
                   <%= link_to t('delete'), medicine_path(medicine), method: :delete, class: "btn btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?' }%>
                 <% end %>      
