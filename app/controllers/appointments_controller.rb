@@ -90,15 +90,9 @@ class AppointmentsController < ApplicationController
     add_breadcrumb t('appointment.breadcrumb.show'), appointment_path
   end
 
-  def date_to_day(date)
-    if date.present?
-      date.to_date.strftime("%A")
-    end
-  end
-
   # GET /show_availabilities
   def show_availabilities
-    params[:date] = date_to_day(params[:date])
+    params[:date] = params[:date].to_date.strftime('%A') if params[:date].present?
     respond_to do |format|
       format.js
     end
