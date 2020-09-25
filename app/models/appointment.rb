@@ -26,5 +26,6 @@ class Appointment < ApplicationRecord
   has_many :medicines, through: :prescribed_medicines
   has_one :feedback, dependent: :destroy
   validates_uniqueness_of :date, scope: :availability_id
+  validates_presence_of :date
   default_scope { where(hospital_id: Hospital.current_id) }
 end
