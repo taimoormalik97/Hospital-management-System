@@ -8,14 +8,14 @@ class PublicPagesController < ApplicationController
     end
   end
 
-   # GET /resource/about
+  # GET /resource/about
   def about
     respond_to do |format|
       format.html
     end
   end
 
-   # GET /resource/contact
+  # GET /resource/contact
   def contact
     respond_to do |format|
       format.html
