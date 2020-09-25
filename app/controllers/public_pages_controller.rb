@@ -1,4 +1,5 @@
 class PublicPagesController < ApplicationController
+  layout false
 
   # GET /resource/index
   def index

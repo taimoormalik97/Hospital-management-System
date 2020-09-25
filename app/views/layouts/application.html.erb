@@ -7,8 +7,20 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>    
   </head> 
   <body>
-    <%= render partial: 'layouts/breadcrumb' %>
-    <%= render partial: 'layouts/flash', flash: flash %> 
-    <%= yield %>
+    <div id="wrapper">
+      <%= render partial: 'layouts/navbar' %>
+      <% if signed_in?  %>
+        <%= render partial: 'layouts/sidebar' %>
+      <% end %>
+      <div class="content-with-sidebar">
+        <div class="content">
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-5">
+            <%= render partial: 'layouts/breadcrumb' %>
+          </nav>
+          <%= render partial: 'layouts/flash', flash: flash %>
+          <%= yield %>
+        </div>
+      </div> 
+    </div>
   </body>
 </html>

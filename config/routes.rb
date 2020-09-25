@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   resources :bills do
     member do
       post 'add_medicine'
@@ -18,7 +17,6 @@ Rails.application.routes.draw do
       get 'search_pred'
     end
   end
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :medicines do
     collection do
@@ -40,6 +38,16 @@ Rails.application.routes.draw do
   post 'find', to: 'public_pages#check_email', as: 'check_email'
   get '/find/select_domain', to: 'hospital#select_domain', as: 'select_domain'
   resources :admin, only: [:show, :edit, :update]
+  resources :appointments do
+    collection do
+      get 'show_availabilities'
+    end
+  end
+  resources :doctors do
+    resources :availabilities, except: [:edit, :update, :show]
+  end
+  resources :patients
+  get 'dashboard' => 'dashboards#dashboard' 
   devise_for :users
   
 end

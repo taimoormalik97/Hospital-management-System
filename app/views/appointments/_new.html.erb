@@ -1,0 +1,29 @@
+<%= form_for(@appointment, method: 'post') do |f| %> 
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel"><%= t('appointment.breadcrumb.new') %></h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label class="col-form-label"><%= t('appointment.label.date') %>: </label> 
+      <%= f.date_field :date, required: true, class: "form-control" , id: 'date' %>     
+    </div>
+    <div class="form-group">
+      <label class="col-form-label"><%= t('doctor.name') %>: </label>
+      <%= f.select :doctor_id, options_for_select(Doctor.all.map{ |doc| [doc.name, doc.id]}), {}, class: "form-control", id: 'doctor' %> 
+    </div>
+    <div class="form-group availability-list collapse">
+      
+    </div>
+  </div>
+  <div class="modal-footer next-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+    <button type="button" class="btn btn-primary next">Next</button>
+  </div>
+  <div class="modal-footer final-footer collapse">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+    <%= f.submit 'Add' , class: "btn btn-primary " %>
+  </div>
+<% end %>

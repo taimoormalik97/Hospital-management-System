@@ -20,6 +20,7 @@
           </tr>   
         </thead>   
         <tbody>   
+<<<<<<< HEAD
         <% @medicines.each do |medicine| %>   
           <tr>   
             <td><%= link_to medicine.name, medicine_path(medicine) %></td>   
@@ -35,11 +36,31 @@
             </div>    
           </tr>  
         <% end %>   
+=======
+          <% @medicine.each do |medicine| %>   
+            <tr>   
+              <td><%= link_to medicine.name, medicine_path(medicine) %></td>   
+              <td><%= medicine.price %></td>   
+              <td><%= medicine.quantity%></td> 
+              <div>   
+                <td>   
+                  <%= link_to 'Edit', edit_medicine_path(medicine) %> 
+                  <%= link_to 'Delete', medicine_path(medicine), method: :delete %>      
+                </td>
+              </div>       
+            </tr>   
+          <% end %>   
+>>>>>>> b740f25ad34f77afc8c6855e2ded049185a21227
         </tbody>   
       </table> 
     </div>
+<<<<<<< HEAD
   </div>
 </div>
 <div class="pagination justify-content-center" class="pagination-spacing">
   <%= will_paginate @medicines, previous_label: t('paginate.previous'), next_label: t('paginate.next') %> 
 </div>
+=======
+  </body>
+</html>
+>>>>>>> b740f25ad34f77afc8c6855e2ded049185a21227

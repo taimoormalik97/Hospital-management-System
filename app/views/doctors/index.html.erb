@@ -1,4 +1,4 @@
-<div class="container  pt-3"> 
+<div class="container pt-3"> 
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
@@ -20,7 +20,7 @@
         </thead>   
         <tbody>   
         <% @doctors.each do |doctor| %>   
-          <tr>   
+          <tr> 
             <td><%= link_to doctor.name, doctor_path(doctor) %></td>   
             <td><%= doctor.registration_no %></td>  
             <td><%= doctor.speciality %></td>  

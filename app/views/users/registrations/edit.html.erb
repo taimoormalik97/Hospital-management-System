@@ -40,12 +40,12 @@
   <%= f.fields_for :hospital do |h| %>
     <div class="field">
     <%= h.label :hospital_name %><br />
-    <%= h.text_field :name, required: true, :id => "hospital_name" %>
+    <%= h.text_field :name, required: true, id: "hospital_name" %>
     </div>
 
     <div class="field">
     <%= h.label :hospital_domain%><br />
-    <%= h.text_field :sub_domain, :id => "sub_domain", readonly: true %>
+    <%= h.text_field :sub_domain, id: "sub_domain", readonly: true %>
     </div>
 
     <div class="field">

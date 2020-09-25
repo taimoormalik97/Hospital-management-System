@@ -1,9 +1,70 @@
+$color-back: #2B333E;
+$color-primary-btn: #007bff;
+
 .btn-spacing {
   margin-left: 1em
 }
 
+.float-right-arrow {
+  margin: 20px 0;
+  position: absolute; 
+  bottom: 0px;
+}
+
+.vertical-icon {
+  display: block;
+  padding-right: 20px !important;
+}
+
+.vertical-span {
+  display: none;
+}
+
+.vertical-block {
+  text-align: right;
+}
+
+.sidebar-nav-item {
+  font-size: 1em;
+
+}
+
+.layout-fullwidth {
+  left: -200px;
+}
+
+.content-with-sidebar {
+  position: relative;
+  padding-left: 260px;
+  padding-top: 70px;
+}
+
+.custom-sidebar {
+  margin-top: 0px !important;
+  padding-top: 80px !important;
+}
+
+.btn-toggle-fullwidth {
+  color: $color-primary-btn; 
+  background-color: $color-back;
+  font-size: 28px;
+}
+
+.btn-outline {
+  color: $color-primary-btn;
+  border-color: $color-primary-btn;
+}
+
+.navbar-brand{
+  margin-right: 0;
+}
+
 .pagination-spacing {
-  margin:20px 0
+  margin: 20px 0;
+}
+
+.breadcrumb {
+  margin: 0 60px;
 }
 
 .select_domain {
@@ -14,3 +75,22 @@
 .select_domain_hover:hover{
   text-decoration-color: black;
 }
+
+.time {
+  width: 48% !important;
+  display: inline !important;
+}
+
+.date {
+  width: 20% !important;
+  display: inline !important;
+}
+
+.scroll {
+  position: relative;
+  max-height: 224px;
+  overflow-y: auto;
+}
+
+
+.hidden { display: none; }

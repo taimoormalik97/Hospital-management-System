@@ -46,6 +46,7 @@ en:
     state_label: 'State'
     confirm_button: 'Confirm'
     deliver_button: 'Deliver'
+    name: "Purchase Orders"
     add:
       success: "Purchase order has been added successfully"
       failure: "Failed to add!"
@@ -112,6 +113,7 @@ en:
     name_label: 'Name'
     price_label: 'Price'
     quantity_label: 'Quantity'
+    name: "Medicines"
     add:
       success: "Medicine has been added successfully"
       failure: "Failed to add!"
@@ -136,6 +138,7 @@ en:
     appointments: "Doctor's Appointments"
     name_label: 'Name'
     fee: 'fee'
+    name: "Doctors"
     add:
       success: "Doctor has been added successfully"
       failure: "Doctor is not added!"
@@ -151,6 +154,7 @@ en:
       show: "Doctor Details"
       edit: "Edit Doctor"
   patient:
+    name: "Patients"
     add:
       success: "Patient has been added successfully"
       failure: "Patient is not added!"
@@ -165,6 +169,48 @@ en:
       new: "New Patient"
       show: "Patient Details"
       edit: "Edit Patient"
+  sale_order:
+    name: "Sales Orders"
+  appointment:
+    label:
+      start: 'Start'
+      end: 'End'
+      date: 'Date'
+    name: "Appointments"
+    breadcrumb: "Appointments"
+    breadcrumb:
+      index: "Appointments"
+      new: "New Appointment"
+      show: "Appointment Details"
+      edit: "Edit Appointment"
+    add:
+      success: "Appointment has been added successfully"
+      failure: "Appointment is not added!"
+    delete:
+      success: "Appointment has been deleted successfully"
+      failure: "Appointment is not deleted!"
+  prescription:
+    name: "Prescriptions"
+  test_report:
+    name: "Test Reports"
+  availability:
+    label:
+      new_slot_label: 'New Availability slot'
+      start: 'Start'
+      end: 'End'
+      day: 'Day'
+      empty_message: 'No Availability Slot'
+    name: "Availabilities"
+    end_time_error: 'End should be greater then Start!'
+    overlapping_error: 'Current Slot Time is already taken!'
+    breadcrumb: "Availabilities"
+    add:
+      success: "Availability slot has been added successfully"
+      failure: "Availability slot is not added!"
+    delete:
+      success: "Availability slot has been deleted successfully"
+      failure: "Availability slot is not deleted!"
+
   admin:
     update:
       success: "Profile has been updated successfully"
@@ -182,6 +228,7 @@ en:
       hospital_address: "Hospital Address"
       hospital_phone_number: "Phone Number"
       edit: "Edit Profile"
+
   guest:
     find:
       error: "Email was not found!"
