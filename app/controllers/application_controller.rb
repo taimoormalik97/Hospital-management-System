@@ -52,12 +52,12 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_signin_subdomain
     redirect_to new_user_session_path if (request.subdomain.present?) && (request.url.include? '/find')
-    redirect_to new_user_session_path if (request.subdomain.present?) && (!user_signed_in?) && (request.url == ('http://' + request.subdomain + '.localhost:3000/'))
+    redirect_to new_user_session_path if (request.subdomain.present?) && (!user_signed_in?) && (request.path == '/' )
   end
-
+  
   def redirect_to_valid_signup
     redirect_to new_user_registration_url(subdomain: false) if (request.subdomain.present?) && (request.url.include? '/users/sign_up')
-    redirect_to new_user_registration_url(subdomain: false) if (request.url == ('http://localhost:3000/users'))
+    redirect_to new_user_registration_url(subdomain: false) if (request.path == ('/users')) && (!user_signed_in?)
   end
 
   def redirect_to_valid_signin
