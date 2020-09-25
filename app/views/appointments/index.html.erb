@@ -1,5 +1,49 @@
 <div class="container pt-3"> 
   <div class="card">
-  	index
+    <div class="card-header p-3 container-fluid">
+      <div class="row">
+        <h3 class="col-md-10"><%= t('appointment.breadcrumb.index') %></h3> 
+        <% if current_user.patient? %>
+          <div class="col-md-2 d-flex justify-content-md-end">
+            <%= link_to 'Add', new_appointment_path,  {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#appointment_modal', class: 'btn btn-primary'} %>
+            <%= render partial: "appointment_modal" %>   
+          </div> 
+        <% end %>  
+      </div>
+    </div> 
+    <div class="card-body">
+      <table  class="table">   
+        <thead >   
+          <tr>
+            <th><%= t('appointment.label.date') %></th> 
+            <th><%= t('appointment.label.start') %></th>   
+            <th><%= t('appointment.label.end') %></th>
+            <% if current_user.patient? %>   
+              <th><%= t('doctor.name') %></th>   
+            <% elsif current_user.doctor? %>
+              <th><%= t('patient.name') %></th>  
+            <% end %>
+          </tr>   
+        </thead>   
+        <tbody>   
+          <% @appointments.each do |appointment| %>   
+            <tr> 
+              <td><%= appointment.date %></td>   
+              <% availability = appointment.availability %>
+              <td><%= convert_to_twelve_hour_format(availability.start_slot) %></td>  
+              <td><%= convert_to_twelve_hour_format(availability.end_slot) %></td>
+              <% if current_user.patient? %>
+                <td><%= appointment.doctor.name %></td> 
+              <% elsif current_user.doctor? %>
+                <td><%= appointment.patient.name %></td>
+              <% end %>       
+            </tr>   
+          <% end %>  
+        </tbody>   
+      </table> 
+    </div>
   </div>
+</div>
+<div class="pagination justify-content-center" class="pagination-spacing">
+  <%= will_paginate @appointments, previous_label: t('paginate.previous'), next_label: t('paginate.next') %> 
 </div>
