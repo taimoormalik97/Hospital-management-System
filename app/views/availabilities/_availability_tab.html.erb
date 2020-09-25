@@ -17,8 +17,8 @@
                 <% @availabilities.each do |availability| %>
                   <% if availability.week_day == days[num] %>  
                     <tr>  
-                      <td><%= availability.start_slot.strftime("%I:%M%p") %></td>  
-                      <td><%= availability.end_slot.strftime("%I:%M%p") %></td>
+                      <td><%= convert_to_twelve_hour_format(availability.start_slot) %></td>  
+                      <td><%= convert_to_twelve_hour_format(availability.end_slot) %></td>
                       <td>
                         <%= link_to doctor_availability_path(@doctor, availability), method: :delete do %>
                           <i class="fas fa-trash-alt"></i>

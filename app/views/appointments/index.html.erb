@@ -2,10 +2,10 @@
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
-        <h3 class="col-md-10">Appointments</h3> 
+        <h3 class="col-md-10"><%= t('appointment.breadcrumb.index') %></h3> 
         <% if current_user.patient? %>
           <div class="col-md-2 d-flex justify-content-md-end">
-            <%= link_to 'Add', new_appointment_path,  {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#exampleModal', class: 'btn btn-primary'} %>
+            <%= link_to 'Add', new_appointment_path,  {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#appointment_modal', class: 'btn btn-primary'} %>
             <%= render partial: "appointment_modal" %>   
           </div> 
         <% end %>  
@@ -29,13 +29,13 @@
           <% @appointments.each do |appointment| %>   
             <tr> 
               <td><%= appointment.date %></td>   
-              <% availability = Availability.find(appointment.availability_id) %>
-              <td><%= availability.start_slot.strftime("%I:%M%p") %></td>  
-              <td><%= availability.end_slot.strftime("%I:%M%p") %></td>
+              <% availability = appointment.availability %>
+              <td><%= convert_to_twelve_hour_format(availability.start_slot) %></td>  
+              <td><%= convert_to_twelve_hour_format(availability.end_slot) %></td>
               <% if current_user.patient? %>
-                <td><%= Doctor.find(appointment.doctor_id).name %></td> 
+                <td><%= appointment.doctor.name %></td> 
               <% elsif current_user.doctor? %>
-                <td><%= Patient.find(appointment.patient_id).name %></td>
+                <td><%= appointment.patient.name %></td>
               <% end %>       
             </tr>   
           <% end %>  
