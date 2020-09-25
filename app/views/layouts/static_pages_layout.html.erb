@@ -12,20 +12,20 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link text-white" href= <%= about_path %> >About</a>
+              <a class="nav-link text-white" href= <%= about_path %> ><%=t('guest.about')%></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href= <%= contact_path %> >Contact</a>
+              <a class="nav-link text-white" href= <%= contact_path %> ><%=t('guest.contact')%></a>
             </li>
           </ul>
             <%= link_to "Sign in", find_path, class: "btn btn-outline-light my-0 my-sm-0 mr-2" %>
             <%= link_to "Sign up", new_user_registration_path, class: "btn btn-light my-0 my-sm-0 mr-3" %>
         </div>
       </nav>
+      <%= render partial: 'layouts/flash', flash: flash %>
     <%= yield %>
   </body>
 </html>

@@ -27,4 +27,5 @@ Rails.application.routes.draw do
   get 'dashboard' => 'dashboards#dashboard' 
   devise_for :users, controllers: { registrations: 'users/registrations', passwords: 'users/passwords', sessions: 'users/sessions', confirmations: 'users/confirmations' }, path: 'users'
   
+  match '*unmatched', to: 'application#route_not_found', via: :all
 end

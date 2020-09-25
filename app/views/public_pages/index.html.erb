@@ -5,13 +5,6 @@
     <%= csp_meta_tag %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script>
-      $(document).scroll(function () {
-        var $nav = $(".nav-transparent");
-        $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-        $(".main-sign-up-btn").toggleClass('scrolled-sign-up-btn-color', $(this).scrollTop() > $nav.height());
-      });
-    </script>
   </head> 
   <body>
     <div class="home-page-bg">
@@ -48,7 +41,7 @@
     </div>
     <div>
       <div id="demo" class="carousel slide" data-ride="carousel">
-        <div class="text-center"><h1 class="hear-reviews">Hear from Our Doctors</h1></div>
+        <div class="text-center"><h1 class="hear-reviews"><%= t('guest.hear_from_doctors')%></h1></div>
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="row justify-content-center">

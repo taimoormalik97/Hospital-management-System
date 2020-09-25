@@ -1,7 +1,8 @@
+<%= render "users/shared/error_messages", resource: resource %>
 <div class="box">
   <div class="wrapper">    
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="container pt-3 w-50 card_center"> 
+      <div class="container w-50 card_center"> 
         <div class="card">
           <div class="card-header p-3 container-fluid">
             <div class="row">

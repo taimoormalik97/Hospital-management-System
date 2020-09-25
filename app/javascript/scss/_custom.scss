@@ -1,5 +1,7 @@
 $color-back: #2B333E;
 $color-primary-btn: #007bff;
+$color-public-pages: #5e72e4;
+$color-hear: DimGrey;
 
 .btn-spacing {
   margin-left: 1em
@@ -114,7 +116,7 @@ $color-primary-btn: #007bff;
 }
 
 .sign-up-button {
-  background-color: #5e72e4;
+  background-color: $color-public-pages;
   margin-top: 15px;
   width: 150px;
   height: 40px;
@@ -157,12 +159,12 @@ padding-top: 20px;
 
 .nav-transparent.scrolled {
   background-image: none !important;
-  background-color: #5e72e4 !important;
+  background-color: $color-public-pages !important;
   box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2)
 }
 
 .main-sign-up-btn {
-  background-color: #5e72e4;
+  background-color: $color-public-pages;
   border-color: white;
   color: white;
 }
@@ -185,7 +187,7 @@ padding-top: 20px;
   object-fit: contain;
   width: 250px;
   height: 250px;
-  background-color: #5e72e4;
+  background-color: $color-public-pages;
 }
 
 blockquote {
@@ -211,12 +213,12 @@ blockquote:before {
 }
 
 blockquote p {
-display: inline;
+  display: inline;
 }
 
 .hear-reviews {
   margin-top: 50px;
-  color: DimGrey !important;
+  color: $color-hear !important;
 }
 
 .blockquote-reviews {
@@ -233,15 +235,15 @@ display: inline;
 }
 
 .why-use-main-bg {
-  background-color: #5e72e4 !important;
+  background-color: $color-public-pages !important;
 }
 
 .nav-static-pages {
-  background-color: #5e72e4 !important;
+  background-color: $color-public-pages !important;
 }
 
 .contact-img {
-   width: 400px;
+  width: 400px;
   height: 500px;
   opacity: 0.6;
   object-fit: cover;
@@ -259,29 +261,11 @@ display: inline;
 }
 
 .card_center {
-  margin-top: 100px !important;
-}
-
-.box {
-  background: #5e72e4 !important;
-  margin-top: -40px;
-  padding: 5% 20px; /* Added a percentage value for top/bottom padding to keep the wrapper inside of the parent */
-  
-  -webkit-transform: skewY(-5deg);
-  -moz-transform: skewY(-5deg);
-  -ms-transform: skewY(-5deg);
-  -o-transform: skewY(-5deg);
-  transform: skewY(-5deg);
-}
-
-.box > .wrapper {
-  -webkit-transform: skewY(5deg);
-  -moz-transform: skewY(5deg);
-  -ms-transform: skewY(5deg);
-  -o-transform: skewY(5deg);
-  transform: skewY(5deg);
+  margin-top: 50px !important;
 }
 
 .dark_background {
   background-color: #172b4d;
 }
+
+
