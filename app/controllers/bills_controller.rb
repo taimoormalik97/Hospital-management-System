@@ -5,7 +5,11 @@ class BillsController < ApplicationController
   before_action :show_page_breadcrumb, only: [:show]
 
   def index
-    @bills = @bills.paginate(page: params[:page], per_page: 5)
+    @active_tab = params[:tab] == 'doctor' ? 'doctor' : 'medicine'
+    @doctor_bills = @bills.where(billable_type:'doctor')
+    @doctor_bills = @doctor_bills.paginate(page: params[:page1], per_page: 3)
+    @medicine_bills = @bills.where(billable_type:'medicine')
+    @medicine_bills = @medicine_bills.paginate(page: params[:page2], per_page: 3)
     respond_to do |format|
       format.html
     end    

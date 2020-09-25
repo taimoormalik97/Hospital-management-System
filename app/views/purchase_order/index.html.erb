@@ -27,7 +27,7 @@
             <td><%= po.state%></td> 
             <div>   
               <td>
-                <%if po.drafted?||po.confirmed?%>
+                <%if po.drafted? || po.confirmed?%>
                   <%= link_to t('edit'), edit_purchase_order_path(po), class: "btn btn-primary" %>
                 <%end%>  
                 <%= link_to t('delete'), purchase_order_path(po), method: :delete, class: "btn btn-danger btn-spacing"%>      
