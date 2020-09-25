@@ -13,7 +13,7 @@
     <ul class="navbar-nav ">
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline my-2 my-sm-0" type="submit"><%= t('navbar.search') %></button>
       </form>
   	</ul>
   	<ul class="navbar-nav ml-auto">
@@ -26,15 +26,15 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <div class="dropdown-divider color-primary"></div>
             <%= link_to user_profile_path(current_user) , class: "dropdown-item" do %>
-              <i class="fas fa-user mr-2"></i>My Profile
+              <i class="fas fa-user mr-2"></i><%= t('navbar.profile') %>
             <% end %>
             <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
-              <i class="fas fa-sign-out-alt mr-2"></i>Logout
+              <i class="fas fa-sign-out-alt mr-2"></i><%= t('navbar.logout') %>
             <% end %>
           </div>
         <% else %>
-          <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-outline my-2 my-sm-0' %>
-          <%= link_to "Login", new_user_session_path, class: 'btn btn-outline my-2 my-sm-0' %>
+          <%= link_to t('navbar.signup'), new_user_registration_path, class: 'btn btn-outline my-2 my-sm-0' %>
+          <%= link_to t('navbar.login'), new_user_session_path, class: 'btn btn-outline my-2 my-sm-0' %>
         <% end %>
       </li>
     </ul>

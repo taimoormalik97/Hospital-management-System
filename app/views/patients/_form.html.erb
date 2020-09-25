@@ -4,30 +4,30 @@
       <div class="card-header p-3 container-fluid">
         <div class="row">
           <h3 class="col-md-9">
-            <%= @patient.persisted? ? "Edit Patient" : "Add Patient " %>
+            <%= @patient.persisted? ? t('patient.label.title.edit') : t('patient.label.title.edit') %>
           </h3>  
         </div>
       </div>
       <div class="card-body">     
         <p>   
           <div class="form-group">   
-            <label>Patient Name</label>   
+            <label><%= t('patient.label.name') %></label>   
             <%= f.text_field :name, required: true, class: "form-control" %>   
           </div>    
           <div class="form-group"> 
-            <label>Email</label>   
+            <label><%= t('patient.label.email_field') %></label>   
             <%= f.email_field :email, required: true, class: "form-control" %>   
           </div>   
           <div class="form-group">  
-            <label>Date of Birth</label>   
+            <label><%= t('patient.label.dob') %></label>   
             <%= f.date_field :dob, required: true, class: "form-control" %>     
           </div> 
           <div class="form-group">   
-            <label>Family History</label>   
+            <label><%= t('patient.label.family_history') %></label>   
             <%= f.text_field :family_history, class: "form-control" %>   
           </div> 
           <div class="form-group">   
-            <label>Gender</label>   
+            <label><%= t('patient.label.gender') %></label>   
             <%= f.select :gender, options_for_select(["Male", "Female", "Other"]), { required: true } , { class: "form-control" } %> 
           </div>     
         </p> 
