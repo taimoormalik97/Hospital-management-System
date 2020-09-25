@@ -38,10 +38,10 @@
   </div>
 <% end %>
 <% if @bill.billable_type=="medicine"%>
-  <%= render 'medicinesearch'%>
+  <%=render 'medicinesearch'%>
 <% elsif @bill.billable_type=="doctor"%>
   <%= render 'doctorssearch'%>
 <%end%>
-<%= javascript_tag do %> 
-$('#patient_search1').tokenInput("/patients/search_pred", { preventDuplicates: true, prePopulate: <%= [{id: @bill.patient_id, name: @bill.patient.name }].to_json.html_safe %>});
+<%= javascript_tag do %>
+  $('#patient_search1').tokenInput("/patients/search_pred", { preventDuplicates: true, prePopulate: <%= [{id: @bill.patient_id, name: @bill.patient.name }].to_json.html_safe %>});
 <% end %>

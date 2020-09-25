@@ -7,7 +7,7 @@ class MedicinesController < ApplicationController
   before_action :show_page_breadcrumb, only: [:show]
 
   def index
-    @medicines = @medicines.paginate(page: params[:page], per_page: 5)
+    @medicines = @medicines.paginate(page: params[:page], per_page: PAGINATION_SIZE )
   end
 
   def new
@@ -22,16 +22,15 @@ class MedicinesController < ApplicationController
       format.html
     end
   end
-
+  
   def search_pred
-    @medicines = Medicine.search(params[:q])
+    @medicines = current_hospital.medicines.search(params[:q])
     respond_to do |format| 
       format.json { render json: @medicines }
     end
   end
 
   def create
-    @medicine.hospital = current_hospital
     if @medicine.save   
       flash[:notice] = t('medicine.add.success')
       redirect_to medicine_path(@medicine)

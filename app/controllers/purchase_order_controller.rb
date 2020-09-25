@@ -5,7 +5,7 @@ class PurchaseOrderController < ApplicationController
   before_action :show_page_breadcrumb, only: [:show]
 
   def index
-    @purchase_orders = @purchase_orders.paginate(page: params[:page], per_page: 5)
+    @purchase_orders = @purchase_orders.paginate(page: params[:page], per_page: PAGINATION_SIZE )
     respond_to do |format|
       format.html
     end    
@@ -19,7 +19,7 @@ class PurchaseOrderController < ApplicationController
   end
   
   def get_medicine
-    @medicine = Medicine.find_by(id: params[:search])
+    @medicine = current_hospital.medicines.find_by(id: params[:search])
     if @medicine.blank?
       flash[:notice] = t('medicine.search.failure')
     else
@@ -31,7 +31,7 @@ class PurchaseOrderController < ApplicationController
   end
 
   def add_medicine
-    @medicine= Medicine.find_by(id: params[:medicine_id])
+    @medicine= current_hospital.medicines.find_by(id: params[:medicine_id])
     quantity=params[:quantity].to_i
     if @purchase_order.add_medicine(@medicine,quantity) 
       flash[:notice] = t('purchase_order.addmed.success')  

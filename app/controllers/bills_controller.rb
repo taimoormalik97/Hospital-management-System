@@ -7,9 +7,9 @@ class BillsController < ApplicationController
   def index
     @active_tab = params[:tab] == 'doctor' ? 'doctor' : 'medicine'
     @doctor_bills = @bills.where(billable_type:'doctor')
-    @doctor_bills = @doctor_bills.paginate(page: params[:page1], per_page: 3)
+    @doctor_bills = @doctor_bills.paginate(page: params[:page1], per_page: PAGINATION_SIZE)
     @medicine_bills = @bills.where(billable_type:'medicine')
-    @medicine_bills = @medicine_bills.paginate(page: params[:page2], per_page: 3)
+    @medicine_bills = @medicine_bills.paginate(page: params[:page2], per_page: PAGINATION_SIZE )
     respond_to do |format|
       format.html
     end    
@@ -82,7 +82,6 @@ class BillsController < ApplicationController
   end
 
   def create
-    @bill.hospital=current_hospital
     if @bill.save!  
       flash[:notice] = t('sales_order.add.success')   
       redirect_to @bill

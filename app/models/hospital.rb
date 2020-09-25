@@ -1,8 +1,8 @@
 class Hospital < ApplicationRecord
-  #has_many :users, dependent: :destroy
-  has_many :doctors, dependent: :destroy, class_name: 'User'
-  has_many :admins, dependent: :destroy, class_name: 'User'
-  has_many :patients, dependent: :destroy, class_name: 'User'
+  has_many :users, dependent: :destroy
+  has_many :doctors, class_name: 'Doctor'
+  has_many :admins, class_name: 'Admin'
+  has_many :patients, class_name: 'Patient'
   has_many :appointments, dependent: :destroy
   has_many :feedbacks, dependent: :destroy
   has_many :availabilities, dependent: :destroy
@@ -23,5 +23,13 @@ class Hospital < ApplicationRecord
 
   def self.current_id
     Thread.current[:hospital_id]
+  end
+
+  def self.current_hospital
+    Thread.current[:hospital]
+  end
+
+  def self.current_hospital=(hospital)
+    Thread.current[:hospital] = hospital
   end
 end

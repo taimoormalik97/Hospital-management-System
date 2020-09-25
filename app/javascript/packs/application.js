@@ -28,6 +28,7 @@ const imagePath = (name) => images(name, true)
 
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
 document.addEventListener("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip()
 })
