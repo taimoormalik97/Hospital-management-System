@@ -19,17 +19,26 @@ class Ability
         patient
       end
       can :show, Patient do |patient|
-        patient.hospital_id == user.hospital_id && patient.appointment.doctor_id == user.id
+        patient.hospital_id == user.hospital_id && patient.appointments.find_by(doctor_id: user.id)
       end
       can :read, Doctor, hospital_id: user.hospital_id, id: user.id
       can :update, Doctor, hospital_id: user.hospital_id, id: user.id
       can :manage, Availability, hospital_id: user.hospital_id, doctor_id: user.id
-      can %i[read cancel approve complete], Appointment, hospital_id: user.hospital_id, doctor_id: user.id
+      can :read, Appointment, hospital_id: user.hospital_id, doctor_id: user.id
+      can %i[cancel approve], Appointment do |appointment|
+        appointment.hospital_id == user.hospital_id && appointment.doctor_id == user.id && appointment.pending?
+      end
+      can :complete, Appointment do |appointment|
+        appointment.hospital_id == user.hospital_id && appointment.doctor_id == user.id && appointment.approved?
+      end
     elsif user.patient?
       can :show, Patient, hospital_id: user.hospital_id, id: user.id
       can :update, Patient, hospital_id: user.hospital_id, id: user.id
       can :read, Doctor, hospital_id: user.hospital_id
-      can %i[read create cancel show_availabilities], Appointment, hospital_id: user.hospital_id, patient_id: user.id
+      can %i[read create show_availabilities], Appointment, hospital_id: user.hospital_id, patient_id: user.id
+      can :cancel, Appointment do |appointment|
+        appointment.hospital_id == user.hospital_id && appointment.patient_id == user.id && appointment.pending?
+      end
     end
     #
     # The first argument to `can` is the action you are giving the user
