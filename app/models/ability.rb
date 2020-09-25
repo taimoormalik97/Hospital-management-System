@@ -13,15 +13,23 @@ class Ability
       can :manage, Medicine, hospital_id: user.hospital_id
       can :manage, PurchaseOrder, hospital_id: user.hospital_id
       can %i[read update], Admin, hospital_id: user.hospital_id, id: user.id
+      can %i[read], Appointment, hospital_id: user.hospital_id
     elsif user.doctor?
-      can :read, Patient, hospital_id: user.hospital_id # add appointment ability
+      can :index, Patient, Patient.doctor_only(user) do |patient|
+        patient
+      end
+      can :show, Patient do |patient|
+        patient.hospital_id == user.hospital_id && patient.appointment.doctor_id == user.id
+      end
       can :read, Doctor, hospital_id: user.hospital_id, id: user.id
       can :update, Doctor, hospital_id: user.hospital_id, id: user.id
       can :manage, Availability, hospital_id: user.hospital_id, doctor_id: user.id
+      can %i[read cancel approve complete], Appointment, hospital_id: user.hospital_id, doctor_id: user.id
     elsif user.patient?
       can :show, Patient, hospital_id: user.hospital_id, id: user.id
       can :update, Patient, hospital_id: user.hospital_id, id: user.id
       can :read, Doctor, hospital_id: user.hospital_id
+      can %i[read create cancel show_availabilities], Appointment, hospital_id: user.hospital_id, patient_id: user.id
     end
     #
     # The first argument to `can` is the action you are giving the user

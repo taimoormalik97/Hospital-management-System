@@ -24,7 +24,7 @@ class AvailabilitiesController < ApplicationController
   # POST /availabilities
   def create
     respond_to do |format|
-      if @availability.save
+      if @availability.breakslots
         format.html { redirect_to doctor_availabilities_path(@doctor), notice: t('availability.add.success') }
       else
         flash[:error] = [t('availability.add.failure')]

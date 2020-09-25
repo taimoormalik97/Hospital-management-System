@@ -3,31 +3,35 @@
     <div class="container pt-3"> 
       <div class="card scroll">
         <div class="card-body table-responsive">
-          <table class="table">   
-            <thead >   
-              <tr>   
-                <th><%= t('availability.label.start') %></th>   
-                <th><%= t('availability.label.end') %></th> 
-                <th></th> 
-              </tr>   
-            </thead>   
-            <tbody>
-            <% @availabilities.each do |availability| %>
-              <% days = Date::DAYNAMES %>
-              <% if availability.week_day == days[num] %>  
-                <tr>  
-                  <td><%= availability.start_slot.strftime("%I:%M%p") %></td>  
-                  <td><%= availability.end_slot.strftime("%I:%M%p") %></td>
-                  <td>
-                    <%= link_to doctor_availability_path(@doctor, availability), method: :delete do %>
-                      <i class="fas fa-trash-alt"></i>
-                    <% end %>
-                  </td>     
+          <% days = Date::DAYNAMES %>
+          <% unless @availabilities.slots_for_a_day(days[num]).empty? %>
+            <table class="table">   
+              <thead >   
+                <tr>   
+                  <th><%= t('availability.label.start') %></th>   
+                  <th><%= t('availability.label.end') %></th> 
+                  <th></th>
                 </tr>   
-              <% end %>     
-            <% end %>  
-            </tbody>   
-          </table>
+              </thead>   
+              <tbody>
+                <% @availabilities.each do |availability| %>
+                  <% if availability.week_day == days[num] %>  
+                    <tr>  
+                      <td><%= convert_to_twelve_hour_format(availability.start_slot) %></td>  
+                      <td><%= convert_to_twelve_hour_format(availability.end_slot) %></td>
+                      <td>
+                        <%= link_to doctor_availability_path(@doctor, availability), method: :delete do %>
+                          <i class="fas fa-trash-alt"></i>
+                        <% end %>
+                      </td>     
+                    </tr>   
+                  <% end %>     
+                <% end %>  
+              </tbody>   
+            </table>
+          <% else %>
+            <%= t('availability.label.empty_message') %>
+          <% end %>
         </div>
       </div>
     </div>

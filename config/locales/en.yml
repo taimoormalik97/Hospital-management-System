@@ -97,7 +97,23 @@ en:
   sale_order:
     name: "Sales Orders"
   appointment:
+    label:
+      start: 'Start'
+      end: 'End'
+      date: 'Date'
     name: "Appointments"
+    breadcrumb: "Appointments"
+    breadcrumb:
+      index: "Appointments"
+      new: "New Appointment"
+      show: "Appointment Details"
+      edit: "Edit Appointment"
+    add:
+      success: "Appointment has been added successfully"
+      failure: "Appointment is not added!"
+    delete:
+      success: "Appointment has been deleted successfully"
+      failure: "Appointment is not deleted!"
   prescription:
     name: "Prescriptions"
   test_report:
@@ -108,6 +124,7 @@ en:
       start: 'Start'
       end: 'End'
       day: 'Day'
+      empty_message: 'No Availability Slot'
     name: "Availabilities"
     end_time_error: 'End should be greater then Start!'
     overlapping_error: 'Current Slot Time is already taken!'

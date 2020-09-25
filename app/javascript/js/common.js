@@ -1,4 +1,4 @@
-function arrow() {
+function collapseSidebar() {
 
   /*-----------------------------------/
   /*  TOP NAVIGATION AND LAYOUT
@@ -150,6 +150,18 @@ function arrow() {
 }
 $(document).on('turbolinks:load', arrow)
 $(document).ready(arrow)
+
+function showAvailabilitiesForAppointment() {
+  $('body').on('click', '.next', function(){
+    var data = { doctor_id: $('#doctor').val(), date: $('#date').val() };
+    $.ajax({ type: "GET", url: '/appointments/show_availabilities', data: data });
+  });
+}
+
+$(document).on('turbolinks:load', collapseSidebar)
+$(document).ready(collapseSidebar)
+$(document).on('turbolinks:load', showAvailabilitiesForAppointment)
+$(document).ready(showAvailabilitiesForAppointment)
 
 // toggle function
 $.fn.clickToggle = function( f1, f2 ) {

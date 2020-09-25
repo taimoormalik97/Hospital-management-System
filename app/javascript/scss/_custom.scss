@@ -83,6 +83,11 @@ $color-hear: #696969;
   display: inline !important;
 }
 
+.date {
+  width: 20% !important;
+  display: inline !important;
+}
+
 .scroll {
   position: relative;
   max-height: 224px;
@@ -136,7 +141,7 @@ color: white !important;
 }
 
 .why-us-content {
-padding-top: 20px;
+  padding-top: 20px;
 }
 
 .why-us-decriptions {
@@ -274,4 +279,7 @@ blockquote p {
   background-color: #172b4d;
 }
 
+.hidden { 
+  display: none; 
+}
 
