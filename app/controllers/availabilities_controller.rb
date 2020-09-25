@@ -24,7 +24,7 @@ class AvailabilitiesController < ApplicationController
   # POST /availabilities
   def create
     respond_to do |format|
-      if @availability.save
+      if @availability.breakslots
         format.html { redirect_to doctor_availabilities_path(@doctor), notice: t('availability.add.success') }
       else
         flash[:error] = [t('availability.add.failure')]
@@ -55,27 +55,5 @@ class AvailabilitiesController < ApplicationController
   
   def index_page_breadcrumb
     add_breadcrumb t('availability.breadcrumb'), doctor_availabilities_path(@doctor)
-  end
-
-  def breakslots
-    weekday = @availability.week_day
-    doctor = @availability.doctor_id
-    check_end = @availability.end_slot
-    starting = @availability.start_slot
-    ending = @availability.start_slot+30.minute
-    @availability.end_slot = @availability.start_slot+30.minute
-    until ending > check_end 
-      unless @availability.save
-        return false
-      end
-      @availability = Availability.new
-      @availability.week_day = weekday
-      @availability.doctor_id= doctor
-      starting = ending
-      ending = starting+30.minute
-      @availability.start_slot = starting
-      @availability.end_slot = ending
-    end
-    return true
   end
 end
