@@ -57,6 +57,7 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_valid_signup
     redirect_to new_user_registration_url(subdomain: false) if (request.subdomain.present?) && (request.url.include? '/users/sign_up')
+    redirect_to new_user_registration_url(subdomain: false) if (request.url == ('http://localhost:3000/users'))
   end
 
   def redirect_to_valid_signin

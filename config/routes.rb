@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
   resources :patients
   get 'dashboard' => 'dashboards#dashboard' 
-  devise_for :users, controllers: { registrations: 'users/registrations', passwords: 'users/passwords', sessions: 'users/sessions', confirmations: 'users/confirmations' }, path: 'users'
+  devise_for :users, controllers: { registrations: 'users/registrations', passwords: 'users/passwords', sessions: 'users/sessions', confirmations: 'users/confirmations' }
   
   match '*unmatched', to: 'application#route_not_found', via: :all
 end

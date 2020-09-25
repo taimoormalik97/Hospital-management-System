@@ -1,7 +1,7 @@
 $color-back: #2B333E;
 $color-primary-btn: #007bff;
-$color-public-pages: #5e72e4;
-$color-hear: DimGrey;
+$color-public-pages: #5DB2FF;
+$color-hear: #696969;
 
 .btn-spacing {
   margin-left: 1em
@@ -89,8 +89,14 @@ $color-hear: DimGrey;
   overflow-y: auto;
 }
 
+.scroll_domain {
+  position: relative;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
 .home-page-bg {
-  background-image: linear-gradient(to left, rgba(94, 114, 228, 0.50), rgba(0,0,0, 0.6)),
+  background-image: linear-gradient(to left, rgba(70, 130, 180, 0.2), rgba(0,0,0, 0.6)),
   url('../images/public_pages/hospital_main.jpeg');
   height: 100vh;
   background-position: center;

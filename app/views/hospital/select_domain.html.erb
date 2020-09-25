@@ -9,8 +9,8 @@
             </h3> 
           </div>
         </div>
-        <div class="card scroll">
-          <div class="card-body table-responsive"   >  
+        <div class="card scroll_domain">
+          <div class="card-body table-responsive">
             <% @selected_users.each do |user| %>
               <a class="select_domain_hover" href= <%= new_user_session_url(email: user.email, subdomain: user.hospital.sub_domain) %>>
                 <div class="container pt-3"> 
