@@ -77,7 +77,7 @@ class PatientsController < ApplicationController
   end
 
   def patient_params
-    params.require(:patient).permit(:name, :email, :password, :gender, :dob, :family_history)
+    params.require(:patient).permit(:name, :email, :gender, :dob, :family_history)
   end
 
   def index_page_breadcrumb

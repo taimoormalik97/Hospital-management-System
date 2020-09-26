@@ -4,9 +4,9 @@
       <div class="row">
         <h3 class="col-md-8"><%= t('prescription.name')%></h3>
         <div class="col-md-4 d-flex justify-content-md-end">
-          <% if current_user.docotor? %>
+          <% if can?(:edit, @prescription) %>
             <%= link_to 'Edit Notes', edit_prescription_path(@prescription), class: "btn btn-primary btn-spacing" %>
-            <%= link_to 'Add Medicine', new_prescription_prescribed_medicine_path(@prescription.sequence_num) , {class: "btn btn-info btn-spacing", remote: true} %>
+            <%= link_to 'Add Medicine', new_prescription_prescribed_medicine_path(@prescription.sequence_num) , {class: "btn btn-primary btn-spacing", remote: true} %>
           <% end %>
           <%= link_to 'Back', prescriptions_path , class: "btn btn-secondary btn-spacing" %>
         </div>
@@ -37,10 +37,10 @@
             <label><%= t('prescription.appointment_time') %>: </label>
           </dt>
           <dd class="col-sm-10">
-            <%= @prescription.appointment.availability.start_slot %>
+            <%= convert_to_twelve_hour_format(@prescription.appointment.availability.start_slot) %>
           </dd>
           <dt class="col-sm-2">
-            <label>Doctor Notes: </label>
+            <label><%= t('prescription.doctor_notes') %>: </label>
           </dt>
           <dd class="col-sm-10">
             <%= @prescription.notes %>

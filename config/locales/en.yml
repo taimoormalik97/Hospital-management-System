@@ -250,6 +250,7 @@ en:
     approve: 'Are you sure you want to approve appointment?'
     complete: 'Are you sure you want to complete appointment?'
     cancel: 'Are you sure you want to cancel appointment?'
+    remove_medicine: 'Are you sure you want to delete this medicine?'
     
   prescription:
     names: "Prescriptions"

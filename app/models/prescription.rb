@@ -1,6 +1,5 @@
 class Prescription < ApplicationRecord
-	sequenceid :hospital , :prescriptions
-  sequenceid :hospital, :prescriptions
+	sequenceid :hospital, :prescriptions
   belongs_to :appointment
   belongs_to :hospital
   has_many :prescribed_medicines, dependent: :destroy

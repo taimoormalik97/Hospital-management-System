@@ -21,13 +21,15 @@
           </thead>
           <tbody>
           <% @prescriptions.each do |prescription| %>
+            <% if can?(:read, prescription) %>
               <tr>   
                 <td><%= prescription.appointment.doctor.name %></td>
                 <td><%= prescription.appointment.patient.name %></td>
                 <td><%= prescription.appointment.date %></td>
-                <td><%= prescription.appointment.availability.start_slot %></td>
+                <td><%= convert_to_twelve_hour_format(prescription.appointment.availability.start_slot) %></td>
                 <td><%= link_to 'Show', prescription_path(prescription) %></td>
               </tr>
+            <% end %>
           <% end %>
           </tbody>
         </table>

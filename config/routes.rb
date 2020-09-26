@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     member do
       post 'add_medicine'
     end
+    collection do
+      get 'search_medicine'
+    end
     resources :prescribed_medicines, only: [:new, :create, :destroy]
   end
   

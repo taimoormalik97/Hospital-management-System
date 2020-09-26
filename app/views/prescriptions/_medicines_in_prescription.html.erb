@@ -1,5 +1,5 @@
+<label><strong><%= t('prescription.medicines') %>: </strong></label>
 <% if @prescription.prescribed_medicines.present? %>
-  <label><strong><%= t('prescription.medicines') %>: </strong></label>
   <table class="table" >
     <thead>
       <tr>
@@ -10,16 +10,18 @@
       </tr>
     </thead>
     <tbody>
-    <% prescribed_medicines = @prescription.prescribed_medicines.paginate(page: params[:page], per_page:5) %>
+    <% prescribed_medicines = @prescription.prescribed_medicines.paginate(page: params[:page], per_page: PAGINATION_SIZE) %>
     <% prescribed_medicines.each do |p| %>
         <tr>
           <td><%= p.medicine.name %></td>
           <td><%= p.quantity %></td>
-          <td style="max-width: 30px;"><%= p.usage_instruction %></td>
-          <td><%= link_to prescription_prescribed_medicine_path(@prescription, p), method: :delete, data: {confirm: "Are you sure?"}, remote: true do%>
-              <i class="fas fa-trash-alt"></i>
-            <% end %>
-          </td>   
+          <td class="instructions_width"><%= p.usage_instruction %></td>
+          <% if can?(:edit, @prescription) %>
+            <td><%= link_to prescription_prescribed_medicine_path(@prescription, p), method: :delete, data: {confirm: t('popup.remove_medicine')}, remote: true do%>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
+            </td>
+          <% end %>
         </tr>
     <% end %>
     </tbody>
@@ -27,4 +29,6 @@
   <div class="pagination justify-content-center" class="pagination-spacing">
     <%= will_paginate prescribed_medicines, previous_label: t('paginate.previous'), next_label: t('paginate.next') %>
   </div>
+<% elsif can?(:edit, @prescription) %>
+  <strong class="ml-3">Add Medicines in prescription by clicking on "Add Medicine".</strong>
 <% end %>

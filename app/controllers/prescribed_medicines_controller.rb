@@ -1,10 +1,11 @@
 class PrescribedMedicinesController < ApplicationController
-  before_action :load_prescription
+  #before_action :load_prescription
   load_and_authorize_resource find_by: :sequence_num
   load_and_authorize_resource :prescription, find_by: :sequence_num
 
   def new
     respond_to do |format|
+      @prescribed_medicine = PrescribedMedicine.new
       format.js { render 'prescriptions/new_medicine' }
     end
   end
@@ -31,7 +32,7 @@ class PrescribedMedicinesController < ApplicationController
   end
 
   def load_prescription
-    @prescription = Prescription.includes(prescribed_medicines: :medicine).find_by(sequence_num: params[:prescription_id])
+   # @prescription = Prescription.includes(prescribed_medicines: :medicine).find_by(sequence_num: params[:prescription_id])
   end
 
 end

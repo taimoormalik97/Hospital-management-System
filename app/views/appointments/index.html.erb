@@ -41,15 +41,15 @@
               <% elsif current_user.doctor? %>
                 <td><%= appointment.patient.name %></td>
                 <td>
-                  <% if appointment.pending? %>
+                  <% if can?(:approve, appointment) %>
                     <%= link_to approve_appointment_path(appointment), method: 'put', data: { confirm: t('popup.approve') } do %>
                       <i class="far fa-check-circle color-ready" title="pending"></i>
                     <% end %>
-                  <% elsif can?(:approve, appointment) %>
+                  <% elsif can?(:complete, appointment) %>
                     <%= link_to complete_appointment_path(appointment), method: 'put', data: { confirm: t('popup.complete') } do %>
                       <i class="far fa-check-circle color-notice" title="approved"></i>
                     <% end %>
-                  <% elsif can?(:complete, appointment) %>
+                  <% elsif appointment.completed? %>
                       <i class="far fa-check-circle color-success" title="completed"></i>
                   <% end %>
                 </td> 
@@ -59,8 +59,8 @@
                   <%= link_to cancel_appointment_path(appointment), method: 'put', data: { confirm: t('popup.cancel') } do %>
                     <i class="far fa-times-circle color-danger" title="cancel"></i>
                   <% end %>
-                <% elsif can?(:approve, appointment) %>
-                  <%= link_to "#" do %>
+                <% elsif can?(:complete, appointment) %>
+                  <%= link_to new_prescription_path(id: appointment.sequence_num) do %>
                     <i class="fas fa-pen color-primary-btn" title="prescription"></i>
                   <% end %>
                 <% end %> 

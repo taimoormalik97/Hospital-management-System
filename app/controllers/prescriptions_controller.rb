@@ -18,23 +18,15 @@ class PrescriptionsController < ApplicationController
   end
 
   def new
-    # @prescription.hospital = current_hospital
-    # @prescription.admin = current_user
-    # @prescription.appointment_id = 1
-    # @prescription.save
     respond_to do |format|
-      format.html
+      @prescription.appointment = Appointment.find_by(sequence_num: params[:id])
+      @prescription.save
+      format.html { render :show }
     end
   end
 
   def edit
     add_breadcrumb t('prescription.breadcrumb.edit'), edit_prescription_path
-    respond_to do |format|
-      format.html
-    end
-  end
-
-  def create
     respond_to do |format|
       format.html
     end
@@ -49,6 +41,13 @@ class PrescriptionsController < ApplicationController
         flash[:error] = t('prescription.update.failure')
         format.html { render :edit }
       end
+    end
+  end
+
+  def search_medicine
+    @medicines = Medicine.search(params[:q])
+    respond_to do |format|
+      format.json { render json: @medicines }
     end
   end
 
