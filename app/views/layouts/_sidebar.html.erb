@@ -9,7 +9,7 @@
         <%= render partial: 'layouts/sidebarentry', locals: {name: t('doctor.name'), call: Doctor, icon: 'fa-user-md', path: doctors_path} %>
         <%= render partial: 'layouts/sidebarentry', locals: {name: t('patient.name'), call: Patient, icon: 'fa-user-injured', path: patients_path} %>
         <%= render partial: 'layouts/sidebarentry', locals: {name: t('appointment.name'), call: Appointment, icon: 'fa-clock', path: appointments_path} %>
-        <%= render partial: 'layouts/sidebarentry', locals: {name: t('prescription.name'), call: PrescribedMedicine, icon: 'fa-prescription-bottle', path: "#"} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('prescription.name'), call: Prescription, icon: 'fa-prescription-bottle', path: prescriptions_path} %>
         <%= render partial: 'layouts/sidebarentry', locals: {name: t('test_report.name'), call: Test, icon: 'fa-file-alt', path: "#"} %>
         <%= render partial: 'layouts/sidebarentry', locals: {name: t('availability.name'), call: Availability, icon: 'fa-calendar-alt', path: doctor_availabilities_path(current_user)} %>
       </ul>

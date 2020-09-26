@@ -250,3 +250,26 @@ en:
     approve: 'Are you sure you want to approve appointment?'
     complete: 'Are you sure you want to complete appointment?'
     cancel: 'Are you sure you want to cancel appointment?'
+    
+  prescription:
+    names: "Prescriptions"
+    name: "Prescription"
+    no_prescriptions: "No Prescriptions To Display"
+    notes: "Notes"
+    medicines: "Medicines"
+    medicine_name: "Name"
+    medicine_full_name: "Medicine Name"
+    quantity: "Quantity"
+    instructions: "Instructions"
+    doctor_name: "Doctor Name"
+    patient_name: "Patient Name"
+    appointment_date: "Appointment Date"
+    appointment_time: "Appointment Time"
+    doctor_notes: "Doctor Notes"
+    breadcrumb:
+      index: "Prescriptions"
+      show: "Prescription Details"
+      edit: "Edit Prescription"
+    update:
+      success: "Prescription has been updated successfully"
+      failure: "Prescription is not updated!"

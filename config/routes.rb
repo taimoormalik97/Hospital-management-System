@@ -12,6 +12,14 @@ Rails.application.routes.draw do
       post 'addmed'
     end
   end
+
+  resources :prescriptions do
+    member do
+      post 'add_medicine'
+    end
+    resources :prescribed_medicines, only: [:new, :create, :destroy]
+  end
+  
   root 'public_pages#index'
   get 'about', to: 'public_pages#about'
   get 'contact', to: 'public_pages#contact'

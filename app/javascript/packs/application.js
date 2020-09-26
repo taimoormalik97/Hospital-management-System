@@ -15,6 +15,7 @@ import 'scss/site'
 // JS
 import('js/site')
 import('js/home')
+import('js/common')
 import "@fortawesome/fontawesome-free/js/all";
 import('js/token_input')
 // Images

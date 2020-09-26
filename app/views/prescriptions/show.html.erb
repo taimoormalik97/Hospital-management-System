@@ -1,0 +1,62 @@
+<div class="container pt-3">
+  <div class="card">
+    <div class="card-header p-3 container-fluid">
+      <div class="row">
+        <h3 class="col-md-8"><%= t('prescription.name')%></h3>
+        <div class="col-md-4 d-flex justify-content-md-end">
+          <% if current_user.docotor? %>
+            <%= link_to 'Edit Notes', edit_prescription_path(@prescription), class: "btn btn-primary btn-spacing" %>
+            <%= link_to 'Add Medicine', new_prescription_prescribed_medicine_path(@prescription.sequence_num) , {class: "btn btn-info btn-spacing", remote: true} %>
+          <% end %>
+          <%= link_to 'Back', prescriptions_path , class: "btn btn-secondary btn-spacing" %>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>
+        <dl class="row">
+          <dt class="col-sm-2">
+            <label><%= t('prescription.doctor_name') %>: </label>
+          </dt>
+          <dd class="col-sm-10">
+            <%= @prescription.appointment.doctor.name %>
+          </dd>
+          <dt class="col-sm-2">
+            <label><%= t('prescription.patient_name') %>: </label>
+          </dt>
+          <dd class="col-sm-10">
+            <%= @prescription.appointment.patient.name %>
+          </dd>
+          <dt class="col-sm-2">
+            <label><%= t('prescription.appointment_date') %>: </label>
+          </dt>
+          <dd class="col-sm-10">
+            <%= @prescription.appointment.date %>
+          </dd>
+          <dt class="col-sm-2">
+            <label><%= t('prescription.appointment_time') %>: </label>
+          </dt>
+          <dd class="col-sm-10">
+            <%= @prescription.appointment.availability.start_slot %>
+          </dd>
+          <dt class="col-sm-2">
+            <label>Doctor Notes: </label>
+          </dt>
+          <dd class="col-sm-10">
+            <%= @prescription.notes %>
+          </dd>
+        </dl>
+        <div id = "display_medicines">
+          <%= render partial: 'prescriptions/medicines_in_prescription' %>
+        </div>
+      </p>
+    </div>
+  </div>
+</div>
+<!-- Model -->
+<div class="modal fade" id = "my_id_model_window">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>

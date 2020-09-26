@@ -1,0 +1,6 @@
+$("#my_id_model_window").find(".modal-content").html("<%= j (render 'prescriptions/new_medicine') %>");
+$('#search_medicine_in_prescription').tokenInput("/medicines/search_pred", {preventDuplicates: true});
+$('.token-input-dropdown').css("z-index","9999");
+$('.token-input-dropdown').css({"width": "48%", "font-size": "15px"});
+$('.token-input-list').css({"width": "100%", "font-size": "18px", "font-family": "Arial, Helvetica, sans-serif", "border-radius": "5px"});
+$("#my_id_model_window").modal('show');

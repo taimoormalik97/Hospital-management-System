@@ -12,7 +12,11 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = exception.message
-    redirect_to root_path
+    if user_signed_in?
+      redirect_to dashboard_path
+    else
+      redirect_to root_path
+    end
   end
 
   def route_not_found
@@ -52,7 +56,7 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_signin_subdomain
     redirect_to new_user_session_path if (request.subdomain.present?) && (request.url.include? '/find')
-    redirect_to new_user_session_path if (request.subdomain.present?) && (!user_signed_in?)
+    redirect_to new_user_session_path if (request.subdomain.present?) && (!user_signed_in?) && (request.path == '/')
   end
   
   def redirect_to_valid_signup
@@ -80,7 +84,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_dashboard
-      redirect_to dashboard_path if (request.subdomain.present?) && (user_signed_in?) && (request.url == '/')
+    redirect_to dashboard_path if (request.subdomain.present?) && (user_signed_in?) && (request.path == '/')
   end
 
 end

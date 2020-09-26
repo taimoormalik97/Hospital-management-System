@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates_format_of :email, with: /\A[^@\s]+@[^@\s]+\z/
   validates :email, uniqueness: { scope: :hospital_id }, presence: true
   validates :name, length: { minimum: 3 }, presence: true
-  validates :password, confirmation: true
+  validates :password, confirmation: true, presence: true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :timeoutable,
          :confirmable, :validatable
