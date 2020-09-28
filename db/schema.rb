@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_26_114307) do
+ActiveRecord::Schema.define(version: 2020_09_23_091219) do
 
   create_table "appointments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "date", null: false
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2020_09_26_114307) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sequence_num", null: false
-    t.string "state"
     t.index ["availability_id"], name: "index_appointments_on_availability_id"
     t.index ["date", "availability_id"], name: "index_appointments_on_date_and_availability_id", unique: true
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
