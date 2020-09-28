@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_signin_subdomain
     redirect_to new_user_session_path if (request.subdomain.present?) && (request.url.include? '/find')
-    redirect_to new_user_session_path if (request.subdomain.present?) && (!user_signed_in?)
+    redirect_to new_user_session_path if (request.subdomain.present?) && (!user_signed_in?) && (request.path == '/')
   end
   
   def redirect_to_valid_signup

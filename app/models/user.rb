@@ -13,6 +13,23 @@ class User < ApplicationRecord
          :confirmable, :validatable
   default_scope { where(hospital_id: Hospital.current_id) }
   ROLES = { admin: 'Admin', doctor: 'Doctor', patient: 'Patient' }.freeze
+  has_attached_file :avatar, 
+  :styles => {
+    :thumb    => ['100x100#',  :jpg, :quality => 70],
+    :preview  => ['480x480#',  :jpg, :quality => 70],
+    :large    => ['600>',      :jpg, :quality => 70],
+    :retina   => ['1200>',     :jpg, :quality => 30]
+  },
+  :convert_options => {
+    :thumb    => '-set colorspace sRGB -strip',
+    :preview  => '-set colorspace sRGB -strip',
+    :large    => '-set colorspace sRGB -strip',
+    :retina   => '-set colorspace sRGB -strip -sharpen 0x0.5'
+  }
+  validates_attachment :avatar,
+    size: { in: 0..10.megabytes },
+    content_type: { :content_type => /^image\/(jpg|jpeg|png|gif|tiff)$/ 
+  }
 
 # Added these function because devise was always checking for uniqueness of email, but in our product,
 # there can be same emails in different domain. So we have have set devise email validation to false.

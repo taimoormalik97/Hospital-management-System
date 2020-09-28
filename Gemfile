@@ -70,3 +70,5 @@ gem 'breadcrumbs_on_rails', '4.0.0'
 gem 'will_paginate', '3.1.8'
 gem 'will_paginate-bootstrap4'
 
+gem 'paperclip', '= 6.0.0'
+
