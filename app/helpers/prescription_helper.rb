@@ -1,6 +1,5 @@
 module PrescriptionHelper
   def check_persisted_prescription(appointment)
-    #prescription.appointment = appointment
     prescription = get_persisted_prescription(appointment)
     if prescription.blank?
       true
