@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
-        <h3 class="col-md-10"><%= t('prescription.names')%></h3> 
+        <h3 class="col-md-10"><%= t('prescription.names')%></h3>
         <div class="col-md-2 d-flex justify-content-md-end">
         </div>
       </div>
@@ -27,7 +27,10 @@
                 <td><%= prescription.appointment.patient.name %></td>
                 <td><%= prescription.appointment.date %></td>
                 <td><%= convert_to_twelve_hour_format(prescription.appointment.availability.start_slot) %></td>
-                <td><%= link_to 'Show', prescription_path(prescription) %></td>
+                <td><%= link_to prescription_path(prescription) do %>
+                  <i class="fas fa-pen color-primary-btn" title="prescription"></i>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           <% end %>

@@ -5,26 +5,36 @@ class PrescriptionsController < ApplicationController
   before_action :show_page_breadcrumb, only: [:show, :edit]
   load_and_authorize_resource find_by: :sequence_num
 
+  # GET /prescriptions
   def index
     respond_to do |format|
       format.html
     end
   end
 
-   def show  
+
+  # GET /prescription/:id
+  def show
     respond_to do |format|
       format.html
     end
   end
 
+  # GET /prescription/new
   def new
     respond_to do |format|
-      @prescription.appointment = Appointment.find_by(sequence_num: params[:id])
-      @prescription.save
+      appointment = Appointment.find_by(sequence_num: params[:id])
+      @prescription.appointment = appointment
+      if Prescription.where(appointment_id: appointment.id).blank?
+        @prescription.save
+      else
+        @prescription = Prescription.find_by(appointment_id: appointment.id)
+      end
       format.html { render :show }
     end
   end
 
+  # GET /prescription/:id/edit
   def edit
     add_breadcrumb t('prescription.breadcrumb.edit'), edit_prescription_path
     respond_to do |format|
@@ -32,6 +42,7 @@ class PrescriptionsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /prescription/:id
   def update
     respond_to do |format|
       if @prescription.update(prescription_params)
@@ -44,6 +55,7 @@ class PrescriptionsController < ApplicationController
     end
   end
 
+  # GET /prescription/search_medicine
   def search_medicine
     @medicines = Medicine.search(params[:q])
     respond_to do |format|
