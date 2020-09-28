@@ -18,10 +18,10 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-3">
-          <% if !@doctor.profile_picture.present? %>
-            <%= image_pack_tag 'default_avatar.png', class: "img-thumbnail img-fluid" %>
+          <% if @doctor.profile_picture.present? %>
+            <%= image_tag @doctor.profile_picture.url, class: "img-thumbnail" %>
           <% else %>
-            <%= image_tag @doctor.profile_picture.url, class: "img-thumbnail img-fluid" %>
+            <%= image_pack_tag 'default_avatar.png', class: "img-thumbnail" %>
           <% end %>
         </div>
         <div class="col-sm-9">
