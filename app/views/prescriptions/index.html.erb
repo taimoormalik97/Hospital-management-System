@@ -22,7 +22,6 @@
           </thead>
           <tbody>
           <% prescriptions_list.each do |prescription| %>
-            <% if can?(:read, prescription) %>
               <tr>   
                 <td><%= prescription.appointment.doctor.name %></td>
                 <td><%= prescription.appointment.patient.name %></td>
@@ -30,7 +29,6 @@
                 <td><%= convert_to_twelve_hour_format(prescription.appointment.availability.start_slot) %></td>
                 <td><%= link_to prescription_path(prescription) do %>
                   <i class="fas fa-edit color-primary-btn" title="prescription"></i>
-                  <% end %>
                 </td>
               </tr>
             <% end %>
