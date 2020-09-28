@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_28_112839) do
+ActiveRecord::Schema.define(version: 2020_09_23_091219) do
 
   create_table "appointments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "date", null: false
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2020_09_28_112839) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sequence_num", null: false
-    t.string "state"
     t.index ["availability_id"], name: "index_appointments_on_availability_id"
     t.index ["date", "availability_id"], name: "index_appointments_on_date_and_availability_id", unique: true
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
@@ -217,10 +216,6 @@ ActiveRecord::Schema.define(version: 2020_09_28_112839) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.integer "sequence_num", null: false
-    t.string "profile_picture_file_name"
-    t.string "profile_picture_content_type"
-    t.integer "profile_picture_file_size"
-    t.datetime "profile_picture_updated_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email", "hospital_id"], name: "index_users_on_email_and_hospital_id"
     t.index ["email"], name: "index_users_on_email"
