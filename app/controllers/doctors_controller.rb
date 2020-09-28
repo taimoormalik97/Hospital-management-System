@@ -64,6 +64,7 @@ class DoctorsController < ApplicationController
 
   # DELETE  /doctors/:id
   def destroy
+    binding.pry
     @doctor.destroy
     respond_to do |format|
       if @doctor.destroyed?
@@ -77,7 +78,7 @@ class DoctorsController < ApplicationController
   end
 
   def doctor_params
-    params.require(:doctor).permit(:name, :email, :password, :registration_no, :speciality, :consultancy_fee)
+    params.require(:doctor).permit(:name, :email, :password, :registration_no, :speciality, :consultancy_fee, :avatar)
   end
 
   def index_page_breadcrumb
