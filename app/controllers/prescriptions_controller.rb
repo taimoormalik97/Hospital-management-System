@@ -26,12 +26,8 @@ class PrescriptionsController < ApplicationController
     respond_to do |format|
       appointment = Appointment.find_by(sequence_num: params[:id])
       @prescription.appointment = appointment
-      if Prescription.where(appointment_id: appointment.id).blank?
-        @prescription.save
-      else
-        @prescription = Prescription.find_by(appointment_id: appointment.id)
-      end
-      format.html { render :show }
+      @prescription.save
+      format.html { redirect_to prescription_path(@prescription) }
     end
   end
 
