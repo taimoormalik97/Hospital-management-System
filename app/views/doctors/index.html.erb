@@ -26,10 +26,10 @@
           <tr>
             <td>
               <a href=<%= doctor_path(doctor) %> >
-              <% if !doctor.avatar.present? %>
+              <% if !doctor.profile_picture.present? %>
                 <%= image_pack_tag 'default_avatar.png', class: 'img_index' %>
               <% else %>
-                <%= image_tag doctor.avatar.url(:thumb) %>
+                <%= image_tag doctor.profile_picture.url(:thumb) %>
               <% end %>
               </a>
             </td>
