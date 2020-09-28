@@ -95,7 +95,6 @@ class PrescriptionsController < ApplicationController
   end
 
   def load_prescriptions
-    #@prescriptions = Prescription.accessible_by(current_ability, :read).all
     @prescriptions = Prescription.includes(appointment: [:doctor, :patient, :availability]).all
   end
 

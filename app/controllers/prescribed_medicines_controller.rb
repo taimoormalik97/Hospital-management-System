@@ -1,5 +1,4 @@
 class PrescribedMedicinesController < ApplicationController
-  #before_action :load_prescription
   load_and_authorize_resource find_by: :sequence_num
   load_and_authorize_resource :prescription, find_by: :sequence_num
 
@@ -32,10 +31,6 @@ class PrescribedMedicinesController < ApplicationController
 
   def prescribed_medicine_params
     params.require(:prescribed_medicine).permit(:medicine_id, :quantity, :usage_instruction)
-  end
-
-  def load_prescription
-   # @prescription = Prescription.includes(prescribed_medicines: :medicine).find_by(sequence_num: params[:prescription_id])
   end
 
 end
