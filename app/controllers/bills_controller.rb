@@ -6,10 +6,8 @@ class BillsController < ApplicationController
 
   def index
     @active_tab = params[:tab] == 'doctor' ? 'doctor' : 'medicine'
-    @doctor_bills = @bills.where(billable_type:'doctor')
-    @doctor_bills = @doctor_bills.paginate(page: params[:page1], per_page: PAGINATION_SIZE)
-    @medicine_bills = @bills.where(billable_type:'medicine')
-    @medicine_bills = @medicine_bills.paginate(page: params[:page2], per_page: PAGINATION_SIZE )
+    @doctor_bills = @bills.where(billable_type:'doctor').paginate(page: params[:page1], per_page: PAGINATION_SIZE)
+    @medicine_bills = @bills.where(billable_type:'medicine').paginate(page: params[:page2], per_page: PAGINATION_SIZE)
     respond_to do |format|
       format.html
     end    

@@ -27,10 +27,14 @@
             <td><%= po.state%></td> 
             <div>   
               <td>
-                <%if po.drafted? || po.confirmed?%>
-                  <%= link_to t('edit'), edit_purchase_order_path(po), class: "btn btn-primary" %>
+                <%if (po.drafted? || po.confirmed?) && (can? :edit, po)%>
+                  <%= link_to edit_purchase_order_path(po), class: "btn btn-primary" do %>
+                    <i class="fas fa-pen"></i>
+                  <%end%>
                 <%end%>  
-                <%= link_to t('delete'), purchase_order_path(po), method: :delete, class: "btn btn-danger btn-spacing"%>      
+                <%= link_to purchase_order_path(po), method: :delete, class: "btn btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?'} do %>
+                  <i class="fas fa-trash-alt"></i>
+                <%end%>      
               </td> 
             </div>       
           </tr>   

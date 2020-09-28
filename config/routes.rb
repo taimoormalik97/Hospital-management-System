@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     end
   end
   root 'public_pages#index'
+  get 'about', to: 'public_pages#about'
+  get 'contact', to: 'public_pages#contact'
   get '/hospital/index', to: 'hospital#index'
   get 'find', to: 'public_pages#find'
   post 'find', to: 'public_pages#check_email', as: 'check_email'
@@ -42,12 +44,18 @@ Rails.application.routes.draw do
     collection do
       get 'show_availabilities'
     end
+    member do
+      put 'approve'
+      put 'complete'
+      put 'cancel'
+    end
   end
   resources :doctors do
     resources :availabilities, except: [:edit, :update, :show]
   end
   resources :patients
   get 'dashboard' => 'dashboards#dashboard' 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations', passwords: 'users/passwords', sessions: 'users/sessions', confirmations: 'users/confirmations' }
   
+  match '*unmatched', to: 'application#route_not_found', via: :all
 end

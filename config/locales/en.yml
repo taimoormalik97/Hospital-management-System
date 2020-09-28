@@ -37,6 +37,7 @@ en:
   create: 'Create'
   update: 'Update'
   submit: 'Submit'
+
   purchase_order:
     heading: 'Purchase Orders'
     add_order_label: 'Add Order'
@@ -134,11 +135,21 @@ en:
   paginate:
     previous: "Previous"
     next: "Next"
+
   doctor:
     appointments: "Doctor's Appointments"
     name_label: 'Name'
     fee: 'fee'
     name: "Doctors"
+    label: 
+      title:
+        add: 'Add Doctor'
+        edit: 'Edit Doctor'
+      name: 'Doctor Name'
+      email: 'Email'
+      registration_no: 'Registration no.'
+      speciality: 'Speciality'
+      consultancy_fee: 'Consultancy Fee'
     add:
       success: "Doctor has been added successfully"
       failure: "Doctor is not added!"
@@ -153,8 +164,18 @@ en:
       new: "New Doctor"
       show: "Doctor Details"
       edit: "Edit Doctor"
+
   patient:
     name: "Patients"
+    label: 
+      title:
+        add: 'Add Patient'
+        edit: 'Edit Patient'
+      name: 'Patient Name'
+      email: 'Email'
+      dob: 'Date of Birth'
+      family_history: 'Family History'
+      gender: 'Gender'
     add:
       success: "Patient has been added successfully"
       failure: "Patient is not added!"
@@ -169,13 +190,16 @@ en:
       new: "New Patient"
       show: "Patient Details"
       edit: "Edit Patient"
+
   sale_order:
     name: "Sales Orders"
+
   appointment:
     label:
       start: 'Start'
       end: 'End'
       date: 'Date'
+      status: 'Status'
     name: "Appointments"
     breadcrumb: "Appointments"
     breadcrumb:
@@ -186,13 +210,22 @@ en:
     add:
       success: "Appointment has been added successfully"
       failure: "Appointment is not added!"
-    delete:
-      success: "Appointment has been deleted successfully"
-      failure: "Appointment is not deleted!"
+    approve:
+      success: "Appointment has been approved"
+      failure: "Appointment is not approved!"
+    complete:
+      success: "Appointment has been completed"
+      failure: "Appointment is not complete!"
+    cancel:
+      success: "Appointment has been canceled"
+      failure: "Appointment is not canceled!"
+
   prescription:
     name: "Prescriptions"
+
   test_report:
     name: "Test Reports"
+
   availability:
     label:
       new_slot_label: 'New Availability slot'
@@ -210,7 +243,6 @@ en:
     delete:
       success: "Availability slot has been deleted successfully"
       failure: "Availability slot is not deleted!"
-
   admin:
     update:
       success: "Profile has been updated successfully"
@@ -228,8 +260,38 @@ en:
       hospital_address: "Hospital Address"
       hospital_phone_number: "Phone Number"
       edit: "Edit Profile"
-
   guest:
+    hms: "HMS"
+    system_heading: "HOSPITAL MANAGEMENT SYSTEM"
+    improve: "Improving "
+    healthcare: "HealthCare"
+    welcome: "Welcome to"
+    our: "Our "
+    doctors: "Doctors"
+    lorem_ipsum: "Lorem ipsum dolor sit amet, consectetur to adipiscing elit. Vestibulum ornare congue odio"
+    buy_medicines: "Buy Medicines"
+    consult_doctors: "Consult Doctors"
+    book_appointments: "Book Appointments"
+    experience_number: "10"
+    doctors_number: "3000"
+    patients_number: "20,000"
+    hospitals_number: "1000"
+    total_experience: "Years of Experience"
+    total_doctors: "Successfull Doctors"
+    total_patients: "Happy Patients"
+    total_hospitals: "Excelling Hospitals"
+    doc1_name: "Dr. Harry Potter"
+    doc2_name: "Dr. Hermoine Granger"
+    doc3_name: "Dr. Ron Weasley"
+    home: "Home"
+    about: "About"
+    contact: "Contact"
+    complaints: "Complaints & Queries"
+    hear_from_doctors: "Best Care For Your Good Health"
+    medkit: "medkit"
+    calendar: "calendar"
+    stethoscope: "stethoscope"
+    copyright: "Copyright"
     find:
       error: "Email was not found!"
       user: "Find User"
@@ -249,3 +311,15 @@ en:
       hospital_sub_domain: "Hospital Sub Domain"
       hospital_address: "Hospital Address"
       hospital_phone_number: "Phone Number"
+
+  navbar:
+    profile: 'My Profile'
+    logout: 'Log Out'
+    signup: 'Sign Up'
+    login: 'Sign In'
+    search: 'Search'
+
+  popup:
+    approve: 'Are you sure you want to approve appointment?'
+    complete: 'Are you sure you want to complete appointment?'
+    cancel: 'Are you sure you want to cancel appointment?'

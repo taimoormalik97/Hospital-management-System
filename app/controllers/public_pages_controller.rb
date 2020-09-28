@@ -1,8 +1,22 @@
 class PublicPagesController < ApplicationController
-  layout false
+  layout 'static_pages_layout', only: [:about, :contact, :find]
 
   # GET /resource/index
   def index
+    respond_to do |format|
+      format.html { render layout: false }
+    end
+  end
+
+  # GET /resource/about
+  def about
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  # GET /resource/contact
+  def contact
     respond_to do |format|
       format.html
     end

@@ -1,10 +1,84 @@
-<h1>Welcome To Hospital Management System!</h1>
-<% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link'  %>
-<% else %>
-  <% unless request.subdomain.present? %>
-    <%= link_to "Sign up", new_user_registration_path, class: 'navbar-link'  %>
-  <% end %>
-  <%= link_to "Login", find_path, class: 'navbar-link'  %>
-<% end %>
+<html>
+  <head>
+    <title>Hospital</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head> 
+  <body>
+    <div class="home-page-bg">
+      <nav class="navbar nav-transparent navbar-expand-lg navbar-light fixed-top">
+        <a class="navbar-brand text-white ml-3 hms-title" href= <%= root_path %> >
+          <%= t('guest.hms') %>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link text-white hms-nav-item ml-2 pt-2" href= <%= about_path %> ><%= t('guest.about') %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white hms-nav-item ml-1 pt-2" href= <%= contact_path %> ><%= t('guest.contact') %></a>
+            </li>
+          </ul>
+            <%= link_to "Sign in", find_path, class: "btn btn-outline-light my-0 my-sm-0 mr-2 main-sign-in-btn" %>
+            <%= link_to "Sign up", new_user_registration_path, class: "btn my-0 my-sm-0 main-sign-up-btn mr-3" %>
+        </div>
+      </nav>
+
+      <div class="d-flex col-md-12 no-padding-home-container">
+        <%= render 'layouts/flash' %>
+      </div>
+      <div class="row d-flex no-gutters justify-content-center text-white main-page-welcome-div">
+        <div class="col-12">
+          <h2 class="hms-heading"><%= t('guest.system_heading') %></h2>
+        </div>
+        <div class="col-12">
+          <h2 class="hms-tagline-1"><%= t('guest.improve') %><b><%= t('guest.healthcare') %></b></h2>
+        </div>
+        <% if request.subdomain.empty? %>
+          <%= link_to "Try It For Free", new_user_registration_path, class: "btn btn-md  sign-up-button text-white" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="pb-2 px-4">
+      <div class="text-center"><h1 class="why-hms pb-4"><%= t('guest.welcome') %><b class="pl-2"><%= t('guest.hms') %></b></h1></div>
+      <%= render partial: "why_hms_row" %>
+      <%= render partial: "why_hms_row" %>
+    </div>
+
+    <div class="home-stats mt-3">
+      <div class="row no-gutters justify-content-center">
+        <%= render(partial: "stat", locals: { stat_number: t('guest.experience_number'), stat_label: t('guest.total_experience') }) %>
+        <%= render(partial: "stat", locals: { stat_number: t('guest.doctors_number'), stat_label: t('guest.total_doctors') }) %>
+        <%= render(partial: "stat", locals: { stat_number: t('guest.patients_number'), stat_label: t('guest.total_patients') }) %>
+        <%= render(partial: "stat", locals: { stat_number: t('guest.hospitals_number'), stat_label: t('guest.total_hospitals') }) %>
+      </div>
+    </div>
+
+    <div class="py-2 px-4">
+      <div class="text-center"><h1 class="why-hms"><%= t('guest.our') %><b><%= t('guest.doctors') %></b></h1></div>
+      <div class="row d-flex justify-content-center">
+        <%= render(partial: "our_doctors", locals: { doc_img: 'doctor2.png', doc_name: t('guest.doc1_name') }) %>
+        <%= render(partial: "our_doctors", locals: { doc_img: 'doctor1.png', doc_name: t('guest.doc2_name') }) %>
+        <%= render(partial: "our_doctors", locals: { doc_img: 'doctor3.png', doc_name: t('guest.doc3_name') }) %>
+      </div>
+    </div>
+    
+    <footer class="py-4 bg-light text-dark-50">
+      <div class="container text-center">
+        <small><%= link_to t('guest.home'), root_path, class: "text-dark-50" %></small> |
+        <small><%= link_to t('guest.about'), about_path, class: "text-dark-50" %></small> |
+        <small><%= link_to t('guest.contact'), contact_path, class: "text-dark-50" %></small>
+      </div>
+      <div class="container text-center">
+        <small><%= t('guest.copyright') %> &copy; <%= t('guest.system_heading').titleize %></small>
+      </div>
+    </footer>
+  </body>
+ </html>

@@ -2,16 +2,10 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :scope_current_hospital
-  before_action :validate_subdomain, :redirect_to_valid_signup, :redirect_to_valid_signin, :redirect_to_valid_password_reset, :redirect_to_valid_confirmation_email, :devise_edit_profile, :redirect_to_signin_subdomain
-  
+  before_action :validate_subdomain, :redirect_to_valid_signup, :redirect_to_valid_signin, :redirect_to_valid_password_reset, :redirect_to_valid_confirmation_email, :devise_edit_profile, :redirect_to_signin_subdomain, :redirect_to_dashboard
+
   rescue_from ActiveRecord::RecordNotFound do
     respond_to do |format|
-      format.html { render file: "#{Rails.root}/public/404", status: :not_found }
-    end
-  end
-
-  rescue_from ActionController::RoutingError do
-     respond_to do |format|
       format.html { render file: "#{Rails.root}/public/404", status: :not_found }
     end
   end
@@ -19,6 +13,10 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = exception.message
     redirect_to root_path
+  end
+
+  def route_not_found
+    render file: Rails.public_path.join('404.html'), status: :not_found, layout: false
   end
   
   private
@@ -54,8 +52,9 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_signin_subdomain
     redirect_to new_user_session_path if (request.subdomain.present?) && (request.url.include? '/find')
+    redirect_to new_user_session_path if (request.subdomain.present?) && (!user_signed_in?)
   end
-
+  
   def redirect_to_valid_signup
     redirect_to new_user_registration_url(subdomain: false) if (request.subdomain.present?) && (request.url.include? '/users/sign_up')
   end
@@ -79,4 +78,9 @@ class ApplicationController < ActionController::Base
       redirect_to find_path if (request.url.include? '/users/confirmation/new') || (request.url.include? '/users/confirmation')
     end
   end
+
+  def redirect_to_dashboard
+      redirect_to dashboard_path if (request.subdomain.present?) && (user_signed_in?) && (request.url == '/')
+  end
+
 end

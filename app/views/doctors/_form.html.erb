@@ -4,30 +4,30 @@
       <div class="card-header p-3 container-fluid">
         <div class="row">
           <h3 class="col-md-9">
-            <%= @doctor.persisted? ? "Edit Doctor" : "Add Doctor " %>
+            <%= @doctor.persisted? ? t('doctor.label.title.edit') : t('doctor.label.title.add') %>
           </h3> 
         </div>
       </div>
       <div class="card-body"> 
         <p>   
           <div class="form-group">   
-            <label>Doctor Name</label>   
+            <label><%= t('doctor.label.name') %></label>   
             <%= f.text_field :name, required: true, class: "form-control" %>   
           </div>   
           <div class="form-group">   
-            <label>Email</label>   
+            <label><%= t('doctor.label.email') %></label>   
             <%= f.email_field :email, required: true, class: "form-control" %>   
           </div>   
           <div class="form-group">   
-            <label>Registration no.</label>   
+            <label><%= t('doctor.label.registration_no') %></label>   
             <%= f.text_field :registration_no, required: true, class: "form-control" %>   
           </div> 
           <div class="form-group">   
-            <label>Speciality</label>   
+            <label><%= t('doctor.label.speciality') %></label>   
             <%= f.text_field :speciality, required: true, class: "form-control" %>   
           </div> 
           <div class="form-group">   
-            <label>Consultancy Fee</label>   
+            <label><%= t('doctor.label.consultancy_fee') %></label>   
             <%= f.text_field :consultancy_fee, required: true, class: "form-control" %>   
           </div>     
         </p> 
