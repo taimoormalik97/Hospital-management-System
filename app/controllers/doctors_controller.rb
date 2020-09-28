@@ -64,7 +64,6 @@ class DoctorsController < ApplicationController
 
   # DELETE  /doctors/:id
   def destroy
-    binding.pry
     @doctor.destroy
     respond_to do |format|
       if @doctor.destroyed?

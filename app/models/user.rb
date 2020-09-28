@@ -13,7 +13,7 @@ class User < ApplicationRecord
          :confirmable, :validatable
   default_scope { where(hospital_id: Hospital.current_id) }
   ROLES = { admin: 'Admin', doctor: 'Doctor', patient: 'Patient' }.freeze
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment :avatar,
     size: { in: 0..10.megabytes },
     content_type: { content_type: /^image\/(jpg|jpeg|png|gif|tiff)$/ 

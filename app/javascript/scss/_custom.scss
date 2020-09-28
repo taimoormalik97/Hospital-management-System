@@ -230,11 +230,6 @@ blockquote p {
   }
 }
 
-
-
-
-
-
 .home-page-bg {
   background-image: radial-gradient(rgba(0,0,0, 0.6), rgba(54, 185, 204, 0.2)),
   url('../images/operation.jpg');
@@ -399,3 +394,21 @@ h1 {
   margin-bottom: 30px;
 }
 
+.picture_text {
+  td {
+    vertical-align: middle !important;
+  }
+}
+
+.img_index {
+  padding: 0.25rem !important;
+  max-width: 50% !important;
+  height: 50% !important;
+}
+
+.square {
+    width: 100%;
+    padding-bottom: 100%;
+    background-size: cover;
+    background-position: center;
+}
