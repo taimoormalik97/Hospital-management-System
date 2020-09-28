@@ -14,7 +14,6 @@
       <table  class="table">   
         <thead >   
           <tr>
-            <th></th>
             <th>Name</th>   
             <th>Registration#</th>   
             <th>Speciality</th>   
@@ -24,7 +23,6 @@
         <tbody>   
         <% @doctors.each do |doctor| %>   
           <tr>
-            <td><%= image_tag doctor.avatar.url(:thumb) %></td>
             <td><%= link_to doctor.name, doctor_path(doctor) %></td>   
             <td><%= doctor.registration_no %></td>  
             <td><%= doctor.speciality %></td>  

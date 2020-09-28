@@ -2,11 +2,14 @@
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
-        <h3 class="col-md-8"><%= t('prescription.name')%></h3>
-        <div class="col-md-4 d-flex justify-content-md-end">
+        <h3 class="col-md-6"><%= t('prescription.name')%></h3>
+        <div class="col-md-6 d-flex justify-content-md-end">
           <% if can?(:edit, @prescription) %>
             <%= link_to 'Edit Notes', edit_prescription_path(@prescription), class: "btn btn-primary btn-spacing" %>
             <%= link_to 'Add Medicine', new_prescription_prescribed_medicine_path(@prescription.sequence_num) , {class: "btn btn-primary btn-spacing", remote: true} %>
+            <% end %>
+            <% if can?(:destroy, @prescription) %>
+            <%= link_to 'Delete', prescription_path(@prescription), method: :delete, data: {confirm: t('popup.delete_prescription')} , class: "btn btn-danger btn-spacing" %>
           <% end %>
           <%= link_to 'Back', prescriptions_path , class: "btn btn-secondary btn-spacing" %>
         </div>

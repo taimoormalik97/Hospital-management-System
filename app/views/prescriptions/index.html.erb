@@ -8,7 +8,8 @@
       </div>
     </div> 
     <div class="card-body">
-      <% if @prescriptions.length>0 %>
+      <% prescriptions_list = get_prescriptions %>
+      <% if prescriptions_list.length > 0 %>
         <table  class="table">
           <thead >
             <tr>
@@ -20,7 +21,7 @@
             </tr>
           </thead>
           <tbody>
-          <% @prescriptions.each do |prescription| %>
+          <% prescriptions_list.each do |prescription| %>
             <% if can?(:read, prescription) %>
               <tr>   
                 <td><%= prescription.appointment.doctor.name %></td>

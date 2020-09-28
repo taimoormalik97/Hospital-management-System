@@ -1,4 +1,5 @@
 class PrescriptionsController < ApplicationController
+  helper_method :get_prescriptions
   before_action :load_prescription, only: :show
   before_action :load_prescriptions, only: :index
   before_action :index_page_breadcrumb, only: [:index, :show, :edit]
@@ -55,6 +56,20 @@ class PrescriptionsController < ApplicationController
     end
   end
 
+  # DELETE  /prescription/:id
+  def destroy
+    @prescription.destroy
+    respond_to do |format|
+      if @prescription.destroyed?
+        format.html { redirect_to prescriptions_path, notice: t('prescription.delete.success') }
+      else
+        flash[:error] = [t('prescription.delete.failure')]
+        flash[:error] += @prescription.errors.full_messages.first(5) if @prescription.errors.any?
+        format.html { render :show }
+      end
+    end
+  end
+
   # GET /prescription/search_medicine
   def search_medicine
     @medicines = Medicine.search(params[:q])
@@ -63,6 +78,16 @@ class PrescriptionsController < ApplicationController
     end
   end
 
+  def get_prescriptions
+    if @current_user.doctor?
+      @prescriptions.where(appointments: {doctor_id: @current_user.id})
+    elsif @current_user.patient?
+      @prescriptions.where(appointments: {patient_id: @current_user.id})
+    else
+      @prescriptions
+    end
+  end
+  
   private
 
   def prescription_params
@@ -74,6 +99,7 @@ class PrescriptionsController < ApplicationController
   end
 
   def load_prescriptions
+    #@prescriptions = Prescription.accessible_by(current_ability, :read).all
     @prescriptions = Prescription.includes(appointment: [:doctor, :patient, :availability]).all
   end
 
