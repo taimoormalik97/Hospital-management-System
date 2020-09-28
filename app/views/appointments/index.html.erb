@@ -60,8 +60,8 @@
                     <i class="far fa-times-circle color-danger" title="cancel"></i>
                   <% end %>
                 <% elsif can?(:complete, appointment) %>
-                  <%if check_persisted_prescription(appointment)%>
-                    <%= link_to new_prescription_path(id: appointment.sequence_num) do %>
+                  <% if check_persisted_prescription(appointment)%>
+                    <%= link_to new_prescription_path(appointment_id: appointment.sequence_num) do %>
                       <i class="fas fa-edit color-primary-btn" title="prescription"></i>
                     <% end %>
                   <% else %>

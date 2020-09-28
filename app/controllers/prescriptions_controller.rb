@@ -24,7 +24,7 @@ class PrescriptionsController < ApplicationController
   # GET /prescription/new
   def new
     respond_to do |format|
-      appointment = Appointment.find_by(sequence_num: params[:id])
+      appointment = Appointment.find_by(sequence_num: params[:appointment_id])
       @prescription.appointment = appointment
       @prescription.save
       format.html { redirect_to prescription_path(@prescription) }
@@ -91,7 +91,7 @@ class PrescriptionsController < ApplicationController
   end
 
   def load_prescription
-    @prescription = Prescription.includes(prescribed_medicines: :medicine).find_by(sequence_num: params[:id])
+    @prescription = Prescription.includes(prescribed_medicines: :medicine).find_by(sequence_num: params[:appointment_id])
   end
 
   def load_prescriptions

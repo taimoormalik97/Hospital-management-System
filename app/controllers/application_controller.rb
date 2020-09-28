@@ -88,7 +88,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_prescriptions
-    redirect_to prescriptions_path if (request.subdomain.present?) && (user_signed_in?) && (request.path == '/prescriptions/new') && (params[:id].nil?)
+    redirect_to prescriptions_path if (request.subdomain.present?) && (user_signed_in?) && (request.path == '/prescriptions/new') && (params[:appointment_id].nil?)
   end
 
 end
