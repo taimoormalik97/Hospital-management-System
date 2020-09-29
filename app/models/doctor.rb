@@ -7,7 +7,10 @@ class Doctor < User
   has_many :bill_details, as: :billable, dependent: :nullify
   has_many :bills, through: :bill_details
   validates_presence_of %i[name registration_no speciality consultancy_fee]
-  validates :name, length: { in: 3..35 }
   validates :consultancy_fee, numericality: true
-  validates :registration_no, numericality: { only_integer: true }, uniqueness: { scope: :hospital_id }
+  validates :registration_no, numericality: { only_integer: true }, uniqueness: { scope: :hospital_id }, case_sensitive: false
+  has_attached_file :profile_picture, styles: { medium: "300x300>", thumb: "100x100>" }
+  validates_attachment :profile_picture,
+    size: { in: 0..10.megabytes },
+    content_type: { content_type: /^image\/(jpg|jpeg|png|gif|tiff)$/ }
 end

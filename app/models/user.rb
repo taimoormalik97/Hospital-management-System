@@ -5,19 +5,14 @@ class User < ApplicationRecord
   belongs_to :hospital
   accepts_nested_attributes_for :hospital
   validates_format_of :email, with: /\A[^@\s]+@[^@\s]+\z/
-  validates :email, uniqueness: { scope: :hospital_id }, presence: true
+  validates :email, uniqueness: { scope: :hospital_id }, presence: true, case_sensitive: false
   validates :name, length: { minimum: 3 }, presence: true
-  validates :password, confirmation: true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :timeoutable,
          :confirmable, :validatable
   default_scope { where(hospital_id: Hospital.current_id) }
+  validates :name, length: { in: 3..35 }
   ROLES = { admin: 'Admin', doctor: 'Doctor', patient: 'Patient' }.freeze
-  has_attached_file :profile_picture, styles: { medium: "300x300>", thumb: "100x100>" }
-  validates_attachment :profile_picture,
-    size: { in: 0..10.megabytes },
-    content_type: { content_type: /^image\/(jpg|jpeg|png|gif|tiff)$/ 
-  }
 
 # Added these function because devise was always checking for uniqueness of email, but in our product,
 # there can be same emails in different domain. So we have have set devise email validation to false.

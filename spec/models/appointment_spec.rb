@@ -2,13 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Appointment, type: :model do
   context 'validations' do
-    before(:all) do
+    before(:each) do
       @hospital = Hospital.create(FactoryGirl.attributes_for(:hospital))
-      binding.pry
       @doctor_params = FactoryGirl.attributes_for(:doctor)
       @doctor_params[:hospital] = @hospital
       @doctor = Doctor.create(@doctor_params)
-      binding.pry
       @availability_params = FactoryGirl.attributes_for(:availability)
       @availability_params[:hospital] = @hospital
       @availability_params[:doctor] = @doctor
