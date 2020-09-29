@@ -39,7 +39,7 @@ class PrescriptionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /prescription/:id
+  # PATCH /prescription/:id
   def update
     respond_to do |format|
       if @prescription.update(prescription_params)
@@ -52,7 +52,7 @@ class PrescriptionsController < ApplicationController
     end
   end
 
-  # DELETE  /prescription/:id
+  # DELETE /prescription/:id
   def destroy
     @prescription.destroy
     respond_to do |format|
