@@ -77,6 +77,7 @@ en:
       registration_no: 'Registration no.'
       speciality: 'Speciality'
       consultancy_fee: 'Consultancy Fee'
+      image: 'Image'
     add:
       success: "Doctor has been added successfully"
       failure: "Doctor is not added!"
