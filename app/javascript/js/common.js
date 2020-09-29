@@ -156,9 +156,7 @@ function showAvailabilitiesForAppointment() {
   });
 }
 
-$(document).on('turbolinks:load', collapseSidebar)
 $(document).ready(collapseSidebar)
-$(document).on('turbolinks:load', showAvailabilitiesForAppointment)
 $(document).ready(showAvailabilitiesForAppointment)
 
 // toggle function

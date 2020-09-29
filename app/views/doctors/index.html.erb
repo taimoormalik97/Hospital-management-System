@@ -11,26 +11,8 @@
       </div>
     </div> 
     <div class="card-body">
-      <table  class="table">   
-        <thead >   
-          <tr>   
-            <th>Name</th>   
-            <th>Registration#</th>   
-            <th>Speciality</th>   
-            <th>Consultancy Fee</th>  
-          </tr>   
-        </thead>   
-        <tbody>   
-        <% @doctors.each do |doctor| %>   
-          <tr> 
-            <td><%= link_to doctor.name, doctor_path(doctor) %></td>   
-            <td><%= doctor.registration_no %></td>  
-            <td><%= doctor.speciality %></td>  
-            <td><%= doctor.consultancy_fee %></td>   
-          </tr>   
-        <% end %>  
-        </tbody>   
-      </table> 
+      <%= render partial: 'speciality_filter' %>
+      <%= render partial: 'table' %>
     </div>
   </div>
 </div>

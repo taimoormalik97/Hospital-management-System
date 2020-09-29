@@ -1,0 +1,20 @@
+<table  class="table">   
+  <thead >   
+    <tr>   
+      <th>Name</th>   
+      <th>Registration#</th>   
+      <th>Speciality</th>   
+      <th>Consultancy Fee</th>  
+    </tr>   
+  </thead>   
+  <tbody>   
+  <% list_of_doctors_with_speciality(@doctors, params[:Filter_Doctor]).each do |doctor| %>   
+    <tr> 
+      <td><%= link_to doctor.name, doctor_path(doctor) %></td>   
+      <td><%= doctor.registration_no %></td>  
+      <td><%= doctor.speciality %></td>  
+      <td><%= doctor.consultancy_fee %></td>   
+    </tr>   
+  <% end %>  
+  </tbody>   
+</table> 

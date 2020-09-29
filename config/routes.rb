@@ -32,6 +32,9 @@ Rails.application.routes.draw do
   end
   resources :doctors do
     resources :availabilities, except: [:edit, :update, :show]
+    collection do
+      post 'speciality_filter'
+    end
   end
   resources :patients
   get 'dashboard' => 'dashboards#dashboard' 

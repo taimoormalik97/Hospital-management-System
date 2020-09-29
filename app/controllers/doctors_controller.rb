@@ -88,4 +88,10 @@ class DoctorsController < ApplicationController
     add_breadcrumb t('doctor.breadcrumb.show'), doctor_path
   end
 
+  # POST /show_availabilities
+  def speciality_filter
+    respond_to do |format|
+      format.js
+    end
+  end
 end
