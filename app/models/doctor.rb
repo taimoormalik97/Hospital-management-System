@@ -9,5 +9,5 @@ class Doctor < User
   validates_presence_of %i[name registration_no speciality consultancy_fee]
   validates :name, length: { in: 3..35 }
   validates :consultancy_fee, numericality: true
-  validates :registration_no, numericality: { only_integer: true }, uniqueness: { scope: :hospital_id }
+  validates :registration_no, numericality: { only_integer: true }, uniqueness: { scope: :hospital_id }, case_sensitive: false
 end

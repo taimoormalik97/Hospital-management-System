@@ -13,8 +13,6 @@ gem 'puma', '= 4.3.6'
 gem 'sass-rails', '= 6.0.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '= 4.3.0'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '= 5.2.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jquery-rails'
 gem 'sequenceid', '=0.0.7', git: "https://github.com/alisyed/sequenceid.git", branch: 'feature/change_activerecord_base_to_applicationrecord_in_sti_parent_class_method'
@@ -55,9 +53,9 @@ end
 group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-  gem 'rspec-rails'
+  gem 'rspec-rails','=4.0.1'
   # To create factories while testing
-  gem 'factory_girl_rails', require: false
+  gem 'factory_girl_rails','=4.9.0', require: false
   # Faker
   gem 'faker'
 end

@@ -11,7 +11,7 @@ class Hospital < ApplicationRecord
   has_many :purchase_details, dependent: :destroy
   has_many :bills, dependent: :destroy
   has_many :bill_details, dependent: :destroy
-  validates :name, uniqueness: true, length: { minimum: 3 }
+  validates :name, uniqueness: true, length: { minimum: 3 }, case_sensitive: false
   validates :sub_domain, uniqueness: true
   
   def self.current_id=(hospital_id)
