@@ -73,6 +73,7 @@ GEM
     byebug (11.1.3)
     cancancan (3.1.0)
     childprocess (3.0.0)
+    climate_control (0.2.0)
     coderay (1.1.3)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
@@ -113,6 +114,9 @@ GEM
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     method_source (1.0.0)
+    mime-types (3.3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2020.0512)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
@@ -123,6 +127,12 @@ GEM
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
+    paperclip (6.0.0)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      mime-types
+      mimemagic (~> 0.3.0)
+      terrapin (~> 0.6.0)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -208,6 +218,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    terrapin (0.6.0)
+      climate_control (>= 0.0.3, < 1.0)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -246,16 +258,17 @@ DEPENDENCIES
   byebug
   cancancan (= 3.1.0)
   devise (= 4.7.2)
-  factory_girl_rails
-  faker
+  factory_girl_rails (= 4.9.0)
+  faker (= 2.14.0)
   jbuilder (= 2.10.1)
   jquery-rails
   listen (= 3.2.1)
   mysql2 (= 0.5.3)
+  paperclip (= 6.0.0)
   pry (= 0.13.1)
   puma (= 4.3.6)
   rails (= 6.0.3.2)
-  rspec-rails
+  rspec-rails (= 4.0.1)
   sass-rails (= 6.0.0)
   sequenceid (= 0.0.7)!
   spring (= 2.1.1)

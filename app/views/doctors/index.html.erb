@@ -11,9 +11,10 @@
       </div>
     </div> 
     <div class="card-body">
-      <table  class="table">   
+      <table  class="table picture_text">   
         <thead >   
           <tr>
+            <th>Picture</th>
             <th>Name</th>   
             <th>Registration#</th>   
             <th>Speciality</th>   
@@ -23,13 +24,24 @@
         <tbody>   
         <% @doctors.each do |doctor| %>   
           <tr>
-            <td><%= link_to doctor.name, doctor_path(doctor) %></td>   
+            <td>
+              <a href=<%= doctor_path(doctor) %> >
+              <div class="set_image">
+                <% if doctor.profile_picture.present? %>
+                  <%= image_tag doctor.profile_picture.url, class: 'block' %>
+                <% else %>
+                  <%= image_pack_tag 'default_avatar.png', class: 'block' %>
+                <% end %>
+              </div>
+              </a>
+            </td>
+            <td ><%= link_to doctor.name, doctor_path(doctor) %></td>
             <td><%= doctor.registration_no %></td>  
             <td><%= doctor.speciality %></td>  
-            <td><%= doctor.consultancy_fee %></td>   
+            <td><%= doctor.consultancy_fee %></td>
           </tr>   
         <% end %>  
-        </tbody>   
+        </tbody>
       </table> 
     </div>
   </div>

@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
   end
 
   def validate_subdomain
-    render file: "#{Rails.root}/public/404", status: :not_found if (request.subdomain.present?) && (Hospital.find_by(sub_domain: request.subdomain).blank?)
+    render file: Rails.public_path.join('404.html'), status: :not_found, layout: false if (request.subdomain.present?) && (Hospital.find_by(sub_domain: request.subdomain).blank?)
   end
 
   def redirect_to_signin_subdomain

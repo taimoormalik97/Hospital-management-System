@@ -77,7 +77,7 @@ class DoctorsController < ApplicationController
   end
 
   def doctor_params
-    params.require(:doctor).permit(:name, :email, :registration_no, :speciality, :consultancy_fee)
+    params.require(:doctor).permit(:name, :email, :password, :registration_no, :speciality, :consultancy_fee, :profile_picture)
   end
 
   def index_page_breadcrumb

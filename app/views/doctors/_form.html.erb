@@ -29,6 +29,10 @@
           <div class="form-group">   
             <label><%= t('doctor.label.consultancy_fee') %></label>   
             <%= f.text_field :consultancy_fee, required: true, class: "form-control" %>   
+          </div>
+          <div class="form-group">   
+            <label>Image</label>   
+            <%= f.file_field :profile_picture %>   
           </div>     
         </p> 
       </div>
