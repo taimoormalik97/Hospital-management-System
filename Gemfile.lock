@@ -247,7 +247,7 @@ DEPENDENCIES
   cancancan (= 3.1.0)
   devise (= 4.7.2)
   factory_girl_rails (= 4.9.0)
-  faker
+  faker (= 2.14.0)
   jbuilder (= 2.10.1)
   jquery-rails
   listen (= 3.2.1)

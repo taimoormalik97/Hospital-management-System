@@ -57,7 +57,7 @@ group :test do
   # To create factories while testing
   gem 'factory_girl_rails','=4.9.0', require: false
   # Faker
-  gem 'faker'
+  gem 'faker','=2.14.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
