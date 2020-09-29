@@ -261,6 +261,7 @@ en:
     notes: "Notes"
     medicines: "Medicines"
     medicine_name: "Name"
+    add_medicine: "Add Medicine"
     medicine_full_name: "Medicine Name"
     quantity: "Quantity"
     instructions: "Instructions"

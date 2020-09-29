@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Add Medicine</h4>
+  <h4 class="modal-title"><%= t('prescription.add_medicine') %></h4>
   <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 <%= form_for [@prescription, @prescribed_medicine], remote: true do |f| %>
