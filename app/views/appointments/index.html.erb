@@ -18,10 +18,11 @@
             <th><%= t('appointment.label.date') %></th> 
             <th><%= t('appointment.label.start') %></th>   
             <th><%= t('appointment.label.end') %></th>
-            <% if current_user.patient? %>   
+            <% unless current_user.doctor? %>   
               <th><%= t('doctor.name') %></th> 
               <th><%= t('appointment.label.status') %></th>
-            <% elsif current_user.doctor? %>
+            <% end %>
+            <% unless current_user.patient? %>
               <th><%= t('patient.name') %></th>  
               <th></th>
             <% end %>
@@ -35,11 +36,14 @@
               <% availability = appointment.availability %>
               <td><%= convert_to_twelve_hour_format(availability.start_slot) %></td>  
               <td><%= convert_to_twelve_hour_format(availability.end_slot) %></td>
-              <% if current_user.patient? %>
+              <% unless current_user.doctor? %>
                 <td><%= appointment.doctor.name %></td>
-                <td><%= appointment.current_state.capitalize %></td> 
-              <% elsif current_user.doctor? %>
+                <td><%= appointment.current_state.capitalize %></td>
+              <% end %>
+              <% unless current_user.patient? %>
                 <td><%= appointment.patient.name %></td>
+              <% end %>
+              <% if current_user.doctor? %>
                 <td>
                   <% if can?(:approve, appointment) %>
                     <%= link_to approve_appointment_path(appointment), method: 'put', data: { confirm: t('popup.approve') } do %>
@@ -60,12 +64,13 @@
                     <i class="far fa-times-circle color-danger" title="cancel"></i>
                   <% end %>
                 <% elsif can?(:complete, appointment) %>
-                  <% if check_persisted_prescription(appointment)%>
+                  <% prescription = appointment.get_persisted_prescription %>
+                  <% if prescription.blank? %>
                     <%= link_to new_prescription_path(appointment_id: appointment.sequence_num) do %>
                       <i class="fas fa-edit color-primary-btn" title="prescription"></i>
                     <% end %>
                   <% else %>
-                    <%= link_to prescription_path(get_persisted_prescription(appointment)) do %>
+                    <%= link_to prescription_path(prescription) do %>
                       <i class="fas fa-edit color-primary-btn" title="prescription"></i>
                     <% end %>
                   <% end %>

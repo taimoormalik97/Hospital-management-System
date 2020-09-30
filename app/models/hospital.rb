@@ -21,6 +21,7 @@ class Hospital < ApplicationRecord
             numericality: true,
             length: { minimum: 10, maximum: 15 }
   validates :address, presence: true, length: { minimum: 5, maximum: 200 }
+  
   def self.current_id=(hospital_id)
     Thread.current[:hospital_id] = hospital_id
   end

@@ -146,16 +146,20 @@ en:
         add: 'Add Doctor'
         edit: 'Edit Doctor'
       name: 'Doctor Name'
+      doctor_name: 'Name'
       email: 'Email'
+      picture: 'Picture'
       registration_no: 'Registration no.'
       speciality: 'Speciality'
       consultancy_fee: 'Consultancy Fee'
+      profile_picture: 'Profile Picture'
     add:
       success: "Doctor has been added successfully"
       failure: "Doctor is not added!"
     delete:
       success: "Doctor has been deleted successfully"
       failure: "Doctor is not deleted!"
+      appointment_error: 'Doctor cannot be deleted if his appointments exist with a patient'
     update:
       success: "Doctor has been updated successfully"
       failure: "Doctor is not updated!"
@@ -172,6 +176,7 @@ en:
         add: 'Add Patient'
         edit: 'Edit Patient'
       name: 'Patient Name'
+      patient_name: 'Name'
       email: 'Email'
       dob: 'Date of Birth'
       family_history: 'Family History'
@@ -182,6 +187,7 @@ en:
     delete:
       success: "Patient has been deleted successfully"
       failure: "Patient is not deleted!"
+      appointment_error: 'Patient cannot be deleted if his appointments exist with a doctor'
     update:
       success: "Patient has been updated successfully"
       failure: "Patient is not updated!"
@@ -219,9 +225,6 @@ en:
     cancel:
       success: "Appointment has been canceled"
       failure: "Appointment is not canceled!"
-
-  prescription:
-    name: "Prescriptions"
 
   test_report:
     name: "Test Reports"
@@ -342,6 +345,8 @@ en:
     appointment_date: "Appointment Date"
     appointment_time: "Appointment Time"
     doctor_notes: "Doctor Notes"
+    save: 'Save'
+    cancel: 'Cancel'
     breadcrumb:
       index: "Prescriptions"
       show: "Prescription Details"

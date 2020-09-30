@@ -45,7 +45,7 @@ class Ability
       can %i[new], Prescription do |prescription|
         prescription.hospital_id == user.hospital_id
       end
-      can %i[read edit update destroy search_medicine], Prescription do |prescription|
+      can %i[index read edit update destroy search_medicine], Prescription do |prescription|
         prescription.hospital_id == user.hospital_id && prescription.appointment.doctor_id == user.id
       end
       can :manage, PrescribedMedicine, hospital_id: user.hospital_id
