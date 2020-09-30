@@ -2,8 +2,7 @@ require 'date'
 class AppointmentsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num
 
-  before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
-  before_action :show_page_breadcrumb, only: [:show, :edit]
+  before_action :index_page_breadcrumb, only: [:index, :new]
 
   # GET /appointments
   def index
@@ -84,10 +83,6 @@ class AppointmentsController < ApplicationController
 
   def index_page_breadcrumb
     add_breadcrumb t('appointment.breadcrumb.index'), appointments_path
-  end
-
-  def show_page_breadcrumb
-    add_breadcrumb t('appointment.breadcrumb.show'), appointment_path
   end
 
   # GET /show_availabilities
