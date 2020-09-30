@@ -1,15 +1,35 @@
 Rails.application.routes.draw do
+  resources :bills do
+    member do
+      post 'add_medicine'
+      post 'add_doctor'
+      get 'get_medicine'
+    end
+  end
+  resources :doctors do
+    collection do
+      get 'search_pred'
+      get 'search'
+    end
+  end
+  resources :patients do
+    collection do
+      get 'search_pred'
+    end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :medicines do
-  	collection do
-      get 'search'
+    collection do
       get 'search_pred'
     end
   end
 
   resources :purchase_order do
     member do
-      post 'addmed'
+      post 'add_medicine'
+      put 'confirm'
+      put 'deliver'
+      get 'get_medicine'
     end
   end
   root 'public_pages#index'
