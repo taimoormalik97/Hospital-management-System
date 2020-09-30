@@ -10,4 +10,11 @@ class Doctor < User
   validates :name, length: { in: 3..35 }
   validates :consultancy_fee, numericality: true
   validates :registration_no, numericality: { only_integer: true }, uniqueness: { scope: :hospital_id }
+  def self.search(pattern)
+    if pattern.blank?  # blank? covers both nil and empty string
+      all
+    else
+      where('name LIKE ?', "%#{pattern}%")
+    end
+  end
 end

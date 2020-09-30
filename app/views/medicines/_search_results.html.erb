@@ -1,24 +1,43 @@
-<div class="container">
- <table border="2">   
-  <thead>   
-    <tr>   
-      <th>Name</th>   
-      <th>Price</th>   
-      <th>Available Quantity</th>   
-    </tr>   
-  </thead>   
-  <tbody>     
-    <tr>   
-      <td><%= @medicine.name %></td>   
-      <td><%= @medicine.price %></td>   
-      <td><%= @medicine.quantity%></td> 
-      <td><div class="form-increment" data-quantity-change="">
-        <%= form_tag(addmed_purchase_order_path(params[:purchase_order_sequence_num], medicine_id:@medicine.id), method: 'post', remote: true, class: 'navbar-form navbar-left') do %> 
-        <%= number_field_tag :quantity, 1, required: true %>
-        <%= submit_tag "Add"%>  
-        <% end %> 
-    </div></td>       
-    </tr>   
-  </tbody>   
-</table>  
-</div>
+<div class="container  pt-3"> 
+    <div class="card">
+      <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-2">  
+          <label>Name</label>
+        </dt>
+        <dd class="col-sm-9">   
+          <%=@medicine.name %>   
+        </dd>
+        <dt class="col-sm-2">  
+          <label>Price</label>   
+        </dt>
+        <dd class="col-sm-9">   
+          <%=@medicine.price%>   
+        </dd>
+        <dt class="col-sm-2">  
+          <label>Quantity</label>
+        </dt>
+        <dd class="col-sm-9">   
+          <%=@medicine.quantity %>   
+        </dd>
+        <dd>
+          <%if params[:purchase_order_sequence_num]%>
+            <div class="form-increment" data-quantity-change="">
+              <%= form_tag(add_medicine_purchase_order_path(params[:purchase_order_sequence_num], medicine_id:@medicine.id), method: 'post', remote: true, class: 'navbar-form navbar-left') do %> 
+              <%= number_field_tag :quantity, 1, required: true, class: "form-control" %>
+              <%= submit_tag "Add", class: "btn btn-primary"%>  
+              <% end %> 
+           </div>
+           <%elsif params[:bill_sequence_num]%>
+             <div class="form-increment" data-quantity-change="">
+              <%= form_tag(add_medicine_bill_path(params[:bill_sequence_num], medicine_id:@medicine.id), method: 'post', remote: true, class: 'navbar-form navbar-left') do %> 
+              <%= number_field_tag :quantity, 1, required: true, class: "form-control" %>
+              <%= submit_tag "Add", class: "btn btn-primary"%>  
+              <% end %> 
+           </div>
+          <%end%>
+        </dd>
+      </dl>
+    </div>    
+  </div>   
+</div> 
