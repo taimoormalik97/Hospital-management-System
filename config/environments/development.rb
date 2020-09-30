@@ -77,8 +77,5 @@ Rails.application.configure do
     authentication: :plain,
     enable_starttls_auto: true
   }
-
-  HospitalManagementSystem::Application.configure do
-    config.action_dispatch.tld_length = 0
-  end
+  
 end

@@ -1,5 +1,5 @@
 class DoctorsController < ApplicationController
-  load_and_authorize_resource find_by: :sequence_num 
+  load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
 
   before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :show_page_breadcrumb, only: [:show, :edit]
@@ -17,6 +17,25 @@ class DoctorsController < ApplicationController
     add_breadcrumb t('doctor.breadcrumb.new'), new_doctor_path
     respond_to do |format|
       format.html
+    end
+  end
+
+  def search_pred
+    @doctors = current_hospital.doctors.search(params[:q])
+    respond_to do |format| 
+      format.json { render json: @doctors }
+    end
+  end
+
+  def search
+    @doctor = current_hospital.doctors.find_by(id: params[:search])
+    if @doctor.blank?
+      flash[:notice] = t('medicine.search.failure')
+    else
+      flash[:notice] = t('medicine.search.success')   
+      respond_to do |format|
+        format.js { render 'bills/searchdoc' }
+      end
     end
   end
 

@@ -5,10 +5,10 @@ class PurchaseOrder < ApplicationRecord
     state :drafted
     state :confirmed
     state :delivered
-    event :confirmed do
+    event :confirm do
       transitions to: :confirmed, from: :drafted
     end
-    event :delivered do
+    event :deliver do
       transitions to: :delivered, from: :confirmed
     end
   end
@@ -22,13 +22,19 @@ class PurchaseOrder < ApplicationRecord
   has_many :medicines, through: :purchase_details
   default_scope { where(hospital_id: Hospital.current_id) }
   def add_medicine(medicine, quantity_added)
-    if medicine.quantity>0
+    if medicine.quantity>0 && quantity_added<=medicine.quantity
       if medicine.update(quantity: medicine.quantity-quantity_added)
-        self.update(price: self.price+=medicine.price*quantity_added)   
-        purchase_details.create(quantity: quantity_added, medicine: medicine, hospital: medicine.hospital)        
+        self.update(price: self.price+=medicine.price*quantity_added)
+        curr_purchase_detail=purchase_details.find_by(medicine: medicine)
+        if curr_purchase_detail
+          curr_purchase_detail.update(quantity:quantity_added+curr_purchase_detail.quantity)
+        else
+          purchase_details.create(quantity: quantity_added, medicine: medicine, hospital: medicine.hospital) 
+        end       
       end
     else
-      flash[:error]= t('medicine.add.failure')
+      self.errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
+      return false
     end
   end 
 end

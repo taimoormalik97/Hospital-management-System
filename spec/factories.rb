@@ -29,7 +29,6 @@ FactoryGirl.define do
   end
 
   factory :patient, class: User do
-    id {Faker::Number.digit }
     name { Faker::Name.unique.name }
     email { Faker::Internet.unique.email }
     password { Faker::Internet.password }
@@ -78,8 +77,8 @@ FactoryGirl.define do
   end
 
   factory :bills, class: Bill do
-    #to be changed after merging. change billabe_type to billable_type
-    billabe_type 'medicine' || 'doctor'
+    billable_type 'medicine' || 'doctor'
+    price { Faker::Number.digit }
     association :hospital, factory: :hospital
     association :patient, factory: :patient
   end
