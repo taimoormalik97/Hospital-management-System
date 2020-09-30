@@ -17,8 +17,8 @@
           <td><%= p.quantity %></td>
           <td class="instructions_width"><%= p.usage_instruction %></td>
           <% if can?(:edit, @prescription) %>
-            <td><%= link_to prescription_prescribed_medicine_path(@prescription, p), class: "btn btn-danger", method: :delete, data: {confirm: t('popup.remove_medicine')}, remote: true do%>
-                <i class="fas fa-trash-alt"></i>
+            <td><%= link_to prescription_prescribed_medicine_path(@prescription, p), method: :delete, data: {confirm: t('popup.remove_medicine')}, remote: true do%>
+                <i class="fas fa-trash-alt color-danger"></i>
               <% end %>
             </td>
           <% end %>
