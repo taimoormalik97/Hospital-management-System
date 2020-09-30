@@ -20,7 +20,7 @@ import('js/token_input')
 // Images
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
-
+$(document).ready(require("js/jquery.tokeninput"))
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -29,7 +29,9 @@ const imagePath = (name) => images(name, true)
 
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
 document.addEventListener("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip()
 })
+
 

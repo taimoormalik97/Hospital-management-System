@@ -20,6 +20,14 @@ class PatientsController < ApplicationController
     end
   end
 
+  def search_pred
+    @patients = current_hospital.patients.search(params[:q])
+    respond_to do |format|
+      format.html 
+      format.json { render json: @patients }
+    end
+  end
+
   # POST /patients
   def create
     @patient.password = Devise.friendly_token.first(8)
