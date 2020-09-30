@@ -25,6 +25,7 @@ FactoryGirl.define do
     type 'Doctor'
     registration_no { Faker::Number.digit }
     speciality { Faker::Name.unique.name }
+    password_confirmation { password }
     consultancy_fee '200'
     confirmed_at Time.now
   end

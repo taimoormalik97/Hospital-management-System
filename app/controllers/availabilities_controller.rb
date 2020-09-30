@@ -23,6 +23,7 @@ class AvailabilitiesController < ApplicationController
 
   # POST /availabilities
   def create
+    binding.pry
     respond_to do |format|
       if @availability.breakslots
         format.html { redirect_to doctor_availabilities_path(@doctor), notice: t('availability.add.success') }
