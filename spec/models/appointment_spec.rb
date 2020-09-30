@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Appointment, type: :model do
   context 'validations' do
     before(:all) do
+      binding.pry
       @hospital = Hospital.create(FactoryGirl.attributes_for(:hospital))
       @doctor_params = FactoryGirl.attributes_for(:doctor)
       @doctor_params[:hospital] = @hospital
