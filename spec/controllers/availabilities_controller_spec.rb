@@ -3,20 +3,16 @@ RSpec.describe AvailabilitiesController, type: :controller do
   describe 'for doctor' do
     before(:each) do
       @hospital = Hospital.create(FactoryGirl.attributes_for(:hospital))
-      params = FactoryGirl.attributes_for(:admin)
-      params[:hospital] = @hospital
-      admin = User.create(params)
       @doctor_params = FactoryGirl.attributes_for(:doctor)
       @doctor_params[:hospital] = @hospital
       @doctor = User.create(@doctor_params)
+      sign_in @doctor
+      @request.host = "#{@hospital.sub_domain}.localhost:3000/doctors/#{@doctor.id}"
       @availability_params = FactoryGirl.attributes_for(:availability)
       @availability_params[:hospital] = @hospital
       @availability_params[:doctor] = @doctor
       @availability = Availability.create(@availability_params)
-      binding.pry
-      sign_in admin
       @availability_params[:week_day] = 'Tuesday'
-      @request.host = "#{@hospital.sub_domain}.example.com/doctors/#{@doctor.sequence_num}"
     end
     
     ############# create #############

@@ -28,7 +28,10 @@ RSpec.describe AppointmentsController, type: :controller do
       @new_availability = Availability.create(@availability_params)
       @new_appointment_params = { date: DateTime.current+1, state: 'pending', hospital_id: @hospital.id, doctor_id: @doctor.id, patient_id: @patient.id , availability_id: @availability.id }
     end
-    
+
+    after(:each) do
+      sign_out @patient
+    end
     ############# create #############
     describe 'POST create' do
       context 'with valid attributes' do
