@@ -22,7 +22,10 @@ Rails.application.routes.draw do
 
     resources :purchase_order do
       member do
-        post 'addmed'
+        post 'add_medicine'
+        put 'confirm'
+        put 'deliver'
+        get 'get_medicine'
       end
     end
 
@@ -47,10 +50,25 @@ Rails.application.routes.draw do
         put 'cancel'
       end
     end
+    resources :bills do
+      member do
+        post 'add_medicine'
+        post 'add_doctor'
+        get 'get_medicine'
+      end
+    end
     resources :doctors do
       resources :availabilities, except: [:edit, :update, :show]
+      collection do
+        get 'search_pred'
+        get 'search'
+      end
     end
-    resources :patients
+    resources :patients do
+      collection do
+        get 'search_pred'
+      end
+    end
     get '' => 'dashboards#dashboard'
   end
 

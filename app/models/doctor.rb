@@ -13,4 +13,11 @@ class Doctor < User
   validates_attachment :profile_picture,
     size: { in: 0..10.megabytes },
     content_type: { content_type: /^image\/(jpg|jpeg|png|gif|tiff)$/ }
+  def self.search(pattern)
+    if pattern.blank?  # blank? covers both nil and empty string
+      all
+    else
+      where('name LIKE ?', "%#{pattern}%")
+    end
+  end
 end

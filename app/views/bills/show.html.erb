@@ -1,0 +1,100 @@
+<div class="container  pt-3"> 
+    <div class="card">
+      <div class="card-header p-3 container-fluid">
+        <div class="row">
+          <h3 class="col-md-8"><%= @bill.patient.name %></h3> 
+          <div class="col-md-4 d-flex justify-content-md-end"> 
+            <%= link_to t('back'), { controller: 'bills', action: 'index'}, class: "btn btn-secondary" %> 
+            <%= link_to edit_bill_path(@bill), class: "btn btn-primary btn-spacing" do %> 
+              <i class="fas fa-pen"></i>
+            <%end%>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-2">  
+          <label><%= t('sales_order.name_label') %></label>
+        </dt>
+        <dd class="col-sm-9">   
+          <%=@bill.patient.name %>   
+        </dd>
+        <dt class="col-sm-2">  
+          <label><%= t('sales_order.price_label') %></label>   
+        </dt>
+        <dd class="col-sm-9">   
+          <%=@bill.price%>   
+        </dd>
+        <dt class="col-sm-2">  
+          <label><%= t('sales_order.type_label') %></label>
+        </dt>
+        <dd class="col-sm-9">   
+          <%=@bill.billable_type%>   
+        </dd>
+        <% if @bill.billable_type == "medicine"%>
+          <dt class="col-sm-2">  
+            <label><%= t('medicine.heading') %></label>
+          </dt>
+          <dd>
+            <table class="table">
+              <thead class="thead-dark">
+              <tr>
+                <th class="col-sm-9">
+                  <%= t('medicine.name_label') %>
+                </th>
+                <th class="col-sm-9">
+                  <%= t('medicine.price_label') %>
+                </th>
+                <th>
+                  <%= t('medicine.quantity_label') %>
+                </th>
+              </tr>  
+              </thead>
+              <%@bill.bill_details.each do |pd|%>
+              <tr>
+                <td class="col-sm-9">
+                  <%=pd.billable.name%>
+                </td>
+                <td class="col-sm-9">
+                  <%=pd.billable.price%>
+                </td>
+                <td>
+                  <%=pd.quantity%>
+                </td>
+              </tr> 
+              <%end%>
+            </table>
+          </dd>
+        <% elsif @bill.billable_type == "doctor"%>
+          <dt class="col-sm-2">  
+            <label><%= t('doctor.appointments') %></label>
+          </dt>
+          <dd>
+            <table class="table">
+              <thead class="thead-dark">
+              <tr>
+                <th class="col-sm-9">
+                  <%= t('doctor.name_label') %>
+                </th>
+                <th>
+                  <%= t('doctor.fee') %>
+                </th>
+              </tr>  
+              </thead>
+              <%@bill.bill_details.each do |pd|%>
+              <tr>
+                <td class="col-sm-9">
+                  <%=pd.billable.name%>
+                </td>
+                <td>
+                  <%=pd.billable.consultancy_fee%>
+                </td>
+              </tr> 
+              <%end%>
+            </table>
+          </dd>
+        <%end%>
+    </dl>
+    </div>    
+  </div>   
+</div>
