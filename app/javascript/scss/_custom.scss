@@ -6,6 +6,11 @@ $color-danger: #dc3545;
 $color-success: #28a745;
 $color-notice: #ffc107;
 $color-ready: #545b62;
+$color-home-background: #0971A5;
+$color-home-text: #3E5561;
+$color-home-para: #ffffff;
+$color-home-dim: #696969;
+$font-home: "Work Sans", serif;
 
 .btn-spacing {
   margin-left: 1em
@@ -100,24 +105,6 @@ $color-ready: #545b62;
   overflow-y: auto;
 }
 
-.home-page-bg {
-  background-image: linear-gradient(to left, rgba(70, 130, 180, 0.2), rgba(0,0,0, 0.6)),
-  url('../images/public_pages/hospital_main.jpeg');
-  height: 100vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.main-page-welcome-div {
-  margin-top: 200px;
-  margin-left: 40px;
-  height: 25%;
-  width: 52%;
-  padding-top: 30px;
-  margin-bottom: 200px;
-}
-
 .welcome-font {
   font-size: 1.5em;
 }
@@ -126,79 +113,13 @@ $color-ready: #545b62;
   text-align: left !important;
 }
 
-.sign-up-button {
-  background-color: $color-public-pages;
-  margin-top: 15px;
-  width: 150px;
-  height: 40px;
-  color: white;
-}
-
-.why-hms {
-color: white !important;
-  padding-top: 60px;
-  padding-bottom: 20px;
-}
-
-.why-us-content {
-  padding-top: 20px;
-}
-
-.why-us-decriptions {
-  color: white;
-  padding-right: 60px;
-  padding-left: 60px;
-  padding-bottom: 40px;
-}
-
 .no-padding-home-container {
   padding: 0px;
 }
 
-.why-row {
-  margin: 0px !important;
-}
 
 .carousel-img {
   height: 500px;
-}
-
-.nav-transparent {
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0)) !important;
-  background-color: transparent !important;
-}
-
-.nav-transparent.scrolled {
-  background-image: none !important;
-  background-color: $color-public-pages !important;
-  box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2)
-}
-
-.main-sign-up-btn {
-  background-color: $color-public-pages;
-  border-color: white;
-  color: white;
-}
-
-.main-sign-up-btn.scrolled-sign-up-btn-color {
-  background-color: white;
-  border-color: white;
-  color: black;
-}
-
-.main-sign-in-btn {
-  background-color: Tan;
-  color: white;
-  border-color: Tan;
-}
-
-.carousel-reviews {
-  margin-left: 70px;
-  margin-bottom: 50px;
-  object-fit: contain;
-  width: 250px;
-  height: 250px;
-  background-color: $color-public-pages;
 }
 
 blockquote {
@@ -306,5 +227,184 @@ blockquote p {
 .breadcrumb {
   a {
     padding: 0px 4px;
+  }
+}
+
+.home-page-bg {
+  background-image: radial-gradient(rgba(0,0,0, 0.6), rgba(54, 185, 204, 0.2)),
+  url('../images/operation.jpg');
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hms-heading {
+  font-weight: normal !important;
+  font-family: $font-home !important;
+  font-size: 1.1em;
+  word-spacing: 5px;
+  text-align: center !important;
+}
+
+.hms-taglines {
+  display: flex !important;
+}
+
+.hms-tagline-1 {
+  font-size: 4em;
+  font-family: "Work Sans", serif !important;
+  font-weight: normal !important;
+  letter-spacing: 1px !important;
+  word-spacing: 5px;
+  text-align: center !important;
+}
+
+.hms-tagline-2 {
+  font-size: 4em;
+  font-weight: 700 !important;
+}
+
+.main-page-welcome-div {
+  margin-top: 175px;
+  padding-top: 30px;
+  margin-bottom: 200px;
+  font-family: $font-home !important;
+}
+
+.nav-transparent {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0)) !important;
+  background-color: transparent !important;
+  font-family: $font-home !important;
+}
+
+.nav-transparent.scrolled {
+  background-image: none !important;
+  background-color: $color-home-para !important;
+  box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.4)
+}
+
+.sign-up-button {
+  margin-top: 15px;
+  width: 150px;
+  height: 40px;
+  background-color: $color-home-background;
+  letter-spacing: 1px;
+  border-color: $color-home-para;
+}
+
+.why-hms {
+  color: $color-home-text !important;
+  padding-top: 60px;
+  padding-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.why-us-content {
+  padding-top: 20px;
+  text-align: left !important;
+  color: $color-home-text;
+  margin-bottom: 10px !important;
+}
+
+.why-us-decriptions {
+  color: $color-home-dim;
+  text-align: justify !important;
+}
+
+.med-icons {
+  padding-top: 18px;
+  color: $color-home-text;
+}
+
+.why-row {
+  margin: 0px !important;
+  padding-bottom: 20px;
+}
+
+.carousel-reviews {
+  object-fit: contain;
+  width: 260px;
+  height: 250px;
+  background-color: $color-home-background;
+}
+
+.doctor-title {
+  font-family: $font-home !important;
+  color: $color-home-text;
+}
+
+.doctor-description {
+  font-family: $font-home !important;
+  color: $color-home-dim;
+}
+
+.home-stats {
+  font-family: $font-home !important;
+  background-color: $color-home-background;
+}
+
+.hms-title {
+  font-size: 1.5em;
+  letter-spacing: 3px;
+}
+
+.hms-nav-item {
+  font-size: 1.1em;
+  letter-spacing: 2px;
+}
+
+.main-sign-up-btn {
+  border-color: $color-home-para;
+  background-color: $color-home-background;
+  color: $color-home-para;
+}
+
+.main-sign-up-btn.scrolled-sign-up-btn-color {
+  background-color: $color-home-background;
+  border-color: $color-home-background;
+  color: $color-home-para;
+}
+
+.main-sign-in-btn.scrolled-sign-in-btn-color {
+  background-color: $color-home-para;
+  border-color: $color-home-background;
+  color: $color-home-background;
+}
+
+.hms-nav-item.scrolled-hms-nav-item {
+  color: $color-home-background !important;
+}
+
+.hms-title.scrolled-hms-title {
+  color: $color-home-background !important;
+}
+
+h2 {
+  font-size: 1.2em;
+  font-family: Calibri;
+}
+
+h1 {
+  font-size: 2.6em;
+  font-family: Calibri;
+}
+
+.stat-num  {
+  margin-bottom: 30px;
+}
+
+.picture_text {
+  td {
+    vertical-align: middle !important;
+  }
+}
+
+.set_image {
+  width: 100;
+  height: 100;
+  .block {
+    width: 100%;
+    height: 100%;
   }
 }

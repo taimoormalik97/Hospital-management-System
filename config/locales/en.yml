@@ -31,8 +31,22 @@
 
 en:
   hello: "Hello world"
+  edit: 'Edit'
+  delete: 'Delete'
+  back: 'Back'
+  create: 'Create'
+  update: 'Update'
+  submit: 'Submit'
 
   purchase_order:
+    heading: 'Purchase Orders'
+    add_order_label: 'Add Order'
+    edit_order_label: 'Edit Order'
+    name_label: 'Vendor Name'
+    price_label: 'Price'
+    state_label: 'State'
+    confirm_button: 'Confirm'
+    deliver_button: 'Deliver'
     name: "Purchase Orders"
     add:
       success: "Purchase order has been added successfully"
@@ -46,8 +60,60 @@ en:
     addmed:
       success: "Medicine successfully added to the purchase_order"
       failure: "Unable to add medicine to the purchase order"
-
+    confirm:
+      success: "Purchase Order successfully confirmed"
+      failure: "Failed to confirm Purchase Order"
+    deliver:
+      success: "Purchase Order successfully delivered"
+      failure: "Failed to deliver Purchase Order"
+    breadcrumb:
+      index: "Purchase Orders"
+      new: "New Order"
+      show: "Order Details"
+      edit: "Edit Order"
+  sales_order:
+    heading: 'Sales Orders'
+    add_order_label: 'Add Order'
+    edit_order_label: 'Edit Order'
+    name_label: 'Patient Name'
+    type_label: 'Type'
+    price_label: 'Total Bill'
+    add:
+      success: "Sales order has been added successfully"
+      failure: "Failed to add!"
+    delete:
+      success: "Sales order has been deleted successfully"
+      failure: "Failed to delete!"
+    update:
+      success: "Sales order has been updated successfully"
+      failure: "Failed to update!"
+    addmed:
+      success: "Sales successfully added to the purchase order"
+      failure: "Unable to add medicine to the purchase order"
+    confirm:
+      success: "Sales Order successfully confirmed"
+      failure: "Failed to confirm Purchase Order"
+    deliver:
+      success: "Sales Order successfully delivered"
+      failure: "Failed to deliver Purchase Order"
+    breadcrumb:
+      index: "Sales Orders"
+      new: "New Order"
+      show: "Order Details"
+      edit: "Edit Order"
+    addmed:
+      success: "Medicine successfully added to the sales order"
+      failure: "Unable to add medicine to the sales order"
+    adddoc:
+      success: "Doctor successfully added to the sales order"
+      failure: "Unable to add doctor to the sales order"
   medicine:
+    heading: 'Medicines'
+    add_medicine_label: 'Add Medicine'
+    edit_medicine_label: 'Edit Medicine'
+    name_label: 'Name'
+    price_label: 'Price'
+    quantity_label: 'Quantity'
     name: "Medicines"
     add:
       success: "Medicine has been added successfully"
@@ -61,22 +127,32 @@ en:
     search:
       success: "Medicine found!"
       failure: "Medicine not found"
-
+    breadcrumb:
+      index: "Medicines"
+      new: "New Medicine"
+      show: "Medicine Details"
+      edit: "Edit Medicine"
   paginate:
     previous: "Previous"
     next: "Next"
 
   doctor:
+    appointments: "Doctor's Appointments"
+    name_label: 'Name'
+    fee: 'fee'
     name: "Doctors"
     label: 
       title:
         add: 'Add Doctor'
         edit: 'Edit Doctor'
       name: 'Doctor Name'
+      doctor_name: 'Name'
       email: 'Email'
+      picture: 'Picture'
       registration_no: 'Registration no.'
       speciality: 'Speciality'
       consultancy_fee: 'Consultancy Fee'
+      profile_picture: 'Profile Picture'
     add:
       success: "Doctor has been added successfully"
       failure: "Doctor is not added!"
@@ -99,6 +175,7 @@ en:
         add: 'Add Patient'
         edit: 'Edit Patient'
       name: 'Patient Name'
+      patient_name: 'Name'
       email: 'Email'
       dob: 'Date of Birth'
       family_history: 'Family History'
@@ -188,11 +265,37 @@ en:
       hospital_phone_number: "Phone Number"
       edit: "Edit Profile"
   guest:
+    hms: "HMS"
+    system_heading: "HOSPITAL MANAGEMENT SYSTEM"
+    improve: "Improving "
+    healthcare: "HealthCare"
+    welcome: "Welcome to"
+    our: "Our "
+    doctors: "Doctors"
+    lorem_ipsum: "Lorem ipsum dolor sit amet, consectetur to adipiscing elit. Vestibulum ornare congue odio"
+    buy_medicines: "Buy Medicines"
+    consult_doctors: "Consult Doctors"
+    book_appointments: "Book Appointments"
+    experience_number: "10"
+    doctors_number: "3000"
+    patients_number: "20,000"
+    hospitals_number: "1000"
+    total_experience: "Years of Experience"
+    total_doctors: "Successfull Doctors"
+    total_patients: "Happy Patients"
+    total_hospitals: "Excelling Hospitals"
+    doc1_name: "Dr. Harry Potter"
+    doc2_name: "Dr. Hermoine Granger"
+    doc3_name: "Dr. Ron Weasley"
     home: "Home"
     about: "About"
     contact: "Contact"
     complaints: "Complaints & Queries"
     hear_from_doctors: "Best Care For Your Good Health"
+    medkit: "medkit"
+    calendar: "calendar"
+    stethoscope: "stethoscope"
+    copyright: "Copyright"
     find:
       error: "Email was not found!"
       user: "Find User"
