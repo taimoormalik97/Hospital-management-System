@@ -86,7 +86,7 @@ class PrescriptionsController < ApplicationController
   end
 
   def load_prescriptions
-    @prescriptions = Prescription.includes(appointment: [:doctor, :patient, :availability]).available_prescriptions(@current_user)
+    @prescriptions = Prescription.includes(appointment: [:doctor, :patient, :availability]).available_prescriptions(@current_user).load
   end
 
   def index_page_breadcrumb

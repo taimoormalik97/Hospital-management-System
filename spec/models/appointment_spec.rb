@@ -23,7 +23,7 @@ RSpec.describe Appointment, type: :model do
     end
 
     it 'should return true when validations pass' do
-      expect(@appointment.save).to eq true # fails validation
+      expect(@appointment.save).to eq true 
     end
 
     it 'should return false when validations fail' do
