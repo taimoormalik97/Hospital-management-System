@@ -31,8 +31,22 @@
 
 en:
   hello: "Hello world"
+  edit: 'Edit'
+  delete: 'Delete'
+  back: 'Back'
+  create: 'Create'
+  update: 'Update'
+  submit: 'Submit'
 
   purchase_order:
+    heading: 'Purchase Orders'
+    add_order_label: 'Add Order'
+    edit_order_label: 'Edit Order'
+    name_label: 'Vendor Name'
+    price_label: 'Price'
+    state_label: 'State'
+    confirm_button: 'Confirm'
+    deliver_button: 'Deliver'
     name: "Purchase Orders"
     add:
       success: "Purchase order has been added successfully"
@@ -46,8 +60,60 @@ en:
     addmed:
       success: "Medicine successfully added to the purchase_order"
       failure: "Unable to add medicine to the purchase order"
-
+    confirm:
+      success: "Purchase Order successfully confirmed"
+      failure: "Failed to confirm Purchase Order"
+    deliver:
+      success: "Purchase Order successfully delivered"
+      failure: "Failed to deliver Purchase Order"
+    breadcrumb:
+      index: "Purchase Orders"
+      new: "New Order"
+      show: "Order Details"
+      edit: "Edit Order"
+  sales_order:
+    heading: 'Sales Orders'
+    add_order_label: 'Add Order'
+    edit_order_label: 'Edit Order'
+    name_label: 'Patient Name'
+    type_label: 'Type'
+    price_label: 'Total Bill'
+    add:
+      success: "Sales order has been added successfully"
+      failure: "Failed to add!"
+    delete:
+      success: "Sales order has been deleted successfully"
+      failure: "Failed to delete!"
+    update:
+      success: "Sales order has been updated successfully"
+      failure: "Failed to update!"
+    addmed:
+      success: "Sales successfully added to the purchase order"
+      failure: "Unable to add medicine to the purchase order"
+    confirm:
+      success: "Sales Order successfully confirmed"
+      failure: "Failed to confirm Purchase Order"
+    deliver:
+      success: "Sales Order successfully delivered"
+      failure: "Failed to deliver Purchase Order"
+    breadcrumb:
+      index: "Sales Orders"
+      new: "New Order"
+      show: "Order Details"
+      edit: "Edit Order"
+    addmed:
+      success: "Medicine successfully added to the sales order"
+      failure: "Unable to add medicine to the sales order"
+    adddoc:
+      success: "Doctor successfully added to the sales order"
+      failure: "Unable to add doctor to the sales order"
   medicine:
+    heading: 'Medicines'
+    add_medicine_label: 'Add Medicine'
+    edit_medicine_label: 'Edit Medicine'
+    name_label: 'Name'
+    price_label: 'Price'
+    quantity_label: 'Quantity'
     name: "Medicines"
     add:
       success: "Medicine has been added successfully"
@@ -61,22 +127,32 @@ en:
     search:
       success: "Medicine found!"
       failure: "Medicine not found"
-
+    breadcrumb:
+      index: "Medicines"
+      new: "New Medicine"
+      show: "Medicine Details"
+      edit: "Edit Medicine"
   paginate:
     previous: "Previous"
     next: "Next"
 
   doctor:
+    appointments: "Doctor's Appointments"
+    name_label: 'Name'
+    fee: 'fee'
     name: "Doctors"
     label: 
       title:
         add: 'Add Doctor'
         edit: 'Edit Doctor'
       name: 'Doctor Name'
+      doctor_name: 'Name'
       email: 'Email'
+      picture: 'Picture'
       registration_no: 'Registration no.'
       speciality: 'Speciality'
       consultancy_fee: 'Consultancy Fee'
+      profile_picture: 'Profile Picture'
     add:
       success: "Doctor has been added successfully"
       failure: "Doctor is not added!"
@@ -99,6 +175,7 @@ en:
         add: 'Add Patient'
         edit: 'Edit Patient'
       name: 'Patient Name'
+      patient_name: 'Name'
       email: 'Email'
       dob: 'Date of Birth'
       family_history: 'Family History'

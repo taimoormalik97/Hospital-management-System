@@ -1,35 +1,49 @@
-<!DOCTYPE html>   
-<html>   
-<body>   
-  <div class="container">   
-      <h1>Purchase Orders</h1> 
-    <%= link_to 'Add', new_purchase_order_path%>  
-  </div>
-  <div class="container">
-    <table border="2">   
-      <thead>   
-        <tr>   
-          <th>Vendor Name</th>   
-          <th>Price</th>   
-          <th>State</th>    
-        </tr>   
-      </thead>   
-      <tbody>   
+<div class="container  pt-3"> 
+  <div class="card">
+    <div class="card-header p-3 container-fluid">
+      <div class="row">
+        <h3 class="col-md-10"><%= t('purchase_order.heading') %></h3> 
+        <div class="col-md-2 d-flex justify-content-md-end">
+          <%= link_to t('purchase_order.add_order_label'), new_purchase_order_path, class: "btn btn-primary" %>   
+        </div>   
+      </div>
+    </div> 
+    <div class="card-body">
+      <p><%= flash[:notice] %></p> 
+      <table  class="table">   
+        <thead >   
+          <tr>   
+            <th><%= t('purchase_order.name_label') %></th>   
+            <th><%= t('purchase_order.price_label') %></th>   
+            <th><%= t('purchase_order.state_label') %></th> 
+            <th></th>  
+          </tr>   
+        </thead>   
+        <tbody>   
         <% @purchase_orders.each do |po| %>   
-        <tr>   
-          <td><%=link_to po.vendorname, purchase_order_path(po)%></td>   
-          <td><%= po.price%></td>   
-          <td><%= po.state%></td> 
-          <div>   
-            <td>   
-              <%= link_to_if po.drafted?, 'Edit', edit_purchase_order_path(po) %>  
-              <%= link_to 'Delete', purchase_order_path(po), method: :delete %>   
-            </div>   
-          </td>        
-        </tr>   
+          <tr>   
+            <td><%=link_to po.vendorname, purchase_order_path(po)%></td>   
+            <td><%= po.price%></td>   
+            <td><%= po.state%></td> 
+            <div>   
+              <td>
+                <%if (po.drafted? || po.confirmed?) && (can? :edit, po)%>
+                  <%= link_to edit_purchase_order_path(po), class: "btn btn-primary" do %>
+                    <i class="fas fa-pen"></i>
+                  <%end%>
+                <%end%>  
+                <%= link_to purchase_order_path(po), method: :delete, class: "btn btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?'} do %>
+                  <i class="fas fa-trash-alt"></i>
+                <%end%>      
+              </td> 
+            </div>       
+          </tr>   
         <% end %>   
-      </tbody>   
-    </table>  
+        </tbody>   
+      </table> 
+    </div>
   </div>
-</body>
-</html>
+</div>
+<div class="pagination justify-content-center" class="pagination-spacing">
+  <%= will_paginate @purchase_orders, previous_label: t('paginate.previous'), next_label: t('paginate.next') %> 
+</div>

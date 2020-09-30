@@ -1,4 +1,4 @@
-<%= form_for(@doctor, method: @doctor.persisted? ? 'patch' : 'post') do |f| %> 
+<%= form_for(@doctor, method: @doctor.persisted? ? 'patch' : 'post', html: { multipart: true }) do |f| %> 
   <div class="container pt-3"> 
     <div class="card">
       <div class="card-header p-3 container-fluid">
@@ -29,6 +29,10 @@
           <div class="form-group">   
             <label><%= t('doctor.label.consultancy_fee') %></label>   
             <%= f.text_field :consultancy_fee, required: true, class: "form-control" %>   
+          </div>
+          <div class="form-group">   
+            <label><%= t('doctor.label.profile_picture') %></label><br />
+            <%= f.file_field :profile_picture %>   
           </div>     
         </p> 
       </div>

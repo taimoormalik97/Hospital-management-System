@@ -6,5 +6,4 @@ function set_domain(){
   });
 }
 
-$(document).on('turbolinks:load',set_domain)
 $(document).ready(set_domain)
