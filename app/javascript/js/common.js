@@ -148,9 +148,6 @@ function collapseSidebar() {
     });
   }
 }
-$(document).on('turbolinks:load', arrow)
-$(document).ready(arrow)
-
 function showAvailabilitiesForAppointment() {
   $('body').on('click', '.next', function(){
     var data = { doctor_id: $('#doctor').val(), date: $('#date').val() };
@@ -158,9 +155,7 @@ function showAvailabilitiesForAppointment() {
   });
 }
 
-$(document).on('turbolinks:load', collapseSidebar)
 $(document).ready(collapseSidebar)
-$(document).on('turbolinks:load', showAvailabilitiesForAppointment)
 $(document).ready(showAvailabilitiesForAppointment)
 
 // toggle function

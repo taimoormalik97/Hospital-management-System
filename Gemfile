@@ -13,7 +13,6 @@ gem 'puma', '= 4.3.6'
 gem 'sass-rails', '= 6.0.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '= 4.3.0'
-
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jquery-rails'
 gem 'sequenceid', '=0.0.7', git: "https://github.com/alisyed/sequenceid.git", branch: 'feature/change_activerecord_base_to_applicationrecord_in_sti_parent_class_method'
@@ -68,4 +67,6 @@ gem 'breadcrumbs_on_rails', '4.0.0'
 
 gem 'will_paginate', '3.1.8'
 gem 'will_paginate-bootstrap4'
+
+gem 'paperclip', '= 6.0.0'
 

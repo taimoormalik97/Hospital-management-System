@@ -2,17 +2,21 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :scope_current_hospital
-  before_action :validate_subdomain, :redirect_to_valid_signup, :redirect_to_valid_signin, :redirect_to_valid_password_reset, :redirect_to_valid_confirmation_email, :devise_edit_profile, :redirect_to_signin_subdomain, :redirect_to_dashboard
+  before_action :validate_subdomain, :redirect_to_valid_signup, :redirect_to_valid_signin, :redirect_to_valid_password_reset, :redirect_to_valid_confirmation_email, :devise_edit_profile, :redirect_to_signin_subdomain, :redirect_to_prescriptions
 
   rescue_from ActiveRecord::RecordNotFound do
     respond_to do |format|
-      format.html { render file: "#{Rails.root}/public/404", status: :not_found }
+      format.html { render file: "#{Rails.root}/public/500", status: :not_found, layout: false }
     end
   end
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = exception.message
-    redirect_to root_path
+    if user_signed_in?
+      redirect_to dashboard_path
+    else
+      redirect_to root_path
+    end
   end
 
   def route_not_found
@@ -26,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-     dashboard_path
+     root_path
   end
 
   def after_sign_out_path_for(resource)
@@ -47,12 +51,12 @@ class ApplicationController < ActionController::Base
   end
 
   def validate_subdomain
-    render file: "#{Rails.root}/public/404", status: :not_found if (request.subdomain.present?) && (Hospital.find_by(sub_domain: request.subdomain).blank?)
+    render file: Rails.public_path.join('404.html'), status: :not_found, layout: false if (request.subdomain.present?) && (Hospital.find_by(sub_domain: request.subdomain).blank?)
   end
 
   def redirect_to_signin_subdomain
     redirect_to new_user_session_path if (request.subdomain.present?) && (request.url.include? '/find')
-    redirect_to new_user_session_path if (request.subdomain.present?) && (!user_signed_in?)
+    redirect_to new_user_session_path if (request.subdomain.present?) && (!user_signed_in?) && (request.path == '/')
   end
   
   def redirect_to_valid_signup
@@ -79,8 +83,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def redirect_to_dashboard
-      redirect_to dashboard_path if (request.subdomain.present?) && (user_signed_in?) && (request.url == '/')
+  def redirect_to_prescriptions
+    redirect_to prescriptions_path if (request.subdomain.present?) && (user_signed_in?) && (request.path == '/prescriptions/new') && (params[:appointment_id].nil?)
   end
 
 end
