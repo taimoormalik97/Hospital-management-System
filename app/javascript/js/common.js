@@ -148,6 +148,7 @@ function collapseSidebar() {
     });
   }
 }
+
 function showAvailabilitiesForAppointment() {
   $('body').on('click', '.next', function(){
     var data = { doctor_id: $('#doctor').val(), date: $('#date').val() };
