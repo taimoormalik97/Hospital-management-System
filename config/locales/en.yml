@@ -73,11 +73,13 @@ en:
         add: 'Add Doctor'
         edit: 'Edit Doctor'
       name: 'Doctor Name'
+      doctor_name: 'Name'
       email: 'Email'
+      picture: 'Picture'
       registration_no: 'Registration no.'
       speciality: 'Speciality'
       consultancy_fee: 'Consultancy Fee'
-      image: 'Image'
+      profile_picture: 'Profile Picture'
     add:
       success: "Doctor has been added successfully"
       failure: "Doctor is not added!"
@@ -100,6 +102,7 @@ en:
         add: 'Add Patient'
         edit: 'Edit Patient'
       name: 'Patient Name'
+      patient_name: 'Name'
       email: 'Email'
       dob: 'Date of Birth'
       family_history: 'Family History'
