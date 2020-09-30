@@ -17,9 +17,9 @@ class Patient < User
   end
 
   def check_appointments_of_patient
-  return true if appointments.blank?
+    return true if appointments.blank?
 
-  errors.add :base, I18n.t('patient.delete.appointment_error')
-  throw(:abort)
+    errors.add :base, I18n.t('patient.delete.appointment_error')
+    throw(:abort)
   end
 end
