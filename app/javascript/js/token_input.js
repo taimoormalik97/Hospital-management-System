@@ -7,4 +7,3 @@ function search_doctor(){
 }
 $(document).ready(search)
 $(document).ready(search_doctor)
-
