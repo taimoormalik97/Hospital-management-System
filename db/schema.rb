@@ -62,12 +62,13 @@ ActiveRecord::Schema.define(version: 2020_09_28_112839) do
   end
 
   create_table "bills", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "billabe_type", null: false
+    t.string "billable_type", null: false
     t.bigint "patient_id", null: false
     t.bigint "hospital_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sequence_num", null: false
+    t.decimal "price", precision: 10
     t.index ["hospital_id", "patient_id"], name: "index_bills_on_hospital_id_and_patient_id"
     t.index ["hospital_id"], name: "index_bills_on_hospital_id"
     t.index ["patient_id"], name: "index_bills_on_patient_id"

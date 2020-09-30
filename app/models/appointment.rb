@@ -27,4 +27,9 @@ class Appointment < ApplicationRecord
   validates_uniqueness_of :date, scope: :availability_id
   validates_presence_of :date
   default_scope { where(hospital_id: Hospital.current_id) }
+
+  def get_persisted_prescription
+    Prescription.find_by(appointment_id: id)
+  end
+  
 end

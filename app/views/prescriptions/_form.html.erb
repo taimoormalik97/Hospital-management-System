@@ -5,8 +5,8 @@
         <div class="row">
           <h3 class="col-md-8"><%= t('prescription.name') %></h3>
           <div class="col-md-4 d-flex justify-content-md-end"> 
-            <%= f.submit 'Save' , class: "btn btn-primary" %>
-            <%= link_to 'Cancel', :back , class: "btn btn-secondary btn-spacing" %>
+            <%= f.submit t('prescription.save') , class: "btn btn-primary" %>
+            <%= link_to t('prescription.cancel'), :back , class: "btn btn-secondary btn-spacing" %>
           </div>
         </div>
       </div>

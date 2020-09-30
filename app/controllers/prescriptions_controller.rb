@@ -1,10 +1,10 @@
 class PrescriptionsController < ApplicationController
-  helper_method :get_prescriptions
+  before_action :redirect_to_prescriptions
   before_action :load_prescription, only: :show
   before_action :load_prescriptions, only: :index
   before_action :index_page_breadcrumb, only: [:index, :show, :edit]
   before_action :show_page_breadcrumb, only: [:show, :edit]
-  load_and_authorize_resource find_by: :sequence_num
+  load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
 
   # GET /prescriptions
   def index
@@ -41,8 +41,9 @@ class PrescriptionsController < ApplicationController
 
   # PATCH /prescription/:id
   def update
+    @check_updated = @prescription.update(prescription_params)
     respond_to do |format|
-      if @prescription.update(prescription_params)
+      if @check_updated
         flash[:notice] = t('prescription.update.success')
         format.html { redirect_to prescription_path(@prescription) }
       else
@@ -74,16 +75,6 @@ class PrescriptionsController < ApplicationController
     end
   end
 
-  def get_prescriptions
-    if @current_user.doctor?
-      @prescriptions.where(appointments: {doctor_id: @current_user.id})
-    elsif @current_user.patient?
-      @prescriptions.where(appointments: {patient_id: @current_user.id})
-    else
-      @prescriptions
-    end
-  end
-  
   private
 
   def prescription_params
@@ -95,7 +86,7 @@ class PrescriptionsController < ApplicationController
   end
 
   def load_prescriptions
-    @prescriptions = Prescription.includes(appointment: [:doctor, :patient, :availability]).all
+    @prescriptions = Prescription.includes(appointment: [:doctor, :patient, :availability]).available_prescriptions(@current_user)
   end
 
   def index_page_breadcrumb
@@ -104,6 +95,10 @@ class PrescriptionsController < ApplicationController
 
   def show_page_breadcrumb
     add_breadcrumb t('prescription.breadcrumb.show'), prescription_path
+  end
+
+  def redirect_to_prescriptions
+    redirect_to prescriptions_path if (request.subdomain.present?) && (user_signed_in?) && (request.path == '/prescriptions/new') && (params[:appointment_id].nil?)
   end
 
 end

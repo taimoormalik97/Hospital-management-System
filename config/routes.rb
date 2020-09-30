@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # Routes accessible with subdomain
   constraints(subdomain: /.+/) do
     resources :medicines do
-    	collection do
+      collection do
         get 'search'
         get 'search_pred'
       end
