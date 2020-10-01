@@ -1,4 +1,5 @@
 class Patient < User
+  before_destroy :check_appointments_of_patient
   has_many :appointments, dependent: :nullify
   has_many :doctors, through: :appointments
   has_many :lab_reports, dependent: :nullify
@@ -13,5 +14,12 @@ class Patient < User
     else
       where('name LIKE ?', "%#{pattern}%")
     end
+  end
+
+  def check_appointments_of_patient
+    return true if appointments.blank?
+
+    errors.add :base, I18n.t('patient.delete.appointment_error')
+    throw(:abort)
   end
 end

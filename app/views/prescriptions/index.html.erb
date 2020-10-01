@@ -1,0 +1,42 @@
+<div class="container pt-3">
+  <div class="card">
+    <div class="card-header p-3 container-fluid">
+      <div class="row">
+        <h3 class="col-md-10"><%= t('prescription.names')%></h3>
+        <div class="col-md-2 d-flex justify-content-md-end">
+        </div>
+      </div>
+    </div> 
+    <div class="card-body">
+      <% if @prescriptions.present? %>
+        <table  class="table">
+          <thead >
+            <tr>
+              <th><%= t('prescription.doctor_name') %></th>
+              <th><%= t('prescription.patient_name') %></th>
+              <th><%= t('prescription.appointment_date') %></th>
+              <th><%= t('prescription.appointment_time') %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @prescriptions.each do |prescription| %>
+              <tr>   
+                <td><%= prescription.appointment.doctor.name %></td>
+                <td><%= prescription.appointment.patient.name %></td>
+                <td><%= prescription.appointment.date %></td>
+                <td><%= convert_to_twelve_hour_format(prescription.appointment.availability.start_slot) %></td>
+                <td><%= link_to prescription_path(prescription) do %>
+                  <i class="fas fa-edit color-primary-btn" title="prescription"></i>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <strong><%= t('prescription.no_prescriptions') %></strong>
+      <% end %>
+    </div>
+  </div>
+</div>
