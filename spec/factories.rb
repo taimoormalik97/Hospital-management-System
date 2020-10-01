@@ -5,8 +5,8 @@ FactoryGirl.define do
   factory :hospital, class: Hospital do
     name { Faker::Name.unique.name }
     address { Faker::Name.unique.name }
-    phone_number { Faker::Number.digit }
-    sub_domain { name.delete(' ').delete('.').downcase }
+    phone_number { Faker::PhoneNumber.cell_phone_in_e164 }
+    sub_domain { name.delete(' ').downcase }
   end
 
   factory :admin, class: User do
@@ -56,4 +56,25 @@ FactoryGirl.define do
     date DateTime.current
     state 'pending'
   end
+
+  factory :medicine, class: Prescription do
+    name { Faker::Name.unique.name }
+    quantity { Faker::Number.digit }
+    price { Faker::Number.number(digits: 3) }
+    association :hospital, factory: :hospital
+  end
+
+  factory :prescription, class: Prescription do
+    association :hospital, factory: :hospital
+    association :appointment, factory: :appointment
+  end
+
+  factory :prescribed_medicine, class: PrescribedMedicine do
+    association :hospital, factory: :hospital
+    association :prescription, factory: :prescription
+    association :medicine, factory: :medicine
+    quantity { Faker::Number.digit }
+    usage_instruction 'Day & Night'
+  end
+
 end

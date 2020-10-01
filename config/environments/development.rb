@@ -78,9 +78,5 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-  HospitalManagementSystem::Application.configure do
-    config.action_dispatch.tld_length = 0
-  end
-
   Paperclip.options[:command_path] = "/usr/bin/convert"
 end

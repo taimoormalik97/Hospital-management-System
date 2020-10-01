@@ -22,7 +22,6 @@ RSpec.describe Appointment, type: :model do
   end
   
   context 'validations' do
-
     it 'should return true when validations pass' do
       expect(@appointment.save).to eq true 
     end
@@ -34,7 +33,6 @@ RSpec.describe Appointment, type: :model do
   end
 
   context 'methods' do
-
     it 'should return true if status is pending when we call pending? method' do
       expect(@appointment.pending?).to eq true
     end

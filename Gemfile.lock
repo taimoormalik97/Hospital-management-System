@@ -286,7 +286,7 @@ DEPENDENCIES
   webdrivers
   webpacker (= 4.3.0)
   will_paginate (= 3.1.8)
-  will_paginate-bootstrap4
+  will_paginate-bootstrap4 (= 0.2.2)
 
 RUBY VERSION
    ruby 2.7.1p83

@@ -1,6 +1,6 @@
 class PrescribedMedicinesController < ApplicationController
-  load_and_authorize_resource find_by: :sequence_num
-  load_and_authorize_resource :prescription, find_by: :sequence_num
+  load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
+  load_and_authorize_resource :prescription, find_by: :sequence_num, through: :current_hospital
 
   # GET /prescriptions/:prescription_id/prescribed_medicine/new
   def new
