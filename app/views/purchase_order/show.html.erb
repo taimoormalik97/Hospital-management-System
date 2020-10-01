@@ -4,11 +4,16 @@
         <div class="row">
           <h3 class="col-md-8"><%= @purchase_order.vendorname %></h3> 
           <div class="col-md-4 d-flex justify-content-md-end"> 
-           <%= link_to t('back'), { controller: 'purchase_order', action: 'index'}, class: "btn btn-secondary" %> 
-           <%= link_to t('delete'), purchase_order_path(@purchase_order), method: :delete, class: "btn btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?'}%>
-           <% if @purchase_order.drafted? || @purchase_order.confirmed?%>
+            <%= link_to t('back'), { controller: 'purchase_order', action: 'index'}, class: "btn btn-secondary" %>
+            <% if @purchase_order.drafted? %>   
+              <%= link_to t('purchase_order.confirm_button'), confirm_purchase_order_path(@purchase_order), method: "put", class: "btn btn-success btn-spacing"%> 
+             <% elsif @purchase_order.confirmed? %>
+                <%= link_to t('purchase_order.deliver_button'), deliver_purchase_order_path(@purchase_order), method: "put", class: "btn btn-success btn-spacing"%>
+            <% end %> 
+            <%= link_to t('delete'), purchase_order_path(@purchase_order), method: :delete, class: "btn btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?'}%>
+            <% if @purchase_order.drafted? || @purchase_order.confirmed?%>
              <%= link_to t('edit'), edit_purchase_order_path(@purchase_order), class: "btn btn-primary btn-spacing"%> 
-           <%end%>
+            <%end%>
           </div>
         </div>
       </div>
@@ -35,15 +40,16 @@
     </dl>
     </div>    
   </div>
+  <br>
   <div class="card">
-      <div class="card-header p-3 container-fluid">
+      <div class="container-fluid">
         <div class="row">
           <%if @purchase_order.medicines.present?%>
                 <dt class="col-sm-2">  
                     <label><%= t('medicine.heading') %></label>
                 </dt>
                 <dd>
-                  <table class="table">
+                  <table class="table table-bordered">
                     <thead class="thead-dark">
                     <tr>
                       <th class="col-sm-9">

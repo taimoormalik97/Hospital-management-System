@@ -33,15 +33,16 @@
       </dl>
     </div>    
   </div>
+  <br>
   <div class="card">
-    <div class="card-header p-3 container-fluid">
+    <div class="container-fluid">
       <div class="row">
        <% if @bill.billable_type == "medicine"%>
           <dt class="col-sm-2">  
             <label><%= t('medicine.heading') %></label>
           </dt>
           <dd>
-            <table class="table">
+            <table class="table table-bordered">
               <thead class="thead-dark">
               <tr>
                 <th class="col-sm-9">
@@ -75,7 +76,7 @@
             <label><%= t('doctor.appointments') %></label>
           </dt>
           <dd>
-            <table class="table">
+            <table class="table table-bordered">
               <thead class="thead-dark">
               <tr>
                 <th class="col-sm-9">
