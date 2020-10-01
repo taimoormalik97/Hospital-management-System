@@ -78,5 +78,5 @@ class ApplicationController < ActionController::Base
       redirect_to find_path if (request.url.include? '/users/confirmation/new') || (request.url.include? '/users/confirmation')
     end
   end
-
+  
 end
