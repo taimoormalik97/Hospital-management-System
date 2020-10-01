@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h4 class="modal-title"><%= t('prescription.add_medicine') %></h4>
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<%= form_for [@prescription, @prescribed_medicine], remote: true do |f| %>
+  <div class="container pt-3"> 
+    <div class="modal-body">
+      <div class="form-group">
+        <label><%= t('prescription.medicine_full_name') %></label>
+        <%= f.text_field :medicine_id, required: true, id: 'search_medicine_in_prescription', class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <label><%= t('prescription.quantity') %></label>
+        <%= f.number_field :quantity, min: 1, required: true, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <label><%= t('prescription.instructions') %></label>
+        <%= f.text_field :usage_instruction, required: true, class: "form-control" %>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <%= submit_tag "Submit", class: "btn btn-primary", name: nil%>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+<% end %>

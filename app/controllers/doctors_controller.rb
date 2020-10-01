@@ -1,6 +1,5 @@
 class DoctorsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
-
   before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :show_page_breadcrumb, only: [:show, :edit]
   
@@ -96,7 +95,7 @@ class DoctorsController < ApplicationController
   end
 
   def doctor_params
-    params.require(:doctor).permit(:name, :email, :password, :registration_no, :speciality, :consultancy_fee)
+    params.require(:doctor).permit(:name, :email, :password, :registration_no, :speciality, :consultancy_fee, :profile_picture)
   end
 
   def index_page_breadcrumb
@@ -106,5 +105,5 @@ class DoctorsController < ApplicationController
   def show_page_breadcrumb
     add_breadcrumb t('doctor.breadcrumb.show'), doctor_path
   end
-
+  
 end

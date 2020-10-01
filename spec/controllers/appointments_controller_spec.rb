@@ -1,91 +1,78 @@
 require 'rails_helper'
-
 RSpec.describe AppointmentsController, type: :controller do
-  describe 'for admin' do
-    context '#index action' do
-      before(:each) do
-        @current_hospital = Hospital.create(FactoryGirl.attributes_for(:hospital))
-        params = FactoryGirl.attributes_for(:admin)
-        params[:hospital] = @current_hospital
-        # @request.env['devise.mapping'] = Devise.mappings[:admin]
-        admin = Admin.create(params)
-        admin.confirm
-        sign_in(admin)
-        @doctor_params = FactoryGirl.attributes_for(:doctor)
-        @doctor_params[:hospital] = @current_hospital
-        @doctor = Doctor.create(@doctor_params)
-        @availability_params = FactoryGirl.attributes_for(:availability)
-        @availability_params[:hospital] = @current_hospital
-        @availability_params[:doctor] = @doctor
-        @availability = Availability.create(@availability_params)
-        @patient_params = FactoryGirl.attributes_for(:patient)
-        @patient_params[:hospital] = @current_hospital
-        @patient = Patient.create(@patient_params)
-        @appointment_params = FactoryGirl.attributes_for(:appointment)
-        @appointment_params[:hospital] = @current_hospital
-        @appointment_params[:doctor] = @doctor
-        @appointment_params[:patient] = @patient
-        @appointment_params[:availability] = @availability
-        @appointment = @current_hospital.appointments.create(@appointment_params)
-        @request.host = 'test.example.com'
-        #get :index
+  describe 'for patient' do
+    before(:each) do
+      @hospital = Hospital.create(FactoryGirl.attributes_for(:hospital))
+      params = FactoryGirl.attributes_for(:admin)
+      params[:hospital] = @hospital
+      @request.host = "#{@hospital.sub_domain}.example.com"
+      admin = User.create(params)
+      @doctor_params = FactoryGirl.attributes_for(:doctor)
+      @doctor_params[:hospital] = @hospital
+      @doctor = Doctor.create(@doctor_params)
+      @availability_params = FactoryGirl.attributes_for(:availability)
+      @availability_params[:hospital] = @hospital
+      @availability_params[:doctor] = @doctor
+      @availability = Availability.create(@availability_params)
+      @patient_params = FactoryGirl.attributes_for(:patient)
+      @patient_params[:hospital] = @hospital
+      @patient = Patient.create(@patient_params)
+      sign_in @patient
+      @appointment_params = FactoryGirl.attributes_for(:appointment)
+      @appointment_params[:hospital] = @hospital
+      @appointment_params[:doctor] = @doctor
+      @appointment_params[:patient] = @patient
+      @appointment_params[:availability] = @availability
+      @appointment = @hospital.appointments.create(@appointment_params)
+      @availability_params[:week_day] = 'Tuesday'
+      @new_availability = Availability.create(@availability_params)
+      @new_appointment_params = { date: DateTime.current+1, state: 'pending', hospital_id: @hospital.id, doctor_id: @doctor.id, patient_id: @patient.id , availability_id: @availability.id }
+    end
+
+    after(:each) do
+      sign_out @patient
+    end
+    ############# create #############
+    describe 'POST create' do
+      context 'with valid attributes' do
+        it 'creates a new appointment' do
+          expect {
+            post :create, params: { appointment: @new_appointment_params }
+          }.to change(@hospital.appointments, :count).by(1)
+        end
+
+        it 'redirects to appointments' do
+          post :create, params: { appointment: @new_appointment_params }
+          expect(response).to redirect_to appointments_path
+        end
       end
 
-      it 'has a 200 status code' do
-        get :new
-        expect(response.status).to eq(200)
-      end
+      context 'with invalid attributes' do
+        it 'does not save the new appointment' do
+          @new_appointment_params[:date] = nil
+          expect {
+            post :create, params: { appointment: @new_appointment_params }
+          }.to_not change(@hospital.appointments, :count)
+        end
 
-      it 'should return http success when we call #index action' do
-        expect(response).to have_http_status(:success)
-      end
-
-      it 'is expected to assign appointments instance variable' do
-        expect(assigns[:appointments]).to eq @current_hospital.appointments
+        it 're-renders the new method' do
+          @new_appointment_params[:date] = nil
+          post :create, params: { appointment: @new_appointment_params }
+          expect(response).to redirect_to appointments_path
+        end
       end
     end
 
-    context '#new action' do
-      before(:each) do
-        @current_hospital = Hospital.create(FactoryGirl.attributes_for(:hospital))
-        params = FactoryGirl.attributes_for(:admin)
-        params[:hospital_id] = @current_hospital.id
-        @request.env['devise.mapping'] = Devise.mappings[:admin]
-        @request.host = "#{@current_hospital.sub_domain}.localhost:3000"
-        admin = Admin.create(params)
-        admin.confirm
-        sign_in(admin)
-        @appointment = @current_hospital.appointments.create(FactoryGirl.attributes_for(:appointment))
-
-        get :new
+    ############# index #############
+    describe 'GET index' do
+      it 'populates an array of appointments' do
+        get :index
+        expect(assigns(:appointments)).to eq([@appointment])
       end
 
-      it 'should return http success' do
-        expect(response).to have_http_status(:success)
-      end
-
-      it 'is expected to assign appointment instance variable' do
-        expect(assigns(:appointment).id).to eq @current_hospital.appointments.new.id
-      end
-    end
-
-    context '#create action' do
-      before(:each) do
-        @current_hospital = Hospital.create(FactoryGirl.attributes_for(:hospital))
-        params = FactoryGirl.attributes_for(:admin)
-        params[:hospital_id] = @current_hospital.id
-        @request.env['devise.mapping'] = Devise.mappings[:admin]
-        @request.host = "#{@current_hospital.sub_domain}.localhost:3000"
-        admin = Admin.create(params)
-        admin.confirm
-        sign_in(admin)
-        @appointment = @current_hospital.appointments.create(FactoryGirl.attributes_for(:appointment))
-
-        post :create, appointment: FactoryGirl.attributes_for(:appointment)
-      end
-
-      it 'should return http success' do
-        expect(response).to redirect_to "/appointments/#{@appointment.sequence_num + 1}"
+      it 'renders the :index view' do
+        get :index
+        expect(response).to render_template :index
       end
     end
   end

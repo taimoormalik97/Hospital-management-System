@@ -1,4 +1,5 @@
 class Doctor < User
+  before_destroy :check_appointments_of_doctor
   sequenceid :hospital , :doctors
   has_many :appointments, dependent: :nullify
   has_many :patients, through: :appointments
@@ -17,5 +18,12 @@ class Doctor < User
     else
       where('name LIKE ?', "%#{pattern}%")
     end
+  end
+
+  def check_appointments_of_doctor
+    return true if appointments.blank?
+
+    errors.add :base, I18n.t('doctor.delete.appointment_error')
+    throw(:abort)
   end
 end

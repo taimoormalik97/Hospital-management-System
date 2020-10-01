@@ -59,6 +59,7 @@ group :test do
   gem 'factory_girl_rails','=4.9.0', require: false
   # Faker
   gem 'faker','=2.14.0'
+  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -66,4 +67,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'will_paginate', '3.1.8'
 gem 'will_paginate-bootstrap4'
+
+gem 'paperclip', '= 6.0.0'
 

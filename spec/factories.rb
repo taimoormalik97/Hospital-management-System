@@ -6,7 +6,7 @@ FactoryGirl.define do
     name { Faker::Name.unique.name }
     address { Faker::Name.unique.name }
     phone_number { Faker::Number.digit }
-    sub_domain { name.delete(' ').downcase }
+    sub_domain { name.delete(' ').delete('.').downcase }
   end
 
   factory :admin, class: User do
@@ -14,6 +14,7 @@ FactoryGirl.define do
     name { Faker::Name.unique.name }
     email { Faker::Internet.unique.email }
     password { Faker::Internet.password }
+    password_confirmation { password }
     type 'Admin'
     confirmed_at Time.now
   end
@@ -25,7 +26,9 @@ FactoryGirl.define do
     type 'Doctor'
     registration_no { Faker::Number.digit }
     speciality { Faker::Name.unique.name }
-    consultancy_fee '200'
+    password_confirmation { password }
+    consultancy_fee 200
+    confirmed_at Time.now
   end
 
   factory :patient, class: User do
@@ -35,6 +38,7 @@ FactoryGirl.define do
     gender { Faker::Name.unique.name }
     dob Date.current
     type 'Patient'
+    confirmed_at Time.now
   end
 
   factory :availability do
