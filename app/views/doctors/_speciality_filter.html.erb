@@ -2,5 +2,5 @@
   <div class='pt-1'>
     Speciality: 
   </div>
-  <%= select_tag 'filter', options_for_select(@doctors.map { |doctor| doctor.speciality}.uniq), {include_blank: 'Filter', class: 'speciality-filter form-control col-6 ml-2', id: 'speciality_filter'} %>
+  <%= select_tag 'filter', options_for_select(@doctors.pluck(:speciality).uniq), {include_blank: 'Filter', class: 'speciality-filter form-control col-6 ml-2', id: 'speciality_filter'} %>
 </div>
