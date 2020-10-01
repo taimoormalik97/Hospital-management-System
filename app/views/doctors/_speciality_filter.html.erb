@@ -1,6 +1,6 @@
-<%= form_tag('/doctors/speciality_filter', remote: true) do %>
-  <div class="row">
-    <%= select_tag 'Filter_Doctor', options_for_select(@doctors.map { |doctor| doctor.speciality}.uniq), {include_blank: 'Select Speciality', class: 'speciality-filter form-control col-2 ml-4'} %>
-    <%= submit_tag 'Filter', class: "btn btn-primary col-1 ml-2" %>
+<div class="row pb-2 pl-3 float-left">
+  <div class='pt-1'>
+    Speciality: 
   </div>
-<% end %>
+  <%= select_tag 'filter', options_for_select(@doctors.map { |doctor| doctor.speciality}.uniq), {include_blank: 'Filter', class: 'speciality-filter form-control col-6 ml-2', id: 'speciality_filter'} %>
+</div>

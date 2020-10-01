@@ -9,18 +9,18 @@
     </tr>   
   </thead>   
   <tbody>   
-  <% list_of_doctors_with_speciality(@doctors, params[:Filter_Doctor]).each do |doctor| %>   
+  <% @doctors.each do |doctor| %>   
     <tr>
       <td>
-        <a href=<%= doctor_path(doctor) %> >
-        <div class="set_image">
-          <% if doctor.profile_picture.present? %>
-            <%= image_tag doctor.profile_picture.url, class: 'block' %>
-          <% else %>
-            <%= image_pack_tag 'default_avatar.png', class: 'block' %>
-          <% end %>
-        </div>
-        </a>
+        <%= link_to doctor_path(doctor) do %>
+          <div class="set_image">
+            <% if doctor.profile_picture.present? %>
+              <%= image_tag doctor.profile_picture.url, class: 'block' %>
+            <% else %>
+              <%= image_pack_tag 'default_avatar.png', class: 'block' %>
+            <% end %>
+          </div>
+        <% end %>
       </td>
       <td ><%= link_to doctor.name, doctor_path(doctor) %></td>   
       <td><%= doctor.registration_no %></td>  

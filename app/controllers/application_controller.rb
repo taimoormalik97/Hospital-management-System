@@ -12,11 +12,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = exception.message
-    if user_signed_in?
-      redirect_to dashboard_path
-    else
-      redirect_to root_path
-    end
+    redirect_to root_path
   end
 
   def route_not_found

@@ -156,6 +156,15 @@ function showAvailabilitiesForAppointment() {
   });
 }
 
+$(document).ready(function(){
+  $('body').on('change', '#speciality_filter', function(){
+    debugger
+    $.ajax({ type: "GET", url: '/doctors/speciality_filter', data: { filter: $(this).val() } });
+  })
+
+});
+
+
 $(document).ready(collapseSidebar)
 $(document).ready(showAvailabilitiesForAppointment)
 

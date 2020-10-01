@@ -60,7 +60,7 @@ Rails.application.routes.draw do
     resources :doctors do
       resources :availabilities, except: [:edit, :update, :show]
       collection do
-        post 'speciality_filter'
+        get 'speciality_filter'
       end
       collection do
         get 'search_pred'

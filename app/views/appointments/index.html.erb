@@ -46,7 +46,7 @@
               <% if current_user.doctor? %>
                 <td>
                   <% if can?(:approve, appointment) %>
-                    <%= link_to complete_appointment_path(appointment), method: 'put', data: { confirm: t('popup.approve') } do %>
+                    <%= link_to approve_appointment_path(appointment), method: 'put', data: { confirm: t('popup.approve') } do %>
                       <i class="far fa-check-circle color-ready" title="pending"></i>
                     <% end %>
                   <% elsif can?(:complete, appointment) %>

@@ -94,6 +94,14 @@ class DoctorsController < ApplicationController
       end
     end
   end
+  
+  # POST /speciality_filter
+  def speciality_filter
+    @doctors = @doctors.where(speciality: params[:filter]) if params[:filter].present?
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def doctor_params
     params.require(:doctor).permit(:name, :email, :password, :registration_no, :speciality, :consultancy_fee, :profile_picture)
@@ -105,12 +113,5 @@ class DoctorsController < ApplicationController
 
   def show_page_breadcrumb
     add_breadcrumb t('doctor.breadcrumb.show'), doctor_path
-  end
-
-  # POST /speciality_filter
-  def speciality_filter
-    respond_to do |format|
-      format.js
-    end
   end
 end
