@@ -96,7 +96,6 @@ class DoctorsController < ApplicationController
   
   # GET /speciality_filter
   def speciality_filter
-    binding.pry
     @doctors = @doctors.where(speciality: params[:filter]) if params[:filter].present?
     respond_to do |format|
       format.js
