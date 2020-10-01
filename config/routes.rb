@@ -61,6 +61,9 @@ Rails.application.routes.draw do
     resources :doctors do
       resources :availabilities, except: [:edit, :update, :show]
       collection do
+        get 'speciality_filter'
+      end
+      collection do
         get 'search_pred'
         get 'search'
       end
@@ -72,7 +75,7 @@ Rails.application.routes.draw do
     end
     get '' => 'dashboards#dashboard'
   end
-
+  
   devise_for :users, controllers: { registrations: 'users/registrations', passwords: 'users/passwords', sessions: 'users/sessions', confirmations: 'users/confirmations' }
   
   match '*unmatched', to: 'application#route_not_found', via: :all

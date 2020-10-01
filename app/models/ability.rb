@@ -24,6 +24,8 @@ class Ability
       
       can %i[read update], Admin, hospital_id: user.hospital_id, id: user.id
       can %i[read], Appointment, hospital_id: user.hospital_id
+      can :read, Prescription, hospital_id: user.hospital_id
+      can :read, PrescribedMedicine, hospital_id: user.hospital_id
     elsif user.doctor?
       can :index, Patient, Patient.doctor_only(user) do |patient|
         patient
@@ -41,6 +43,13 @@ class Ability
       can :complete, Appointment do |appointment|
         appointment.hospital_id == user.hospital_id && appointment.doctor_id == user.id && appointment.approved?
       end
+      can %i[new], Prescription do |prescription|
+        prescription.hospital_id == user.hospital_id
+      end
+      can %i[index read edit update destroy search_medicine], Prescription do |prescription|
+        prescription.hospital_id == user.hospital_id && prescription.appointment.doctor_id == user.id
+      end
+      can :manage, PrescribedMedicine, hospital_id: user.hospital_id
     elsif user.patient?
       can :show, Patient, hospital_id: user.hospital_id, id: user.id
       can :update, Patient, hospital_id: user.hospital_id, id: user.id
@@ -49,6 +58,10 @@ class Ability
       can :cancel, Appointment do |appointment|
         appointment.hospital_id == user.hospital_id && appointment.patient_id == user.id && appointment.pending?
       end
+      can :read, Prescription do |prescription|
+        prescription.hospital_id == user.hospital_id && prescription.appointment.patient_id == user.id
+      end
+      can :read, PrescribedMedicine, hospital_id: user.hospital_id
     end
     #
     # The first argument to `can` is the action you are giving the user
