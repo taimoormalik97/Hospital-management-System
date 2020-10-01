@@ -1,2 +1,2 @@
 # frozen_string_literal: true
-PAGINATION_SIZE = 10
+PAGINATION_SIZE = 5

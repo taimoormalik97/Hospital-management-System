@@ -252,7 +252,7 @@ DEPENDENCIES
   jquery-rails
   listen (= 3.2.1)
   mysql2 (= 0.5.3)
-  pry (= 0.13.1)
+  pry (~> 0.13.1)
   puma (= 4.3.6)
   rails (= 6.0.3.2)
   rspec-rails (= 4.0.1)
