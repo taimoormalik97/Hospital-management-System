@@ -58,7 +58,6 @@ group :test do
   gem 'factory_girl_rails','=4.9.0', require: false
   # Faker
   gem 'faker','=2.14.0'
-  gem 'database_cleaner','=1.8.5'
   gem 'rails-controller-testing'
 end
 
@@ -70,5 +69,6 @@ gem 'breadcrumbs_on_rails', '4.0.0'
 gem 'will_paginate', '3.1.8'
 gem 'will_paginate-bootstrap4'
 
-gem 'paperclip', '= 6.0.0'
-
+gem 'paperclip', '=6.0.0'
+gem 'chartkick', '=3.4.0'
+gem 'groupdate', '=5.2.1'
