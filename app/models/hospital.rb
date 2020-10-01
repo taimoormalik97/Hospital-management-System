@@ -30,12 +30,4 @@ class Hospital < ApplicationRecord
   def self.current_id
     Thread.current[:hospital_id]
   end
-
-  def self.current_hospital
-    Thread.current[:hospital]
-  end
-
-  def self.current_hospital=(hospital)
-    Thread.current[:hospital] = hospital
-  end
 end
