@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Medicine, type: :model do
   context 'validations' do
     before(:each) do
-      @hospital = Hospital.create(FactoryGirl.attributes_for(:hospital))
+      @hospital = Hospital.create!(FactoryGirl.attributes_for(:hospital))
       @medicine_params = FactoryGirl.attributes_for(:medicine)
       @medicine_params[:hospital] = @hospital
       @medicine = @hospital.medicines.create(@medicine_params)

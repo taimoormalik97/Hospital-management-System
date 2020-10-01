@@ -5,7 +5,7 @@ FactoryGirl.define do
   factory :hospital, class: Hospital do
     name { Faker::Name.unique.name }
     address { Faker::Name.unique.name }
-    phone_number { Faker::Number.digit }
+    phone_number { Faker::Number.number(10).to_i }
     sub_domain { name.delete(' ').delete('.').downcase }
   end
 
@@ -61,7 +61,7 @@ FactoryGirl.define do
   factory :medicine, class: Medicine do
     name { Faker::Name.unique.name }
     price { Faker::Number.digit }
-    quantity { Faker::Number.digit }
+    quantity  100
     association :hospital, factory: :hospital
   end 
 
