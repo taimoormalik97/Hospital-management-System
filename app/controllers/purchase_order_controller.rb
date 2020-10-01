@@ -1,6 +1,6 @@
 class PurchaseOrderController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
-  
+
   before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :show_page_breadcrumb, only: [:show]
 
@@ -23,7 +23,6 @@ class PurchaseOrderController < ApplicationController
     if @medicine.blank?
       flash[:notice] = t('medicine.search.failure')
     else
-      flash[:notice] = t('medicine.search.success')
       respond_to do |format|
           format.js{ render 'search'  }
         end
@@ -33,8 +32,7 @@ class PurchaseOrderController < ApplicationController
   def add_medicine
     @medicine= current_hospital.medicines.find_by(id: params[:medicine_id])
     quantity=params[:quantity].to_i
-    if @purchase_order.add_medicine(@medicine,quantity) 
-      flash[:notice] = t('purchase_order.addmed.success')  
+    if @purchase_order.add_medicine(@medicine,quantity)  
       respond_to do |format|
         format.js{ render 'purchase_order/update_price' }
       end            
@@ -117,6 +115,10 @@ class PurchaseOrderController < ApplicationController
 
   def deliver
     if @purchase_order.can_deliver?
+      @purchase_order.purchase_details.each do |pd|
+        medicine = pd.medicine
+        current_hospital.medicines.find_by(id: medicine.id).update(quantity: medicine.quantity+pd.quantity)
+      end
       @purchase_order.deliver!
       flash[:notice] = t('purchase_order.deliver.success') 
       redirect_to @purchase_order

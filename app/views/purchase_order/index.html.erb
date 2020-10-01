@@ -9,18 +9,17 @@
       </div>
     </div> 
     <div class="card-body">
-      <p><%= flash[:notice] %></p> 
-      <table  class="table">   
-        <thead >   
-          <tr>   
-            <th><%= t('purchase_order.name_label') %></th>   
-            <th><%= t('purchase_order.price_label') %></th>   
-            <th><%= t('purchase_order.state_label') %></th> 
-            <th></th>  
-          </tr>   
-        </thead>   
-        <tbody> 
-        <% if @purchase_orders.present? %>   
+      <% if @purchase_orders.present? %>  
+        <table  class="table">   
+          <thead >   
+            <tr>   
+              <th><%= t('purchase_order.name_label') %></th>   
+              <th><%= t('purchase_order.price_label') %></th>   
+              <th><%= t('purchase_order.state_label') %></th> 
+              <th><%= t('action') %></th> 
+            </tr>   
+          </thead>   
+          <tbody>   
           <% @purchase_orders.each do |po| %>   
             <tr>   
               <td><%=link_to po.vendorname, purchase_order_path(po)%></td>   
@@ -48,6 +47,7 @@
     </div>
   </div>
 </div>
+<br>
 <div class="pagination justify-content-center" class="pagination-spacing">
   <%= will_paginate @purchase_orders, previous_label: t('paginate.previous'), next_label: t('paginate.next') %> 
 </div>

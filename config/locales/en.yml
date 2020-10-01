@@ -37,7 +37,7 @@ en:
   create: 'Create'
   update: 'Update'
   submit: 'Submit'
-
+  action: 'Action'
   purchase_order:
     heading: 'Purchase Orders'
     add_order_label: 'Add Order'

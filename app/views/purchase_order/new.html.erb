@@ -8,8 +8,7 @@
             </h3> 
           </div>
         </div> 
-        <div class="card-body"> 
-          <p><%= flash[:error] %></p>   
+        <div class="card-body">    
           <p>   
             <div class="form-group">   
               <label><%= t('purchase_order.name_label') %></label>   
@@ -21,7 +20,7 @@
             </div>   
             <div class="form-group">   
               <label><%= t('purchase_order.state_label') %></label>   
-              <%= f.select :state, options_for_select(['drafted']), { prompt: true, selected: 'drafted' }, required: true, class: 'form-control' %> 
+              <%= f.text_field :state, value: 'drafted', required: true, disabled: true, class: 'form-control' %> 
             </div>    
           </p>
         </div> 

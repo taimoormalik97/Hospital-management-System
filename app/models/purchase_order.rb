@@ -22,19 +22,21 @@ class PurchaseOrder < ApplicationRecord
   has_many :medicines, through: :purchase_details
   default_scope { where(hospital_id: Hospital.current_id) }
   def add_medicine(medicine, quantity_added)
-    if medicine.quantity>0 && quantity_added<=medicine.quantity
-      if medicine.update(quantity: medicine.quantity-quantity_added)
-        self.update(price: self.price+=medicine.price*quantity_added)
-        curr_purchase_detail=purchase_details.find_by(medicine: medicine)
-        if curr_purchase_detail
-          curr_purchase_detail.update(quantity:quantity_added+curr_purchase_detail.quantity)
+    begin
+      PurchaseOrder.transaction do
+        if self.update(price: self.price+=medicine.price*quantity_added)
+          curr_purchase_detail=purchase_details.find_by(medicine: medicine)
+          if curr_purchase_detail
+            curr_purchase_detail.update(quantity:quantity_added+curr_purchase_detail.quantity)
+          else
+            purchase_details.create(quantity: quantity_added, medicine: medicine, hospital: medicine.hospital) 
+          end 
         else
-          purchase_details.create(quantity: quantity_added, medicine: medicine, hospital: medicine.hospital) 
-        end       
+          self.errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
+          return false 
+        end 
       end
-    else
-      self.errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
-      return false
-    end
+      rescue ActiveRecord::RecordNotSaved 
+    end   
   end 
 end

@@ -5,6 +5,7 @@
           <h3 class="col-md-8"><%= @purchase_order.vendorname %></h3> 
           <div class="col-md-4 d-flex justify-content-md-end"> 
            <%= link_to t('back'), { controller: 'purchase_order', action: 'index'}, class: "btn btn-secondary" %> 
+           <%= link_to t('delete'), purchase_order_path(@purchase_order), method: :delete, class: "btn btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?'}%>
            <% if @purchase_order.drafted? || @purchase_order.confirmed?%>
              <%= link_to t('edit'), edit_purchase_order_path(@purchase_order), class: "btn btn-primary btn-spacing"%> 
            <%end%>
@@ -31,36 +32,42 @@
         <dd class="col-sm-9">   
           <%=@purchase_order.state%>   
         </dd>
-        <%if @purchase_order.medicines.present?%>
-        <dt class="col-sm-2">  
-            <label><%= t('medicine.heading') %></label>
-        </dt>
-        <dd>
-          <table class="table">
-            <thead class="thead-dark">
-            <tr>
-              <th class="col-sm-9">
-                <%= t('medicine.name_label') %>
-              </th>
-              <th>
-                <%= t('medicine.quantity_label') %>
-              </th>
-            </tr>  
-            </thead>
-            <%@purchase_order.purchase_details.each do |pd|%>
-            <tr>
-              <td class="col-sm-9">
-                <%=pd.medicine.name%>
-              </td>
-              <td>
-                <%=pd.quantity%>
-              </td>
-            </tr> 
-            <%end%>
-          </table>
-        </dd>
-        <%end%>
     </dl>
     </div>    
-  </div>   
+  </div>
+  <div class="card">
+      <div class="card-header p-3 container-fluid">
+        <div class="row">
+          <%if @purchase_order.medicines.present?%>
+                <dt class="col-sm-2">  
+                    <label><%= t('medicine.heading') %></label>
+                </dt>
+                <dd>
+                  <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                      <th class="col-sm-9">
+                        <%= t('medicine.name_label') %>
+                      </th>
+                      <th>
+                        <%= t('medicine.quantity_label') %>
+                      </th>
+                    </tr>  
+                    </thead>
+                    <%@purchase_order.purchase_details.each do |pd|%>
+                    <tr>
+                      <td class="col-sm-9">
+                        <%=pd.medicine.name%>
+                      </td>
+                      <td>
+                        <%=pd.quantity%>
+                      </td>
+                    </tr> 
+                    <%end%>
+                  </table>
+                </dd>
+          <%end%>
+        </div>
+      </div> 
+    </div>  
 </div>
