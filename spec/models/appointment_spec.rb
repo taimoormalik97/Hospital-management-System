@@ -1,29 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe Appointment, type: :model do
+  before(:each) do
+    @hospital = Hospital.create(FactoryGirl.attributes_for(:hospital))
+    @doctor_params = FactoryGirl.attributes_for(:doctor)
+    @doctor_params[:hospital] = @hospital
+    @doctor = Doctor.create(@doctor_params)
+    @availability_params = FactoryGirl.attributes_for(:availability)
+    @availability_params[:hospital] = @hospital
+    @availability_params[:doctor] = @doctor
+    @availability = Availability.create(@availability_params)
+    @patient_params = FactoryGirl.attributes_for(:patient)
+    @patient_params[:hospital] = @hospital
+    @patient = Patient.create(@patient_params)
+    @appointment_params = FactoryGirl.attributes_for(:appointment)
+    @appointment_params[:hospital] = @hospital
+    @appointment_params[:doctor] = @doctor
+    @appointment_params[:patient] = @patient
+    @appointment_params[:availability] = @availability
+    @appointment = @hospital.appointments.create(@appointment_params)
+  end
+  
   context 'validations' do
-    before(:all) do
-      @hospital = Hospital.create(FactoryGirl.attributes_for(:hospital))
-      @doctor_params = FactoryGirl.attributes_for(:doctor)
-      @doctor_params[:hospital] = @hospital
-      @doctor = Doctor.create(@doctor_params)
-      @availability_params = FactoryGirl.attributes_for(:availability)
-      @availability_params[:hospital] = @hospital
-      @availability_params[:doctor] = @doctor
-      @availability = Availability.create(@availability_params)
-      @patient_params = FactoryGirl.attributes_for(:patient)
-      @patient_params[:hospital] = @hospital
-      @patient = Patient.create(@patient_params)
-      @appointment_params = FactoryGirl.attributes_for(:appointment)
-      @appointment_params[:hospital] = @hospital
-      @appointment_params[:doctor] = @doctor
-      @appointment_params[:patient] = @patient
-      @appointment_params[:availability] = @availability
-      @appointment = @hospital.appointments.create(@appointment_params)
-    end
 
     it 'should return true when validations pass' do
-      expect(@appointment.save).to eq true # fails validation
+      expect(@appointment.save).to eq true 
     end
 
     it 'should return false when validations fail' do
@@ -33,25 +34,6 @@ RSpec.describe Appointment, type: :model do
   end
 
   context 'methods' do
-    before(:each) do
-      @hospital = Hospital.create(FactoryGirl.attributes_for(:hospital))
-      @doctor_params = FactoryGirl.attributes_for(:doctor)
-      @doctor_params[:hospital] = @hospital
-      @doctor = Doctor.create(@doctor_params)
-      @availability_params = FactoryGirl.attributes_for(:availability)
-      @availability_params[:hospital] = @hospital
-      @availability_params[:doctor] = @doctor
-      @availability = Availability.create(@availability_params)
-      @patient_params = FactoryGirl.attributes_for(:patient)
-      @patient_params[:hospital] = @hospital
-      @patient = Patient.create(@patient_params)
-      @appointment_params = FactoryGirl.attributes_for(:appointment)
-      @appointment_params[:hospital] = @hospital
-      @appointment_params[:doctor] = @doctor
-      @appointment_params[:patient] = @patient
-      @appointment_params[:availability] = @availability
-      @appointment = @hospital.appointments.create(@appointment_params)
-    end
 
     it 'should return true if status is pending when we call pending? method' do
       expect(@appointment.pending?).to eq true

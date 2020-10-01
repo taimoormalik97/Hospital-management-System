@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     end
     
     resources :admin, only: [:show, :edit, :update]
+    
     resources :appointments do
       collection do
         get 'show_availabilities'

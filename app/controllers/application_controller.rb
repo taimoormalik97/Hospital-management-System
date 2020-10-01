@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :scope_current_hospital
-  before_action :validate_subdomain, :redirect_to_valid_signup, :redirect_to_valid_signin, :redirect_to_valid_password_reset, :redirect_to_valid_confirmation_email, :devise_edit_profile, :redirect_to_signin_subdomain, :redirect_to_prescriptions
+  before_action :validate_subdomain, :redirect_to_valid_signup, :redirect_to_valid_signin, :redirect_to_valid_password_reset, :redirect_to_valid_confirmation_email, :devise_edit_profile, :redirect_to_signin_subdomain
 
   rescue_from ActiveRecord::RecordNotFound do
     respond_to do |format|
@@ -77,10 +77,6 @@ class ApplicationController < ActionController::Base
     unless request.subdomain.present?
       redirect_to find_path if (request.url.include? '/users/confirmation/new') || (request.url.include? '/users/confirmation')
     end
-  end
-
-  def redirect_to_prescriptions
-    redirect_to prescriptions_path if (request.subdomain.present?) && (user_signed_in?) && (request.path == '/prescriptions/new') && (params[:appointment_id].nil?)
   end
 
 end
