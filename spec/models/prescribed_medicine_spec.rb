@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Prescription, type: :model do
+RSpec.describe PrescribedMedicine, type: :model do
   context 'validations' do
     before(:each) do
       @hospital = Hospital.create(FactoryGirl.attributes_for(:hospital))
