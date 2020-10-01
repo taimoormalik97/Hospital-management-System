@@ -421,3 +421,9 @@ h1 {
 .links-color {
   color: $color-public-pages !important;
 }
+
+.hover-button:hover {
+  background-color: $color-home-para !important;
+  border-color: $color-public-pages !important;
+  border: 1px solid;
+}
