@@ -58,7 +58,6 @@ group :test do
   gem 'factory_girl_rails','=4.9.0', require: false
   # Faker
   gem 'faker','=2.14.0'
-  gem 'database_cleaner','=1.8.5'
   gem 'rails-controller-testing'
 end
 
