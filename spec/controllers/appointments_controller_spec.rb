@@ -5,7 +5,7 @@ RSpec.describe AppointmentsController, type: :controller do
       @hospital = Hospital.create(FactoryGirl.attributes_for(:hospital))
       params = FactoryGirl.attributes_for(:admin)
       params[:hospital] = @hospital
-      @request.host = "#{@hospital.sub_domain}.example.com"
+      @request.host = "#{@hospital.sub_domain}.localhost:3000"
       admin = User.create(params)
       @doctor_params = FactoryGirl.attributes_for(:doctor)
       @doctor_params[:hospital] = @hospital

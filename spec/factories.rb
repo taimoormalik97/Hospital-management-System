@@ -7,7 +7,6 @@ FactoryGirl.define do
     address { Faker::Name.unique.name }
     phone_number { Faker::PhoneNumber.cell_phone_in_e164 }
     sub_domain { name.delete(' ').downcase }
-    #phone_number { Faker::Number.digit }
   end
 
   factory :admin, class: User do
