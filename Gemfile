@@ -53,11 +53,12 @@ end
 group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-  gem 'rspec-rails'
+  gem 'rspec-rails','=4.0.1'
   # To create factories while testing
-  gem 'factory_girl_rails', require: false
+  gem 'factory_girl_rails','=4.9.0', require: false
   # Faker
-  gem 'faker'
+  gem 'faker','=2.14.0'
+  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

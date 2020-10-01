@@ -7,6 +7,7 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new # guest user (not logged in)
+    
     if user.admin?
       can :manage, Patient, hospital_id: user.hospital_id
       can :manage, Doctor, hospital_id: user.hospital_id

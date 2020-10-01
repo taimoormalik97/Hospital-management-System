@@ -5,9 +5,8 @@ class User < ApplicationRecord
   belongs_to :hospital
   accepts_nested_attributes_for :hospital
   validates_format_of :email, with: /\A[^@\s]+@[^@\s]+\z/
-  validates :email, uniqueness: { scope: :hospital_id }, presence: true
+  validates :email, uniqueness: { scope: :hospital_id }, presence: true, case_sensitive: false
   validates :name, length: { minimum: 3 }, presence: true
-  validates :password, confirmation: true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :timeoutable,
          :confirmable, :validatable
