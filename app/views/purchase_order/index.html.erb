@@ -19,25 +19,29 @@
             <th></th>  
           </tr>   
         </thead>   
-        <tbody>   
-        <% @purchase_orders.each do |po| %>   
-          <tr>   
-            <td><%=link_to po.vendorname, purchase_order_path(po)%></td>   
-            <td><%= po.price%></td>   
-            <td><%= po.state%></td> 
-            <div>   
-              <td>
-                <%if (po.drafted? || po.confirmed?) && (can? :edit, po)%>
-                  <%= link_to edit_purchase_order_path(po), class: "btn btn-primary" do %>
-                    <i class="fas fa-pen"></i>
-                  <%end%>
-                <%end%>  
-                <%= link_to purchase_order_path(po), method: :delete, class: "btn btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?'} do %>
-                  <i class="fas fa-trash-alt"></i>
-                <%end%>      
-              </td> 
-            </div>       
-          </tr>   
+        <tbody> 
+        <% if @purchase_orders.present? %>   
+          <% @purchase_orders.each do |po| %>   
+            <tr>   
+              <td><%=link_to po.vendorname, purchase_order_path(po)%></td>   
+              <td><%= po.price%></td>   
+              <td><%= po.state%></td> 
+              <div>   
+                <td>
+                  <%if (po.drafted? || po.confirmed?) && (can? :edit, po)%>
+                    <%= link_to edit_purchase_order_path(po) do %>
+                      <i class="fas fa-pen"></i>
+                    <%end%>
+                  <%end%>  
+                  <%= link_to purchase_order_path(po), method: :delete, class: "btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?'} do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <%end%>      
+                </td> 
+              </div>       
+            </tr>   
+          <% end %>
+        <% else %>
+          <strong><%= t('purchase_order.none') %></strong>
         <% end %>   
         </tbody>   
       </table> 

@@ -21,7 +21,7 @@
             </div>   
             <div class="form-group">   
               <label><%= t('purchase_order.state_label') %></label>   
-              <%= f.select :state, options_for_select(['drafted']), { prompt: true, selected: 'drafted' }, required: true %> 
+              <%= f.select :state, options_for_select(['drafted']), { prompt: true, selected: 'drafted' }, required: true, class: 'form-control' %> 
             </div>    
           </p>
         </div> 
@@ -30,7 +30,7 @@
         <div class="row d-flex justify-content-md-end">
           <div>   
             <%= link_to t('back'), { controller: 'purchase_order', action: 'index'}, class: "btn btn-secondary" %>   
-            <%= f.submit t('create'), class: "btn btn-primary"%>   
+            <%= f.submit t('create'), class: "btn btn-primary btn-spacing"%>   
           </div> 
         </div>
       </div>    

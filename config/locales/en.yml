@@ -48,6 +48,7 @@ en:
     confirm_button: 'Confirm'
     deliver_button: 'Deliver'
     name: "Purchase Orders"
+    none: 'No Purchase Orders to display'
     add:
       success: "Purchase order has been added successfully"
       failure: "Failed to add!"
@@ -115,6 +116,7 @@ en:
     price_label: 'Price'
     quantity_label: 'Quantity'
     name: "Medicines"
+    none: 'No Medicines to display'
     add:
       success: "Medicine has been added successfully"
       failure: "Failed to add!"
@@ -193,7 +195,7 @@ en:
 
   sale_order:
     name: "Sales Orders"
-
+    none: 'No Sales Orders to display'
   appointment:
     label:
       start: 'Start'
