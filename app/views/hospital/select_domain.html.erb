@@ -1,28 +1,49 @@
-<div class="box">
-  <div class="wrapper">
-    <div class="container pt-3 w-50 card_center"> 
-      <div class="card">
-        <div class="card-header p-3 container-fluid">
-          <div class="row">
-            <h3 class="col-md-9">
-              <%= t('guest.select_hospital') %>
-            </h3> 
-          </div>
+<div class="container w-50 card_center">
+  <div class="card card-border">
+    <div class="card-body m-5">
+      <div class="text-center p-3 container-fluid">
+        <div class="row">
+          <h1 class="col-md-12">
+            <%= t('guest.welcome_msg') %>
+          </h1> 
         </div>
-        <div class="card scroll_domain">
-          <div class="card-body table-responsive">
-            <% @selected_users.each do |user| %>
-              <a class="select_domain_hover" href= <%= new_user_session_url(email: user.email, subdomain: user.hospital.sub_domain) %>>
-                <div class="container pt-3"> 
-                  <div class="select_domain" class="card">
-                    <div class="card-body" >
-                      <h5 class="card-title"><%= user.hospital.name %></h5>
+      </div>
+      <div class="pt-25">
+        <div class="separator"></div>
+      </div>
+      <div class="row mt-3 ml-2 font-for-card">
+        <h3><%= t('guest.signin') %></h3>
+      </div>
+      <div class="row ml-0 font-for-card">
+        <h5 class="px-2 pt-2 msg-color"> <%= t('guest.select_hospital') %>
+        </h5>
+      </div>
+      <div class="scroll_domain">
+        <div class="table-responsive">
+          <% @selected_users.each do |user| %>
+            <a class="select_domain_hover" href= <%= new_user_session_url(email: user.email, subdomain: user.hospital.sub_domain) %>>
+              <div class="container pt-3"> 
+                <div class="select_domain card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-2 pl-5 pr-0 pt-2" >
+                        <i class="fas fa-hospital-user" style="color: #0971A5;"></i>
+                      </div>
+                      <div class="col-1 pl-0" >
+                        <div class="vertical_separator"></div>
+                      </div>
+                      <div class="col-7 pt-2 pl-0">
+                        <h5 class="card-title" style="color: #000000;"><%= user.hospital.name %></h5>
+                      </div>
+                      <div class="col-2 pl-5 pt-2">
+                        <i class="fas fa-chevron-right" style="color: #0971A5;"></i>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </a>
-            <% end %>
-          </div>
+              </div>
+            </a>
+          <% end %>
         </div>
       </div>
     </div>
