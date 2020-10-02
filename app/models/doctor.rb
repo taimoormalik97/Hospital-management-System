@@ -1,6 +1,6 @@
 class Doctor < User
   before_destroy :check_appointments_of_doctor
-  sequenceid :hospital , :doctors
+  sequenceid :hospital, :doctors
   has_many :appointments, dependent: :nullify
   has_many :patients, through: :appointments
   has_many :feedbacks, dependent: :destroy
