@@ -1,5 +1,5 @@
 class Bill < ApplicationRecord
-  sequenceid :hospital , :bills
+  sequenceid :hospital, :bills
   belongs_to :hospital
   belongs_to :patient
   has_many :bill_details, dependent: :destroy

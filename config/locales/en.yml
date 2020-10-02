@@ -134,6 +134,7 @@ en:
       new: "New Medicine"
       show: "Medicine Details"
       edit: "Edit Medicine"
+    prescription_error: 'Medicine exists in prescriptions'
   paginate:
     previous: "Previous"
     next: "Next"
