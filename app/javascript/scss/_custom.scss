@@ -80,7 +80,6 @@ $font-home: "Work Sans", serif;
 
 .select_domain {
   border: 1px solid $color-public-pages;
-  
 }
 
 .select_domain:hover{
@@ -91,6 +90,14 @@ $font-home: "Work Sans", serif;
 
 .select_domain_hover:hover{
   text-decoration: none;
+}
+
+.sub_domain_color {
+  color: #000000;
+}
+
+.icon_color {
+  color: #0971A5 !important;
 }
 
 .vertical_separator {
