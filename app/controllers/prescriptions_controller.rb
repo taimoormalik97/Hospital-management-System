@@ -4,7 +4,7 @@ class PrescriptionsController < ApplicationController
   before_action :load_prescriptions, only: :index
   before_action :index_page_breadcrumb, only: [:index, :show, :edit]
   before_action :show_page_breadcrumb, only: [:show, :edit]
-  load_and_authorize_resource find_by: :sequence_num
+  load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
 
   # GET /prescriptions
   def index
@@ -86,7 +86,7 @@ class PrescriptionsController < ApplicationController
   end
 
   def load_prescriptions
-    @prescriptions = Prescription.includes(appointment: [:doctor, :patient, :availability]).available_prescriptions(@current_user)
+    @prescriptions = Prescription.includes(appointment: [:doctor, :patient, :availability]).available_prescriptions(@current_user).load
   end
 
   def index_page_breadcrumb

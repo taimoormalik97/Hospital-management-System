@@ -93,4 +93,18 @@ FactoryGirl.define do
     association :bills, factory: :bills
     association :billable
   end
+
+  factory :prescription, class: Prescription do
+    association :hospital, factory: :hospital
+    association :appointment, factory: :appointment
+  end
+
+  factory :prescribed_medicine, class: PrescribedMedicine do
+    association :hospital, factory: :hospital
+    association :prescription, factory: :prescription
+    association :medicine, factory: :medicine
+    quantity { Faker::Number.digit }
+    usage_instruction 'Day & Night'
+  end
+
 end

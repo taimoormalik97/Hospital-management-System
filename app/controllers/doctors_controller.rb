@@ -94,7 +94,7 @@ class DoctorsController < ApplicationController
     end
   end
   
-  # POST /speciality_filter
+  # GET /speciality_filter
   def speciality_filter
     @doctors = @doctors.where(speciality: params[:filter]) if params[:filter].present?
     respond_to do |format|

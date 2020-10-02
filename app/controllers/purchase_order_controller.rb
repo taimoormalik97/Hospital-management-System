@@ -24,7 +24,7 @@ class PurchaseOrderController < ApplicationController
       flash[:notice] = t('medicine.search.failure')
     else
       respond_to do |format|
-          format.js{ render 'search'  }
+          format.js { render 'search'  }
         end
     end
   end
@@ -32,9 +32,9 @@ class PurchaseOrderController < ApplicationController
   def add_medicine
     @medicine= current_hospital.medicines.find_by(id: params[:medicine_id])
     quantity=params[:quantity].to_i
-    if @purchase_order.add_medicine(@medicine,quantity)  
+    if @purchase_order.add_medicine(@medicine, quantity)  
       respond_to do |format|
-        format.js{ render 'purchase_order/update_price' }
+        format.js { render 'purchase_order/update_price' }
       end            
     else   
       flash[:error] = [t('purchase_order.addmed.failure')]
@@ -115,9 +115,8 @@ class PurchaseOrderController < ApplicationController
 
   def deliver
     if @purchase_order.can_deliver?
-      @purchase_order.purchase_details.each do |pd|
-        medicine = pd.medicine
-        current_hospital.medicines.find_by(id: medicine.id).update(quantity: medicine.quantity+pd.quantity)
+      @purchase_order.purchase_details.each do |purchasedetail|
+        purchasedetail.medicine.update(quantity: purchasedetail.medicine.quantity + purchasedetail.quantity)
       end
       @purchase_order.deliver!
       flash[:notice] = t('purchase_order.deliver.success') 

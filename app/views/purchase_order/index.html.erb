@@ -24,11 +24,11 @@
             <tr>   
               <td><%=link_to po.vendorname, purchase_order_path(po)%></td>   
               <td><%= po.price%></td>
-              <% if po.state == 'drafted' %>  
+              <% if po.drafted? %>  
                 <td><span class='rounded border border-light p-1 bg-light'><%= po.state%></span></td> 
-              <% elsif po.state == 'confirmed' %>  
+              <% elsif po.confirmed? %>  
                 <td><span class='rounded border border-warning p-1 bg-warning'><%= po.state%></span></td> 
-              <% elsif po.state == 'delivered' %>  
+              <% elsif po.delivered? %>  
                 <td><span class='rounded border border-success p-1 bg-success'><%= po.state%></span></td> 
               <%end%>
               <div>   

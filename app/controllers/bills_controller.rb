@@ -35,9 +35,9 @@ class BillsController < ApplicationController
   def add_medicine
     @medicine= current_hospital.medicines.find_by(id: params[:medicine_id])
     quantity=params[:quantity].to_i
-    if @bill.add_medicine(@medicine,quantity)   
+    if @bill.add_medicine(@medicine, quantity)   
       respond_to do |format|
-        format.js{ render 'bills/update_price' }
+        format.js { render 'bills/update_price' }
       end            
     else  
       flash[:error] = [t('sales_order.addmed.failure')]

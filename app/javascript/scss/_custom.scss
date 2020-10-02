@@ -1,6 +1,6 @@
 $color-back: #2B333E;
 $color-primary-btn: #007bff;
-$color-public-pages: #5DB2FF;
+$color-public-pages: #0971A5;
 $color-hear: #696969;
 $color-danger: #dc3545;
 $color-success: #28a745;
@@ -417,7 +417,17 @@ h1 {
   }
 }
 
-.speciality-filter{
+.speciality-filter {
   margin-bottom: 15px;
   display: flex;
+}
+
+.links-color {
+  color: $color-public-pages !important;
+}
+
+.hover-button:hover {
+  background-color: $color-home-para !important;
+  border-color: $color-public-pages !important;
+  border: 1px solid;
 }

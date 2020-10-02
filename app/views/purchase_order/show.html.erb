@@ -10,7 +10,7 @@
              <% elsif @purchase_order.confirmed? %>
                 <%= link_to t('purchase_order.deliver_button'), deliver_purchase_order_path(@purchase_order), method: "put", class: "btn btn-success btn-spacing"%>
             <% end %> 
-            <%= link_to t('delete'), purchase_order_path(@purchase_order), method: :delete, class: "btn btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?'}%>
+            <%= link_to t('delete'), purchase_order_path(@purchase_order), method: :delete, class: "btn btn-danger btn-spacing", data: { confirm:'Are you sure you want to delete medicine?' }%>
             <% if @purchase_order.drafted? || @purchase_order.confirmed?%>
              <%= link_to t('edit'), edit_purchase_order_path(@purchase_order), class: "btn btn-primary btn-spacing"%> 
             <%end%>

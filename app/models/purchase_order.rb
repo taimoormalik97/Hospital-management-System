@@ -36,7 +36,8 @@ class PurchaseOrder < ApplicationRecord
           return false 
         end 
       end
-      rescue ActiveRecord::RecordNotSaved 
+    rescue ActiveRecord::RecordNotSaved 
+      self.errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
     end   
   end 
 end
