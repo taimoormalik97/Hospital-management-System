@@ -5,7 +5,7 @@ class CreatePrescriptions < ActiveRecord::Migration[6.0]
       t.references :appointment, null: false
       t.references :hospital, null: false
 
-      t.timestamps, null: false
+      t.timestamps null: false
     end
   end
 end

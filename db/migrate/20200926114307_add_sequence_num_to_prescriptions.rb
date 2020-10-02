@@ -3,7 +3,6 @@ class AddSequenceNumToPrescriptions < ActiveRecord::Migration[6.0]
   
   def self.up
     add_column :prescriptions, :sequence_num, :integer, null: false
-    update_sequence_num_values
     add_index :prescriptions, [:hospital_id, :sequence_num], unique: true
   end
 
@@ -11,6 +10,4 @@ class AddSequenceNumToPrescriptions < ActiveRecord::Migration[6.0]
     remove_index  :prescriptions, column: [:hospital_id, :sequence_num]
     remove_column :prescriptions, :sequence_num
   end
-
 end
-

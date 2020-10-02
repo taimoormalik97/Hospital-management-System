@@ -204,6 +204,10 @@ blockquote p {
   display: none; 
 }
 
+.color-back {
+  background-color: $color-back; 
+}
+
 .color-primary {
   color: $color-primary-btn; 
 }
@@ -413,7 +417,18 @@ h1 {
   }
 }
 
-.speciality-filter{
+.speciality-filter {
   margin-bottom: 15px;
   display: flex;
+}
+
+.dashboard-stat {
+  border: 0px solid $color-back;
+  border-radius: 10px;
+}
+
+#half-background {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(0deg, #f6f6f6 70%, #007bff 30%);
 }

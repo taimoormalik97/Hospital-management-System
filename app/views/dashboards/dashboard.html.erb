@@ -1,1 +1,7 @@
-<%= line_chart Patient.group_by_day(:created_at, time_zone: "Pacific Time (US & Canada)").count %>
+<% if current_user.admin? %>
+  <%= render partial: 'admin_dashboard' %>
+<% elsif current_user.doctor? %>
+  <%= render partial: 'doctor_dashboard' %>
+<% elsif current_user.patient? %>
+  <%= render partial: 'patient_dashboard' %>
+<% end %>

@@ -5,7 +5,7 @@ FactoryGirl.define do
   factory :hospital, class: Hospital do
     name { Faker::Name.unique.name }
     address { Faker::Name.unique.name }
-    phone_number { Faker::Number.digit }
+    phone_number { Faker::PhoneNumber.cell_phone_in_e164 }
     sub_domain { name.delete(' ').delete('.').downcase }
   end
 
