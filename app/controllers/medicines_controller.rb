@@ -2,12 +2,15 @@ class MedicinesController < ApplicationController
   
   include ActionController::MimeResponds
   load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
-  before_action :root_page_breadcrumb, only: [:index, :new, :show, :edit]
+  
   before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :show_page_breadcrumb, only: [:show]
 
   def index
     @medicines = @medicines.paginate(page: params[:page], per_page: PAGINATION_SIZE )
+    respond_to do |format|
+      format.html
+    end
   end
 
   def new
@@ -31,7 +34,7 @@ class MedicinesController < ApplicationController
   end
 
   def create
-    if @medicine.save   
+    if @medicine.save 
       flash[:notice] = t('medicine.add.success')
       redirect_to medicine_path(@medicine)
     else   
@@ -76,7 +79,7 @@ class MedicinesController < ApplicationController
     end   
   end
 
-  def medicine_params   
+  def medicine_params 
     params.require(:medicine).permit(:name, :price, :quantity, :search)   
   end 
 

@@ -37,10 +37,10 @@ en:
   create: 'Create'
   update: 'Update'
   submit: 'Submit'
-
+  action: 'Action'
   purchase_order:
     heading: 'Purchase Orders'
-    add_order_label: 'Add Order'
+    add_order_label: 'Add'
     edit_order_label: 'Edit Order'
     name_label: 'Vendor Name'
     price_label: 'Price'
@@ -48,6 +48,7 @@ en:
     confirm_button: 'Confirm'
     deliver_button: 'Deliver'
     name: "Purchase Orders"
+    none: 'No Purchase Orders to display'
     add:
       success: "Purchase order has been added successfully"
       failure: "Failed to add!"
@@ -73,7 +74,7 @@ en:
       edit: "Edit Order"
   sales_order:
     heading: 'Sales Orders'
-    add_order_label: 'Add Order'
+    add_order_label: 'Add'
     edit_order_label: 'Edit Order'
     name_label: 'Patient Name'
     type_label: 'Type'
@@ -109,12 +110,13 @@ en:
       failure: "Unable to add doctor to the sales order"
   medicine:
     heading: 'Medicines'
-    add_medicine_label: 'Add Medicine'
+    add_medicine_label: 'Add'
     edit_medicine_label: 'Edit Medicine'
     name_label: 'Name'
     price_label: 'Price'
     quantity_label: 'Quantity'
     name: "Medicines"
+    none: 'No Medicines to display'
     add:
       success: "Medicine has been added successfully"
       failure: "Failed to add!"
@@ -199,7 +201,7 @@ en:
 
   sale_order:
     name: "Sales Orders"
-
+    none: 'No Sales Orders to display'
   appointment:
     label:
       start: 'Start'
