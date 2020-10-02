@@ -40,14 +40,19 @@
           <!-- Chart -->
           <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
             <!-- Chart wrapper -->
-            <%= line_chart doctor_revenue_per_day(current_user).group_by_day(:created_at, time_zone: "Pacific Time (US & Canada)").count, points: false, dataset: {borderWidth: 4},
-              library: {
-                legend: {labels: {fontColor: "#fff"}},
-                scales: {
-                  yAxes: [{ticks: { fontColor: "#fff" }, scaleLabel: { fontColor: "#fff" }}],
-                  xAxes: [{ticks: { fontColor: "#fff" }}]
-                }
-              }%>
+            <% revenue = doctor_revenue_per_day(current_user)%>
+            <% if revenue.empty? %>
+              <%= line_chart revenue %>
+            <% else %>
+              <%= line_chart revenue.group_by_day(:created_at, time_zone: "Pacific Time (US & Canada)").sum, points: false, dataset: {borderWidth: 4},
+                library: {
+                  legend: {labels: {fontColor: "#fff"}},
+                  scales: {
+                    yAxes: [{ticks: { fontColor: "#fff" }, scaleLabel: { fontColor: "#fff" }}],
+                    xAxes: [{ticks: { fontColor: "#fff" }}]
+                  }
+                }%>
+            <% end %>
           </div>
         </div>
       </div>

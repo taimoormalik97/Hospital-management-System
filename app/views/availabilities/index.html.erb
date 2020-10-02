@@ -1,34 +1,27 @@
 <div class="container pt-3"> 
   <div class="card">
     <div class="card-header p-3 container-fluid">
-        <div class="row">
-          <h3 class="col-md-9">
-            <%= t('availability.name') %>
-          </h3> 
-          <div class="col-md-3 d-flex justify-content-md-end">
-            <%= link_to 'Add', new_doctor_availability_path(@doctor),  {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#availability_modal', class: 'btn btn-primary'} %>
-            <%= render partial: "availability_modal" %>   
-          </div>
+      <div class="row">
+        <h3 class="col-md-9">
+          <%= t('availability.name') %>
+        </h3> 
+        <div class="col-md-3 d-flex justify-content-md-end">
+          <%= link_to 'Add', new_doctor_availability_path(@doctor),  {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#availability_modal', class: 'btn btn-primary'} %>
+          <%= render partial: "availability_modal" %>   
         </div>
       </div>
+    </div>
     <div class="vertical-tabs">
+      <% active_tab = params[:week_day] || 'Sunday' %>
       <ul class="nav nav-tabs" role="tablist">
-        <%= render partial: "availability_tab_row", locals:{ num: 0, addclass: 'active' } %>
-        <%= render partial: "availability_tab_row", locals:{ num: 1, addclass: '' } %>
-        <%= render partial: "availability_tab_row", locals:{ num: 2, addclass: '' } %>
-        <%= render partial: "availability_tab_row", locals:{ num: 3, addclass: '' } %>
-        <%= render partial: "availability_tab_row", locals:{ num: 4, addclass: '' } %>
-        <%= render partial: "availability_tab_row", locals:{ num: 5, addclass: '' } %>
-        <%= render partial: "availability_tab_row", locals:{ num: 6, addclass: '' } %>
+        <% 7.times do |num| %>
+          <%= render partial: "availability_tab_row", locals: { num: num, addclass: active_tab_class(num, active_tab) } %>
+        <% end %>
       </ul>
       <div class="tab-content">
-        <%= render partial: "availability_tab", locals:{ num: 0, addclass: 'active' } %>
-        <%= render partial: "availability_tab", locals:{ num: 1, addclass: '' } %>
-        <%= render partial: "availability_tab", locals:{ num: 2, addclass: '' } %>
-        <%= render partial: "availability_tab", locals:{ num: 3, addclass: '' } %>
-        <%= render partial: "availability_tab", locals:{ num: 4, addclass: '' } %>
-        <%= render partial: "availability_tab", locals:{ num: 5, addclass: '' } %>
-        <%= render partial: "availability_tab", locals:{ num: 6, addclass: '' } %>
+        <% 7.times do |num| %>
+          <%= render partial: "availability_tab", locals: { num: num, addclass: active_tab_class(num, active_tab) } %>
+        <% end %>
       </div>
     </div>
   </div>

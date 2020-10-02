@@ -16,6 +16,26 @@ $color-completed: #CCF4DC;
 $color-cancelled: #FECBCB;
 $font-home: "Work Sans", serif;
 
+.navbar-color {
+  background-color: $color-primary-btn;
+}
+
+.user-name {
+  color: $color-home-para !important; 
+}
+
+.navbar-light {
+  .navbar-brand, nav-link{
+    margin-right: 0;
+    color: $color-home-para;
+    font-size: 1.4rem;
+  }
+}
+
+.navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
+  color: $color-home-para;
+}
+
 .bg-pending {
   background-color: $color-pending;
 }
@@ -443,14 +463,13 @@ h1 {
 }
 
 .dashboard-stat {
-  border: 0px solid $color-back;
   border-radius: 10px;
 }
 
 #half-background {
   height: 100%;
   border-radius: 10px;
-  background: linear-gradient(0deg, #f6f6f6 70%, #007bff 30%);
+  background:  #f2f4f7;
 }
 
 .links-color {
@@ -461,4 +480,8 @@ h1 {
   background-color: $color-home-para !important;
   border-color: $color-public-pages !important;
   border: 1px solid;
+}
+
+.note {
+  font-size: 0.87rem;
 }

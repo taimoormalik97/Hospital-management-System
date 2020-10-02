@@ -25,11 +25,12 @@ class AvailabilitiesController < ApplicationController
   def create
     respond_to do |format|
       if @availability.breakslots
-        format.html { redirect_to doctor_availabilities_path(@doctor), notice: t('availability.add.success') }
+        flash[:notice] = t('availability.add.success')
+        format.html { redirect_to doctor_availabilities_path(@doctor, week_day: params[:availability][:week_day]) }
       else
         flash[:error] = [t('availability.add.failure')]
         flash[:error] += @availability.errors.full_messages.first(5) if @availability.errors.any?
-        format.html { redirect_to doctor_availabilities_path }
+        format.html { redirect_to doctor_availabilities_path(@doctor, week_day: params[:availability][:week_day]) }
         format.js
       end
     end

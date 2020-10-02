@@ -1,2 +1,3 @@
 $("#availability_modal").find(".modal-content").html("<%= j (render 'new') %>");
+$('#select_availability_day').val($('.availability-day-tab.active').text());
 $("#availability_modal").modal('show');
