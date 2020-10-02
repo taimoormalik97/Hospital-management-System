@@ -9,41 +9,51 @@
       </div>
     </div> 
     <div class="card-body">
-      <p><%= flash[:notice] %></p> 
-      <table  class="table">   
-        <thead >   
-          <tr>   
-            <th><%= t('purchase_order.name_label') %></th>   
-            <th><%= t('purchase_order.price_label') %></th>   
-            <th><%= t('purchase_order.state_label') %></th> 
-            <th></th>  
-          </tr>   
-        </thead>   
-        <tbody>   
-        <% @purchase_orders.each do |po| %>   
-          <tr>   
-            <td><%=link_to po.vendorname, purchase_order_path(po)%></td>   
-            <td><%= po.price%></td>   
-            <td><%= po.state%></td> 
-            <div>   
-              <td>
-                <%if (po.drafted? || po.confirmed?) && (can? :edit, po)%>
-                  <%= link_to edit_purchase_order_path(po), class: "btn btn-primary" do %>
-                    <i class="fas fa-pen"></i>
-                  <%end%>
-                <%end%>  
-                <%= link_to purchase_order_path(po), method: :delete, class: "btn btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?'} do %>
-                  <i class="fas fa-trash-alt"></i>
-                <%end%>      
-              </td> 
-            </div>       
-          </tr>   
+      <% if @purchase_orders.present? %>  
+        <table  class="table">   
+          <thead >   
+            <tr>   
+              <th><%= t('purchase_order.name_label') %></th>   
+              <th><%= t('purchase_order.price_label') %></th>   
+              <th><%= t('purchase_order.state_label') %></th> 
+              <th class='action'><%= t('action') %></th>
+            </tr>   
+          </thead>   
+          <tbody>   
+          <% @purchase_orders.each do |po| %>   
+            <tr>   
+              <td><%=link_to po.vendorname, purchase_order_path(po)%></td>   
+              <td><%= po.price%></td>
+              <%= print_state(po) %>
+              <div>   
+                <td>
+                  <div class='row'>
+                    <div class='col-sm'>
+                      <%if (po.drafted? || po.confirmed?) && (can? :edit, po)%>
+                        <%= link_to edit_purchase_order_path(po), class: 'float-right' do %>
+                          <i class="fas fa-pen"></i>
+                        <%end%>
+                      <%end%> 
+                    </div>
+                    <div class='col-sm'>
+                      <%= link_to purchase_order_path(po), method: :delete, class: "btn-danger", data: {confirm:'Are you sure you want to delete medicine?'} do %>
+                        <i class="fas fa-trash-alt"></i>
+                      <%end%>
+                    </div>
+                  </div>      
+                </td> 
+              </div>       
+            </tr>   
+          <% end %>
+        <% else %>
+          <strong><%= t('purchase_order.none') %></strong>
         <% end %>   
         </tbody>   
       </table> 
     </div>
   </div>
 </div>
+<br>
 <div class="pagination justify-content-center" class="pagination-spacing">
   <%= will_paginate @purchase_orders, previous_label: t('paginate.previous'), next_label: t('paginate.next') %> 
 </div>

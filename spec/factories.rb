@@ -10,6 +10,7 @@ FactoryGirl.define do
   end
 
   factory :admin, class: User do
+    id {Faker::Number.digit }
     name { Faker::Name.unique.name }
     email { Faker::Internet.unique.email }
     password { Faker::Internet.password }
@@ -57,11 +58,40 @@ FactoryGirl.define do
     state 'pending'
   end
 
-  factory :medicine, class: Prescription do
+  factory :medicine, class: Medicine do
     name { Faker::Name.unique.name }
-    quantity { Faker::Number.digit }
-    price { Faker::Number.number(digits: 3) }
+    price { Faker::Number.digit }
+    quantity  100
     association :hospital, factory: :hospital
+  end 
+
+   factory :purchase_orders, class: PurchaseOrder do
+    vendorname { Faker::Name.unique.name }
+    price { Faker::Number.digit }
+    state 'drafted'
+    association :hospital, factory: :hospital
+    association :admin, factory: :admin
+  end 
+
+  factory :purchase_details, class: PurchaseDetail do
+    quantity { Faker::Number.digit }
+    association :hospital, factory: :hospital
+    association :medicine, factory: :medicine
+    association :purchase_orders, factory: :purchase_orders
+  end
+
+  factory :bills, class: Bill do
+    billable_type 'medicine' || 'doctor'
+    price { Faker::Number.digit }
+    association :hospital, factory: :hospital
+    association :patient, factory: :patient
+  end
+
+  factory :bill_details, class: BillDetail do
+    quantity { Faker::Number.digit }
+    association :hospital, factory: :hospital
+    association :bills, factory: :bills
+    association :billable
   end
 
   factory :prescription, class: Prescription do

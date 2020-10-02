@@ -16,6 +16,10 @@ $color-completed: #CCF4DC;
 $color-cancelled: #FECBCB;
 $font-home: "Work Sans", serif;
 
+.title-large {
+    font-size: 1.5em;
+}
+
 .navbar-color {
   background-color: $color-primary-btn;
 }
@@ -54,6 +58,10 @@ $font-home: "Work Sans", serif;
 
 .btn-spacing {
   margin-left: 1em
+}
+
+.action {
+  text-align: center
 }
 
 .float-right-arrow {
@@ -484,4 +492,8 @@ h1 {
 
 .note {
   font-size: 0.87rem;
+}
+
+.side-bar-item:hover {
+  background: linear-gradient(270deg, #2B333E 95%,#007bff 5%);
 }

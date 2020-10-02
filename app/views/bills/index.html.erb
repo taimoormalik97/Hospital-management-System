@@ -19,68 +19,78 @@
       </ul>
       <div class="tab-content">
         <div id="medicine_bills" class="<%= @active_tab == 'medicine' ? 'container tab-pane active' : 'container tab-pane'%>"><br>
-         <table  class="table">   
-            <thead >   
-              <tr>   
-                <th><%= t('sales_order.name_label') %></th>   
-                <th><%= t('sales_order.type_label') %></th>    
-                <th><%= t('sales_order.price_label') %></th>
-                <th></th>  
-              </tr>   
-            </thead>   
-            <tbody>   
-            <% @medicine_bills.each do |bill| %>  
-                  <td><%=link_to bill.patient.name, bill_path(bill)%></td>   
-                  <td><%= bill.billable_type%></td>
-                  <td><%= bill.price%></td>
-                  <div>   
-                    <td>
-                      <%= link_to edit_bill_path(bill), class: "btn btn-primary" do%> 
-                        <i class="fas fa-pen"></i>
-                      <%end%>
-                      <%= link_to bill_path(bill), method: :delete, class: "btn btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?'} do%> 
-                        <i class="fas fa-trash-alt"></i>
-                      <%end%>  
-                    </td> 
-                  </div>       
-                </tr>  
-            <% end %>   
+          <% if @medicine_bills.present? %>
+           <table  class="table">   
+              <thead >   
+                <tr>   
+                  <th><%= t('sales_order.name_label') %></th>   
+                  <th><%= t('sales_order.type_label') %></th>    
+                  <th><%= t('sales_order.price_label') %></th>
+                  <th><%= t('action') %></th> 
+                </tr>   
+              </thead>   
+              <tbody>   
+              <% @medicine_bills.each do |bill| %>  
+                    <td><%=link_to bill.patient.name, bill_path(bill)%></td>   
+                    <td><%= bill.billable_type%></td>
+                    <td><%= bill.price%></td>
+                    <div>   
+                      <td>
+                        <%= link_to edit_bill_path(bill) do%> 
+                          <i class="fas fa-pen"></i>
+                        <%end%>
+                        <%= link_to bill_path(bill), method: :delete, class: "btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?'} do%> 
+                          <i class="fas fa-trash-alt"></i>
+                        <%end%>  
+                      </td> 
+                    </div>       
+                  </tr>  
+              <% end %> 
+            <% else %>
+              <strong><%= t('sale_order.none') %></strong>
+            <% end %> 
             </tbody>   
           </table>
+          <br>
           <div class="pagination justify-content-center" class="pagination-spacing">
             <%= will_paginate @medicine_bills, previous_label: t('paginate.previous'), next_label: t('paginate.next'),params: { page2: @medicine_bills.next_page, tab:'medicine'} %> 
           </div>
         </div>
         <div id="doctor_bills" class="<%= @active_tab == 'doctor' ? 'container tab-pane fade active show' : 'container tab-pane fade' %>"><br>
-          <table  class="table">   
-            <thead >   
-              <tr>   
-                <th><%= t('sales_order.name_label') %></th>   
-                <th><%= t('sales_order.type_label') %></th>    
-                <th><%= t('sales_order.price_label') %></th>
-                <th></th>  
-              </tr>   
-            </thead>   
-            <tbody>   
-            <% @doctor_bills.each do |bill| %>  
+          <% if @doctor_bills.present? %>
+            <table  class="table">   
+              <thead >   
                 <tr>   
-                  <td><%=link_to bill.patient.name, bill_path(bill)%></td>   
-                  <td><%= bill.billable_type%></td>
-                  <td><%= bill.price%></td>
-                  <div>   
-                    <td>
-                      <%= link_to edit_bill_path(bill), class: "btn btn-primary" do%> 
-                        <i class="fas fa-pen"></i>
-                      <%end%>
-                      <%= link_to bill_path(bill), method: :delete, class: "btn btn-danger btn-spacing" do%> 
-                        <i class="fas fa-trash-alt"></i>
-                      <%end%>  
-                    </td> 
-                  </div>       
-                </tr> 
+                  <th><%= t('sales_order.name_label') %></th>   
+                  <th><%= t('sales_order.type_label') %></th>    
+                  <th><%= t('sales_order.price_label') %></th>
+                  <th><%= t('action') %></th> 
+                </tr>   
+              </thead>   
+              <tbody>  
+              <% @doctor_bills.each do |bill| %>  
+                  <tr>   
+                    <td><%=link_to bill.patient.name, bill_path(bill)%></td>   
+                    <td><%= bill.billable_type%></td>
+                    <td><%= bill.price%></td>
+                    <div>   
+                      <td>
+                        <%= link_to edit_bill_path(bill) do%> 
+                          <i class="fas fa-pen"></i>
+                        <%end%>
+                        <%= link_to bill_path(bill), method: :delete, class: "btn-danger btn-spacing" do%> 
+                          <i class="fas fa-trash-alt"></i>
+                        <%end%>  
+                      </td> 
+                    </div>       
+                  </tr> 
+              <% end %>
+            <% else %>
+              <strong><%= t('sale_order.none') %></strong>
             <% end %>   
             </tbody>   
           </table>
+          <br>
           <div class="pagination justify-content-center" class="pagination-spacing">
           <%= will_paginate @doctor_bills, previous_label: t('paginate.previous'), next_label: t('paginate.next'), params: { page1: @doctor_bills.next_page, tab:'doctor' } %> 
           </div>
