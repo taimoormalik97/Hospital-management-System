@@ -1,6 +1,6 @@
 class BillsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
-  before_action :root_page_breadcrumb, only: [:index, :new, :show, :edit]
+
   before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
   before_action :show_page_breadcrumb, only: [:show]
 
@@ -26,7 +26,6 @@ class BillsController < ApplicationController
       flash[:notice] = t('medicine.search.failure')
       redirect_to(request.env['HTTP_REFERER'])
     else
-      flash[:notice] = t('medicine.search.success')
       respond_to do |format|
           format.js{ render 'searchmed'  }
         end
@@ -36,10 +35,9 @@ class BillsController < ApplicationController
   def add_medicine
     @medicine= current_hospital.medicines.find_by(id: params[:medicine_id])
     quantity=params[:quantity].to_i
-    if @bill.add_medicine(@medicine,quantity) 
-      flash[:notice] = t('sales_order.addmed.success')  
+    if @bill.add_medicine(@medicine, quantity)   
       respond_to do |format|
-        format.js{ render 'bills/update_price' }
+        format.js { render 'bills/update_price' }
       end            
     else  
       flash[:error] = [t('sales_order.addmed.failure')]
@@ -52,8 +50,7 @@ class BillsController < ApplicationController
 
   def add_doctor
     @doctor= current_hospital.doctors.find_by(id: params[:doctor_id])
-    if @bill.add_doctor(@doctor) 
-      flash[:notice] = t('sales_order.addmed.success')  
+    if @bill.add_doctor(@doctor)  
       respond_to do |format|
         format.js{ render 'bills/update_price' }
       end            
@@ -80,7 +77,7 @@ class BillsController < ApplicationController
   end
 
   def create
-    if @bill.save!  
+    if @bill.save 
       flash[:notice] = t('sales_order.add.success')   
       redirect_to @bill
     else   

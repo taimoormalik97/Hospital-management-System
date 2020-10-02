@@ -8,8 +8,7 @@
             </h3> 
           </div>
         </div> 
-        <div class="card-body"> 
-          <p><%= flash[:error] %></p>   
+        <div class="card-body">   
           <p>   
             <div class="form-group">   
               <label><%= t('medicine.name_label') %></label>   
@@ -30,7 +29,7 @@
         <div class="row d-flex justify-content-md-end">
           <div class="col-md-3 d-flex justify-content-md-end">
             <%= link_to t('back'), { controller: 'medicines', action: 'index'}, class: "btn btn-secondary" %>   
-            <%= f.submit t('update'), class: "btn btn-primary"%> 
+            <%= f.submit t('update'), class: "btn btn-primary btn-spacing"%> 
           </div>
         </div>
       </div>    
