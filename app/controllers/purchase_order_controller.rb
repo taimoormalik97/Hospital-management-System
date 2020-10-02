@@ -131,7 +131,7 @@ class PurchaseOrderController < ApplicationController
   end
 
   def purchase_order_params   
-    params.require(:purchase_order).permit(:vendorname, :price, :state)   
+    params.require(:purchase_order).permit(:vendorname, :price)   
   end
 
   def root_page_breadcrumb
