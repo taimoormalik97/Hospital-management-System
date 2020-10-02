@@ -27,7 +27,8 @@ class PurchaseOrder < ApplicationRecord
         if self.update(price: self.price+=medicine.price*quantity_added)
           curr_purchase_detail=purchase_details.find_by(medicine: medicine)
           if curr_purchase_detail
-            curr_purchase_detail.update(quantity:quantity_added+curr_purchase_detail.quantity)
+            updated_quantity = quantity_added+curr_purchase_detail.quantity
+            curr_purchase_detail.update(quantity: updated_quantity)
           else
             purchase_details.create(quantity: quantity_added, medicine: medicine, hospital: medicine.hospital) 
           end 
