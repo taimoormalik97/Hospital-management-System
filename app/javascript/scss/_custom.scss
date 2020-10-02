@@ -1,6 +1,6 @@
 $color-back: #2B333E;
 $color-primary-btn: #007bff;
-$color-public-pages: #5DB2FF;
+$color-public-pages: #0971A5;
 $color-hear: #696969;
 $color-danger: #dc3545;
 $color-success: #28a745;
@@ -10,7 +10,27 @@ $color-home-background: #0971A5;
 $color-home-text: #3E5561;
 $color-home-para: #ffffff;
 $color-home-dim: #696969;
+$color-pending: #FEFBC7;
+$color-approved: #D6F0FA;
+$color-completed: #CCF4DC;
+$color-cancelled: #FECBCB;
 $font-home: "Work Sans", serif;
+
+.bg-pending {
+  background-color: $color-pending;
+}
+
+.bg-approved {
+  background-color: $color-approved;
+}
+
+.bg-completed {
+  background-color: $color-completed;
+}
+
+.bg-cancelled {
+  background-color: $color-cancelled;
+}
 
 .btn-spacing {
   margin-left: 1em
@@ -431,4 +451,14 @@ h1 {
   height: 100%;
   border-radius: 10px;
   background: linear-gradient(0deg, #f6f6f6 70%, #007bff 30%);
+}
+
+.links-color {
+  color: $color-public-pages !important;
+}
+
+.hover-button:hover {
+  background-color: $color-home-para !important;
+  border-color: $color-public-pages !important;
+  border: 1px solid;
 }

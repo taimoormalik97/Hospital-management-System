@@ -1,4 +1,5 @@
 class PublicPagesController < ApplicationController
+  skip_before_action :authenticate_user!
   layout 'static_pages_layout', only: [:about, :contact, :find]
 
   # GET /resource/index

@@ -15,6 +15,7 @@ class Hospital < ApplicationRecord
   has_many :purchase_details, dependent: :destroy
   has_many :bills, dependent: :destroy
   has_many :bill_details, dependent: :destroy
+
   validates :name, uniqueness: true, length: { minimum: 3 }, presence: true, case_sensitive: false
   validates :sub_domain, uniqueness: true, presence: true, case_sensitive: false
   validates :phone_number, presence: true,
@@ -28,13 +29,5 @@ class Hospital < ApplicationRecord
 
   def self.current_id
     Thread.current[:hospital_id]
-  end
-
-  def self.current_hospital
-    Thread.current[:hospital]
-  end
-
-  def self.current_hospital=(hospital)
-    Thread.current[:hospital] = hospital
   end
 end

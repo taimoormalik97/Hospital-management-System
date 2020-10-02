@@ -11,7 +11,6 @@
             <% if can?(:destroy, @prescription) %>
             <%= link_to 'Delete', prescription_path(@prescription), method: :delete, data: {confirm: t('popup.delete_prescription')} , class: "btn btn-danger btn-spacing" %>
           <% end %>
-          <%= link_to 'Back', prescriptions_path , class: "btn btn-secondary btn-spacing" %>
         </div>
       </div>
     </div>

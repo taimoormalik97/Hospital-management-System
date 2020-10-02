@@ -1,5 +1,5 @@
 <table  class="table picture_text">   
-  <thead >   
+  <thead>   
     <tr>
       <th><%= t('doctor.label.picture') %></th>
       <th><%= t('doctor.label.doctor_name') %></th>   
@@ -14,11 +14,7 @@
       <td>
         <%= link_to doctor_path(doctor) do %>
           <div class="set_image">
-            <% if doctor.profile_picture.present? %>
-              <%= image_tag doctor.profile_picture.url, class: 'block' %>
-            <% else %>
-              <%= image_pack_tag 'default_avatar.png', class: 'block' %>
-            <% end %>
+            <%= profile_picture(doctor) %>
           </div>
         <% end %>
       </td>

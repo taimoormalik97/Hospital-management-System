@@ -56,4 +56,25 @@ FactoryGirl.define do
     date DateTime.current
     state 'pending'
   end
+
+  factory :medicine, class: Prescription do
+    name { Faker::Name.unique.name }
+    quantity { Faker::Number.digit }
+    price { Faker::Number.number(digits: 3) }
+    association :hospital, factory: :hospital
+  end
+
+  factory :prescription, class: Prescription do
+    association :hospital, factory: :hospital
+    association :appointment, factory: :appointment
+  end
+
+  factory :prescribed_medicine, class: PrescribedMedicine do
+    association :hospital, factory: :hospital
+    association :prescription, factory: :prescription
+    association :medicine, factory: :medicine
+    quantity { Faker::Number.digit }
+    usage_instruction 'Day & Night'
+  end
+
 end

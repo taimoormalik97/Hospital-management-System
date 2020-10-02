@@ -8,17 +8,17 @@
   </head>
   <body>
     <nav class="navbar nav-static-pages navbar-expand-lg navbar-light fixed-top">
-        <a class="navbar-brand text-white ml-3 mr-3" href= <%= root_path %> > HMS</a>
+        <a class="navbar-brand text-white ml-3 mr-3" href= <%= root_url(subdomain: false) %> > HMS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link text-white" href= <%= about_path %> ><%=t('guest.about')%></a>
+              <a class="nav-link text-white" href= <%= about_url(subdomain: false) %> ><%=t('guest.about')%></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href= <%= contact_path %> ><%=t('guest.contact')%></a>
+              <a class="nav-link text-white" href= <%= contact_url(subdomain: false) %> ><%=t('guest.contact')%></a>
             </li>
           </ul>
             <%= link_to "Sign in", find_path, class: "btn btn-outline-light my-0 my-sm-0 mr-2" %>
