@@ -1,4 +1,5 @@
 class Availability < ApplicationRecord
+  DEFAULT_WEEK_DAY = 'Sunday'.freeze
   sequenceid :hospital, :availabilities
   belongs_to :doctor
   belongs_to :hospital
@@ -6,6 +7,7 @@ class Availability < ApplicationRecord
   scope :slots_for_a_day, ->(days_num) { where(week_day: days_num) }
   validates_presence_of %i[start_slot end_slot week_day]
   validate :invalid_slot
+  before_destroy :check_availability_for_appointments
   
   def invalid_slot
     starting = (start_slot + 1.minute).strftime('%H%M')
@@ -38,5 +40,12 @@ class Availability < ApplicationRecord
       availability.end_slot = ending
     end
     true
+  end
+
+  def check_availability_for_appointments
+    return true if appointments.blank?
+
+    errors.add :base, I18n.t('doctor.delete.appointment_error')
+    throw(:abort)
   end
 end

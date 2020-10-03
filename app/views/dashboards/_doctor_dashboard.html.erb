@@ -32,7 +32,7 @@
           <div class="row align-items-center">
             <div class="col">
               <h6 class="text-light text-uppercase ls-1 mb-1">Performance</h6>
-              <h5 class="title-large text-white mb-0">Revenue</h5>
+              <h5 class="title-large text-white mb-0">New Patients</h5>
             </div>
           </div>
         </div>
@@ -40,7 +40,6 @@
           <!-- Chart -->
           <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
             <!-- Chart wrapper -->
-            
           <%= line_chart doctor_new_patients(current_user).group_by_day(:created_at, time_zone: "Pacific Time (US & Canada)").count, points: false, dataset: { borderWidth: 4 },
                 library: {
                   legend: { labels: { fontColor: "#fff" } },

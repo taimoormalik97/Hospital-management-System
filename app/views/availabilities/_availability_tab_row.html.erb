@@ -1,3 +1,3 @@
 <li class="nav-item">
-  <a class="nav-link availability-day-tab <%= addclass %>" data-toggle="tab" data-doctor-seq='<%= @doctor.sequence_num %>' href="<%= "#pag#{num+1}" %>" role="tab" aria-controls="home"><%= Date::DAYNAMES[num] %></a>
+  <%= link_to Date::DAYNAMES[num], doctor_availabilities_path(@doctor, week_day: Date::DAYNAMES[num]), { class: "nav-link availability-day-tab #{addclass}", role: "tab" } %>
 </li>

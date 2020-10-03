@@ -4,7 +4,7 @@ module AvailabilityHelper
   end
   
   def convert_to_twelve_hour_format(slot_time)
-  	slot_time.strftime("%I:%M%p")
+  	slot_time.strftime("%H:%M")
   end
 
   def active_tab_class(number, active_tab)

@@ -487,6 +487,7 @@ h1 {
 .speciality-filter {
   margin-bottom: 15px;
   display: flex;
+  width: 20%;
 }
 
 .dashboard-stat {
@@ -590,4 +591,18 @@ h1 {
 
 .sidebar-row {
   color: $color-back !important;
+}
+
+.filter-div {
+  width: 100%;
+}
+
+.breadcrumb-row {
+  font-size: 0.9em;
+  height: 30px;
+}
+
+.breadcrumb {
+  padding: 0 !important;
+  background-color: $color-home-para !important;
 }

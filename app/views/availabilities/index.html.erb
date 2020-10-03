@@ -12,16 +12,13 @@
       </div>
     </div>
     <div class="vertical-tabs">
-      <% active_tab = params[:week_day] || 'Sunday' %>
       <ul class="nav nav-tabs" role="tablist">
         <% 7.times do |num| %>
-          <%= render partial: "availability_tab_row", locals: { num: num, addclass: active_tab_class(num, active_tab) } %>
+          <%= render partial: "availability_tab_row", locals: { num: num, addclass: active_tab_class(num, @selected_week_day) } %>
         <% end %>
       </ul>
       <div class="tab-content">
-        <% 7.times do |num| %>
-          <%= render partial: "availability_tab", locals: { num: num, addclass: active_tab_class(num, active_tab) } %>
-        <% end %>
+        <%= render partial: "availability_tab", locals: { num: 0, addclass: 'active' } %>
       </div>
     </div>
   </div>

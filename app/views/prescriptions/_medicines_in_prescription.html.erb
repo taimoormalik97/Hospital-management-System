@@ -30,5 +30,5 @@
     <%= will_paginate prescribed_medicines, previous_label: t('paginate.previous'), next_label: t('paginate.next') %>
   </div>
 <% elsif can?(:edit, @prescription) %>
-  <strong class="ml-3">Add Medicines in prescription by clicking on "Add Medicine".</strong>
+  <div class="ml-3 font-italic color-ready note">Note: Add Medicines in prescription by clicking on "Add Medicine".</div>
 <% end %>

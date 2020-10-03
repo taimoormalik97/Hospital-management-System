@@ -6,10 +6,9 @@
         <h3 class="col-md-6"><%= t('prescription.name')%></h3>
         <div class="col-md-6 d-flex justify-content-md-end">
           <% if can?(:edit, @prescription) %>
-            <%= link_to 'Edit Notes', edit_prescription_path(@prescription), class: "btn btn-primary btn-spacing" %>
             <%= link_to 'Add Medicine', new_prescription_prescribed_medicine_path(@prescription.sequence_num) , {class: "btn btn-primary btn-spacing", remote: true} %>
-            <% end %>
-            <% if can?(:destroy, @prescription) %>
+          <% end %>
+          <% if can?(:destroy, @prescription) %>
             <%= link_to 'Delete', prescription_path(@prescription), method: :delete, data: {confirm: t('popup.delete_prescription')} , class: "btn btn-danger btn-spacing" %>
           <% end %>
         </div>
@@ -18,6 +17,12 @@
     <div class="card-body">
       <p>
         <dl class="row">
+          <dt class="col-sm-2">
+            <label><%= t('prescription.appointment_id') %>: </label>
+          </dt>
+          <dd class="col-sm-10">
+            <%= link_to "##{@prescription.appointment.sequence_num}", appointment_path(@prescription.appointment) %>
+          </dd>
           <dt class="col-sm-2">
             <label><%= t('prescription.doctor_name') %>: </label>
           </dt>
@@ -40,10 +45,15 @@
             <label><%= t('prescription.appointment_time') %>: </label>
           </dt>
           <dd class="col-sm-10">
-            <%= convert_to_twelve_hour_format(@prescription.appointment.availability.start_slot) %>
+            <%= "#{convert_to_twelve_hour_format(@prescription.appointment.availability.start_slot)} - #{convert_to_twelve_hour_format(@prescription.appointment.availability.end_slot)}" %> 
           </dd>
           <dt class="col-sm-2">
             <label><%= t('prescription.doctor_notes') %>: </label>
+            <% if can?(:edit, @prescription) %>
+              <%= link_to edit_prescription_path(@prescription) do %>
+                <i class="fas fa-edit color-primary-btn" title="prescription"></i>
+              <% end %>
+            <% end %>
           </dt>
           <dd class="col-sm-10">
             <%= @prescription.notes %>
