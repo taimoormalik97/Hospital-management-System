@@ -8,7 +8,6 @@ class Medicine < ApplicationRecord
   has_many :prescribed_medicines, dependent: :nullify
   has_many :purchase_details, dependent: :nullify
   belongs_to :hospital
-  default_scope { where(hospital_id: Hospital.current_id) }
   def self.search(pattern)
     if pattern.blank?  # blank? covers both nil and empty string
       all

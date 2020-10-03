@@ -367,3 +367,6 @@ en:
     delete:
       success: "Prescription has been deleted successfully"
       failure: "Prescription is not deleted!"
+    add_medicine: "Medicine has been successfully added"
+    medicine_not_added: "Medicine has not been added"
+    delete_medicine: "Medicine has been successfully deleted"

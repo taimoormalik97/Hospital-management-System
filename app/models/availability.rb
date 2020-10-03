@@ -3,17 +3,16 @@ class Availability < ApplicationRecord
   belongs_to :doctor
   belongs_to :hospital
   has_many :appointments, dependent: :destroy
-  default_scope { where(hospital_id: Hospital.current_id) }
   scope :slots_for_a_day, ->(days_num) { where(week_day: days_num) }
   validates_presence_of %i[start_slot end_slot week_day]
   validate :invalid_slot
   
   def invalid_slot
-    starting = ((start_slot) + 1.minute).strftime("%H%M")
-    ending = ((end_slot) - 1.minute).strftime("%H%M")
+    starting = (start_slot + 1.minute).strftime('%H%M')
+    ending = (end_slot - 1.minute).strftime('%H%M')
     availabilities = doctor.availabilities.where(week_day: week_day)
     availabilities.each do |availability|
-      if starting.between?(availability.start_slot.strftime("%H%M"), availability.end_slot.strftime("%H%M")) || ending.between?(availability.start_slot.strftime("%H%M"), availability.end_slot.strftime("%H%M"))
+      if starting.between?(availability.start_slot.strftime('%H%M'), availability.end_slot.strftime('%H%M')) || ending.between?(availability.start_slot.strftime('%H%M'), availability.end_slot.strftime('%H%M'))
         errors.add(:base, I18n.t('availability.overlapping_error'))
       end
     end
@@ -26,10 +25,10 @@ class Availability < ApplicationRecord
     if start_slot >= slots_end
       errors.add(:base, I18n.t('availability.end_time_error'))
       return false
-    end 
+    end
     availability = self
     availability.end_slot = ending
-    while slots_end >= ending 
+    while slots_end >= ending
       return false unless availability.save
 
       availability = Availability.new(week_day: week_day, doctor_id: doctor.id)
@@ -38,7 +37,7 @@ class Availability < ApplicationRecord
       availability.start_slot = starting
       availability.end_slot = ending
     end
-    return true
+    true
   end
 
 end

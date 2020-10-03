@@ -14,7 +14,12 @@ class PrescribedMedicinesController < ApplicationController
   def create
     @prescribed_medicine.prescription = @prescription
     respond_to do |format|
-      @prescribed_medicine.save
+      if @prescribed_medicine.save
+        flash.now[:notice] = t('prescription.add_medicine')
+      else
+        flash.now[:error] = [t('prescription.medicine_not_added')]
+        flash.now[:error] += @prescribed_medicine.errors.full_messages
+      end
       format.js { render 'prescriptions/medicines_in_prescription' }
     end
   end
@@ -23,6 +28,7 @@ class PrescribedMedicinesController < ApplicationController
   def destroy
     @prescribed_medicine.destroy
     respond_to do |format|
+      flash.now[:notice] = t('prescription.delete_medicine')
       format.js { render 'prescriptions/medicines_in_prescription' }
     end
   end
