@@ -4,14 +4,22 @@
       <div class="row">
         <h3 class="col-md-8"><%= t('appointment.show_name') %></h3>
         <div class="col-md-4 d-flex justify-content-md-end"> 
-          <% if can?(:complete, @appointment) %>
-            <% prescription = @appointment.get_persisted_prescription %>
-            <% if prescription.blank? %>
-              <%= link_to "Add Prescription", new_prescription_path(appointment_id: @appointment.sequence_num), class: "btn btn-primary" %>
-            <% else %>
-              <%= link_to "View Prescription", prescription_path(prescription), class: "btn btn-primary" %>
+          <% prescription = @appointment.prescription %>
+            <% if current_user.doctor? %>
+              <% if can?(:approve, @appointment) %>
+                <%= link_to 'Approve', approve_appointment_path(@appointment), method: 'put', data: { confirm: t('popup.approve') }, class: "btn btn-info btn-spacing" %>
+              <% elsif can?(:complete, @appointment) %>
+                <%= link_to 'Complete', complete_appointment_path(@appointment), method: 'put', data: { confirm: t('popup.complete') }, class: "btn btn-success btn-spacing" %>
+              <% end %>
             <% end %>
-          <% end %> 
+            <% if can?(:cancel, @appointment) %>
+              <%= link_to 'Cancel', cancel_appointment_path(@appointment), method: 'put', data: { confirm: t('popup.cancel') }, class: "btn btn-danger btn-spacing" %>
+            <% end %> 
+          <% if @appointment.approved? && can?(:create, Prescription) && prescription.nil? %>
+            <%= link_to "Add Prescription", new_prescription_path(appointment_id: @appointment.sequence_num), class: "btn btn-primary btn-spacing" %>
+          <% elsif prescription.present? && can?(:show, prescription) %>
+            <%= link_to "View Prescription", prescription_path(prescription), class: "btn btn-primary btn-spacing" %>
+          <% end %>
         </div>
       </div>
     </div>

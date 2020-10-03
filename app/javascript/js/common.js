@@ -162,8 +162,6 @@ $(document).ready(function(){
   });
 });
 
-
-
 $(document).ready(collapseSidebar)
 $(document).ready(showAvailabilitiesForAppointment)
 

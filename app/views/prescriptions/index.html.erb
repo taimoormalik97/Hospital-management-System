@@ -10,8 +10,9 @@
     <div class="card-body">
       <% if @prescriptions.present? %>
         <table  class="table">
-          <thead >
+          <thead>
             <tr>
+              <th><%= t('prescription.label.id') %></th> 
               <th><%= t('prescription.doctor_name') %></th>
               <th><%= t('prescription.patient_name') %></th>
               <th><%= t('prescription.appointment_date') %></th>
@@ -21,16 +22,13 @@
           </thead>
           <tbody>
           <% @prescriptions.each do |prescription| %>
-              <tr>   
-                <td><%= prescription.appointment.doctor.name %></td>
-                <td><%= prescription.appointment.patient.name %></td>
-                <td><%= prescription.appointment.date %></td>
-                <td><%= convert_to_twelve_hour_format(prescription.appointment.availability.start_slot) %></td>
-                <td><%= link_to prescription_path(prescription) do %>
-                  <i class="fas fa-eye color-primary-btn" title="prescription"></i>
-                </td>
-              </tr>
-            <% end %>
+            <tr>   
+              <td><%= link_to prescription.sequence_num, prescription_path(prescription) %></td>  
+              <td><%= prescription.appointment.doctor.name %></td>
+              <td><%= prescription.appointment.patient.name %></td>
+              <td><%= prescription.appointment.date %></td>
+              <td><%= convert_to_twelve_hour_format(prescription.appointment.availability.start_slot) %></td>
+            </tr>
           <% end %>
           </tbody>
         </table>

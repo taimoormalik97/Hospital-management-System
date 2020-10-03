@@ -596,3 +596,13 @@ h1 {
 .filter-div {
   width: 100%;
 }
+
+.breadcrumb-row {
+  font-size: 0.9em;
+  height: 30px;
+}
+
+.breadcrumb {
+  padding: 0 !important;
+  background-color: $color-home-para !important;
+}

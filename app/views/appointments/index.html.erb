@@ -15,6 +15,7 @@
       <table  class="table">   
         <thead >   
           <tr>
+            <th><%= t('appointment.label.id') %></th> 
             <th><%= t('appointment.label.date') %></th> 
             <th><%= t('appointment.label.start') %></th>   
             <th><%= t('appointment.label.end') %></th>
@@ -23,15 +24,15 @@
             <% end %>
             <th><%= t('appointment.label.status') %></th>
             <% unless current_user.patient? %>
-              <th><%= t('patient.name') %></th>  
-              <th></th>
+              <th><%= t('patient.name') %></th> 
             <% end %>
-            <th></th>
+            <th>Actions</th>
           </tr>   
         </thead>   
         <tbody>   
           <% @appointments.each do |appointment| %>   
             <tr> 
+              <td><%= link_to appointment.sequence_num, appointment_path(appointment) %></td>
               <td><%= appointment.date %></td>   
               <% availability = appointment.availability %>
               <td><%= convert_to_twelve_hour_format(availability.start_slot) %></td>  
@@ -44,40 +45,30 @@
               <% unless current_user.patient? %>
                 <td><%= appointment.patient.name %></td>
               <% end %>
-              <% if current_user.doctor? %>
-                <td>
-                  <% if can?(:approve, appointment) %>
-                    <%= link_to approve_appointment_path(appointment), method: 'put', data: { confirm: t('popup.approve') } do %>
-                      <i class="far fa-check-circle color-ready" title="pending"></i>
-                    <% end %>
-                  <% elsif can?(:complete, appointment) %>
-                    <%= link_to complete_appointment_path(appointment), method: 'put', data: { confirm: t('popup.complete') } do %>
-                      <i class="far fa-check-circle color-notice" title="approved"></i>
-                    <% end %>
-                  <% elsif appointment.completed? %>
-                      <i class="far fa-check-circle color-success" title="completed"></i>
-                  <% end %>
-                </td> 
-              <% end %>
-              <td>
-                <% if can?(:cancel, appointment) %>
-                  <%= link_to cancel_appointment_path(appointment), method: 'put', data: { confirm: t('popup.cancel') } do %>
-                    <i class="far fa-times-circle color-danger" title="cancel"></i>
-                  <% end %>
-                <% elsif can?(:complete, appointment) %>
-                  <% prescription = appointment.get_persisted_prescription %>
-                  <% if prescription.blank? %>
-                    <%= link_to new_prescription_path(appointment_id: appointment.sequence_num) do %>
-                      <i class="fas fa-edit color-primary-btn" title="prescription"></i>
+              <td class="row">
+                <div class = "col-sm-1">
+                  <% if current_user.doctor? %>
+                    <% if can?(:approve, appointment) %>
+                      <%= link_to approve_appointment_path(appointment), method: 'put', data: { confirm: t('popup.approve') } do %>
+                        <i class="far fa-check-circle text-warning" title="approve"></i>
+                      <% end %>
+                    <% elsif can?(:complete, appointment) %>
+                      <%= link_to complete_appointment_path(appointment), method: 'put', data: { confirm: t('popup.complete') } do %>
+                        <i class="far fa-check-circle text-info" title="complete"></i>
+                      <% end %>
+                    <% elsif appointment.completed? %>
+                        <i class="far fa-check-circle color-success"></i>
                     <% end %>
                   <% end %>
-                <% end %> 
-              </td>
-              <td>
-                <%= link_to appointment_path(appointment) do %>
-                  <i class="fas fa-eye color-primary-btn" title="prescription"></i>
-                <% end %>
-              </td>    
+                </div>
+                <div class = "col-sm-1">
+                  <% if can?(:cancel, appointment) %>
+                    <%= link_to cancel_appointment_path(appointment), method: 'put', data: { confirm: t('popup.cancel') } do %>
+                      <i class="far fa-times-circle color-danger" title="cancel"></i>
+                    <% end %>
+                  <% end %> 
+                </div>
+              </td> 
             </tr>   
           <% end %>  
         </tbody>   
