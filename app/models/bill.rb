@@ -32,7 +32,7 @@ class Bill < ApplicationRecord
   end
 
   def add_doctor(doctor)
-    if update(price: price += doctor.consultancy_fee)
+    if update(price: price + doctor.consultancy_fee)
       bill_details.create(billable: doctor, hospital: doctor.hospital)
     else
       errors.add(:unable_to_add, I18n.t('doctor.add.failure'))
