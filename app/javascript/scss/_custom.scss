@@ -579,10 +579,15 @@ h1 {
     width: 100%;
     display: table;
 }
+
 .card {
     overflow: hidden;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
     background: #fff;
+}
+
+.sidebar-row {
+  color: $color-back !important;
 }
