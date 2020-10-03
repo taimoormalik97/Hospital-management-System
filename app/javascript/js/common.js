@@ -182,3 +182,4 @@ $.fn.clickToggle = function( f1, f2 ) {
   });
 
 }
+

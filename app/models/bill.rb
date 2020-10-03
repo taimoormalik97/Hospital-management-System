@@ -2,6 +2,7 @@ class Bill < ApplicationRecord
   sequenceid :hospital , :bills
   belongs_to :hospital
   belongs_to :patient
+  validates :billable_type, inclusion: { in: ['medicine', 'doctor'], message: 'Not a valid billable type' }
   has_many :bill_details, dependent: :destroy
   has_many :medicines, through: :bill_details, source: :billable, source_type: 'Medicine'
   has_many :tests, through: :bill_details, source: :billable, source_type: 'Test'
@@ -32,11 +33,13 @@ class Bill < ApplicationRecord
   end
 
   def add_doctor(doctor)
-    if update(price: price += doctor.consultancy_fee)
-      bill_details.create(billable: doctor, hospital: doctor.hospital)
-    else
+    curr_bill_detail=bill_details.find_by(billable: doctor)
+    if curr_bill_detail
       errors.add(:unable_to_add, I18n.t('doctor.add.failure'))
       return false
+    else
+      update(price: self.price + doctor.consultancy_fee)
+      bill_details.create(billable:doctor, hospital: doctor.hospital) 
     end
   end
 end

@@ -1,6 +1,6 @@
 
 function search(){
-	$('#search_medicines').tokenInput("/medicines/search_pred", {preventDuplicates: true, theme: 'facebook', tokenLimit: 1, hintText: 'search doctor'});
+	$('#search_medicines').tokenInput("/medicines/search_pred", {preventDuplicates: true, theme: 'facebook', tokenLimit: 1, hintText: 'search medicine'});
 }
 
 function search_doctor(){

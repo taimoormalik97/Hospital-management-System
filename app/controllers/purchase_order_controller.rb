@@ -61,7 +61,7 @@ class PurchaseOrderController < ApplicationController
   def create
     @purchase_order.hospital=current_hospital 
     @purchase_order.admin=current_user
-    if @purchase_order.save!  
+    if @purchase_order.save 
       flash[:notice] = t('purchase_order.add.success')   
       redirect_to @purchase_order
     else   

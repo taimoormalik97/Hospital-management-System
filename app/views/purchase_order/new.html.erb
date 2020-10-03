@@ -14,9 +14,8 @@
               <label><%= t('purchase_order.name_label') %></label>   
               <%= f.text_field :vendorname, :required => true, class: "form-control" %>   
             </div>   
-            <div class="form-group">   
-              <label><%= t('purchase_order.price_label') %></label>   
-              <%= f.number_field :price, :required => true, class: "form-control" %>   
+            <div class="form-group">      
+              <%= f.hidden_field :price, value: 0%>   
             </div>   
             <div class="form-group">   
               <label><%= t('purchase_order.state_label') %></label>   

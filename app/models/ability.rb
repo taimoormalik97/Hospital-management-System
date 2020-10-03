@@ -18,6 +18,11 @@ class Ability
       cannot :destroy, Medicine do |medicine|
         PurchaseDetail.where(medicine_id: medicine.id).exists? || BillDetail.where(billable: medicine).exists?
       end
+
+      cannot :confirm, PurchaseOrder do |po|
+        po.medicines.blank?
+      end
+
       cannot :edit, PurchaseOrder do |po|
         po.delivered?
       end
