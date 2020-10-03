@@ -27,7 +27,7 @@
               <td><%= prescription.appointment.doctor.name %></td>
               <td><%= prescription.appointment.patient.name %></td>
               <td><%= prescription.appointment.date %></td>
-              <td><%= convert_to_twelve_hour_format(prescription.appointment.availability.start_slot) %></td>
+              <td><%= "#{convert_to_twelve_hour_format(prescription.appointment.availability.start_slot)} - #{convert_to_twelve_hour_format(prescription.appointment.availability.end_slot)}" %></td>
             </tr>
           <% end %>
           </tbody>

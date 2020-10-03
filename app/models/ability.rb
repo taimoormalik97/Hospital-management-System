@@ -2,7 +2,6 @@
 
 class Ability
   include CanCan::Ability
-  
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
@@ -36,7 +35,6 @@ class Ability
       can :show, Doctor, hospital_id: user.hospital_id, id: user.id
       can :update, Doctor, hospital_id: user.hospital_id, id: user.id
       can %i[new create index destroy], Availability, hospital_id: user.hospital_id, doctor_id: user.id
-      
       can :read, Appointment, hospital_id: user.hospital_id, doctor_id: user.id
       can %i[cancel approve], Appointment do |appointment|
         appointment.hospital_id == user.hospital_id && appointment.doctor_id == user.id && appointment.pending?
