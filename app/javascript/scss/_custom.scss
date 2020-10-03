@@ -29,7 +29,7 @@ $font-home: "Work Sans", serif;
 }
 
 .navbar-light {
-  .navbar-brand, nav-link{
+  .navbar-brand, nav-link {
     margin-right: 0;
     color: $color-home-para;
     font-size: 1.4rem;
@@ -123,12 +123,31 @@ $font-home: "Work Sans", serif;
 }
 
 .select_domain {
+  border: 1px solid $color-public-pages;
+}
+
+.select_domain:hover{
+  text-decoration: none;
   background-color: #f2f2f2;
+}
+
+
+.select_domain_hover:hover{
+  text-decoration: none;
+}
+
+.sub_domain_color {
   color: #000000;
 }
 
-.select_domain_hover:hover{
-  text-decoration-color: black;
+.icon_color {
+  color: #0971A5 !important;
+}
+
+.vertical_separator {
+  height: 40px;
+  background-color: #0971A5 !important;
+  width: 1px;
 }
 
 .time {
@@ -225,7 +244,7 @@ blockquote p {
 .contact-img {
   width: 400px;
   height: 500px;
-  opacity: 0.6;
+  opacity: 0.5;
   object-fit: cover;
 }
 
@@ -253,7 +272,7 @@ blockquote p {
 }
 
 .color-back {
-  background-color: $color-back; 
+  background-color: $color-back !important; 
 }
 
 .color-primary {
@@ -474,7 +493,7 @@ h1 {
   border-radius: 10px;
 }
 
-#half-background {
+.half-background {
   height: 100%;
   border-radius: 10px;
   background:  #f2f4f7;
@@ -484,10 +503,15 @@ h1 {
   color: $color-public-pages !important;
 }
 
+.hover-button {
+  background-color: $color-home-background;
+  color: $color-home-para;
+}
+
 .hover-button:hover {
-  background-color: $color-home-para !important;
-  border-color: $color-public-pages !important;
-  border: 1px solid;
+  background-color: $color-home-background;
+  color: $color-home-para;
+  opacity: 90%;
 }
 
 .note {
@@ -495,5 +519,70 @@ h1 {
 }
 
 .side-bar-item:hover {
-  background: linear-gradient(270deg, #2B333E 95%,#007bff 5%);
+  background: linear-gradient(270deg, #2B333E 95%,#007bff 5%);  
+}
+
+.separator {
+    height: 1px;
+    background-color: #d8dcde;
+    width: 100%;
+}
+
+.button-width{
+  width: 100%;
+}
+
+.set_image_signup {
+  width: auto;
+  height: 100%;
+}
+
+.static_pages_layout_background {
+  height: 100%;
+  background: linear-gradient(120deg, #0971A5 50%, #f6f6f6 50%);
+}
+
+.font-for-card {
+  font-family: 'Open Sans';
+}
+
+.card-border {
+  border-radius:10px !important;
+}
+
+.msg-color {
+  color: #7c838f;
+}
+
+.min-password-size {
+  font-size: 14px;
+}
+
+.mb-7 {
+  margin-bottom:7%;
+}
+
+.card-heading {
+    background: url(../images/signup.jpg) top left/cover no-repeat;
+    display: table-cell;
+    width: 50%;
+}
+
+.card-3 {
+    background: #000;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    display: table;
+}
+.card {
+    overflow: hidden;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: #fff;
 }

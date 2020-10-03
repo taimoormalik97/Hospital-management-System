@@ -6,9 +6,9 @@ class AvailabilitiesController < ApplicationController
 
   # GET /availabilities
   def index
-    @availabilities = @availabilities.paginate(page: params[:page], per_page: PAGINATION_SIZE)
     respond_to do |format|
       format.html
+      format.js
     end
   end
 
@@ -31,7 +31,6 @@ class AvailabilitiesController < ApplicationController
         flash[:error] = [t('availability.add.failure')]
         flash[:error] += @availability.errors.full_messages.first(5) if @availability.errors.any?
         format.html { redirect_to doctor_availabilities_path(@doctor, week_day: params[:availability][:week_day]) }
-        format.js
       end
     end
   end

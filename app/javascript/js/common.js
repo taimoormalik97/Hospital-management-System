@@ -159,8 +159,13 @@ function showAvailabilitiesForAppointment() {
 $(document).ready(function(){
   $('body').on('change', '#speciality_filter', function(){
     $.ajax({ type: "GET", url: '/doctors/speciality_filter', data: { filter: $(this).val() } });
-  })
+  });
+
+  $('body').on('click', '.availability-day-tab', function(){
+    $.ajax({ type: "GET", url: '/doctors/' + $(this).data('doctor-seq') + '/availabilities', data: { week_day: $(this).text() } });
+  });
 });
+
 
 
 $(document).ready(collapseSidebar)

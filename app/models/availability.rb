@@ -1,5 +1,5 @@
 class Availability < ApplicationRecord
-  sequenceid :hospital , :availabilities
+  sequenceid :hospital, :availabilities
   belongs_to :doctor
   belongs_to :hospital
   has_many :appointments, dependent: :destroy
@@ -38,7 +38,6 @@ class Availability < ApplicationRecord
       availability.start_slot = starting
       availability.end_slot = ending
     end
-    return true
+    true
   end
-
 end

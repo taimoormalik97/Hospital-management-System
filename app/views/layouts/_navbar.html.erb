@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light navbar-color fixed-top">
-  <%= link_to root_path, class:"navbar-brand col-2 font-weight-bold" do%>
+  <%= link_to root_path, class:"navbar-brand col-2 font-weight-bold" do %>
     <% if user_signed_in? %>
       <%= current_hospital.name.titleize %>
     <% else %>

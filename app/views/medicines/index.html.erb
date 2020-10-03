@@ -27,11 +27,11 @@
               <td><%= medicine.quantity%></td>
               <div>   
                 <td>   
-                  <%= link_to edit_medicine_path(medicine) do%>
+                  <%= link_to edit_medicine_path(medicine) do %>
                     <i class="fas fa-pen"></i>
                   <%end%> 
                   <% if can? :destroy, medicine %>
-                    <%= link_to medicine_path(medicine), method: :delete, class: "btn-danger btn-spacing", data: { confirm:'Are you sure you want to delete medicine?' } do%>
+                    <%= link_to medicine_path(medicine), method: :delete, class: "btn-danger btn-spacing", data: { confirm:'Are you sure you want to delete medicine?' } do %>
                       <i class="fas fa-trash-alt"></i>
                     <%end%>
                   <% end %>      

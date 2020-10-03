@@ -78,9 +78,5 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 55a5e2b73a915a3317ec1494eb463b2abf03da3e
   Paperclip.options[:command_path] = "/usr/bin/convert"
 end

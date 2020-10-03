@@ -1,4 +1,4 @@
-<div class="container pt-3 mb-3" id="half-background"> 
+<div class="container pt-3 mb-3 half-background"> 
   <div class="row">
     <%= render partial: "dashboard_top_card", locals: {text_label: 'Doctors',value: count_doctors(@current_hospital)} %>
     <%= render partial: "dashboard_top_card", locals: {text_label: 'Appointments',value: count_user_appointments(current_user)} %>
@@ -21,7 +21,7 @@
           <div class="chart">
             <%= column_chart current_user.appointments.group_by_day_of_week(:created_at, format: "%a").count, dataset: { borderWidth: 0, fill: true }, colors: ["#007bff"],
             library: { scales: { yAxes: [{ gridLines: { display: false } }],
-            xAxes: [{ gridLines: { display: false } }]}} %>
+            xAxes: [{ gridLines: { display: false } }] } } %>
           </div>
         </div>
       </div>
@@ -40,12 +40,12 @@
           <!-- Chart -->
           <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
             <!-- Chart wrapper -->
-            <%= line_chart current_user.bills.where(billable_type: 'medicine').group_by_day(:created_at, time_zone: "Pacific Time (US & Canada)").count, points: false, dataset: {borderWidth: 4},
+            <%= line_chart current_user.bills.where(billable_type: 'medicine').group_by_day(:created_at, time_zone: "Pacific Time (US & Canada)").count, points: false, dataset: { borderWidth: 4 },
               library: {
-                legend: {labels: {fontColor: "#fff"}},
+                legend: { labels: { fontColor: "#fff" } },
                 scales: {
-                  yAxes: [{ticks: { fontColor: "#fff" }, scaleLabel: { fontColor: "#fff" }}],
-                  xAxes: [{ticks: { fontColor: "#fff" }}]
+                  yAxes: [{ ticks: { fontColor: "#fff" }, scaleLabel: { fontColor: "#fff" } }],
+                  xAxes: [{ ticks: { fontColor: "#fff" } }]
                 }
               }%>
           </div>

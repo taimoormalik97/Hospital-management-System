@@ -1,5 +1,5 @@
 $("#add_medicine_model_window").find(".modal-content").html("<%= j (render 'prescriptions/new_medicine') %>");
-$('#search_medicine_in_prescription').tokenInput("/prescriptions/search_medicine", { preventDuplicates: true });
+$('#search_medicine_in_prescription').tokenInput("/prescriptions/search_medicine", {preventDuplicates: true, tokenLimit:1, hintText: 'Search Medicine'});
 $('.token-input-dropdown').css("z-index","9999");
 $('.token-input-dropdown').css({"width": "42%", "font-size": "15px"});
 $('.token-input-list').css({"width": "100%", "font-size": "18px", "font-family": "Arial, Helvetica, sans-serif", "border-radius": "5px"});

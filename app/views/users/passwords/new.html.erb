@@ -1,38 +1,44 @@
 <%= render "users/shared/error_messages", resource: resource %>
-<div class="box">
-  <div class="wrapper">
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-      <div class="container pt-3 w-50 card_center">
-        <div class="card">
-          <div class="card-header p-3 container-fluid">
-            <div class="row">
-              <h3 class="col-md-9">
-                <%= t('guest.forgot_password') %>
-              </h3> 
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <div class="container w-50 card_center"> 
+    <div class="card card-border">
+      <div class="card-body m-5">
+        <div class="text-center p-3 container-fluid">
+          <div class="row">
+            <h1 class="col-md-12">
+              <%= t('guest.welcome_msg') %>
+            </h1> 
+          </div>
+        </div>
+        <div class="pt-25">
+          <div class="separator"></div>
+        </div>
+        <div class="row mt-3 ml-2 font-for-card">
+          <h3 ><%= t('guest.forgot_password') %></h3>
+        </div>
+        <div class="row ml-0 font-for-card">
+          <h5 class="px-2 pt-2 msg-color"> <%= t('guest.reset_password_msg') %>
+          </h5>
+        </div>
+        <p>   
+          <div class="row py-2 pl-2 mr-1">
+            <label class="col-3"><%= t('guest.profile.email') %></label>
+            <div class="pl-0 col-9">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
             </div>
           </div>
-          <div class="card-body">  
-            <p>   
-              <div class="form-group">
-                <label><%= t('guest.profile.email') %></label> 
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
-              </div>
-            </p> 
+        </p>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <%= f.submit t('submit') , class: "btn hover-button button-width" %>
           </div>
-          <div class="card-footer p-3 container-fluid">
-            <div class="row">
-              <div class="col-md-9">
-                <%= f.submit "Send me reset password instructions", class: "btn my-0 my-sm-0 main-sign-up-btn mr-3 hover-button" %>
-              </div>
-            </div>
-            <div class="row mt-2"> 
-              <div class="col-md-9">
-                <%= render "users/shared/links" %> 
-              </div>
-            </div>
+        </div>
+        <div class="row mt-3">
+          <div class="text-center col-md-12">
+            <%= render "users/shared/links" %>
           </div>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
-</div>
+<% end %>
