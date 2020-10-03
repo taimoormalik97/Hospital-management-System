@@ -27,7 +27,7 @@
                 <td><%= prescription.appointment.date %></td>
                 <td><%= convert_to_twelve_hour_format(prescription.appointment.availability.start_slot) %></td>
                 <td><%= link_to prescription_path(prescription) do %>
-                  <i class="fas fa-edit color-primary-btn" title="prescription"></i>
+                  <i class="fas fa-eye color-primary-btn" title="prescription"></i>
                 </td>
               </tr>
             <% end %>

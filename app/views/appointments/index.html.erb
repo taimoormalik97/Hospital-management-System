@@ -20,8 +20,8 @@
             <th><%= t('appointment.label.end') %></th>
             <% unless current_user.doctor? %>   
               <th><%= t('doctor.name') %></th> 
-              <th><%= t('appointment.label.status') %></th>
             <% end %>
+            <th><%= t('appointment.label.status') %></th>
             <% unless current_user.patient? %>
               <th><%= t('patient.name') %></th>  
               <th></th>
@@ -39,8 +39,8 @@
               <% status_colors = status_colors(appointment) %>
               <% unless current_user.doctor? %>
                 <td><%= appointment.doctor.name %></td>
-                <td><span class="p-1 rounded text-<%= status_colors[:text] %> bg-<%= status_colors[:bg] %>"><%= appointment.current_state.capitalize %></span></td>
               <% end %>
+              <td><span class="p-1 rounded text-<%= status_colors[:text] %> bg-<%= status_colors[:bg] %>"><%= appointment.current_state.capitalize %></span></td>
               <% unless current_user.patient? %>
                 <td><%= appointment.patient.name %></td>
               <% end %>
@@ -70,12 +70,13 @@
                     <%= link_to new_prescription_path(appointment_id: appointment.sequence_num) do %>
                       <i class="fas fa-edit color-primary-btn" title="prescription"></i>
                     <% end %>
-                  <% else %>
-                    <%= link_to prescription_path(prescription) do %>
-                      <i class="fas fa-edit color-primary-btn" title="prescription"></i>
-                    <% end %>
                   <% end %>
                 <% end %> 
+              </td>
+              <td>
+                <%= link_to appointment_path(appointment) do %>
+                  <i class="fas fa-eye color-primary-btn" title="prescription"></i>
+                <% end %>
               </td>    
             </tr>   
           <% end %>  

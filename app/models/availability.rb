@@ -1,4 +1,6 @@
 class Availability < ApplicationRecord
+  DEFAULT_WEEK_DAY = 'Sunday'.freeze
+  before_destroy :check_availability_for_appointments
   sequenceid :hospital, :availabilities
   belongs_to :doctor
   belongs_to :hospital
@@ -39,5 +41,12 @@ class Availability < ApplicationRecord
       availability.end_slot = ending
     end
     true
+  end
+
+  def check_availability_for_appointments
+    return true if appointments.blank?
+
+    errors.add :base, I18n.t('doctor.delete.appointment_error')
+    throw(:abort)
   end
 end

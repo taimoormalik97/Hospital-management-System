@@ -487,6 +487,7 @@ h1 {
 .speciality-filter {
   margin-bottom: 15px;
   display: flex;
+  width: 20%;
 }
 
 .dashboard-stat {
@@ -590,4 +591,8 @@ h1 {
 
 .sidebar-row {
   color: $color-back !important;
+}
+
+.filter-div {
+  width: 100%;
 }

@@ -205,12 +205,15 @@ en:
     none: 'No Sales Orders to display'
   appointment:
     label:
+      slot: 'Slot'
       start: 'Start'
       end: 'End'
       date: 'Date'
       status: 'Status'
+      doctor: 'Doctor'
+      patient: 'Patient'
     name: "Appointments"
-    breadcrumb: "Appointments"
+    show_name: "Appointment"
     breadcrumb:
       index: "Appointments"
       new: "New Appointment"
@@ -351,8 +354,9 @@ en:
     medicine_full_name: "Medicine Name"
     quantity: "Quantity"
     instructions: "Instructions"
-    doctor_name: "Doctor Name"
-    patient_name: "Patient Name"
+    doctor_name: "Doctor"
+    patient_name: "Patient"
+    appointment_id: 'Appointment id'
     appointment_date: "Appointment Date"
     appointment_time: "Appointment Time"
     doctor_notes: "Doctor Notes"
