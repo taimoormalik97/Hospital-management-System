@@ -1,79 +1,97 @@
 <%= render "users/shared/error_messages", resource: resource %>
-<div class="box">
-  <div class="wrapper">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <div class="container pt-3 w-50 card_center">
-        <div class="card">
-          <div class="card-header p-3 container-fluid">
-            <div class="row">
-              <h3 class="col-md-9 ">
-                <%= t('guest.signup') %>
-              </h3>  
-            </div>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class="container pt-3 w-75 card_center mb-7">
+    <div class="card card-3 card-border">
+      <div class="card-heading"></div>
+      <div class="card-body m-2">
+        <div class="text-center p-3 container-fluid">
+          <div class="row">
+            <h1 class="col-md-12">
+              <%= t('guest.welcome_msg') %>
+            </h1> 
           </div>
-          <div class="card-body">     
-            <p>   
-              <div class="form-group">
-                <label><%= t('guest.profile.name') %></label>  
-                <%= f.text_field :name ,autofocus: true, required: true, class: "form-control" %>
-              </div> 
-              <div cclass="form-group">
-                <label><%= t('guest.profile.email') %></label>
+        </div>
+        <div class="pt-25">
+          <div class="separator"></div>
+        </div>
+        <div class="row mt-3 ml-2 font-for-card">
+          <h3 ><%= t('guest.signup') %></h3>
+        </div>
+        <p>
+          <div class="ml-2">
+            <div class="row py-2">
+              <label class="col-4"><%= t('guest.profile.name') %>*</label>
+              <div class="pl-0 col-8">
+                <%= f.text_field :name, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
+              </div>
+            </div>
+            <div class="row py-2">
+              <label class="col-4"><%= t('guest.profile.email') %>*</label>
+              <div class="pl-0 col-8">
                 <%= f.email_field :email, autocomplete: "email", required: true, class: "form-control" %>
               </div>
-
-              <div class="form-group">
-                <label><%= t('guest.profile.password') %></label>
-                <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> characters minimum)</em>
-                <% end %><br />
-                <%= f.password_field :password, autocomplete: "new-password", required: true, class: "form-control" %>
-              </div>
-
-              <div class="form-group">
-                <label><%= t('guest.profile.confirm_password') %></label>
-                <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "form-control" %>
-              </div>
-
-              <%= f.fields_for :hospital, resource.build_hospital do |h| %>
-                <div class="form-group">
-                <label><%= t('guest.profile.hospital_name') %></label>
-                <%= h.text_field :name, required: true, id: "hospital_name", class: "form-control"  %>
+            </div>
+            <div class="row pt-2">
+              <label class="col-4">
+                <div class="row pl-3">
+                  <%= t('guest.profile.password') %>*
                 </div>
-
-                <div class="form-group">
-                <label><%= t('guest.profile.hospital_sub_domain') %></label>
-                <%= h.text_field :sub_domain, id: "sub_domain", readonly: true, class: "form-control"  %>
+                <div class="row pl-3">
+                  <% if @minimum_password_length %>
+                    <em class="min-password-size" >(<%= @minimum_password_length %> minimum)</em><br />
+                  <% end %>
                 </div>
-
-                <div class="form-group">
-                <label><%= t('guest.profile.hospital_address') %></label>
-                <%= h.text_field :address, required: true, class: "form-control"  %>
-                </div>
-
-                <div class="form-group">
-                <label><%= t('guest.profile.hospital_phone_number') %></label>
-                <%= h.text_field :phone_number, required: true, class: "form-control"  %>
-                </div>
-               
-              <% end %>
-              <%= f.hidden_field :type, value: "Admin" %>
-            </p> 
-          </div> 
-          <div class="card-footer p-3 container-fluid">
-            <div class="row">
-              <div class="col-md-9">
-                <%= f.submit 'Sign up', class: "btn my-0 my-sm-0 main-sign-up-btn mr-3 hover-button" %>
+              </label>
+              <div class="col-8 pl-0">
+                <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control" %>
               </div>
             </div>
-            <div class="row mt-2"> 
-              <div class="col-md">
-               <%= link_to 'Already have an Account?', new_user_session_path , class: 'links-color' %>
+            <div class="row pb-3">
+              <label class="col-4"><%= t('guest.profile.confirm_password') %>*</label>
+              <div class="pl-0 col-8">
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "form-control" %>
               </div>
-            </div>  
-          </div>    
-        </div>    
+            </div>
+             <%= f.fields_for :hospital, resource.build_hospital do |h| %>
+              <div class="row pb-3">
+                <label class="col-4"><%= t('guest.profile.hospital_name') %>*</label>
+                <div class="pl-0 col-8">
+                  <%= h.text_field :name, required: true, id: "hospital_name", class: "form-control" %>
+                </div>
+              </div>
+              <div class="row pb-0">
+                <label class="col-4"><%= t('guest.profile.hospital_sub_domain') %>*</label>
+                <div class="pl-0 col-8">
+                  <%= h.text_field :sub_domain, id: "sub_domain", readonly: true, class: "form-control" %>
+                </div>
+              </div>
+              <div class="row pb-3">
+                <label class="col-4"><%= t('guest.profile.hospital_phone_number') %>*</label>
+                <div class="pl-0 col-8">
+                  <%= h.text_field :phone_number, required: true, class: "form-control" %>
+                </div>
+              </div>
+              <div class="row pb-3">
+                <label class="col-4"><%= t('guest.profile.hospital_address') %></label>
+                <div class="pl-0 col-8">
+                  <%= h.text_field :address, class: "form-control" %>
+                </div>
+              </div>
+           <% end %>
+          </div>
+        </p>
+       <%= f.hidden_field :type, value: "Admin" %>
+       <div class="row">
+         <div class="col-md-12 text-center">
+           <%= f.submit t('guest.signup') , class: "btn hover-button button-width" %>
+         </div>
+       </div>
+       <div class="row mt-3">
+         <div class="text-center col-md-12">
+           <%= link_to 'Already have an Account?', new_user_session_path , class: 'links-color' %>
+         </div>
+        </div>
       </div>
-    <%end%>
+    </div>
   </div>
-</div>
+<%end%>

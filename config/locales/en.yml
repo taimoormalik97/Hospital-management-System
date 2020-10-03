@@ -134,6 +134,7 @@ en:
       new: "New Medicine"
       show: "Medicine Details"
       edit: "Edit Medicine"
+    prescription_error: 'Medicine exists in prescriptions'
   paginate:
     previous: "Previous"
     next: "Next"
@@ -266,6 +267,7 @@ en:
       hospital_phone_number: "Phone Number"
       edit: "Edit Profile"
   guest:
+    welcome_msg: "Welcome To HMS"
     hms: "HMS"
     system_heading: "HOSPITAL MANAGEMENT SYSTEM"
     improve: "Improving "
@@ -301,10 +303,16 @@ en:
       error: "Email was not found!"
       user: "Find User"
     select_hospital: "Choose Your Hospital"
-    signup: "Sign Up"
+    or_msg: "or"
+    signup: "Sign up"
+    signin: "Sign in"
+    sigin_to_your_account: "Sign in to your account"
     login: "Login"
     change_password: "Change Your Password"
-    forgot_password: "Forgot Password"
+    forgot_password: "Forgot Password?"
+    reset_password_msg: "You will receive an email to reset your password"
+    confirm_email: "Resend Confirmation Instructions"
+    confirm_email_msg: "You will receive an email to confirm your account"
     profile:
       name: "Name"
       email: "Email"

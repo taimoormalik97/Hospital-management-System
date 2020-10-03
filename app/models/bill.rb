@@ -1,5 +1,5 @@
 class Bill < ApplicationRecord
-  sequenceid :hospital , :bills
+  sequenceid :hospital, :bills
   belongs_to :hospital
   belongs_to :patient
   validates :billable_type, inclusion: { in: ['medicine', 'doctor'], message: 'Not a valid billable type' }

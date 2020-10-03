@@ -1,33 +1,38 @@
 <%= render "users/shared/error_messages", resource: @user %>
-<div class="box">
-  <div class="wrapper">
-    <%= form_for @user, url: check_email_path(@user), method: "post"  do |f| %>
-      <div class="container pt-3 w-50 card_center">
-        <div class="card">
-          <div class="card-header p-3 container-fluid">
-            <div class="row">
-              <h3 class="col-md-9">
-                <%= t('guest.find.user') %>
-              </h3> 
-            </div>
-          </div>
-          <div class="card-body">
-            <p>
-              <div class="field">
-                <label><%= t('guest.profile.email') %></label>
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
-              </div>
-            </p> 
-          </div>
-          <div class="card-footer p-3 container-fluid">
-            <div class="row">
-              <div class="col-md-9">
-                <%= f.submit 'Continue' , class: "btn my-0 my-sm-0 main-sign-up-btn mr-3 hover-button" %>
-              </div>
-            </div>
+<%= form_for @user, url: check_email_path(@user), method: "post"  do |f| %>
+  <div class="container w-50 card_center"> 
+    <div class="card card-border">
+      <div class="card-body m-5">
+        <div class="text-center p-3 container-fluid">
+          <div class="row">
+            <h1 class="col-md-12">
+              <%= t('guest.welcome_msg') %>
+            </h1> 
           </div>
         </div>
+        <div class="pt-25">
+          <div class="separator"></div>
+        </div>
+        <div class="row mt-3 ml-2 font-for-card">
+          <h3 ><%= t('guest.signin') %></h3>
+          <h5 class="px-2 pt-2 msg-color"> <%= t('guest.or_msg') %>
+            <%= link_to t('guest.signup'), new_user_registration_path, class: 'links-color' %>
+          </h5>
+        </div>
+        <p>
+          <div class="row p-2 mr-3">
+            <label class="col-3"><%= t('guest.profile.email') %></label> 
+            <div class="pl-0 col-9">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
+            </div>
+          </div>
+          <div class="row pt-3 px-3">
+            <div class="col-md-12 text-center">
+              <%= f.submit 'Continue', class: "btn hover-button button-width" %>
+            </div>
+          </div>
+        </p>
       </div>
-    <% end %>
+    </div>
   </div>
-</div>
+<% end %>
