@@ -6,7 +6,7 @@
           <% days = Date::DAYNAMES %>
           <% unless @availabilities.slots_for_a_day(days[num]).empty? %>
             <table class="table">   
-              <thead >   
+              <thead>   
                 <tr>   
                   <th><%= t('availability.label.start') %></th>   
                   <th><%= t('availability.label.end') %></th> 

@@ -1,0 +1,7 @@
+<% if current_user.admin? %>
+  <%= render partial: 'admin_dashboard' %>
+<% elsif current_user.doctor? %>
+  <%= render partial: 'doctor_dashboard' %>
+<% elsif current_user.patient? %>
+  <%= render partial: 'patient_dashboard' %>
+<% end %>

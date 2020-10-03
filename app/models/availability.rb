@@ -39,5 +39,4 @@ class Availability < ApplicationRecord
     end
     true
   end
-
 end

@@ -10,5 +10,4 @@ class AddSequenceNumToPrescriptions < ActiveRecord::Migration[6.0]
     remove_index  :prescriptions, column: [:hospital_id, :sequence_num]
     remove_column :prescriptions, :sequence_num
   end
-
 end

@@ -67,5 +67,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'will_paginate', '=3.1.8'
 gem 'will_paginate-bootstrap4', '=0.2.2'
-
-gem 'paperclip', '= 6.0.0'
+gem 'paperclip', '=6.0.0'
+gem 'chartkick', '=3.4.0'
+gem 'groupdate', '=5.2.1'

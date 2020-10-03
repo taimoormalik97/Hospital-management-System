@@ -1,0 +1,1 @@
+$('.vertical-tabs').html("<%= escape_javascript(render 'availability_tab', locals: { num: Date.strptime(params[:week_day], '%A').wday } ) %>");
