@@ -1,3 +1,4 @@
+<div id="flash_messages"></div>
 <div class="container pt-3">
   <div class="card">
     <div class="card-header p-3 container-fluid">
@@ -11,7 +12,6 @@
             <% if can?(:destroy, @prescription) %>
             <%= link_to 'Delete', prescription_path(@prescription), method: :delete, data: {confirm: t('popup.delete_prescription')} , class: "btn btn-danger btn-spacing" %>
           <% end %>
-          <%= link_to 'Back', prescriptions_path , class: "btn btn-secondary btn-spacing" %>
         </div>
       </div>
     </div>
