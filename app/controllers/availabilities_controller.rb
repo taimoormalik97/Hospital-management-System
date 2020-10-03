@@ -2,7 +2,7 @@ class AvailabilitiesController < ApplicationController
   load_and_authorize_resource :doctor, find_by: :sequence_num
   load_and_authorize_resource :availability, through: :doctor, find_by: :sequence_num
 
-  before_action :index_page_breadcrumb, only: [:index, :new]
+  before_action :index_page_breadcrumb, only: %i[index new]
 
   # GET /availabilities
   def index

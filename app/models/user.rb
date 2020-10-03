@@ -10,7 +10,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :timeoutable,
          :confirmable, :validatable
-  default_scope { where(hospital_id: Hospital.current_id) }
   validates :name, length: { in: 3..35 }
   ROLES = { admin: 'Admin', doctor: 'Doctor', patient: 'Patient' }.freeze
 
@@ -25,15 +24,15 @@ class User < ApplicationRecord
   end
   
   def admin?
-  	type == ROLES[:admin]
+    type == ROLES[:admin]
   end
   
   def doctor?
-  	type == ROLES[:doctor]
+    type == ROLES[:doctor]
   end
   
   def patient?
-  	type == ROLES[:patient]
+    type == ROLES[:patient]
   end
 
   def set_reset_password_token
