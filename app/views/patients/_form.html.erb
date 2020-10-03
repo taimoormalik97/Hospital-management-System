@@ -28,7 +28,7 @@
           </div> 
           <div class="form-group">   
             <label><%= t('patient.label.gender') %></label>   
-            <%= f.select :gender, options_for_select(["Male", "Female", "Other"]), { required: true } , { class: "form-control" } %> 
+            <%= f.select :gender, options_for_select(["Male", "Female", "Other"], selected: @patient.gender), { required: true } , { class: "form-control" } %> 
           </div>     
         </p> 
       </div> 

@@ -2,7 +2,7 @@ require 'date'
 class AppointmentsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num
 
-  before_action :index_page_breadcrumb, only: [:index, :new]
+  before_action :index_page_breadcrumb, only: %i[index new]
 
   # GET /appointments
   def index
@@ -50,7 +50,7 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /appointments/:id
+  # PATCH /appointments/:id
   def update
     respond_to do |format|
       if @appointment.update(appointment_params)
