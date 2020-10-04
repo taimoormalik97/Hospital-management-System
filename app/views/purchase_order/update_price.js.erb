@@ -1,2 +1,11 @@
+$.PrevVal = $('#purchase_order_price').val()
 $('#purchase_order_price').val("<%=@purchase_order.price%>");
-alert("Medicine added!");
+if($.PrevVal < $('#purchase_order_price').val()){
+  alert("Medicine added!");
+}
+$("#display_results").hide();
+$('#medicines_table').html("<%= escape_javascript render partial:'medicines_table' %>");
+$('#medicines_table').show();
+if($.PrevVal > $('#purchase_order_price').val()){
+  alert("Medicine removed!");
+}

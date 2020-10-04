@@ -5,9 +5,9 @@
           <h3 class="col-md-8"><%= @medicine.name %></h3> 
           <div class="col-md-4 d-flex justify-content-md-end"> 
             <% if can? :destroy, @medicine %>
-              <%= link_to t('delete'), medicine_path(@medicine), method: :delete, class: "btn btn-danger", data: { confirm:'Are you sure you want to delete medicine?' }%>
+              <%= link_to t('delete'), medicine_path(@medicine), method: :delete, class: "btn btn-danger", data: { confirm:'Are you sure you want to delete medicine?' } %>
             <%end%>
-            <%= link_to t('edit'), edit_medicine_path(@medicine), class: "btn btn-primary btn-spacing"%> 
+            <%= link_to t('edit'), edit_medicine_path(@medicine), class: "btn btn-primary btn-spacing" %> 
           </div>
         </div>
       </div>
@@ -17,19 +17,19 @@
           <label><%= t('medicine.name_label') %></label>
         </dt>
         <dd class="col-sm-9">   
-          <%=@medicine.name %>   
+          <%= @medicine.name %>   
         </dd>
         <dt class="col-sm-2">  
           <label><%= t('medicine.price_label') %></label>   
         </dt>
         <dd class="col-sm-9">   
-          <%=@medicine.price%>   
+          <%= @medicine.price %>   
         </dd>
         <dt class="col-sm-2">  
           <label><%= t('medicine.quantity_label') %></label>
         </dt>
         <dd class="col-sm-9">   
-          <%=@medicine.quantity %>   
+          <%= @medicine.quantity %>   
         </dd>
       </dl>
     </div>    

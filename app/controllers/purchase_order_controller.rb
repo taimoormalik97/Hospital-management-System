@@ -45,6 +45,21 @@ class PurchaseOrderController < ApplicationController
     end 
   end
 
+  def remove_medicine
+    @medicine= current_hospital.medicines.find_by(id: params[:medicine_id])
+    if @purchase_order.remove_medicine(@medicine)
+      respond_to do |format|
+        format.js { render 'purchase_order/update_price' }
+      end            
+    else   
+      flash[:error] = [t('purchase_order.addmed.failure')]
+      if @purchase_order.errors.full_messages.present?
+        flash[:error] += @purchase_order.errors.full_messages
+      end
+      redirect_to(request.env['HTTP_REFERER'])      
+    end 
+  end
+
   def show
     respond_to do |format|
       format.html

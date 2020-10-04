@@ -9,9 +9,9 @@
              <% elsif @purchase_order.confirmed? %>
                 <%= link_to t('purchase_order.deliver_button'), deliver_purchase_order_path(@purchase_order), method: "put", class: "btn btn-success"%>
             <% end %> 
-            <%= link_to t('delete'), purchase_order_path(@purchase_order), method: :delete, class: "btn btn-danger btn-spacing", data: { confirm:'Are you sure you want to delete medicine?' }%>
+            <%= link_to t('delete'), purchase_order_path(@purchase_order), method: :delete, class: "btn btn-danger btn-spacing", data: { confirm:'Are you sure you want to delete medicine?' } %>
             <% if @purchase_order.drafted? || @purchase_order.confirmed?%>
-             <%= link_to t('edit'), edit_purchase_order_path(@purchase_order), class: "btn btn-primary btn-spacing"%> 
+             <%= link_to t('edit'), edit_purchase_order_path(@purchase_order), class: "btn btn-primary btn-spacing" %> 
             <%end%>
           </div>
         </div>
@@ -43,7 +43,7 @@
   <div class="card">
       <div class="container-fluid">
         <div class="row">
-          <%if @purchase_order.medicines.present?%>
+          <%if @purchase_order.medicines.present? %>
                 <dt class="col-sm-2">  
                     <label><%= t('medicine.heading') %></label>
                 </dt>
@@ -59,19 +59,19 @@
                       </th>
                     </tr>  
                     </thead>
-                    <%@purchase_order.purchase_details.each do |pd|%>
+                    <% @purchase_order.purchase_details.each do |pd| %>
                     <tr>
                       <td class="col-sm-9">
-                        <%=pd.medicine.name%>
+                        <%= pd.medicine.name %>
                       </td>
                       <td>
-                        <%=pd.quantity%>
+                        <%= pd.quantity %>
                       </td>
                     </tr> 
-                    <%end%>
+                    <% end %>
                   </table>
                 </dd>
-          <%end%>
+          <% end %>
         </div>
       </div> 
     </div>  

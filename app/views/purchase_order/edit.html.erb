@@ -39,7 +39,7 @@
     </div>    
   </div>
 <% end %> 
-<%if @purchase_order.drafted?%> 
+<%if @purchase_order.drafted? %> 
   <div class="container" id="search1">
     <%= form_tag(get_medicine_purchase_order_path, method: 'get', remote: true, 
     class: 'navbar-form navbar-left') do %>  
@@ -52,6 +52,7 @@
     </div>  
     <% end %> 
   </div> 
-  <div class="container" id="display_results"></div>
+  <div class ="container" id = "display_results" ></div>
+  <div class = 'container' id = 'medicines_table'></div>
 <% end %>
 

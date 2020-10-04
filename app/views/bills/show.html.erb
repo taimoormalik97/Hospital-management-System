@@ -4,7 +4,7 @@
         <div class="row">
           <h3 class="col-md-8"><%= @bill.patient.name %></h3> 
           <div class="col-md-4 d-flex justify-content-md-end"> 
-            <%= link_to t('delete'), bill_path(@bill), method: :delete, class: "btn btn-danger", data: {confirm:'Are you sure you want to delete medicine?'} %> 
+            <%= link_to t('delete'), bill_path(@bill), method: :delete, class: "btn btn-danger", data: { confirm:'Are you sure you want to delete medicine?' } %> 
             <%= link_to t('edit'), edit_bill_path(@bill), class: "btn btn-primary btn-spacing" %> 
           </div>
         </div>
@@ -80,29 +80,29 @@
             <dd>
               <table class="table table-bordered">
                 <thead class="thead-dark">
-                <tr>
-                  <th class="col-sm-9">
-                    <%= t('doctor.name_label') %>
-                  </th>
-                  <th>
-                    <%= t('doctor.fee') %>
-                  </th>
-                </tr>  
-                </thead>
-                <%@bill.bill_details.each do |pd|%>
-                <tr>
-                  <td class="col-sm-9">
-                    <%=pd.billable.name%>
-                  </td>
-                  <td>
-                    <%=pd.billable.consultancy_fee%>
-                  </td>
-                </tr>
-                <%end%>
+                  <tr>
+                    <th class="col-sm-9">
+                      <%= t('doctor.name_label') %>
+                    </th>
+                    <th>
+                      <%= t('doctor.fee') %>
+                    </th>
+                  </tr>  
+                  </thead>
+                  <% @bill.bill_details.each do |pd| %>
+                  <tr>
+                    <td class="col-sm-9">
+                      <%= pd.billable.name %>
+                    </td>
+                    <td>
+                      <%= pd.billable.consultancy_fee %>
+                    </td>
+                  </tr>
+                <% end %>
               </table>
             </dd>
-          <%end%> 
-        <%end%>
+          <% end %> 
+        <% end %>
       </div> 
     </div>
   </div>  

@@ -40,5 +40,23 @@ class PurchaseOrder < ApplicationRecord
     rescue ActiveRecord::RecordNotSaved 
       self.errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
     end   
-  end 
+  end
+  def remove_medicine(medicine)
+    begin
+      PurchaseOrder.transaction do
+        curr_purchase_detail=purchase_details.find_by(medicine: medicine)
+        if curr_purchase_detail
+          price = curr_purchase_detail.medicine.price * curr_purchase_detail.quantity
+          if curr_purchase_detail.delete
+             update(price: self.price - price)
+          end
+        else
+          self.errors.add(:unable_to_add, I18n.t('medicine.delete.failure'))
+        end
+      end
+    rescue ActiveRecord::RecordNotSaved 
+      self.errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
+      return false
+    end   
+  end  
 end
