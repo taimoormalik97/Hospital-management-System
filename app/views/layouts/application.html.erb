@@ -13,16 +13,16 @@
         <%= render partial: 'layouts/sidebar' %>
       <% end %>
       <div class="content-with-sidebar">
+        <div class="container breadcrumb-row pl-3 border-bottom">
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+            <%= render partial: 'layouts/breadcrumb' %>
+          </nav>
+        </div>
         <div class="content">
-          <div class="container pt-3"> 
-            <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
-              <%= render partial: 'layouts/breadcrumb' %>
-            </nav>
-          </div>
           <%= render partial: 'layouts/flash', flash: flash %>
           <%= yield %>
         </div>
-      </div> 
+      </div>
     </div>
   </body>
 </html>

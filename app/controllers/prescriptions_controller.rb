@@ -2,8 +2,8 @@ class PrescriptionsController < ApplicationController
   before_action :redirect_to_prescriptions
   before_action :load_prescription, only: :show
   before_action :load_prescriptions, only: :index
-  before_action :index_page_breadcrumb, only: [:index, :show, :edit]
-  before_action :show_page_breadcrumb, only: [:show, :edit]
+  before_action :index_page_breadcrumb, only: %i[index show edit]
+  before_action :show_page_breadcrumb, only: %i[show edit]
   load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
 
   # GET /prescriptions
@@ -12,7 +12,6 @@ class PrescriptionsController < ApplicationController
       format.html
     end
   end
-
 
   # GET /prescription/:id
   def show
@@ -24,7 +23,7 @@ class PrescriptionsController < ApplicationController
   # GET /prescription/new
   def new
     respond_to do |format|
-      appointment = Appointment.find_by(sequence_num: params[:appointment_id])
+      appointment = @current_hospital.appointments.find_by(sequence_num: params[:appointment_id])
       @prescription.appointment = appointment
       @prescription.save
       format.html { redirect_to prescription_path(@prescription) }
@@ -98,7 +97,6 @@ class PrescriptionsController < ApplicationController
   end
 
   def redirect_to_prescriptions
-    redirect_to prescriptions_path if (request.subdomain.present?) && (user_signed_in?) && (request.path == '/prescriptions/new') && (params[:appointment_id].nil?)
+    redirect_to prescriptions_path if request.subdomain.present? && user_signed_in? && request.path == '/prescriptions/new' && params[:appointment_id].nil?
   end
-
 end

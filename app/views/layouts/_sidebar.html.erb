@@ -3,15 +3,14 @@
   <div class="sidebar-scroll">
     <nav>
       <ul class="navbar-nav ">
-        <%= render partial: 'layouts/sidebarentry', locals: {name: t('medicine.name'), call: Medicine, icon: 'fa-capsules', path: medicines_path} %>
-        <%= render partial: 'layouts/sidebarentry', locals: {name: t('purchase_order.name'), call: PurchaseOrder, icon: 'fa-credit-card', path: purchase_order_index_path} %>
-        <%= render partial: 'layouts/sidebarentry', locals: {name: t('sale_order.name'), call: Bill, icon: 'fa-cash-register', path: bills_path} %>
         <%= render partial: 'layouts/sidebarentry', locals: {name: t('doctor.name'), call: Doctor, icon: 'fa-user-md', path: doctors_path} %>
         <%= render partial: 'layouts/sidebarentry', locals: {name: t('patient.name'), call: Patient, icon: 'fa-user-injured', path: patients_path} %>
         <%= render partial: 'layouts/sidebarentry', locals: {name: t('appointment.name'), call: Appointment, icon: 'fa-clock', path: appointments_path} %>
         <%= render partial: 'layouts/sidebarentry', locals: {name: t('prescription.name'), call: Prescription, icon: 'fa-prescription-bottle', path: prescriptions_path} %>
-        <%= render partial: 'layouts/sidebarentry', locals: {name: t('test_report.name'), call: Test, icon: 'fa-file-alt', path: "#"} %>
         <%= render partial: 'layouts/sidebarentry', locals: {name: t('availability.name'), call: Availability, icon: 'fa-calendar-alt', path: doctor_availabilities_path(current_user)} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('medicine.name'), call: Medicine, icon: 'fa-capsules', path: medicines_path} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('purchase_order.name'), call: PurchaseOrder, icon: 'fa-credit-card', path: purchase_order_index_path} %>
+        <%= render partial: 'layouts/sidebarentry', locals: {name: t('sale_order.name'), call: Bill, icon: 'fa-cash-register', path: bills_path} %>
       </ul>
     </nav>
     <div class="container-fluid float-right-arrow ">

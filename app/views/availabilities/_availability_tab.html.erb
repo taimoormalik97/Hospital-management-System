@@ -3,10 +3,9 @@
     <div class="container pt-3"> 
       <div class="card scroll">
         <div class="card-body table-responsive">
-          <% days = Date::DAYNAMES %>
-          <% unless @availabilities.slots_for_a_day(days[num]).empty? %>
+          <% unless @availabilities.empty? %>
             <table class="table">   
-              <thead >   
+              <thead>   
                 <tr>   
                   <th><%= t('availability.label.start') %></th>   
                   <th><%= t('availability.label.end') %></th> 
@@ -15,17 +14,15 @@
               </thead>   
               <tbody>
                 <% @availabilities.each do |availability| %>
-                  <% if availability.week_day == days[num] %>  
-                    <tr>  
-                      <td><%= convert_to_twelve_hour_format(availability.start_slot) %></td>  
-                      <td><%= convert_to_twelve_hour_format(availability.end_slot) %></td>
-                      <td>
-                        <%= link_to doctor_availability_path(@doctor, availability), method: :delete do %>
-                          <i class="fas fa-trash-alt"></i>
-                        <% end %>
-                      </td>     
-                    </tr>   
-                  <% end %>     
+                  <tr>  
+                    <td><%= convert_to_twelve_hour_format(availability.start_slot) %></td>  
+                    <td><%= convert_to_twelve_hour_format(availability.end_slot) %></td>
+                    <td>
+                      <%= link_to doctor_availability_path(@doctor, availability), method: :delete do %>
+                        <i class="fas fa-trash-alt"></i>
+                      <% end %>
+                    </td>     
+                  </tr>   
                 <% end %>  
               </tbody>   
             </table>

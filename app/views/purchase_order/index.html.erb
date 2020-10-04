@@ -13,6 +13,7 @@
         <table  class="table">   
           <thead >   
             <tr>   
+              <th><%= t('purchase_order.id') %></th> 
               <th><%= t('purchase_order.name_label') %></th>   
               <th><%= t('purchase_order.price_label') %></th>   
               <th><%= t('purchase_order.state_label') %></th> 
@@ -20,25 +21,27 @@
             </tr>   
           </thead>   
           <tbody>   
-          <% @purchase_orders.each do |po| %>   
+          <% @purchase_orders.each do |po| %> 
+            <% state_colors = state_colors(po) %>  
             <tr>   
-              <td><%=link_to po.vendorname, purchase_order_path(po)%></td>   
-              <td><%= po.price%></td>
-              <%= print_state(po) %>
+              <td><%= link_to po.sequence_num, purchase_order_path(po) %></td>
+              <td><%= po.vendorname %></td>   
+              <td><%= po.price %></td>
+              <td><span class="p-1 rounded text-<%= state_colors[:text] %> bg-<%= state_colors[:bg] %>"><%= po.state.capitalize %></span></td>
               <div>   
                 <td>
                   <div class='row'>
                     <div class='col-sm'>
-                      <%if (po.drafted? || po.confirmed?) && (can? :edit, po)%>
+                      <%if (po.drafted? || po.confirmed?) && (can? :edit, po) %>
                         <%= link_to edit_purchase_order_path(po), class: 'float-right' do %>
                           <i class="fas fa-pen"></i>
-                        <%end%>
-                      <%end%> 
+                        <% end %>
+                      <% end %> 
                     </div>
                     <div class='col-sm'>
-                      <%= link_to purchase_order_path(po), method: :delete, class: "btn-danger", data: {confirm:'Are you sure you want to delete medicine?'} do %>
-                        <i class="fas fa-trash-alt"></i>
-                      <%end%>
+                      <%= link_to purchase_order_path(po), method: :delete,  data: { confirm:'Are you sure you want to delete medicine?' } do %>
+                        <i class="fas fa-trash-alt color-danger"></i>
+                      <% end %>
                     </div>
                   </div>      
                 </td> 

@@ -23,15 +23,15 @@ class ApplicationController < ActionController::Base
   private
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :type, hospital_attributes: [ :name, :sub_domain, :address, :phone_number ]])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :type, hospital_attributes: [:name, :sub_domain, :address, :phone_number]])
   end
 
   def after_sign_in_path_for(resource)
-     root_path
+    root_path
   end
 
   def after_sign_out_path_for(resource)
-     new_user_session_path
+    new_user_session_path
   end
  
   def current_hospital
@@ -52,16 +52,18 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_signin_subdomain
-    redirect_to new_user_session_path if (request.subdomain.present?) && (request.url.include? '/find')
-    redirect_to new_user_session_path if (request.subdomain.present?) && (!user_signed_in?) && (request.path == '/')
+    redirect_to new_user_session_path if request.subdomain.present? && request.url.include?('/find')
+    redirect_to new_user_session_path if request.subdomain.present? && !user_signed_in? && request.path == '/'
   end
   
   def redirect_to_valid_signup
-    redirect_to new_user_registration_url(subdomain: false) if (request.subdomain.present?) && (request.url.include? '/users/sign_up')
+    if request.subdomain.present? && request.url.include?('/users/sign_up')
+      redirect_to new_user_registration_url(subdomain: false)
+    end
   end
 
   def redirect_to_valid_signin
-    redirect_to find_path if (request.subdomain.blank?) && (request.url.include? '/users/sign_in')
+    redirect_to find_path if request.subdomain.blank? && request.url.include?('/users/sign_in')
   end
 
   def devise_edit_profile
@@ -69,14 +71,14 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_valid_password_reset
-    unless request.subdomain.present?
-      redirect_to find_path if (request.url.include? '/users/password/new') || (request.url.include? '/users/password/edit')
+    if request.subdomain.blank? && (request.url.include?('/users/password/new') || request.url.include?('/users/password/edit'))
+      redirect_to find_path
     end
   end
 
   def redirect_to_valid_confirmation_email
-    unless request.subdomain.present?
-      redirect_to find_path if (request.url.include? '/users/confirmation/new') || (request.url.include? '/users/confirmation')
+    if request.subdomain.blank? && (request.url.include?('/users/confirmation/new') || request.url.include?('/users/confirmation'))
+      redirect_to find_path
     end
   end
   

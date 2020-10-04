@@ -159,9 +159,8 @@ function showAvailabilitiesForAppointment() {
 $(document).ready(function(){
   $('body').on('change', '#speciality_filter', function(){
     $.ajax({ type: "GET", url: '/doctors/speciality_filter', data: { filter: $(this).val() } });
-  })
+  });
 });
-
 
 $(document).ready(collapseSidebar)
 $(document).ready(showAvailabilitiesForAppointment)

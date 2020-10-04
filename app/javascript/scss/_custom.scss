@@ -10,7 +10,51 @@ $color-home-background: #0971A5;
 $color-home-text: #3E5561;
 $color-home-para: #ffffff;
 $color-home-dim: #696969;
+$color-pending: #FEFBC7;
+$color-approved: #D6F0FA;
+$color-completed: #CCF4DC;
+$color-cancelled: #FECBCB;
 $font-home: "Work Sans", serif;
+
+.title-large {
+    font-size: 1.5em;
+}
+
+.navbar-color {
+  background-color: $color-primary-btn;
+}
+
+.user-name {
+  color: $color-home-para !important; 
+}
+
+.navbar-light {
+  .navbar-brand, nav-link {
+    margin-right: 0;
+    color: $color-home-para;
+    font-size: 1.4rem;
+  }
+}
+
+.navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
+  color: $color-home-para;
+}
+
+.bg-pending {
+  background-color: $color-pending;
+}
+
+.bg-approved {
+  background-color: $color-approved;
+}
+
+.bg-completed {
+  background-color: $color-completed;
+}
+
+.bg-cancelled {
+  background-color: $color-cancelled;
+}
 
 .btn-spacing {
   margin-left: 1em
@@ -227,6 +271,10 @@ blockquote p {
   display: none; 
 }
 
+.color-back {
+  background-color: $color-back !important; 
+}
+
 .color-primary {
   color: $color-primary-btn; 
 }
@@ -439,6 +487,17 @@ h1 {
 .speciality-filter {
   margin-bottom: 15px;
   display: flex;
+  width: 20%;
+}
+
+.dashboard-stat {
+  border-radius: 10px;
+}
+
+.half-background {
+  height: 100%;
+  border-radius: 10px;
+  background:  #f2f4f7;
 }
 
 .links-color {
@@ -454,6 +513,14 @@ h1 {
   background-color: $color-home-background;
   color: $color-home-para;
   opacity: 90%;
+}
+
+.note {
+  font-size: 0.87rem;
+}
+
+.side-bar-item:hover {
+  background: linear-gradient(270deg, #2B333E 95%,#007bff 5%);  
 }
 
 .separator {
@@ -513,10 +580,29 @@ h1 {
     width: 100%;
     display: table;
 }
+
 .card {
     overflow: hidden;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
     background: #fff;
+}
+
+.sidebar-row {
+  color: $color-back !important;
+}
+
+.filter-div {
+  width: 100%;
+}
+
+.breadcrumb-row {
+  font-size: 0.9em;
+  height: 30px;
+}
+
+.breadcrumb {
+  padding: 0 !important;
+  background-color: $color-home-para !important;
 }

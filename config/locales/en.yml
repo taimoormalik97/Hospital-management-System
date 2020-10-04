@@ -206,12 +206,16 @@ en:
     none: 'No Sales Orders to display'
   appointment:
     label:
+      id: 'ID'
+      slot: 'Slot'
       start: 'Start'
       end: 'End'
       date: 'Date'
       status: 'Status'
+      doctor: 'Doctor'
+      patient: 'Patient'
     name: "Appointments"
-    breadcrumb: "Appointments"
+    show_name: "Appointment"
     breadcrumb:
       index: "Appointments"
       new: "New Appointment"
@@ -234,8 +238,9 @@ en:
     name: "Test Reports"
 
   availability:
+    note: 'Note: Availability will be split into 30 minutes slots'
     label:
-      new_slot_label: 'New Availability slot'
+      new_slot_label: 'New Availability'
       start: 'Start'
       end: 'End'
       day: 'Day'
@@ -341,6 +346,8 @@ en:
     delete_prescription: 'Are you sure you want to delete this prescription?'
     
   prescription:
+    label:
+      id: "ID"
     names: "Prescriptions"
     name: "Prescription"
     no_prescriptions: "No Prescriptions To Display"
@@ -351,8 +358,9 @@ en:
     medicine_full_name: "Medicine Name"
     quantity: "Quantity"
     instructions: "Instructions"
-    doctor_name: "Doctor Name"
-    patient_name: "Patient Name"
+    doctor_name: "Doctor"
+    patient_name: "Patient"
+    appointment_id: 'Appointment id'
     appointment_date: "Appointment Date"
     appointment_time: "Appointment Time"
     doctor_notes: "Doctor Notes"
@@ -368,3 +376,6 @@ en:
     delete:
       success: "Prescription has been deleted successfully"
       failure: "Prescription is not deleted!"
+    add_medicine: "Medicine has been successfully added"
+    medicine_not_added: "Medicine has not been added"
+    delete_medicine: "Medicine has been successfully deleted"

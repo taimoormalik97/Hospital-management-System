@@ -1,9 +1,9 @@
 class PatientsController < ApplicationController
-  load_and_authorize_resource find_by: :sequence_num
+  load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
 
-  before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
-  before_action :show_page_breadcrumb, only: [:show, :edit]
-  
+  before_action :index_page_breadcrumb, only: %i[index new show edit]
+  before_action :show_page_breadcrumb, only: %i[show edit]
+
   # GET /patients
   def index
     @patients = @patients.paginate(page: params[:page], per_page: PAGINATION_SIZE)
@@ -23,7 +23,7 @@ class PatientsController < ApplicationController
   def search_pred
     @patients = current_hospital.patients.search(params[:q])
     respond_to do |format|
-      format.html 
+      format.html
       format.json { render json: @patients }
     end
   end
@@ -95,5 +95,4 @@ class PatientsController < ApplicationController
   def show_page_breadcrumb
     add_breadcrumb t('patient.breadcrumb.show'), patient_path
   end
-
 end

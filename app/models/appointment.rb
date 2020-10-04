@@ -1,7 +1,7 @@
 class Appointment < ApplicationRecord
   include ActiveModel::Transitions
 
-  state_machine :initial => :pending do
+  state_machine initial: :pending do
     state :pending
     state :approved
     state :completed
@@ -23,10 +23,8 @@ class Appointment < ApplicationRecord
   belongs_to :patient
   belongs_to :availability
   has_one :prescription, dependent: :destroy
-  has_one :feedback, dependent: :destroy
   validates_uniqueness_of :date, scope: :availability_id
   validates_presence_of :date
-  default_scope { where(hospital_id: Hospital.current_id) }
 
   def get_persisted_prescription
     Prescription.find_by(appointment_id: id)

@@ -1,6 +1,6 @@
 class PublicPagesController < ApplicationController
   skip_before_action :authenticate_user!
-  layout 'static_pages_layout', only: [:about, :contact, :find]
+  layout 'static_pages_layout', only: %i[about contact find]
 
   # GET /resource/index
   def index
@@ -36,7 +36,7 @@ class PublicPagesController < ApplicationController
     respond_to do |format|
       user = user_email_in_params
       if User.unscoped.where(email: user[:email]).count(:hospital_id) == 1
-        format.html{ redirect_to new_user_session_url(email: user[:email], subdomain: User.unscoped.find_by_email(user[:email]).hospital.sub_domain) }
+        format.html { redirect_to new_user_session_url(email: user[:email], subdomain: User.unscoped.find_by_email(user[:email]).hospital.sub_domain) }
       elsif User.unscoped.where(email: user[:email]) == []
         flash[:error] = t('guest.find.error')
         format.html { redirect_to :find }
@@ -51,5 +51,4 @@ class PublicPagesController < ApplicationController
   def user_email_in_params
     params.require(:user).permit(:email)
   end
-
 end

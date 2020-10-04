@@ -1,71 +1,74 @@
 class PurchaseOrderController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
 
-  before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
+  before_action :index_page_breadcrumb, only: %i[index new show edit]
   before_action :show_page_breadcrumb, only: [:show]
 
+  # GET /purchase_order
   def index
-    @purchase_orders = @purchase_orders.paginate(page: params[:page], per_page: PAGINATION_SIZE )
+    @purchase_orders = @purchase_orders.paginate(page: params[:page], per_page: PAGINATION_SIZE)
     respond_to do |format|
       format.html
-    end    
+    end
   end
 
+  # GET /purchase_order/new
   def new
     add_breadcrumb t('purchase_order.breadcrumb.new'), new_purchase_order_path
     respond_to do |format|
       format.html
     end
   end
-  
+
   def get_medicine
     @medicine = current_hospital.medicines.find_by(id: params[:search])
     if @medicine.blank?
       flash[:notice] = t('medicine.search.failure')
     else
       respond_to do |format|
-          format.js { render 'search'  }
-        end
+        format.js { render 'search' }
+      end
     end
   end
 
+  # PUT /purchase_order/:id/add_medicine
   def add_medicine
-    @medicine= current_hospital.medicines.find_by(id: params[:medicine_id])
-    quantity=params[:quantity].to_i
-    if @purchase_order.add_medicine(@medicine, quantity)  
+    @medicine = current_hospital.medicines.find_by(id: params[:medicine_id])
+    quantity = params[:quantity].to_i
+    if @purchase_order.add_medicine(@medicine, quantity)
       respond_to do |format|
         format.js { render 'purchase_order/update_price' }
-      end            
-    else   
-      flash[:error] = [t('purchase_order.addmed.failure')]
-      if @purchase_order.errors.full_messages.present?
-        flash[:error] += @purchase_order.errors.full_messages
       end
-      redirect_to(request.env['HTTP_REFERER'])      
-    end 
+    else
+      flash[:error] = [t('purchase_order.addmed.failure')]
+      flash[:error] += @purchase_order.errors.full_messages if @purchase_order.errors.full_messages.present?
+      redirect_to(request.env['HTTP_REFERER'])
+    end
   end
 
   def remove_medicine
-    @medicine= current_hospital.medicines.find_by(id: params[:medicine_id])
+    @medicine = current_hospital.medicines.find_by(id: params[:medicine_id])
     if @purchase_order.remove_medicine(@medicine)
       respond_to do |format|
         format.js { render 'purchase_order/update_price' }
-      end            
-    else   
+      end
+    else
       flash[:error] = [t('purchase_order.addmed.failure')]
       if @purchase_order.errors.full_messages.present?
         flash[:error] += @purchase_order.errors.full_messages
       end
-      redirect_to(request.env['HTTP_REFERER'])      
-    end 
+      redirect_to(request.env['HTTP_REFERER'])
+    end
   end
 
+  # GET /purchase_order/:id
   def show
     respond_to do |format|
       format.html
     end
   end
 
+  # GET /purchase_order/:id/edit
   def edit
     add_breadcrumb t('purchase_order.breadcrumb.edit'), edit_purchase_order_path
     respond_to do |format|
@@ -73,80 +76,75 @@ class PurchaseOrderController < ApplicationController
     end
   end
 
+  # POST /purchase_order
   def create
-    @purchase_order.hospital=current_hospital 
-    @purchase_order.admin=current_user
-    if @purchase_order.save 
-      flash[:notice] = t('purchase_order.add.success')   
+    @purchase_order.hospital = current_hospital
+    @purchase_order.admin = current_user
+    if @purchase_order.save
+      flash[:notice] = t('purchase_order.add.success')
       redirect_to @purchase_order
-    else   
+    else
       flash[:error] = [t('purchase_order.add.failure')]
-      if @purchase_order.errors.full_messages.present?
-        flash[:error] += @purchase_order.errors.full_messages
-      end
-      redirect_to(request.env['HTTP_REFERER'])     
+      flash[:error] += @purchase_order.errors.full_messages if @purchase_order.errors.full_messages.present?
+      redirect_to(request.env['HTTP_REFERER'])
     end
   end
 
+  # PATCH purchase_order /:id
   def update
-    if @purchase_order.update_attributes(purchase_order_params)  
-      flash[:notice] = t('purchase_order.update.success') 
-      redirect_to @purchase_order        
-    else   
+    if @purchase_order.update_attributes(purchase_order_params)
+      flash[:notice] = t('purchase_order.update.success')
+      redirect_to @purchase_order
+    else
       flash[:error] = [t('purchase_order.update.failure')]
-      if @purchase_order.errors.full_messages.present?
-        flash[:error] += @purchase_order.errors.full_messages
-      end
-      redirect_to(request.env['HTTP_REFERER'])       
-    end   
-  end
-
-  def destroy   
-    if @purchase_order.destroy 
-      flash[:notice] = t('purchase_order.delete.success')  
-      redirect_to purchase_order_index_path    
-    else   
-      flash[:error] = [t('purchase_order.delete.failure')]
-      if @purchase_order.errors.full_messages.present?
-        flash[:error] += @purchase_order.errors.full_messages
-      end
-      redirect_to(request.env['HTTP_REFERER'])     
+      flash[:error] += @purchase_order.errors.full_messages if @purchase_order.errors.full_messages.present?
+      redirect_to(request.env['HTTP_REFERER'])
     end
   end
 
+  # DELETE purchase_order /:id
+  def destroy
+    if @purchase_order.destroy
+      flash[:notice] = t('purchase_order.delete.success')
+      redirect_to purchase_order_index_path
+    else
+      flash[:error] = [t('purchase_order.delete.failure')]
+      flash[:error] += @purchase_order.errors.full_messages if @purchase_order.errors.full_messages.present?
+      redirect_to(request.env['HTTP_REFERER'])
+    end
+  end
+
+  # PUT /purchase_order/:id/confirm
   def confirm
     if @purchase_order.can_confirm?
       @purchase_order.confirm!
-      flash[:notice] = t('purchase_order.confirm.success') 
+      flash[:notice] = t('purchase_order.confirm.success')
       redirect_to @purchase_order
-    else   
+    else
       flash[:error] = [t('purchase_order.confirm.failure')]
-      if @purchase_order.errors.full_messages.present?
-        flash[:error] += @purchase_order.errors.full_messages
-      end
-      redirect_to(request.env['HTTP_REFERER'])     
+      flash[:error] += @purchase_order.errors.full_messages if @purchase_order.errors.full_messages.present?
+      redirect_to(request.env['HTTP_REFERER'])
     end
   end
 
+  # PUT /purchase_order/:id/deliver
   def deliver
     if @purchase_order.can_deliver?
       @purchase_order.purchase_details.each do |purchasedetail|
         purchasedetail.medicine.update(quantity: purchasedetail.medicine.quantity + purchasedetail.quantity)
       end
       @purchase_order.deliver!
-      flash[:notice] = t('purchase_order.deliver.success') 
+      flash[:notice] = t('purchase_order.deliver.success')
       redirect_to @purchase_order
-    else   
+    else
       flash[:error] = [t('purchase_order.deliver.failure')]
-      if @purchase_order.errors.full_messages.present?
-        flash[:error] += @purchase_order.errors.full_messages
-      end
-      redirect_to(request.env['HTTP_REFERER'])     
+      flash[:error] += @purchase_order.errors.full_messages if @purchase_order.errors.full_messages.present?
+      redirect_to(request.env['HTTP_REFERER'])
     end
   end
 
-  def purchase_order_params   
-    params.require(:purchase_order).permit(:vendorname, :price)   
+  def purchase_order_params
+    params.require(:purchase_order).permit(:vendorname, :price)
   end
 
   def root_page_breadcrumb
@@ -160,5 +158,4 @@ class PurchaseOrderController < ApplicationController
   def show_page_breadcrumb
     add_breadcrumb t('purchase_order.breadcrumb.show'), purchase_order_path
   end
-
 end
