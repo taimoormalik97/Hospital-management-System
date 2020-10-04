@@ -55,7 +55,7 @@ class Ability
     elsif user.patient?
       can :show, Patient, hospital_id: user.hospital_id, id: user.id
       can :update, Patient, hospital_id: user.hospital_id, id: user.id
-      can :read, Doctor, hospital_id: user.hospital_id
+      can %i[read speciality_filter], Doctor, hospital_id: user.hospital_id
       can %i[read create show_availabilities], Appointment, hospital_id: user.hospital_id, patient_id: user.id
       can :cancel, Appointment do |appointment|
         appointment.hospital_id == user.hospital_id && appointment.patient_id == user.id && appointment.pending?

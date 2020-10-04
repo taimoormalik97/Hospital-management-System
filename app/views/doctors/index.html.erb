@@ -12,7 +12,11 @@
     </div> 
     <div class="card-body">
       <%= render partial: 'speciality_filter' %>
-      <%= render partial: 'table' %>
+      <% if @doctors.present? %>
+        <%= render partial: 'table' %>
+      <% else %>
+        <strong><%= t('doctor.no_doctors') %></strong>
+      <% end %>
     </div>
   </div>
 </div>

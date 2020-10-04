@@ -9,7 +9,7 @@
             <%= link_to 'Add Medicine', new_prescription_prescribed_medicine_path(@prescription.sequence_num) , {class: "btn btn-primary btn-spacing", remote: true} %>
           <% end %>
           <% if can?(:destroy, @prescription) %>
-            <%= link_to 'Delete', prescription_path(@prescription), method: :delete, data: {confirm: t('popup.delete_prescription')} , class: "btn btn-danger btn-spacing" %>
+            <%= link_to t('delete'), prescription_path(@prescription), method: :delete, data: {confirm: t('popup.delete_prescription')} , class: "btn btn-danger btn-spacing" %>
           <% end %>
         </div>
       </div>

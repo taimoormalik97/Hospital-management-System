@@ -109,9 +109,13 @@ $font-home: "Work Sans", serif;
   font-size: 28px;
 }
 
+.btn-outline:hover {
+  color: $color-home-para;
+}
+
 .btn-outline {
-  color: $color-primary-btn;
-  border-color: $color-primary-btn;
+  color: $color-home-para;
+  background-color: $color-back;
 }
 
 .navbar-brand{
@@ -475,6 +479,10 @@ h1 {
   }
 }
 
+.table {
+  table-layout: fixed;
+}
+
 .set_image {
   width: 100;
   height: 100;
@@ -605,4 +613,8 @@ h1 {
 .breadcrumb {
   padding: 0 !important;
   background-color: $color-home-para !important;
+}
+
+.breadcrumb-icon {
+  height: 1.2em !important;
 }

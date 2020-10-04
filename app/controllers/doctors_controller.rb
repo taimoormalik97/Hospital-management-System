@@ -29,7 +29,7 @@ class DoctorsController < ApplicationController
   def search
     @doctor = current_hospital.doctors.find_by(id: params[:search])
     if @doctor.blank?
-      flash[:notice] = t('medicine.search.failure')
+      flash[:error] = t('medicine.search.failure')
     else
       flash[:notice] = t('medicine.search.success')
       respond_to do |format|
