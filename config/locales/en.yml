@@ -38,6 +38,7 @@ en:
   update: 'Update'
   submit: 'Submit'
   action: 'Action'
+  add: 'Add'
   purchase_order:
     heading: 'Purchase Orders'
     add_order_label: 'Add'
@@ -110,7 +111,7 @@ en:
       failure: "Unable to add doctor to the sales order"
   medicine:
     heading: 'Medicines'
-    add_medicine_label: 'Add'
+    add_medicine_label: 'Add Medicine'
     edit_medicine_label: 'Edit Medicine'
     name_label: 'Name'
     price_label: 'Price'
