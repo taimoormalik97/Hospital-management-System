@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_05_093242) do
+ActiveRecord::Schema.define(version: 2020_09_28_112839) do
 
   create_table "appointments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "date", null: false
@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 2020_10_05_093242) do
     t.index ["availability_id"], name: "index_appointments_on_availability_id"
     t.index ["date", "availability_id"], name: "index_appointments_on_date_and_availability_id", unique: true
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
-    t.index ["hospital_id", "sequence_num"], name: "index_appointments_on_hospital_id_and_sequence_num", unique: true
     t.index ["hospital_id"], name: "index_appointments_on_hospital_id"
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
+    t.index ["sequence_num", "hospital_id"], name: "index_appointments_on_sequence_num_and_hospital_id", unique: true
   end
 
   create_table "availabilities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 2020_10_05_093242) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sequence_num", null: false
     t.index ["doctor_id"], name: "index_availabilities_on_doctor_id"
-    t.index ["hospital_id", "sequence_num"], name: "index_availabilities_on_hospital_id_and_sequence_num", unique: true
     t.index ["hospital_id"], name: "index_availabilities_on_hospital_id"
+    t.index ["sequence_num", "hospital_id"], name: "index_availabilities_on_sequence_num_and_hospital_id", unique: true
     t.index ["week_day"], name: "index_availabilities_on_week_day"
   end
 
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 2020_10_05_093242) do
     t.index ["bill_id"], name: "index_bill_details_on_bill_id"
     t.index ["billable_type", "billable_id"], name: "index_bill_details_on_billable_type_and_billable_id"
     t.index ["hospital_id", "bill_id"], name: "index_bill_details_on_hospital_id_and_bill_id"
-    t.index ["hospital_id", "sequence_num"], name: "index_bill_details_on_hospital_id_and_sequence_num", unique: true
     t.index ["hospital_id"], name: "index_bill_details_on_hospital_id"
+    t.index ["sequence_num", "hospital_id"], name: "index_bill_details_on_sequence_num_and_hospital_id", unique: true
   end
 
   create_table "bills", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -70,9 +70,9 @@ ActiveRecord::Schema.define(version: 2020_10_05_093242) do
     t.integer "sequence_num", null: false
     t.decimal "price", precision: 10
     t.index ["hospital_id", "patient_id"], name: "index_bills_on_hospital_id_and_patient_id"
-    t.index ["hospital_id", "sequence_num"], name: "index_bills_on_hospital_id_and_sequence_num", unique: true
     t.index ["hospital_id"], name: "index_bills_on_hospital_id"
     t.index ["patient_id"], name: "index_bills_on_patient_id"
+    t.index ["sequence_num", "hospital_id"], name: "index_bills_on_sequence_num_and_hospital_id", unique: true
   end
 
   create_table "feedbacks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2020_10_05_093242) do
 
   create_table "hospitals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
-    t.string "address"
+    t.string "address", null: false
     t.bigint "phone_number", null: false
     t.string "sub_domain", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -123,8 +123,8 @@ ActiveRecord::Schema.define(version: 2020_10_05_093242) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sequence_num", null: false
     t.index ["hospital_id", "id"], name: "index_medicines_on_hospital_id_and_id"
-    t.index ["hospital_id", "sequence_num"], name: "index_medicines_on_hospital_id_and_sequence_num", unique: true
     t.index ["hospital_id"], name: "index_medicines_on_hospital_id"
+    t.index ["sequence_num", "hospital_id"], name: "index_medicines_on_sequence_num_and_hospital_id", unique: true
   end
 
   create_table "prescribed_medicines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -136,10 +136,10 @@ ActiveRecord::Schema.define(version: 2020_10_05_093242) do
     t.integer "sequence_num", null: false
     t.bigint "prescription_id", null: false
     t.decimal "quantity", precision: 10, null: false
-    t.index ["hospital_id", "sequence_num"], name: "index_prescribed_medicines_on_hospital_id_and_sequence_num", unique: true
     t.index ["hospital_id"], name: "index_prescribed_medicines_on_hospital_id"
     t.index ["medicine_id"], name: "index_prescribed_medicines_on_medicine_id"
     t.index ["prescription_id"], name: "index_prescribed_medicines_on_prescription_id"
+    t.index ["sequence_num", "hospital_id"], name: "index_prescribed_medicines_on_sequence_num_and_hospital_id", unique: true
   end
 
   create_table "prescriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -163,10 +163,10 @@ ActiveRecord::Schema.define(version: 2020_10_05_093242) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sequence_num", null: false
     t.index ["hospital_id", "purchase_order_id"], name: "index_purchase_details_on_hospital_id_and_purchase_order_id"
-    t.index ["hospital_id", "sequence_num"], name: "index_purchase_details_on_hospital_id_and_sequence_num", unique: true
     t.index ["hospital_id"], name: "index_purchase_details_on_hospital_id"
     t.index ["medicine_id"], name: "index_purchase_details_on_medicine_id"
     t.index ["purchase_order_id"], name: "index_purchase_details_on_purchase_order_id"
+    t.index ["sequence_num", "hospital_id"], name: "index_purchase_details_on_sequence_num_and_hospital_id", unique: true
   end
 
   create_table "purchase_orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -179,8 +179,8 @@ ActiveRecord::Schema.define(version: 2020_10_05_093242) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sequence_num", null: false
     t.index ["admin_id"], name: "index_purchase_orders_on_admin_id"
-    t.index ["hospital_id", "sequence_num"], name: "index_purchase_orders_on_hospital_id_and_sequence_num", unique: true
     t.index ["hospital_id"], name: "index_purchase_orders_on_hospital_id"
+    t.index ["sequence_num", "hospital_id"], name: "index_purchase_orders_on_sequence_num_and_hospital_id", unique: true
   end
 
   create_table "tests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -226,10 +226,10 @@ ActiveRecord::Schema.define(version: 2020_10_05_093242) do
     t.index ["email", "hospital_id"], name: "index_users_on_email_and_hospital_id"
     t.index ["email"], name: "index_users_on_email"
     t.index ["hospital_id", "email"], name: "index_users_on_hospital_id_and_email"
-    t.index ["hospital_id", "sequence_num"], name: "index_users_on_hospital_id_and_sequence_num", unique: true
     t.index ["hospital_id"], name: "index_users_on_hospital_id"
     t.index ["id", "type"], name: "index_users_on_id_and_type"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["sequence_num", "hospital_id"], name: "index_users_on_sequence_num_and_hospital_id", unique: true
   end
 
   add_foreign_key "prescribed_medicines", "prescriptions"
