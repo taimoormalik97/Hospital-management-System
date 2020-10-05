@@ -42,11 +42,11 @@ class BillsController < ApplicationController
         flash[:notice] = t('sales_order.addmed.success')
         format.js { render 'bills/update_price' }
       end
-    else  
+    else
       flash[:error] = [t('sales_order.addmed.failure')]
       flash[:error] += @bill.errors.full_messages if @bill.errors.full_messages.present?
       redirect_to(request.env['HTTP_REFERER'])
-    end 
+    end
   end
 
   def add_doctor

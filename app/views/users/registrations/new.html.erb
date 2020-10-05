@@ -20,13 +20,13 @@
         <p>
           <div class="ml-2">
             <div class="row py-2">
-              <label class="col-4"><%= t('guest.profile.name') %>*</label>
+              <label class="col-4"><%= t('guest.profile.name') %><span class="color-danger">*</span></label>
               <div class="pl-0 col-8">
                 <%= f.text_field :name, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
               </div>
             </div>
             <div class="row py-2">
-              <label class="col-4"><%= t('guest.profile.email') %>*</label>
+              <label class="col-4"><%= t('guest.profile.email') %><span class="color-danger">*</span></label>
               <div class="pl-0 col-8">
                 <%= f.email_field :email, autocomplete: "email", required: true, class: "form-control" %>
               </div>
@@ -34,7 +34,8 @@
             <div class="row pt-2">
               <label class="col-4">
                 <div class="row pl-3">
-                  <%= t('guest.profile.password') %>*
+                  <%= t('guest.profile.password') %>
+                  <span class="color-danger">*</span>
                 </div>
                 <div class="row pl-3">
                   <% if @minimum_password_length %>
@@ -47,26 +48,26 @@
               </div>
             </div>
             <div class="row pb-3">
-              <label class="col-4"><%= t('guest.profile.confirm_password') %>*</label>
+              <label class="col-4"><%= t('guest.profile.confirm_password') %><span class="color-danger">*</span></label>
               <div class="pl-0 col-8">
                 <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "form-control" %>
               </div>
             </div>
              <%= f.fields_for :hospital, resource.build_hospital do |h| %>
               <div class="row pb-3">
-                <label class="col-4"><%= t('guest.profile.hospital_name') %>*</label>
+                <label class="col-4"><%= t('guest.profile.hospital_name') %><span class="color-danger">*</span></label>
                 <div class="pl-0 col-8">
                   <%= h.text_field :name, required: true, id: "hospital_name", class: "form-control" %>
                 </div>
               </div>
               <div class="row pb-0">
-                <label class="col-4"><%= t('guest.profile.hospital_sub_domain') %>*</label>
+                <label class="col-4"><%= t('guest.profile.hospital_sub_domain') %><span class="color-danger">*</span></label>
                 <div class="pl-0 col-8">
                   <%= h.text_field :sub_domain, id: "sub_domain", readonly: true, class: "form-control" %>
                 </div>
               </div>
               <div class="row pb-3">
-                <label class="col-4"><%= t('guest.profile.hospital_phone_number') %>*</label>
+                <label class="col-4"><%= t('guest.profile.hospital_phone_number') %><span class="color-danger">*</span></label>
                 <div class="pl-0 col-8">
                   <%= h.text_field :phone_number, required: true, class: "form-control" %>
                 </div>

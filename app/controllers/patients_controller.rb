@@ -21,7 +21,7 @@ class PatientsController < ApplicationController
   end
 
   def search_pred
-    @patients = current_hospital.patients.search(params[:q])
+    @patients = current_hospital.patients.search_patient(params[:q])
     respond_to do |format|
       format.html
       format.json { render json: @patients }
