@@ -42,5 +42,7 @@
   <%= render 'doctorssearch'%>
 <%end%>
 <%= javascript_tag do %>
-  $('#patient_search1').tokenInput("/patients/search_pred", { preventDuplicates: true, prePopulate: <%= [{id: @bill.patient_id, name: @bill.patient.name }].to_json.html_safe %>});
+  $('#patient_search1').tokenInput("/patients/search_pred", { preventDuplicates: true, theme: 'facebook', tokenLimit: 1, prePopulate: <%= [{id: @bill.patient_id, name: @bill.patient.name }].to_json.html_safe %>});
+  $('.token-input-dropdown-facebook').css({"width": "69%", "font-size": "15px"});
+  $('.token-input-list-facebook').css({"width": "100%", "font-size": "18px", "font-family": "Arial, Helvetica, sans-serif", "border-radius": "5px"});
 <% end %>

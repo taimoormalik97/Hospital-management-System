@@ -128,7 +128,7 @@ class PurchaseOrderController < ApplicationController
     end
   end
 
-  def purchase_order_params   
+  def purchase_order_params
     params.require(:purchase_order).permit(:vendorname, :price, :state)
   end
 
