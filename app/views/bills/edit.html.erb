@@ -24,14 +24,14 @@
             </div>    
           </p>
         </div> 
-      </div>
-      <div class="card-footer p-3 container-fluid">
-        <div class="row d-flex justify-content-md-end">
-          <div>   
-            <%= link_to t('back'), { controller: 'bills', action: 'index'}, class: "btn btn-secondary" %>   
-            <%= f.submit t('update'), class: "btn btn-primary btn-spacing"%>   
-          </div> 
-        </div>
+        <div class="card-footer p-3 container-fluid">
+          <div class="row d-flex justify-content-md-end">
+            <div class="col-md-3 d-flex justify-content-md-end">
+              <%= link_to 'Cancel', bills_path , class: "btn btn-secondary btn-spacing" %>
+              <%= f.submit t('update'), class: "btn btn-primary btn-spacing"%>   
+            </div>
+          </div>
+        </div> 
       </div>    
     </div>    
   </div>
@@ -42,5 +42,5 @@
   <%= render 'doctorssearch'%>
 <%end%>
 <%= javascript_tag do %>
-  $('#patient_search1').tokenInput("/patients/search_pred", { preventDuplicates: true, prePopulate: <%= [{id: @bill.patient_id, name: @bill.patient.name }].to_json.html_safe %>});
+  $('#patient_search1').tokenInput("/patients/search_pred", { preventDuplicates: true, theme: 'facebook', tokenLimit: 1, hintText: 'search patient', prePopulate: <%= [{id: @bill.patient_id, name: @bill.patient.name }].to_json.html_safe %>});
 <% end %>

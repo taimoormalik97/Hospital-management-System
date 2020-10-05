@@ -40,10 +40,11 @@ class PurchaseOrder < ApplicationRecord
       self.errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
     end   
   end
+  
   def remove_medicine(medicine)
     begin
       PurchaseOrder.transaction do
-        curr_purchase_detail=purchase_details.find_by(medicine: medicine)
+        curr_purchase_detail = purchase_details.find_by(medicine: medicine)
         if curr_purchase_detail
           price = curr_purchase_detail.medicine.price * curr_purchase_detail.quantity
           if curr_purchase_detail.delete
@@ -58,5 +59,8 @@ class PurchaseOrder < ApplicationRecord
       return false
     end   
   end  
+<<<<<<< HEAD
 
+=======
+>>>>>>> b7879375ea1ea501f67c47483df2aa8cae3c0b20
 end

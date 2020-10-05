@@ -2,7 +2,7 @@
     <div class="card">
       <div class="card-header p-3 container-fluid">
         <div class="row">
-          <h3 class="col-md-8"><%= @purchase_order.vendorname %></h3> 
+          <h3 class="col-md-8"><%= "Purchase Order ##{@purchase_order.sequence_num}" %></h3> 
           <div class="col-md-4 d-flex justify-content-md-end"> 
             <% if @purchase_order.drafted? && @purchase_order.medicines.exists? %>   
               <%= link_to t('purchase_order.confirm_button'), confirm_purchase_order_path(@purchase_order), method: "put", class: "btn btn-success"%> 
@@ -18,6 +18,10 @@
       </div>
       <div class="card-body">
       <dl class="row">
+        <dd class="col-12">   
+          <% state_colors = state_colors(@purchase_order) %>
+          <span class="p-1 rounded text-<%= state_colors[:text] %> bg-<%= state_colors[:bg] %>"><%= @purchase_order.state.capitalize %></span>   
+        </dd>
         <dt class="col-sm-2">  
           <label><%= t('purchase_order.name_label') %></label>
         </dt>
@@ -29,12 +33,6 @@
         </dt>
         <dd class="col-sm-9">   
           <%=@purchase_order.price%>   
-        </dd>
-        <dt class="col-sm-2">  
-          <label><%= t('purchase_order.state_label') %></label>
-        </dt>
-        <dd class="col-sm-9">   
-          <%=@purchase_order.state%>   
         </dd>
     </dl>
     </div>    

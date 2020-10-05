@@ -12,7 +12,7 @@
           <p>   
             <div class="form-group">   
               <label><%= t('sales_order.name_label') %></label>   
-              <%= f.text_field :patient_id, :required => true, class: "form-control", id: "patient_search" %>   
+              <%= f.text_field :patient_id, :required => true, id: "patient_search", class: "form-control" %>   
             </div>
             <div class="form-group">   
               <label><%= t('sales_order.price_label') %></label>   
@@ -24,14 +24,14 @@
             </div>    
           </p>
         </div> 
-      </div>
-      <div class="card-footer p-3 container-fluid">
-        <div class="row d-flex justify-content-md-end">
-          <div>   
-            <%= link_to t('back'), { controller: 'bills', action: 'index'}, class: "btn btn-secondary" %>   
-            <%= f.submit t('create'), class: "btn btn-primary btn-spacing"%>   
-          </div> 
-        </div>
+        <div class="card-footer p-3 container-fluid">
+          <div class="row d-flex justify-content-md-end">
+            <div class="col-md-3 d-flex justify-content-md-end">
+              <%= link_to 'Cancel', bills_path , class: "btn btn-secondary btn-spacing" %>  
+              <%= f.submit t('create'), class: "btn btn-primary btn-spacing"%>   
+            </div>
+          </div>
+        </div>   
       </div>    
     </div>    
   </div>

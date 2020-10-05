@@ -1,8 +1,8 @@
 class MedicinesController < ApplicationController
-  
+
   include ActionController::MimeResponds
   load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
-  
+
   before_action :index_page_breadcrumb, only: %i[index new show edit]
   before_action :show_page_breadcrumb, only: [:show]
 
@@ -28,7 +28,7 @@ class MedicinesController < ApplicationController
       format.html
     end
   end
-  
+
   def search_pred
     @medicines = current_hospital.medicines.search(params[:q])
     respond_to do |format|
@@ -82,7 +82,7 @@ class MedicinesController < ApplicationController
 
   def medicine_params
     params.require(:medicine).permit(:name, :price, :quantity, :search)
-  end 
+  end
 
   def root_page_breadcrumb
     add_breadcrumb current_hospital.name, hospital_index_path
@@ -95,5 +95,4 @@ class MedicinesController < ApplicationController
   def show_page_breadcrumb
     add_breadcrumb t('medicine.breadcrumb.show'), medicine_path
   end
-
 end

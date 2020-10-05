@@ -38,5 +38,4 @@ class PrescribedMedicinesController < ApplicationController
   def prescribed_medicine_params
     params.require(:prescribed_medicine).permit(:medicine_id, :quantity, :usage_instruction)
   end
-
 end

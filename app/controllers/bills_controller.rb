@@ -50,7 +50,6 @@ class BillsController < ApplicationController
 
   def add_doctor
     @doctor= current_hospital.doctors.find_by(id: params[:doctor_id])
-
     if @bill.add_doctor(@doctor)  
       respond_to do |format|
         format.js{ render 'bills/update_price' }
