@@ -6,7 +6,7 @@ class Patient < User
   validates_presence_of %i[name gender dob]
   scope :doctor_only, ->(user) { joins(:appointments).where(appointments: { doctor_id: user.id, hospital_id: user.hospital_id }).distinct }
   
-  def self.search(pattern)
+  def self.search_patient(pattern)
     if pattern.blank?  # blank? covers both nil and empty string
       all
     else
