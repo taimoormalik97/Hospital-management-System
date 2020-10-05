@@ -41,7 +41,7 @@ module DashboardHelper
     bills = doctor.bill_details.pluck(:bill_id).uniq.collect do |bill_id|
       @current_hospital.bills.where(id: bill_id).pluck(:price)
     end
-    bills.sum.first
+    bills.present? ? bills.sum.first : bills.sum
   end
 
   def doctor_new_patients(doctor)

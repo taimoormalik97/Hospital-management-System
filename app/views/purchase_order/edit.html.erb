@@ -1,3 +1,4 @@
+<div id="add_medicine_purchaseorder_flash_messages"></div>
 <%= form_for @purchase_order, url: {action: :update} do |f| %> 
   <div class="container  pt-3"> 
       <div class="card">
@@ -15,15 +16,8 @@
               <%= f.text_field :vendorname, :required => true, class: "form-control" %>   
             </div>   
             <div class="form-group">   
-              <label><%= t('purchase_order.price_label') %></label>   
-              <%= f.number_field :price, :required => true, class: "form-control" %>   
-            </div>   
-            <div class="form-group">   
-              <% if @purchase_order.drafted? %>   
-                <%= link_to t('purchase_order.confirm_button'), confirm_purchase_order_path(@purchase_order), method: "put", class: "btn btn-success"%> 
-              <% elsif @purchase_order.confirmed? %>
-                <%= link_to t('purchase_order.deliver_button'), deliver_purchase_order_path(@purchase_order), method: "put", class: "btn btn-success"%>
-              <% end %>
+              <label><%= t('purchase_order.price_label') %></label>
+              <strong><span class="pl-3" id="purchase_order_price"><%= @purchase_order.price %></span></strong> 
             </div>    
           </p>
         </div> 
@@ -40,19 +34,36 @@
   </div>
 <% end %> 
 <%if @purchase_order.drafted? %> 
-  <div class="container" id="search1">
-    <%= form_tag(get_medicine_purchase_order_path, method: 'get', remote: true, 
-    class: 'navbar-form navbar-left') do %>  
-    <div class="input-group">  
-      <%= text_field_tag :search, nil, required: true, id: 'search_medicines', placeholder: "Search by Description..." %>
-      <%= hidden_field_tag :purchase_order_sequence_num, @purchase_order.sequence_num %> 
-      <div class="input-group-btn">  
-        <%= submit_tag t('submit'), :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
+  <div class="container pt-3 mb-5"> 
+    <div class="card">
+      <div class="card-header p-3 container-fluid">
+        <div class="row">
+          <h3 class="col-md-9">
+            <%= "Add Medicines" %>
+          </h3> 
+        </div>
       </div> 
-    </div>  
-    <% end %> 
-  </div> 
-  <div class ="container" id = "display_results" ></div>
-  <div class = 'container' id = 'medicines_table'></div>
+      <div class="card-body">
+        <%= render 'medicinesearch'%>
+        <div id="display_results"></div>
+      </div>
+    </div>
+  </div>
+    <div class="container pt-3 mb-5"> 
+      <div class="card">
+        <div class="card-header p-3 container-fluid">
+          <div class="row">
+            <h3 class="col-md-9">
+              <%= "Medicines" %>
+            </h3> 
+          </div>
+        </div> 
+        <div class="card-body">
+          <div id="medicines_table_purchase_order">
+            <%= render(partial: 'medicines_table') %>
+          </div>
+        </div>
+      </div>
+    </div>
 <% end %>
 

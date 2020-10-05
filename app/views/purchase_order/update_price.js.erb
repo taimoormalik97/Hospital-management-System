@@ -1,11 +1,11 @@
 $.PrevVal = $('#purchase_order_price').val()
-$('#purchase_order_price').val("<%=@purchase_order.price%>");
+$('#purchase_order_price').text("<%=@purchase_order.price%>");
 if($.PrevVal < $('#purchase_order_price').val()){
   alert("Medicine added!");
 }
-$("#display_results").hide();
-$('#medicines_table').html("<%= escape_javascript render partial:'medicines_table' %>");
-$('#medicines_table').show();
+
 if($.PrevVal > $('#purchase_order_price').val()){
   alert("Medicine removed!");
 }
+$('#medicines_table_purchase_order').html("<%= escape_javascript(render(partial: 'medicines_table')) %>");
+$('#add_medicine_purchaseorder_flash_messages').html("<%= escape_javascript(render(partial: 'layouts/flash')) %>");

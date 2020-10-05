@@ -12,67 +12,71 @@
       </div>
     </div> 
     <div class="card-body">
-      <table  class="table">   
-        <thead >   
-          <tr>
-            <th><%= t('appointment.label.id') %></th> 
-            <th><%= t('appointment.label.date') %></th> 
-            <th><%= t('appointment.label.start') %></th>   
-            <th><%= t('appointment.label.end') %></th>
-            <% unless current_user.doctor? %>   
-              <th><%= t('doctor.name') %></th> 
-            <% end %>
-            <th><%= t('appointment.label.status') %></th>
-            <% unless current_user.patient? %>
-              <th><%= t('patient.name') %></th> 
-            <% end %>
-            <th>Actions</th>
-          </tr>   
-        </thead>   
-        <tbody>   
-          <% @appointments.each do |appointment| %>   
-            <tr> 
-              <td><%= link_to appointment.sequence_num, appointment_path(appointment) %></td>
-              <td><%= appointment.date %></td>   
-              <% availability = appointment.availability %>
-              <td><%= convert_to_twelve_hour_format(availability.start_slot) %></td>  
-              <td><%= convert_to_twelve_hour_format(availability.end_slot) %></td>
-              <% status_colors = status_colors(appointment) %>
-              <% unless current_user.doctor? %>
-                <td><%= appointment.doctor.name %></td>
+      <% if @appointments.present? %>
+        <table  class="table">   
+          <thead >   
+            <tr>
+              <th><%= t('appointment.label.id') %></th> 
+              <th><%= t('appointment.label.date') %></th> 
+              <th><%= t('appointment.label.start') %></th>   
+              <th><%= t('appointment.label.end') %></th>
+              <% unless current_user.doctor? %>   
+                <th><%= t('doctor.name') %></th> 
               <% end %>
-              <td><span class="p-1 rounded text-<%= status_colors[:text] %> bg-<%= status_colors[:bg] %>"><%= appointment.current_state.capitalize %></span></td>
+              <th><%= t('appointment.label.status') %></th>
               <% unless current_user.patient? %>
-                <td><%= appointment.patient.name %></td>
+                <th><%= t('patient.name') %></th> 
               <% end %>
-              <td class="row">
-                <div class = "col-sm-1">
-                  <% if current_user.doctor? %>
-                    <% if can?(:approve, appointment) %>
-                      <%= link_to approve_appointment_path(appointment), method: 'put', data: { confirm: t('popup.approve') } do %>
-                        <i class="far fa-check-circle text-warning" title="approve"></i>
-                      <% end %>
-                    <% elsif can?(:complete, appointment) %>
-                      <%= link_to complete_appointment_path(appointment), method: 'put', data: { confirm: t('popup.complete') } do %>
-                        <i class="far fa-check-circle text-info" title="complete"></i>
-                      <% end %>
-                    <% elsif appointment.completed? %>
-                        <i class="far fa-check-circle color-success"></i>
-                    <% end %>
-                  <% end %>
-                </div>
-                <div class = "col-sm-1">
-                  <% if can?(:cancel, appointment) %>
-                    <%= link_to cancel_appointment_path(appointment), method: 'put', data: { confirm: t('popup.cancel') } do %>
-                      <i class="far fa-times-circle color-danger" title="cancel"></i>
-                    <% end %>
-                  <% end %> 
-                </div>
-              </td> 
+              <th>Actions</th>
             </tr>   
-          <% end %>  
-        </tbody>   
-      </table> 
+          </thead>   
+          <tbody>   
+            <% @appointments.each do |appointment| %>   
+              <tr> 
+                <td><%= link_to appointment.sequence_num, appointment_path(appointment) %></td>
+                <td><%= appointment.date %></td>   
+                <% availability = appointment.availability %>
+                <td><%= convert_to_twelve_hour_format(availability.start_slot) %></td>  
+                <td><%= convert_to_twelve_hour_format(availability.end_slot) %></td>
+                <% status_colors = status_colors(appointment) %>
+                <% unless current_user.doctor? %>
+                  <td><%= appointment.doctor.name %></td>
+                <% end %>
+                <td><span class="p-1 rounded text-<%= status_colors[:text] %> bg-<%= status_colors[:bg] %>"><%= appointment.current_state.capitalize %></span></td>
+                <% unless current_user.patient? %>
+                  <td><%= appointment.patient.name %></td>
+                <% end %>
+                <td class="row">
+                  <div class = "col-sm-1">
+                    <% if current_user.doctor? %>
+                      <% if can?(:approve, appointment) %>
+                        <%= link_to approve_appointment_path(appointment), method: 'put', data: { confirm: t('popup.approve') } do %>
+                          <i class="far fa-check-circle text-warning" title="approve"></i>
+                        <% end %>
+                      <% elsif can?(:complete, appointment) %>
+                        <%= link_to complete_appointment_path(appointment), method: 'put', data: { confirm: t('popup.complete') } do %>
+                          <i class="far fa-check-circle text-info" title="complete"></i>
+                        <% end %>
+                      <% elsif appointment.completed? %>
+                          <i class="far fa-check-circle color-success"></i>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class = "col-sm-1">
+                    <% if can?(:cancel, appointment) %>
+                      <%= link_to cancel_appointment_path(appointment), method: 'put', data: { confirm: t('popup.cancel') } do %>
+                        <i class="far fa-times-circle color-danger" title="cancel"></i>
+                      <% end %>
+                    <% end %> 
+                  </div>
+                </td> 
+              </tr>   
+            <% end %>  
+          </tbody>   
+        </table> 
+      <% else %>
+        <strong><%= t('appointment.no_appointments') %></strong>
+      <% end %>
     </div>
   </div>
 </div>

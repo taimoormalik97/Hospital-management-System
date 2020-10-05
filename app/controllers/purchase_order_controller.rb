@@ -37,6 +37,7 @@ class PurchaseOrderController < ApplicationController
     quantity = params[:quantity].to_i
     if @purchase_order.add_medicine(@medicine, quantity)
       respond_to do |format|
+        flash[:notice] = t('purchase_order.addmed.success')
         format.js { render 'purchase_order/update_price' }
       end
     else

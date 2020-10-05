@@ -1,2 +1,3 @@
-$('#bill_price').val("<%= @bill.price %>");
-
+$('#bill_price').text("<%= @bill.price %>");
+$('#medicines_table_bill').html("<%= escape_javascript(render(partial: 'medicines_table')) %>");
+$('#add_medicine_flash_messages').html("<%= escape_javascript(render(partial: 'layouts/flash')) %>");

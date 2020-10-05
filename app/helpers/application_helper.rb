@@ -13,4 +13,12 @@ module ApplicationHelper
       flash_type.to_s
     end
   end
+
+  def resource_path(resource)
+    if resource.instance_of? Medicine
+      medicine_path(resource)
+    else
+      user_profile_path(resource)
+    end
+  end
 end

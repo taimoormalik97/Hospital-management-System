@@ -32,15 +32,17 @@
                 <td>
                   <div class='row'>
                     <div class='col-sm'>
-                      <%if (po.drafted? || po.confirmed?) && (can? :edit, po) %>
+                      <% if can? :update, po %>
                         <%= link_to edit_purchase_order_path(po), class: 'float-right' do %>
                           <i class="fas fa-pen"></i>
                         <% end %>
                       <% end %> 
                     </div>
                     <div class='col-sm'>
-                      <%= link_to purchase_order_path(po), method: :delete,  data: { confirm:'Are you sure you want to delete medicine?' } do %>
-                        <i class="fas fa-trash-alt color-danger"></i>
+                      <% if can? :destroy, po %>
+                        <%= link_to purchase_order_path(po), method: :delete,  data: { confirm:'Are you sure you want to delete medicine?' } do %>
+                          <i class="fas fa-trash-alt color-danger"></i>
+                        <% end %>
                       <% end %>
                     </div>
                   </div>      

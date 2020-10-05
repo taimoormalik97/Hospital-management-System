@@ -8,7 +8,7 @@
   <div class="modal-body">
     <div class="form-group">
       <label class="col-form-label"><%= t('appointment.label.date') %>: </label> 
-      <%= f.date_field :date, required: true, class: "form-control" , id: 'date' %>     
+      <%= f.date_field :date, selected: Date.today, min: Date.today, max: 1.month.from_now, required: true, class: "form-control appointment-date" , id: 'date' %>     
     </div>
     <div class="form-group">
       <label class="col-form-label"><%= t('doctor.name') %>: </label>

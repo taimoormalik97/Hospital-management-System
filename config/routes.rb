@@ -75,6 +75,7 @@ Rails.application.routes.draw do
       end
     end
     get '' => 'dashboards#dashboard'
+    get 'search' => 'hospital#search'
   end
   
   devise_for :users, controllers: { registrations: 'users/registrations', passwords: 'users/passwords', sessions: 'users/sessions', confirmations: 'users/confirmations' }

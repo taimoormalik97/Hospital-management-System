@@ -11,19 +11,24 @@ class Ability
       can :manage, Patient, hospital_id: user.hospital_id
       can :manage, Doctor, hospital_id: user.hospital_id
       can :manage, Medicine, hospital_id: user.hospital_id
-      can :manage, PurchaseOrder, hospital_id: user.hospital_id
       can :manage, Bill, hospital_id: user.hospital_id
+      can %i[create read], PurchaseOrder, hospital_id: user.hospital_id
+      can %i[update add_medicine get_medicine remove_medicine], PurchaseOrder do |purchase_order|
+        purchase_order.hospital_id == user.hospital_id && !purchase_order.delivered?
+      end
+      can :confirm, PurchaseOrder do |purchase_order|
+        purchase_order.hospital_id == user.hospital_id && purchase_order.drafted? && purchase_order.medicines.present?
+      end
+      can :deliver, PurchaseOrder do |purchase_order|
+        purchase_order.hospital_id == user.hospital_id && purchase_order.confirmed? && purchase_order.medicines.present?
+      end
+
+      can :destroy, PurchaseOrder do |purchase_order|
+        purchase_order.drafted?
+      end
       #ability to not delete a medicine if it exists in a purchase detail
       cannot :destroy, Medicine do |medicine|
         PurchaseDetail.where(medicine_id: medicine.id).exists? || BillDetail.where(billable: medicine).exists?
-      end
-
-      cannot :confirm, PurchaseOrder do |po|
-        po.medicines.blank?
-      end
-
-      cannot :edit, PurchaseOrder do |po|
-        po.delivered?
       end
       
       can %i[read update], Admin, hospital_id: user.hospital_id, id: user.id
@@ -60,7 +65,7 @@ class Ability
     elsif user.patient?
       can :show, Patient, hospital_id: user.hospital_id, id: user.id
       can :update, Patient, hospital_id: user.hospital_id, id: user.id
-      can :read, Doctor, hospital_id: user.hospital_id
+      can %i[read speciality_filter], Doctor, hospital_id: user.hospital_id
       can %i[read create show_availabilities], Appointment, hospital_id: user.hospital_id, patient_id: user.id
       can :cancel, Appointment do |appointment|
         appointment.hospital_id == user.hospital_id && appointment.patient_id == user.id && appointment.pending?

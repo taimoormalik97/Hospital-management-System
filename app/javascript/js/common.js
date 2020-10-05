@@ -3,7 +3,6 @@ function collapseSidebar() {
   /*-----------------------------------/
   /*  TOP NAVIGATION AND LAYOUT
   /*----------------------------------*/
-
   $('.btn-toggle-fullwidth').on('click', function() {
     if(!$('body').hasClass('layout-fullwidth')) {
       $('body').addClass('layout-fullwidth');
@@ -69,84 +68,6 @@ function collapseSidebar() {
       $(this).removeClass('active');
     }
   });
-
-  /*-----------------------------------/
-  /*  TODO LIST
-  /*----------------------------------*/
-
-  $('.todo-list input').change( function() {
-    if( $(this).prop('checked') ) {
-      $(this).parents('li').addClass('completed');
-    }else {
-      $(this).parents('li').removeClass('completed');
-    }
-  });
-
-
-  /*-----------------------------------/
-  /* TOASTR NOTIFICATION
-  /*----------------------------------*/
-
-  if($('#toastr-demo').length > 0) {
-    toastr.options.timeOut = "false";
-    toastr.options.closeButton = true;
-    toastr['info']('Hi there, this is notification demo with HTML support. So, you can add HTML elements like <a href="#">this link</a>');
-
-    $('.btn-toastr').on('click', function() {
-      $context = $(this).data('context');
-      $message = $(this).data('message');
-      $position = $(this).data('position');
-
-      if($context == '') {
-        $context = 'info';
-      }
-
-      if($position == '') {
-        $positionClass = 'toast-left-top';
-      } else {
-        $positionClass = 'toast-' + $position;
-      }
-
-      toastr.remove();
-      toastr[$context]($message, '' , { positionClass: $positionClass });
-    });
-
-    $('#toastr-callback1').on('click', function() {
-      $message = $(this).data('message');
-
-      toastr.options = {
-        "timeOut": "300",
-        "onShown": function() { alert('onShown callback'); },
-        "onHidden": function() { alert('onHidden callback'); }
-      }
-
-      toastr['info']($message);
-    });
-
-    $('#toastr-callback2').on('click', function() {
-      $message = $(this).data('message');
-
-      toastr.options = {
-        "timeOut": "10000",
-        "onclick": function() { alert('onclick callback'); },
-      }
-
-      toastr['info']($message);
-
-    });
-
-    $('#toastr-callback3').on('click', function() {
-      $message = $(this).data('message');
-
-      toastr.options = {
-        "timeOut": "10000",
-        "closeButton": true,
-        "onCloseClick": function() { alert('onCloseClick callback'); }
-      }
-
-      toastr['info']($message);
-    });
-  }
 }
 
 function showAvailabilitiesForAppointment() {
@@ -156,6 +77,7 @@ function showAvailabilitiesForAppointment() {
   });
 }
 
+
 $(document).ready(function(){
   $('body').on('change', '#speciality_filter', function(){
     $.ajax({ type: "GET", url: '/doctors/speciality_filter', data: { filter: $(this).val() } });
@@ -164,21 +86,3 @@ $(document).ready(function(){
 
 $(document).ready(collapseSidebar)
 $(document).ready(showAvailabilitiesForAppointment)
-
-// toggle function
-$.fn.clickToggle = function( f1, f2 ) {
-  return this.each( function() {
-    var clicked = false;
-    $(this).bind('click', function() {
-      if(clicked) {
-        clicked = false;
-        return f2.apply(this, arguments);
-      }
-
-      clicked = true;
-      return f1.apply(this, arguments);
-    });
-  });
-
-}
-

@@ -39,6 +39,7 @@ class BillsController < ApplicationController
     quantity = params[:quantity].to_i
     if @bill.add_medicine(@medicine, quantity)
       respond_to do |format|
+        flash[:notice] = t('sales_order.addmed.success')
         format.js { render 'bills/update_price' }
       end
     else
@@ -115,7 +116,7 @@ class BillsController < ApplicationController
   end
 
   def bill_params
-    params.require(:bill).permit(:billable_type, :patient_id, :price)
+    params.require(:bill).permit(:billable_type, :patient_id)
   end
 
   def root_page_breadcrumb

@@ -6,13 +6,14 @@ class Bill < ApplicationRecord
   has_many :bill_details, dependent: :destroy
   has_many :medicines, through: :bill_details, source: :billable, source_type: 'Medicine'
   has_many :doctors, through: :bill_details, source: :billable, source_type: 'Doctor'
+  
   def add_medicine(medicine, quantity_added)
     begin
       Bill.transaction do
         if medicine.quantity > 0 && quantity_added <= medicine.quantity
-          if medicine.update(quantity: medicine.quantity - quantity_added)
+          if medicine.update!(quantity: medicine.quantity - quantity_added)
             updated_price = price + (medicine.price * quantity_added)
-            update(price: updated_price)
+            update!(price: updated_price)
             curr_bill_detail = bill_details.find_by(billable: medicine)
             if curr_bill_detail
               curr_bill_detail.update(quantity: quantity_added + curr_bill_detail.quantity)

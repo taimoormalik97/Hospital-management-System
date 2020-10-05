@@ -1,5 +1,15 @@
 <% if breadcrumbs.length > 0 %>
-  <div class="breadcrumb breadcrumb-links breadcrumb-dark p-1" >
+  <div class="breadcrumb breadcrumb-links breadcrumb-dark" >
+    <% if breadcrumbs.length > 1 %>
+      <div>
+    <% else %>
+      <div class="mr-1">
+    <% end %>
+      <%= link_to root_path do %>
+        <i class="fas fa-home breadcrumb-icon"></i>
+      <% end %>
+      <span>/</span>
+    </div>
     <%= render_breadcrumbs separator: " / ", class: "breadcrumb-item" %>
   </div>
 <% end %>
