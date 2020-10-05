@@ -1,0 +1,5 @@
+<div class="container pt-3"> 
+  <%= render(partial: 'table', locals: { title: 'Medicines', results: @medicines }) if @medicines.present? %>
+  <%= render(partial: 'table', locals: { title: 'Doctors', results: @doctors }) if @doctors.present? %>
+  <%= render(partial: 'table', locals: { title: 'Patients', results: @patients }) if @patients.present? %>
+</div> 

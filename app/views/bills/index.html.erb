@@ -36,10 +36,10 @@
                     <td><%= bill.price%></td>
                     <div>   
                       <td>
-                        <%= link_to edit_bill_path(bill) do%> 
+                        <%= link_to edit_bill_path(bill) do %> 
                           <i class="fas fa-pen"></i>
                         <%end%>
-                        <%= link_to bill_path(bill), method: :delete, class: "btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?'} do%> 
+                        <%= link_to bill_path(bill), method: :delete, class: "btn-danger btn-spacing", data: {confirm:'Are you sure you want to delete medicine?'} do %> 
                           <i class="fas fa-trash-alt"></i>
                         <%end%>  
                       </td> 
@@ -47,7 +47,7 @@
                   </tr>  
               <% end %> 
             <% else %>
-              <strong><%= t('sale_order.none') %></strong>
+              <strong><%= t('sales_order.none') %></strong>
             <% end %> 
             </tbody>   
           </table>
@@ -75,10 +75,10 @@
                     <td><%= bill.price%></td>
                     <div>   
                       <td>
-                        <%= link_to edit_bill_path(bill) do%> 
+                        <%= link_to edit_bill_path(bill) do %> 
                           <i class="fas fa-pen"></i>
                         <%end%>
-                        <%= link_to bill_path(bill), method: :delete, class: "btn-danger btn-spacing" do%> 
+                        <%= link_to bill_path(bill), method: :delete, class: "btn-danger btn-spacing" do %> 
                           <i class="fas fa-trash-alt"></i>
                         <%end%>  
                       </td> 
@@ -86,7 +86,7 @@
                   </tr> 
               <% end %>
             <% else %>
-              <strong><%= t('sale_order.none') %></strong>
+              <strong><%= t('sales_order.none') %></strong>
             <% end %>   
             </tbody>   
           </table>

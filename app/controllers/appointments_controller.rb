@@ -2,7 +2,8 @@ require 'date'
 class AppointmentsController < ApplicationController
   load_and_authorize_resource find_by: :sequence_num
 
-  before_action :index_page_breadcrumb, only: [:index, :new]
+  before_action :index_page_breadcrumb, only: %i[index new show edit]
+  before_action :show_page_breadcrumb, only: %i[show edit]
 
   # GET /appointments
   def index
@@ -42,15 +43,7 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  # GET /appointments/:id/edit
-  def edit
-    add_breadcrumb t('appointment.breadcrumb.edit'), edit_appointment_path
-    respond_to do |format|
-      format.html
-    end
-  end
-
-  # PATCH/PUT /appointments/:id
+  # PATCH /appointments/:id
   def update
     respond_to do |format|
       if @appointment.update(appointment_params)
@@ -63,26 +56,16 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  # DELETE  /appointments/:id
-  def destroy
-    @appointment.destroy
-    respond_to do |format|
-      if @appointment.destroyed?
-        format.html { redirect_to appointments_path, notice: t('appointment.delete.success') }
-      else
-        flash[:error] = [t('appointment.delete.failure')]
-        flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
-        format.html { render :show }
-      end
-    end
-  end
-
   def appointment_params
     params.require(:appointment).permit(:date, :doctor_id, :availability_id)
   end
 
   def index_page_breadcrumb
     add_breadcrumb t('appointment.breadcrumb.index'), appointments_path
+  end
+
+  def show_page_breadcrumb
+    add_breadcrumb t('appointment.breadcrumb.show'), appointment_path
   end
 
   # GET /show_availabilities

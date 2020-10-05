@@ -1,13 +1,11 @@
 class Hospital < ApplicationRecord
+  mark_not_multitenant
   has_many :users, dependent: :destroy
   has_many :doctors, class_name: 'Doctor'
   has_many :admins, class_name: 'Admin'
   has_many :patients, class_name: 'Patient'
   has_many :appointments, dependent: :destroy
-  has_many :feedbacks, dependent: :destroy
   has_many :availabilities, dependent: :destroy
-  has_many :lab_reports, dependent: :destroy
-  has_many :tests, dependent: :destroy
   has_many :medicines, dependent: :destroy
   has_many :prescriptions, dependent: :destroy
   has_many :prescribed_medicines, dependent: :destroy

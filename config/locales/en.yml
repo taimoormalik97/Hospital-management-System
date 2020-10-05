@@ -38,6 +38,13 @@ en:
   update: 'Update'
   submit: 'Submit'
   action: 'Action'
+  
+  search:
+    breadcrumb: 'Search Results'
+    
+  dashboard:
+    breadcrumb: 'Dashboard'
+
   purchase_order:
     heading: 'Purchase Orders'
     add_order_label: 'Add'
@@ -72,7 +79,10 @@ en:
       new: "New Order"
       show: "Order Details"
       edit: "Edit Order"
+
   sales_order:
+    name: "Sales Orders"
+    none: 'No Sales Orders to display'
     heading: 'Sales Orders'
     add_order_label: 'Add'
     edit_order_label: 'Edit Order'
@@ -108,6 +118,7 @@ en:
     adddoc:
       success: "Doctor successfully added to the sales order"
       failure: "Unable to add doctor to the sales order"
+
   medicine:
     heading: 'Medicines'
     add_medicine_label: 'Add'
@@ -135,11 +146,13 @@ en:
       show: "Medicine Details"
       edit: "Edit Medicine"
     prescription_error: 'Medicine exists in prescriptions'
+
   paginate:
     previous: "Previous"
     next: "Next"
 
   doctor:
+    no_doctors: 'No Doctor to display'
     appointments: "Doctor's Appointments"
     name_label: 'Name'
     fee: 'fee'
@@ -173,6 +186,7 @@ en:
       edit: "Edit Doctor"
 
   patient:
+    no_patients: 'No Patient to display'
     name: "Patients"
     label: 
       title:
@@ -200,17 +214,19 @@ en:
       show: "Patient Details"
       edit: "Edit Patient"
 
-  sale_order:
-    name: "Sales Orders"
-    none: 'No Sales Orders to display'
   appointment:
+    no_appointments: 'No Appointment to display'
     label:
+      id: 'ID'
+      slot: 'Slot'
       start: 'Start'
       end: 'End'
       date: 'Date'
       status: 'Status'
+      doctor: 'Doctor'
+      patient: 'Patient'
     name: "Appointments"
-    breadcrumb: "Appointments"
+    show_name: "Appointment"
     breadcrumb:
       index: "Appointments"
       new: "New Appointment"
@@ -229,12 +245,10 @@ en:
       success: "Appointment has been canceled"
       failure: "Appointment is not canceled!"
 
-  test_report:
-    name: "Test Reports"
-
   availability:
+    note: 'Note: Availability will be split into 30 minutes slots'
     label:
-      new_slot_label: 'New Availability slot'
+      new_slot_label: 'New Availability'
       start: 'Start'
       end: 'End'
       day: 'Day'
@@ -247,8 +261,10 @@ en:
       success: "Availability slot has been added successfully"
       failure: "Availability slot is not added!"
     delete:
+      appointment_error: 'Availability slot cannot be deleted if appointments exist for that slot'
       success: "Availability slot has been deleted successfully"
       failure: "Availability slot is not deleted!"
+
   admin:
     update:
       success: "Profile has been updated successfully"
@@ -266,6 +282,7 @@ en:
       hospital_address: "Hospital Address"
       hospital_phone_number: "Phone Number"
       edit: "Edit Profile"
+
   guest:
     welcome_msg: "Welcome To HMS"
     hms: "HMS"
@@ -340,9 +357,11 @@ en:
     delete_prescription: 'Are you sure you want to delete this prescription?'
     
   prescription:
+    label:
+      id: "ID"
     names: "Prescriptions"
     name: "Prescription"
-    no_prescriptions: "No Prescriptions To Display"
+    no_prescriptions: "No Prescription To Display"
     notes: "Notes"
     medicines: "Medicines"
     medicine_name: "Name"
@@ -350,8 +369,9 @@ en:
     medicine_full_name: "Medicine Name"
     quantity: "Quantity"
     instructions: "Instructions"
-    doctor_name: "Doctor Name"
-    patient_name: "Patient Name"
+    doctor_name: "Doctor"
+    patient_name: "Patient"
+    appointment_id: 'Appointment id'
     appointment_date: "Appointment Date"
     appointment_time: "Appointment Time"
     doctor_notes: "Doctor Notes"
@@ -367,3 +387,6 @@ en:
     delete:
       success: "Prescription has been deleted successfully"
       failure: "Prescription is not deleted!"
+    add_medicine: "Medicine has been successfully added"
+    medicine_not_added: "Medicine has not been added"
+    delete_medicine: "Medicine has been successfully deleted"

@@ -1,8 +1,8 @@
 class PatientsController < ApplicationController
-  load_and_authorize_resource find_by: :sequence_num
+  load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
 
-  before_action :index_page_breadcrumb, only: [:index, :new, :show, :edit]
-  before_action :show_page_breadcrumb, only: [:show, :edit]
+  before_action :index_page_breadcrumb, only: %i[index new show edit]
+  before_action :show_page_breadcrumb, only: %i[show edit]
   
   # GET /patients
   def index

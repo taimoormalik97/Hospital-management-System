@@ -5,14 +5,18 @@
         <h3 class="col-md-10">Doctors</h3> 
         <% if current_user.admin? %>
           <div class="col-md-2 d-flex justify-content-md-end">
-            <%= link_to 'Add Doctor', new_doctor_path ,class: "btn btn-primary" %>   
+            <%= link_to 'Add', new_doctor_path ,class: "btn btn-primary" %>   
           </div>   
         <% end %>
       </div>
     </div> 
     <div class="card-body">
       <%= render partial: 'speciality_filter' %>
-      <%= render partial: 'table' %>
+      <% if @doctors.present? %>
+        <%= render partial: 'table' %>
+      <% else %>
+        <strong><%= t('doctor.no_doctors') %></strong>
+      <% end %>
     </div>
   </div>
 </div>

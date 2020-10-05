@@ -17,7 +17,7 @@
           <td><%= p.quantity %></td>
           <td class="instructions_width"><%= p.usage_instruction %></td>
           <% if can?(:edit, @prescription) %>
-            <td><%= link_to prescription_prescribed_medicine_path(@prescription, p), method: :delete, data: {confirm: t('popup.remove_medicine')}, remote: true do%>
+            <td><%= link_to prescription_prescribed_medicine_path(@prescription, p), method: :delete, data: {confirm: t('popup.remove_medicine')}, remote: true do %>
                 <i class="fas fa-trash-alt color-danger"></i>
               <% end %>
             </td>
@@ -30,5 +30,5 @@
     <%= will_paginate prescribed_medicines, previous_label: t('paginate.previous'), next_label: t('paginate.next') %>
   </div>
 <% elsif can?(:edit, @prescription) %>
-  <strong class="ml-3">Add Medicines in prescription by clicking on "Add Medicine".</strong>
+  <div class="ml-3 font-italic color-ready note">Note: Add Medicines in prescription by clicking on "Add Medicine".</div>
 <% end %>

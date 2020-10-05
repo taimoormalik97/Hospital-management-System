@@ -5,32 +5,36 @@
         <h3 class="col-md-10">Patients</h3> 
         <% if current_user.admin? %>
           <div class="col-md-2 d-flex justify-content-md-end">
-            <%= link_to 'Add Patient', new_patient_path ,class: "btn btn-primary" %>   
+            <%= link_to 'Add', new_patient_path ,class: "btn btn-primary" %>   
           </div>    
         <% end %>
       </div>
     </div> 
     <div class="card-body">
-      <table  class="table">   
-        <thead >   
-          <tr>   
-            <th><%= t('patient.label.patient_name') %></th>   
-            <th><%= t('patient.label.gender') %></th>   
-            <th><%= t('patient.label.dob') %></th>   
-            <th><%= t('patient.label.family_history') %></th>  
-          </tr>   
-        </thead>   
-        <tbody>   
-          <% @patients.each do |patient| %>   
-              <tr>   
-                <td><%= link_to patient.name, patient_path(patient) %></td>   
-                <td><%= patient.gender %></td>  
-                <td><%= patient.dob %></td>  
-                <td><%= patient.family_history %></td>   
-              </tr>   
-          <% end %>   
-        </tbody>   
-      </table> 
+      <% if @patients.present? %>
+        <table  class="table">   
+          <thead >   
+            <tr>   
+              <th><%= t('patient.label.patient_name') %></th>   
+              <th><%= t('patient.label.gender') %></th>   
+              <th><%= t('patient.label.dob') %></th>   
+              <th><%= t('patient.label.family_history') %></th>  
+            </tr>   
+          </thead>   
+          <tbody>   
+            <% @patients.each do |patient| %>   
+                <tr>   
+                  <td><%= link_to patient.name, patient_path(patient) %></td>   
+                  <td><%= patient.gender %></td>  
+                  <td><%= patient.dob %></td>  
+                  <td><%= patient.family_history %></td>   
+                </tr>   
+            <% end %>   
+          </tbody>   
+        </table> 
+      <% else %>
+        <strong><%= t('patient.no_patients') %></strong>
+      <% end %>
     </div>
   </div>
 </div> 
