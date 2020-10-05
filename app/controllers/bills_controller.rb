@@ -41,11 +41,11 @@ class BillsController < ApplicationController
       respond_to do |format|
         format.js { render 'bills/update_price' }
       end
-    else  
+    else
       flash[:error] = [t('sales_order.addmed.failure')]
       flash[:error] += @bill.errors.full_messages if @bill.errors.full_messages.present?
       redirect_to(request.env['HTTP_REFERER'])
-    end 
+    end
   end
 
   def add_doctor
@@ -112,8 +112,8 @@ class BillsController < ApplicationController
     end
   end
 
-  def bill_params   
-    params.require(:bill).permit(:billable_type, :patient_id, :price)   
+  def bill_params
+    params.require(:bill).permit(:billable_type, :patient_id, :price)
   end
 
   def root_page_breadcrumb
