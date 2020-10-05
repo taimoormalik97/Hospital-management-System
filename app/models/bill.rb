@@ -32,13 +32,14 @@ class Bill < ApplicationRecord
   end
 
   def add_doctor(doctor)
-    curr_bill_detail = bill_details.find_by(billable: doctor)
+    curr_bill_detail=bill_details.find_by(billable: doctor)
     if curr_bill_detail
       errors.add(:unable_to_add, I18n.t('doctor.add.failure'))
       return false
     else
       update(price: self.price + doctor.consultancy_fee)
-      bill_details.create(billable: doctor, hospital: doctor.hospital) 
+      bill_details.create(billable:doctor, hospital: doctor.hospital) 
     end
   end
 end
+

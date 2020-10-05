@@ -21,7 +21,7 @@ class BillsController < ApplicationController
       format.html
     end
   end
-
+  
   def get_medicine
     @medicine = current_hospital.medicines.find_by(id: params[:search])
     if @medicine.blank?
@@ -42,26 +42,28 @@ class BillsController < ApplicationController
         flash[:notice] = t('sales_order.addmed.success')
         format.js { render 'bills/update_price' }
       end
-    else
+    else  
       flash[:error] = [t('sales_order.addmed.failure')]
       flash[:error] += @bill.errors.full_messages if @bill.errors.full_messages.present?
       redirect_to(request.env['HTTP_REFERER'])
-    end
+    end 
   end
 
   def add_doctor
-    @doctor = current_hospital.doctors.find_by(id: params[:doctor_id])
-    if @bill.add_doctor(@doctor)
+    @doctor= current_hospital.doctors.find_by(id: params[:doctor_id])
+    if @bill.add_doctor(@doctor)  
       respond_to do |format|
-        format.js { render 'bills/update_price' }
-      end
-    else
+        format.js{ render 'bills/update_price' }
+      end            
+    else   
       flash[:error] = [t('sales_order.adddoc.failure')]
-      flash[:error] += @bill.errors.full_messages if @bill.errors.full_messages.present?
-      respond_to do |format|
-        format.js { render 'bills/dont_update_price' }
+      if @bill.errors.full_messages.present?
+        flash[:error] += @bill.errors.full_messages
       end
-    end
+      respond_to do |format|
+        format.js{ render 'bills/dont_update_price' }
+      end       
+    end 
   end
 
   # GET /bills/:id
@@ -103,12 +105,12 @@ class BillsController < ApplicationController
     end
   end
 
-  # DELETE /bills/:id
+    # DELETE /bills/:id
   def destroy
     if @bill.destroy
       flash[:notice] = t('sales_order.delete.success')
       redirect_to bills_path
-    else
+    else   
       flash[:error] = [t('sales_order.delete.failure')]
       flash[:error] += @bill.errors.full_messages if @bill.errors.full_messages.present?
       redirect_to(request.env['HTTP_REFERER'])
@@ -130,4 +132,5 @@ class BillsController < ApplicationController
   def show_page_breadcrumb
     add_breadcrumb t('sales_order.breadcrumb.show'), bill_path
   end
+
 end

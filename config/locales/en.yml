@@ -38,14 +38,15 @@ en:
   update: 'Update'
   submit: 'Submit'
   action: 'Action'
-  add: 'Add'
-  
+
   search:
-    breadcrumb: 'Search Results'
+    breadcrumb: 'Search Results'  
     
   dashboard:
     breadcrumb: 'Dashboard'
-    
+
+  add: 'Add'
+
   purchase_order:
     heading: 'Purchase Orders'
     add_order_label: 'Add'

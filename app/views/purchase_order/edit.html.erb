@@ -33,7 +33,7 @@
     </div>    
   </div>
 <% end %> 
-<%if @purchase_order.drafted? %> 
+<% if can?(:update, @purchase_order) %> 
   <div class="container pt-3 mb-5"> 
     <div class="card">
       <div class="card-header p-3 container-fluid">

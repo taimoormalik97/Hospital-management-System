@@ -14,7 +14,7 @@ class Ability
       can :manage, Bill, hospital_id: user.hospital_id
       can %i[create read], PurchaseOrder, hospital_id: user.hospital_id
       can %i[update add_medicine get_medicine remove_medicine], PurchaseOrder do |purchase_order|
-        purchase_order.hospital_id == user.hospital_id && !purchase_order.delivered?
+        purchase_order.hospital_id == user.hospital_id && purchase_order.drafted?
       end
       can :confirm, PurchaseOrder do |purchase_order|
         purchase_order.hospital_id == user.hospital_id && purchase_order.drafted? && purchase_order.medicines.present?

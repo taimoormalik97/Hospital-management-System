@@ -79,10 +79,10 @@ class PurchaseOrderController < ApplicationController
 
   # POST /purchase_order
   def create
-    @purchase_order.hospital = current_hospital
-    @purchase_order.admin = current_user
-    if @purchase_order.save
-      flash[:notice] = t('purchase_order.add.success')
+    @purchase_order.hospital=current_hospital 
+    @purchase_order.admin=current_user
+    if @purchase_order.save 
+      flash[:notice] = t('purchase_order.add.success')   
       redirect_to @purchase_order
     else
       flash[:error] = [t('purchase_order.add.failure')]
@@ -117,8 +117,7 @@ class PurchaseOrderController < ApplicationController
 
   # PUT /purchase_order/:id/confirm
   def confirm
-    if @purchase_order.can_confirm?
-      @purchase_order.confirm!
+    if @purchase_order.confirm!
       flash[:notice] = t('purchase_order.confirm.success')
       redirect_to @purchase_order
     else
@@ -130,11 +129,10 @@ class PurchaseOrderController < ApplicationController
 
   # PUT /purchase_order/:id/deliver
   def deliver
-    if @purchase_order.can_deliver?
-      @purchase_order.purchase_details.each do |purchasedetail|
-        purchasedetail.medicine.update(quantity: purchasedetail.medicine.quantity + purchasedetail.quantity)
-      end
-      @purchase_order.deliver!
+    @purchase_order.purchase_details.each do |purchasedetail|
+      purchasedetail.medicine.update(quantity: purchasedetail.medicine.quantity + purchasedetail.quantity)
+    end
+    if @purchase_order.deliver!
       flash[:notice] = t('purchase_order.deliver.success')
       redirect_to @purchase_order
     else
@@ -144,8 +142,8 @@ class PurchaseOrderController < ApplicationController
     end
   end
 
-  def purchase_order_params
-    params.require(:purchase_order).permit(:vendorname, :price)
+  def purchase_order_params   
+    params.require(:purchase_order).permit(:vendorname, :price)   
   end
 
   def root_page_breadcrumb
