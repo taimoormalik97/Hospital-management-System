@@ -26,7 +26,7 @@ class Bill < ApplicationRecord
           return false
         end
       end
-    rescue ActiveRecord::RecordNotSaved
+    rescue => e
       errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
     end
   end

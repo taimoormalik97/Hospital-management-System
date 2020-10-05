@@ -30,7 +30,7 @@ class MedicinesController < ApplicationController
   end
 
   def search_pred
-    @medicines = current_hospital.medicines.search_medicine(params[:q])
+    @medicines = current_hospital.medicines.where("quantity > 0").search_medicine(params[:q])
     respond_to do |format|
       format.json { render json: @medicines }
     end
