@@ -1,5 +1,5 @@
 <div class="container pt-3"> 
-  <%= render(partial: 'table', locals: { title: 'Medicines', results: @medicines }) if @medicines.present? %>
-  <%= render(partial: 'table', locals: { title: 'Doctors', results: @doctors }) if @doctors.present? %>
-  <%= render(partial: 'table', locals: { title: 'Patients', results: @patients }) if @patients.present? %>
+  <%= render(partial: 'table', locals: { title: 'Medicines', results: @medicines }) if @medicines.present? && can?(:index, Medicine) %>
+  <%= render(partial: 'table', locals: { title: 'Doctors', results: @doctors }) if @doctors.present? && can?(:index, Doctor) %>
+  <%= render(partial: 'table', locals: { title: 'Patients', results: @patients }) if @patients.present? && can?(:index, Patient) %>
 </div> 

@@ -39,6 +39,7 @@ class BillsController < ApplicationController
     quantity = params[:quantity].to_i
     if @bill.add_medicine(@medicine, quantity)
       respond_to do |format|
+        flash[:notice] = t('sales_order.addmed.success')
         format.js { render 'bills/update_price' }
       end
     else
@@ -49,16 +50,20 @@ class BillsController < ApplicationController
   end
 
   def add_doctor
-    @doctor = current_hospital.doctors.find_by(id: params[:doctor_id])
-    if @bill.add_doctor(@doctor)
+    @doctor= current_hospital.doctors.find_by(id: params[:doctor_id])
+    if @bill.add_doctor(@doctor)  
       respond_to do |format|
-        format.js { render 'bills/update_price' }
+        format.js{ render 'bills/update_price' }
+      end            
+    else   
+      flash[:error] = [t('sales_order.adddoc.failure')]
+      if @bill.errors.full_messages.present?
+        flash[:error] += @bill.errors.full_messages
       end
-    else
-      flash[:error] = [t('sales_order.addmed.failure')]
-      flash[:error] += @bill.errors.full_messages if @bill.errors.full_messages.present?
-      redirect_to(request.env['HTTP_REFERER'])
-    end
+      respond_to do |format|
+        format.js{ render 'bills/dont_update_price' }
+      end       
+    end 
   end
 
   # GET /bills/:id
@@ -113,7 +118,7 @@ class BillsController < ApplicationController
   end
 
   def bill_params
-    params.require(:bill).permit(:billable_type, :patient_id, :price)
+    params.require(:bill).permit(:billable_type, :patient_id)
   end
 
   def root_page_breadcrumb

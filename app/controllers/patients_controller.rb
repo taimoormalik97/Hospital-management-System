@@ -3,7 +3,7 @@ class PatientsController < ApplicationController
 
   before_action :index_page_breadcrumb, only: %i[index new show edit]
   before_action :show_page_breadcrumb, only: %i[show edit]
-  
+
   # GET /patients
   def index
     @patients = @patients.paginate(page: params[:page], per_page: PAGINATION_SIZE)
@@ -95,5 +95,4 @@ class PatientsController < ApplicationController
   def show_page_breadcrumb
     add_breadcrumb t('patient.breadcrumb.show'), patient_path
   end
-
 end

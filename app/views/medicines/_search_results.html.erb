@@ -1,43 +1,45 @@
-<div class="container  pt-3"> 
-    <div class="card">
-      <div class="card-body">
-      <dl class="row">
-        <dt class="col-sm-2">  
-          <label>Name</label>
-        </dt>
-        <dd class="col-sm-9">   
-          <%=@medicine.name %>   
-        </dd>
-        <dt class="col-sm-2">  
-          <label>Price</label>   
-        </dt>
-        <dd class="col-sm-9">   
-          <%=@medicine.price%>   
-        </dd>
-        <dt class="col-sm-2">  
-          <label>Quantity</label>
-        </dt>
-        <dd class="col-sm-9">   
-          <%=@medicine.quantity %>   
-        </dd>
-        <dd>
-          <%if params[:purchase_order_sequence_num]%>
-            <div class="form-increment" data-quantity-change="">
-              <%= form_tag(add_medicine_purchase_order_path(params[:purchase_order_sequence_num], medicine_id:@medicine.id), method: 'post', remote: true, class: 'navbar-form navbar-left') do %> 
-              <%= number_field_tag :quantity, 1, required: true, class: "form-control" %>
-              <%= submit_tag "Add", class: "btn btn-primary"%>  
-              <% end %> 
-           </div>
-           <%elsif params[:bill_sequence_num]%>
-             <div class="form-increment" data-quantity-change="">
-              <%= form_tag(add_medicine_bill_path(params[:bill_sequence_num], medicine_id:@medicine.id), method: 'post', remote: true, class: 'navbar-form navbar-left') do %> 
-              <%= number_field_tag :quantity, 1, required: true, class: "form-control" %>
-              <%= submit_tag "Add", class: "btn btn-primary"%>  
-              <% end %> 
-           </div>
-          <%end%>
-        </dd>
-      </dl>
-    </div>    
-  </div>   
-</div> 
+
+<dl class="row pl-2">
+  <dt class="col-sm-2">  
+    <label>Name</label>
+  </dt>
+  <dd class="col-sm-9">   
+    <%=@medicine.name %>   
+  </dd>
+  <dt class="col-sm-2">  
+    <label>Price</label>   
+  </dt>
+  <dd class="col-sm-9">   
+    <%=@medicine.price%>   
+  </dd>
+  <dt class="col-sm-2">  
+    <label>Total Quantity</label>
+  </dt>
+  <dd class="col-sm-9">   
+    <%=@medicine.quantity %>   
+  </dd>
+  <dt class="col-sm-2">  
+    <label>Quantity to add</label>
+  </dt>
+  <dd class="col-sm-9">
+    <%if params[:purchase_order_sequence_num]%>
+      <div class="form-increment" data-quantity-change="">
+        <%= form_tag(add_medicine_purchase_order_path(params[:purchase_order_sequence_num], medicine_id:@medicine.id), method: 'post', remote: true, class: 'navbar-form navbar-left') do %> 
+        <div class="row">
+          <%= number_field_tag :quantity, 1, required: true, class: "form-control col-sm-2 mr-2" %>
+          <%= submit_tag "Add", class: "btn btn-primary col-sm-1", data: { disable_with: "Medicine added." } %>
+        </div>
+        <% end %> 
+     </div>
+     <%elsif params[:bill_sequence_num]%>
+       <div class="form-increment" data-quantity-change="">
+        <%= form_tag(add_medicine_bill_path(params[:bill_sequence_num], medicine_id:@medicine.id), method: 'post', remote: true, class: 'navbar-form navbar-left') do %>
+        <div class="row"> 
+          <%= number_field_tag :quantity, 1, required: true, class: "form-control col-sm-2 mr-2" %>
+          <%= submit_tag "Add", class: "btn btn-primary col-sm-1", id: 'add_button'%> 
+        </div>
+        <% end %> 
+     </div>
+    <%end%>
+  </dd>
+</dl>

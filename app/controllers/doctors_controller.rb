@@ -29,9 +29,8 @@ class DoctorsController < ApplicationController
   def search
     @doctor = current_hospital.doctors.find_by(id: params[:search])
     if @doctor.blank?
-      flash[:error] = t('medicine.search.failure')
+      flash[:notice] = t('medicine.search.failure')
     else
-      flash[:notice] = t('medicine.search.success')
       respond_to do |format|
         format.js { render 'bills/searchdoc' }
       end

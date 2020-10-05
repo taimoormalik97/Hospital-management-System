@@ -8,4 +8,14 @@ module PurchaseOrderHelper
       "<td><span class='rounded border border-success p-1 bg-success'>#{po.state}</span></td>".html_safe 
     end
   end
+  
+  def state_colors(purchase_order)
+    if purchase_order.drafted?
+      { text: 'warning', bg: 'pending' }
+    elsif purchase_order.confirmed?
+      { text: 'info', bg: 'approved' }
+    else
+      { text: 'success', bg: 'completed' }
+    end
+  end
 end

@@ -38,12 +38,14 @@ en:
   update: 'Update'
   submit: 'Submit'
   action: 'Action'
-  
+
   search:
-    breadcrumb: 'Search Results'
+    breadcrumb: 'Search Results'  
     
   dashboard:
     breadcrumb: 'Dashboard'
+
+  add: 'Add'
 
   purchase_order:
     heading: 'Purchase Orders'
@@ -121,7 +123,7 @@ en:
 
   medicine:
     heading: 'Medicines'
-    add_medicine_label: 'Add'
+    add_medicine_label: 'Add Medicine'
     edit_medicine_label: 'Edit Medicine'
     name_label: 'Name'
     price_label: 'Price'

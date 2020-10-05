@@ -19,7 +19,7 @@ class PurchaseOrderController < ApplicationController
       format.html
     end
   end
-  
+
   def get_medicine
     @medicine = current_hospital.medicines.find_by(id: params[:search])
     if @medicine.blank?
@@ -37,6 +37,7 @@ class PurchaseOrderController < ApplicationController
     quantity = params[:quantity].to_i
     if @purchase_order.add_medicine(@medicine, quantity)
       respond_to do |format|
+        flash[:notice] = t('purchase_order.addmed.success')
         format.js { render 'purchase_order/update_price' }
       end
     else
@@ -46,7 +47,22 @@ class PurchaseOrderController < ApplicationController
     end
   end
 
-    # GET /purchase_order/:id
+  def remove_medicine
+    @medicine = current_hospital.medicines.find_by(id: params[:medicine_id])
+    if @purchase_order.remove_medicine(@medicine)
+      respond_to do |format|
+        format.js { render 'purchase_order/update_price' }
+      end
+    else
+      flash[:error] = [t('purchase_order.addmed.failure')]
+      if @purchase_order.errors.full_messages.present?
+        flash[:error] += @purchase_order.errors.full_messages
+      end
+      redirect_to(request.env['HTTP_REFERER'])
+    end
+  end
+
+  # GET /purchase_order/:id
   def show
     respond_to do |format|
       format.html
@@ -63,10 +79,10 @@ class PurchaseOrderController < ApplicationController
 
   # POST /purchase_order
   def create
-    @purchase_order.hospital = current_hospital
-    @purchase_order.admin = current_user
-    if @purchase_order.save!
-      flash[:notice] = t('purchase_order.add.success')
+    @purchase_order.hospital=current_hospital 
+    @purchase_order.admin=current_user
+    if @purchase_order.save 
+      flash[:notice] = t('purchase_order.add.success')   
       redirect_to @purchase_order
     else
       flash[:error] = [t('purchase_order.add.failure')]
@@ -88,7 +104,7 @@ class PurchaseOrderController < ApplicationController
   end
 
   # DELETE purchase_order /:id
-  def destroy   
+  def destroy
     if @purchase_order.destroy
       flash[:notice] = t('purchase_order.delete.success')
       redirect_to purchase_order_index_path
@@ -101,8 +117,7 @@ class PurchaseOrderController < ApplicationController
 
   # PUT /purchase_order/:id/confirm
   def confirm
-    if @purchase_order.can_confirm?
-      @purchase_order.confirm!
+    if @purchase_order.confirm!
       flash[:notice] = t('purchase_order.confirm.success')
       redirect_to @purchase_order
     else
@@ -114,11 +129,10 @@ class PurchaseOrderController < ApplicationController
 
   # PUT /purchase_order/:id/deliver
   def deliver
-    if @purchase_order.can_deliver?
-      @purchase_order.purchase_details.each do |purchasedetail|
-        purchasedetail.medicine.update(quantity: purchasedetail.medicine.quantity + purchasedetail.quantity)
-      end
-      @purchase_order.deliver!
+    @purchase_order.purchase_details.each do |purchasedetail|
+      purchasedetail.medicine.update(quantity: purchasedetail.medicine.quantity + purchasedetail.quantity)
+    end
+    if @purchase_order.deliver!
       flash[:notice] = t('purchase_order.deliver.success')
       redirect_to @purchase_order
     else
@@ -128,8 +142,8 @@ class PurchaseOrderController < ApplicationController
     end
   end
 
-  def purchase_order_params
-    params.require(:purchase_order).permit(:vendorname, :price, :state)
+  def purchase_order_params   
+    params.require(:purchase_order).permit(:vendorname, :price)   
   end
 
   def root_page_breadcrumb
@@ -143,5 +157,4 @@ class PurchaseOrderController < ApplicationController
   def show_page_breadcrumb
     add_breadcrumb t('purchase_order.breadcrumb.show'), purchase_order_path
   end
-
 end

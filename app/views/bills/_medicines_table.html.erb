@@ -1,0 +1,22 @@
+<% if @bill.medicines.present? %> 
+  <table  class="table">   
+    <thead >   
+      <tr>   
+        <th><%= t('medicine.name_label') %></th>   
+        <th><%= t('medicine.price_label') %></th>   
+        <th><%= t('medicine.quantity_label') %></th>   
+      </tr>   
+    </thead>   
+    <tbody>  
+    <% @bill.medicines.each do |medicine| %>   
+      <tr>   
+        <td><%= link_to medicine.name, medicine_path(medicine) %></td>   
+        <td><%= medicine.price %></td>   
+        <td><%= medicine_quantity(medicine) %></td>   
+      </tr>  
+    <% end %>
+  <% else %>
+    <strong><%= t('medicine.none') %></strong>
+  <% end %>   
+  </tbody>   
+</table>

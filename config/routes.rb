@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         put 'confirm'
         put 'deliver'
         get 'get_medicine'
+        post 'remove_medicine'
       end
     end
 

@@ -4,7 +4,7 @@
         <div class="card-header p-3 container-fluid">
           <div class="row">
             <h3 class="col-md-9">
-              <%= t('edit_medicine_label') %>
+              <%= t('medicine.edit_medicine_label') %>
             </h3> 
           </div>
         </div> 
@@ -24,15 +24,14 @@
             </div>     
           </p>
         </div> 
-      </div>
-      <div class="card-footer p-3 container-fluid">
-        <div class="row d-flex justify-content-md-end">
-          <div class="col-md-3 d-flex justify-content-md-end">
-            <%= link_to t('back'), { controller: 'medicines', action: 'index'}, class: "btn btn-secondary" %>   
-            <%= f.submit t('update'), class: "btn btn-primary btn-spacing"%> 
+        <div class="card-footer p-3 container-fluid">
+          <div class="row d-flex justify-content-md-end">
+            <div class="col-md-3 d-flex justify-content-md-end">
+              <%= f.submit t('update'), class: "btn btn-primary btn-spacing"%> 
+            </div>
           </div>
-        </div>
-      </div>    
+        </div>   
+      </div> 
     </div>    
   </div>
 <%end%> 

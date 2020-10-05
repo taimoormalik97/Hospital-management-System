@@ -1,2 +1,11 @@
-$('#purchase_order_price').val("<%=@purchase_order.price%>");
-alert("Medicine added!");
+$.PrevVal = $('#purchase_order_price').val()
+$('#purchase_order_price').text("<%=@purchase_order.price%>");
+if($.PrevVal < $('#purchase_order_price').val()){
+  alert("Medicine added!");
+}
+
+if($.PrevVal > $('#purchase_order_price').val()){
+  alert("Medicine removed!");
+}
+$('#medicines_table_purchase_order').html("<%= escape_javascript(render(partial: 'medicines_table')) %>");
+$('#add_medicine_purchaseorder_flash_messages').html("<%= escape_javascript(render(partial: 'layouts/flash')) %>");
