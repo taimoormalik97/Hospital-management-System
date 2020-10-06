@@ -27,7 +27,7 @@
               <% unless current_user.patient? %>
                 <th><%= t('patient.name') %></th> 
               <% end %>
-              <th>Actions</th>
+              <th><%= t('appointment.label.action') %></th> 
             </tr>   
           </thead>   
           <tbody>   
@@ -48,7 +48,6 @@
                 <% end %>
                 <td class="row">
                   <div class = "col-sm-1">
-                    <% if current_user.doctor? %>
                       <% if can?(:approve, appointment) %>
                         <%= link_to approve_appointment_path(appointment), method: 'put', data: { confirm: t('popup.approve') } do %>
                           <i class="far fa-check-circle text-warning" title="approve"></i>
@@ -57,10 +56,7 @@
                         <%= link_to complete_appointment_path(appointment), method: 'put', data: { confirm: t('popup.complete') } do %>
                           <i class="far fa-check-circle text-info" title="complete"></i>
                         <% end %>
-                      <% elsif appointment.completed? %>
-                          <i class="far fa-check-circle color-success"></i>
                       <% end %>
-                    <% end %>
                   </div>
                   <div class = "col-sm-1">
                     <% if can?(:cancel, appointment) %>

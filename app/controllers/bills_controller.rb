@@ -50,20 +50,19 @@ class BillsController < ApplicationController
   end
 
   def add_doctor
-    @doctor= current_hospital.doctors.find_by(id: params[:doctor_id])
-    if @bill.add_doctor(@doctor)  
+    @doctor = current_hospital.doctors.find_by(id: params[:doctor_id])
+    if @bill.add_doctor(@doctor)
       respond_to do |format|
-        format.js{ render 'bills/update_price' }
-      end            
-    else   
-      flash[:error] = [t('sales_order.adddoc.failure')]
-      if @bill.errors.full_messages.present?
-        flash[:error] += @bill.errors.full_messages
+        flash[:notice] = [t('sales_order.adddoc.success')]
+        format.js { render 'bills/update_price' }
       end
+    else
+      flash[:error] = [t('sales_order.adddoc.failure')]
+      flash[:error] += @bill.errors.full_messages @bill.errors.full_messages.present?
       respond_to do |format|
-        format.js{ render 'bills/dont_update_price' }
-      end       
-    end 
+        format.js { render 'bills/dont_update_price' }
+      end
+    end
   end
 
   # GET /bills/:id

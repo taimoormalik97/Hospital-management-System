@@ -1,11 +1,11 @@
 module PurchaseOrderHelper
-  def print_state(po)
-    if po.drafted?  
+  def print_state(purchase_order)
+    if purchase_order.drafted?
       "<td><span class='rounded border border-light p-1 bg-light'>#{po.state}</span></td>".html_safe
-    elsif po.confirmed?  
+    elsif purchase_order.confirmed?
       "<td><span class='rounded border border-warning p-1 bg-warning'>#{po.state}</span></td>".html_safe
-    elsif po.delivered? 
-      "<td><span class='rounded border border-success p-1 bg-success'>#{po.state}</span></td>".html_safe 
+    elsif purchase_order.delivered?
+      "<td><span class='rounded border border-success p-1 bg-success'>#{po.state}</span></td>".html_safe
     end
   end
   

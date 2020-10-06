@@ -33,8 +33,22 @@ class Ability
       
       can %i[read update], Admin, hospital_id: user.hospital_id, id: user.id
       can :read, Appointment, hospital_id: user.hospital_id
-      can :read, Prescription, hospital_id: user.hospital_id
-      can :read, PrescribedMedicine, hospital_id: user.hospital_id
+      can :approve, Appointment do |appointment|
+        appointment.hospital_id == user.hospital_id && appointment.pending?
+      end
+      can :cancel, Appointment do |appointment|
+        appointment.hospital_id == user.hospital_id && (appointment.pending? || appointment.approved?)
+      end
+      can :complete, Appointment do |appointment|
+        appointment.hospital_id == user.hospital_id && appointment.approved?
+      end
+      can %i[create index read], Prescription do |prescription|
+        prescription.hospital_id == user.hospital_id
+      end
+      can %i[edit update destroy search_medicine], Prescription do |prescription|
+        prescription.hospital_id == user.hospital_id && (prescription.appointment.pending? || prescription.appointment.approved? || prescription.appointment.canceled?)
+      end
+      can :manage, PrescribedMedicine, hospital_id: user.hospital_id
     elsif user.doctor?
       can :index, Patient, Patient.doctor_only(user) do |patient|
         patient
@@ -46,8 +60,11 @@ class Ability
       can :update, Doctor, hospital_id: user.hospital_id, id: user.id
       can %i[new create index destroy], Availability, hospital_id: user.hospital_id, doctor_id: user.id
       can :read, Appointment, hospital_id: user.hospital_id, doctor_id: user.id
-      can %i[cancel approve], Appointment do |appointment|
+      can :approve, Appointment do |appointment|
         appointment.hospital_id == user.hospital_id && appointment.doctor_id == user.id && appointment.pending?
+      end
+      can :cancel, Appointment do |appointment|
+        appointment.hospital_id == user.hospital_id && appointment.doctor_id == user.id && (appointment.pending? || appointment.approved?)
       end
       can :complete, Appointment do |appointment|
         appointment.hospital_id == user.hospital_id && appointment.doctor_id == user.id && appointment.approved?
@@ -74,6 +91,7 @@ class Ability
         prescription.hospital_id == user.hospital_id && prescription.appointment.patient_id == user.id
       end
       can :read, PrescribedMedicine, hospital_id: user.hospital_id
+      can :read, Bill, hospital_id: user.hospital_id, patient_id: user.id
     end
     #
     # The first argument to `can` is the action you are giving the user

@@ -1,27 +1,27 @@
-<% if @purchase_order.medicines.present? %> 
-  <table  class="table">   
-    <thead >   
-      <tr>   
-        <th><%= t('medicine.name_label') %></th>   
-        <th><%= t('medicine.price_label') %></th>   
+<% if @purchase_order.medicines.present? %>
+  <table  class="table">
+    <thead >
+      <tr>
+        <th><%= t('medicine.name_label') %></th>
+        <th><%= t('medicine.price_label') %></th>
         <th><%= t('medicine.quantity_label') %></th>
         <th></th>
-      </tr>   
-    </thead>   
-    <tbody>  
-    <% @purchase_order.purchase_details.each do |detail| %>   
-      <tr>   
-        <td><%= link_to detail.medicine.name, medicine_path(detail.medicine) %></td>   
-        <td><%= detail.medicine.price %></td>   
-        <td><%= detail.quantity %></td> 
+      </tr>
+    </thead>
+    <tbody>
+    <% @purchase_order.purchase_details.each do |detail| %>
+      <tr>
+        <td><%= link_to detail.medicine.name, medicine_path(detail.medicine) %></td>
+        <td><%= detail.medicine.price %></td>
+        <td><%= detail.quantity %></td>
         <td>
-          <%= link_to remove_medicine_purchase_order_path(id: params[:id], medicine_id: detail.medicine.id), method: :post, data: { confirm:'Are you sure you want to delete medicine?' }, remote: true do %>
+          <%= link_to remove_medicine_purchase_order_path(id: params[:id], medicine_id: detail.medicine.id), method: :post, data: { confirm: t('popup.remove_medicine') }, remote: true do %>
             <i class="fas fa-trash-alt color-danger"></i>
           <% end %>
         </td>
-      </tr>  
-    <% end %>  
-  </tbody>   
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 <% else %>
   <strong><%= t('medicine.none') %></strong>
