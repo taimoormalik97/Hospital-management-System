@@ -39,3 +39,6 @@ vendor/bundle
 
 #ignoring schema.rb
 /db/schema.rb
+
+/config/development.sphinx.conf
+/db/sphinx/

@@ -30,25 +30,19 @@
           <%=@bill.billable_type%>   
         </dd>
       </dl>
-    </div>    
-  </div>
-  <br>
-  <div class="card">
-    <div class="container-fluid">
-      <div class="row">
       <% if @bill.billable_type == "medicine" %>
         <% if @bill.medicines.present? %>
           <dt class="col-sm-2">  
             <label><%= t('medicine.heading') %></label>
           </dt>
           <dd>
-            <table class="table table-bordered">
-              <thead class="thead-dark">
+            <table class="table">
+              <thead>
               <tr>
-                <th class="col-sm-9">
+                <th>
                   <%= t('medicine.name_label') %>
                 </th>
-                <th class="col-sm-9">
+                <th>
                   <%= t('medicine.price_label') %>
                 </th>
                 <th>
@@ -58,10 +52,10 @@
               </thead>
               <%@bill.bill_details.each do |pd|%>
               <tr>
-                <td class="col-sm-9">
+                <td>
                   <%=pd.billable.name%>
                 </td>
-                <td class="col-sm-9">
+                <td>
                   <%=pd.billable.price%>
                 </td>
                 <td>
@@ -72,16 +66,16 @@
             </table>
           </dd>
         <%end%> 
-        <% elsif @bill.billable_type == "doctor" %>
+      <% elsif @bill.billable_type == "doctor" %>
           <% if @bill.bill_details.present? %>
             <dt class="col-sm-2">  
               <label><%= t('doctor.appointments') %></label>
             </dt>
             <dd>
-              <table class="table table-bordered">
-                <thead class="thead-dark">
+              <table class="table">
+                <thead>
                   <tr>
-                    <th class="col-sm-9">
+                    <th>
                       <%= t('doctor.name_label') %>
                     </th>
                     <th>
@@ -91,7 +85,7 @@
                   </thead>
                   <% @bill.bill_details.each do |pd| %>
                   <tr>
-                    <td class="col-sm-9">
+                    <td>
                       <%= pd.billable.name %>
                     </td>
                     <td>
@@ -103,7 +97,7 @@
             </dd>
           <% end %> 
         <% end %>
-      </div> 
-    </div>
-  </div>  
+    </div>    
+  </div>
+  <br> 
 </div>
