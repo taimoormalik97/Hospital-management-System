@@ -42,7 +42,11 @@
     <div class="card-header p-3 container-fluid">
       <div class="row">
         <h3 class="col-md-9">
-          <%= "Add Medicines" %>
+          <% if @bill.billable_type=="medicine"%>
+            <%= "Add Medicines" %>
+          <% elsif @bill.billable_type=="doctor"%>
+            <%= "Add Doctors" %>
+          <%end%>
         </h3> 
       </div>
     </div> 

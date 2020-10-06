@@ -14,7 +14,7 @@ class Doctor < User
   validates_attachment :profile_picture, size: { in: 0..10.megabytes },
     content_type: { content_type: /^image\/(jpg|jpeg|png|gif|tiff)$/ }
 
-  def self.search(pattern)
+  def self.search_doctors(pattern)
     if pattern.blank?  # blank? covers both nil and empty string
       all
     else
