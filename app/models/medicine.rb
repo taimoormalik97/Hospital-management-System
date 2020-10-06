@@ -13,7 +13,7 @@ class Medicine < ApplicationRecord
     if pattern.blank?  # blank? covers both nil and empty string
       all
     else
-      where('name LIKE ?', "%#{pattern}%")
+      where('name LIKE ?', "%#{pattern}%").first(TOKENINPUT_LIMIT)
     end
   end
 
