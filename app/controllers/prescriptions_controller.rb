@@ -68,7 +68,7 @@ class PrescriptionsController < ApplicationController
 
   # GET /prescription/search_medicine
   def search_medicine
-    @medicines = Medicine.search(params[:q])
+    @medicines = Medicine.search_medicine(params[:q])
     respond_to do |format|
       format.json { render json: @medicines }
     end

@@ -27,7 +27,7 @@
       <div class="container">
         <dl class="row">
           <dt class="col-12 p-2">
-            <span class="p-1 rounded text-<%= status_colors(@appointment)[:text] %>bg-<%= status_colors(@appointment)[:bg] %>"><%= @appointment.current_state.capitalize %></span>
+            <span class="p-1 rounded text-<%= status_colors(@appointment)[:text] %> bg-<%= status_colors(@appointment)[:bg] %>"><%= @appointment.current_state.capitalize %></span>
           </dt>
           <% availability = @appointment.availability %>
           <dt class="col-sm-3">

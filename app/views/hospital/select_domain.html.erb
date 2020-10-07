@@ -5,7 +5,7 @@
         <div class="row">
           <h1 class="col-md-12">
             <%= t('guest.welcome_msg') %>
-          </h1> 
+          </h1>
         </div>
       </div>
       <div class="pt-25">
@@ -15,14 +15,14 @@
         <h3><%= t('guest.signin') %></h3>
       </div>
       <div class="row ml-0 font-for-card">
-        <h5 class="px-2 pt-2 msg-color"> <%= t('guest.select_hospital') %>
+        <h5 class="px-2 pt-2 msg-color"><%= t('guest.select_hospital') %>
         </h5>
       </div>
       <div class="scroll_domain">
         <div class="table-responsive">
           <% @selected_users.each do |user| %>
             <a class="select_domain_hover" href= <%= new_user_session_url(email: user.email, subdomain: user.hospital.sub_domain) %>>
-              <div class="container pt-3"> 
+              <div class="container pt-3">
                 <div class="select_domain card">
                   <div class="card-body">
                     <div class="row">

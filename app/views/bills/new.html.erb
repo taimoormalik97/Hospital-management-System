@@ -1,37 +1,37 @@
-<%= form_for @bill, url: {action: :create} do |f| %> 
-  <div class="container  pt-3"> 
+<%= form_for @bill, url: {action: :create} do |f| %>
+  <div class="container  pt-3">
       <div class="card">
         <div class="card-header p-3 container-fluid">
           <div class="row">
             <h3 class="col-md-9">
               <%= t('sales_order.add_order_label') %>
-            </h3> 
+            </h3>
           </div>
-        </div> 
-        <div class="card-body">  
-          <p>   
-            <div class="form-group">   
-              <label><%= t('sales_order.name_label') %></label>   
-              <%= f.text_field :patient_id, :required => true, id: "patient_search", class: "form-control" %>   
-            </div>   
-            <div class="form-group">   
-              <label><%= t('sales_order.type_label') %></label>   
-              <%= f.select :billable_type, options_for_select(['medicine', 'doctor']), { selected: 'medicine', required: true, disabled: true }, { class: 'form-control', id: 'type_dropdown' } %> 
-            </div>    
+        </div>
+        <div class="card-body">
+          <p>
+            <div class="form-group">
+              <label><%= t('sales_order.name_label') %></label>
+              <%= f.text_field :patient_id, :required =>true, id: "patient_search", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <label><%= t('sales_order.type_label') %></label>
+              <%= f.select :billable_type, options_for_select(['medicine', 'doctor']), { selected: 'medicine', required: true, disabled: true }, { class: 'form-control', id: 'type_dropdown' } %>
+            </div>
           </p>
-        </div> 
+        </div>
         <div class="card-footer p-3 container-fluid">
           <div class="row d-flex justify-content-md-end">
             <div class="col-md-3 d-flex justify-content-md-end">
-              <%= link_to 'Cancel', bills_path , class: "btn btn-secondary btn-spacing" %>  
-              <%= f.submit t('create'), class: "btn btn-primary btn-spacing"%>   
+              <%= link_to t('cancel'), bills_path , class: "btn btn-secondary btn-spacing" %>
+              <%= f.submit t('create'), class: "btn btn-primary btn-spacing"%>
             </div>
           </div>
-        </div>   
-      </div>    
-    </div>    
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>     
+<% end %>
 <%= javascript_tag do %>
   $('#patient_search').tokenInput("/patients/search_pred", { preventDuplicates: true, theme: 'facebook', tokenLimit: 1, hintText: 'search patient' });
   $('.token-input-dropdown-facebook').css({"width": "69%", "font-size": "15px"});

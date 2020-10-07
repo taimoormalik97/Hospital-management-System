@@ -1,15 +1,15 @@
-<table  class="table picture_text">   
-  <thead>   
+<table  class="table picture_text">
+  <thead>
     <tr>
       <th><%= t('doctor.label.picture') %></th>
-      <th><%= t('doctor.label.doctor_name') %></th>   
-      <th><%= t('doctor.label.registration_no') %></th>   
-      <th><%= t('doctor.label.speciality') %></th>   
-      <th><%= t('doctor.label.consultancy_fee') %></th>  
-    </tr>   
-  </thead>   
-  <tbody>   
-  <% @doctors.each do |doctor| %>   
+      <th><%= t('doctor.label.doctor_name') %></th>
+      <th><%= t('doctor.label.registration_no') %></th>
+      <th><%= t('doctor.label.speciality') %></th>
+      <th><%= t('doctor.label.consultancy_fee') %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @doctors.each do |doctor| %>
     <tr>
       <td>
         <%= link_to doctor_path(doctor) do %>
@@ -18,11 +18,11 @@
           </div>
         <% end %>
       </td>
-      <td><%= link_to doctor.name, doctor_path(doctor) %></td>   
-      <td><%= doctor.registration_no %></td>  
-      <td><%= doctor.speciality %></td>  
+      <td><%= link_to doctor.name, doctor_path(doctor) %></td>
+      <td><%= doctor.registration_no %></td>
+      <td><%= doctor.speciality %></td>
       <td><%= doctor.consultancy_fee %></td>
-    </tr>   
-  <% end %>  
+    </tr>
+  <% end %>
   </tbody>
-</table> 
+</table>
