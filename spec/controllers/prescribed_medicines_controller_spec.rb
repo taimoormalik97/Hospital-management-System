@@ -70,12 +70,12 @@ RSpec.describe PrescribedMedicinesController, type: :controller do
     describe 'DELETE destroy' do
       it 'deletes a medicine from prescription' do
         expect {
-            delete :destroy, params: { prescription_id: @prescription.sequence_num, id: @prescribed_medicine.sequence_num, format: :js }
+            delete :destroy, params: { prescription_id: @prescription.sequence_num, id: @prescribed_medicine.sequence_num, medicine_id: @medicine.sequence_num, format: :js }
           }.to change(@hospital.prescribed_medicines, :count).by(-1)
       end
 
       it 'redirects to prescription show page' do
-        delete :destroy, params: { prescription_id: @prescription.sequence_num, id: @prescribed_medicine.sequence_num, format: :js }
+        delete :destroy, params: { prescription_id: @prescription.sequence_num, id: @prescribed_medicine.sequence_num, medicine_id: @medicine.sequence_num, format: :js }
         expect(response).to render_template('prescriptions/medicines_in_prescription')
       end
     end

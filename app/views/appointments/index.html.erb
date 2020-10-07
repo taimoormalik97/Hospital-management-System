@@ -40,11 +40,11 @@
                 <td><%= convert_to_twelve_hour_format(availability.end_slot) %></td>
                 <% status_colors = status_colors(appointment) %>
                 <% unless current_user.doctor? %>
-                  <td><%= appointment.doctor.name %></td>
+                  <td><%= appointment.doctor.name.titleize %></td>
                 <% end %>
                 <td><span class="p-1 rounded text-<%= status_colors[:text] %> bg-<%= status_colors[:bg] %>"><%= appointment.current_state.capitalize %></span></td>
                 <% unless current_user.patient? %>
-                  <td><%= appointment.patient.name %></td>
+                  <td><%= appointment.patient.name.titleize %></td>
                 <% end %>
                 <td class="row">
                   <div class = "col-sm-1">

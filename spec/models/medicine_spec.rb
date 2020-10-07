@@ -29,7 +29,7 @@ RSpec.describe Medicine, type: :model do
       @medicine.name="med2"
       @medicine.price= 10
       @medicine.save!
-      expect(@hospital.medicines.search('m').first.name).to eq 'med2'
+      expect(@hospital.medicines.search_medicines('m').first.name).to eq 'med2'
     end
   end
 end
