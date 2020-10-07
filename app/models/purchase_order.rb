@@ -23,7 +23,7 @@ class PurchaseOrder < ApplicationRecord
   def add_medicine(medicine, quantity_added)
     begin
       PurchaseOrder.transaction do
-        if self.update(price: self.price += medicine.price*quantity_added)
+        if quantity_added > 0 && self.update(price: self.price += medicine.price*quantity_added)
           curr_purchase_detail = purchase_details.find_by(medicine: medicine)
           if curr_purchase_detail
             updated_quantity = quantity_added + curr_purchase_detail.quantity

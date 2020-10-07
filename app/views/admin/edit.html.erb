@@ -1,25 +1,25 @@
 <%= render "users/shared/error_messages", resource: @admin %>
 <%= form_for @admin, url: admin_path(@admin), method: "patch" do |f| %>
-  <div class="container pt-3"> 
+  <div class="container pt-3">
     <div class="card">
       <div class="card-header p-3 container-fluid">
         <div class="row">
           <h3 class="col-md-9">
             <%= t('admin.profile.edit') %>
-          </h3> 
+          </h3>
         </div>
       </div>
-      <div class="card-body">  
+      <div class="card-body">
         <p>
           <div class="form-group">
-            <label><%= t('admin.profile.name') %></label>  
+            <label><%= t('admin.profile.name') %></label>
             <%= f.text_field :name ,autofocus: true, required: true, class: "form-control" %>
-          </div> 
+          </div>
           <div class="form-group">
             <label><%= t('admin.profile.email') %></label>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
           </div>
-        </p> 
+        </p>
       </div>
       <div class="card-footer p-3 container-fluid">
         <div class="row d-flex justify-content-md-end">
@@ -28,7 +28,7 @@
             <%= link_to 'Cancel', :back , class: "btn btn-secondary btn-spacing" %>
           </div>
         </div>
-      </div>  
+      </div>
     </div>
   </div>
 <% end %>

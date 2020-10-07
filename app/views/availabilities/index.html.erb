@@ -1,13 +1,13 @@
-<div class="container pt-3"> 
+<div class="container pt-3">
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
         <h3 class="col-md-9">
           <%= t('availability.name') %>
-        </h3> 
+        </h3>
         <div class="col-md-3 d-flex justify-content-md-end">
-          <%= link_to 'Add', new_doctor_availability_path(@doctor),  {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#availability_modal', class: 'btn btn-primary'} %>
-          <%= render partial: "availability_modal" %>   
+          <%= link_to t('add'), new_doctor_availability_path(@doctor),  {remote: true, 'data-toggle' =>"modal", 'data-target' =>'#availability_modal', class: 'btn btn-primary'} %>
+          <%= render partial: "availability_modal" %>
         </div>
       </div>
     </div>

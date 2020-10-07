@@ -10,7 +10,7 @@ class Bill < ApplicationRecord
   def add_medicine(medicine, quantity_added)
     begin
       Bill.transaction do
-        if medicine.quantity > 0 && quantity_added <= medicine.quantity
+        if quantity_added > 0 && medicine.quantity > 0 && quantity_added <= medicine.quantity
           if medicine.update!(quantity: medicine.quantity - quantity_added)
             updated_price = price + (medicine.price * quantity_added)
             update!(price: updated_price)

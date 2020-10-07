@@ -26,8 +26,8 @@
       <div class="form-increment" data-quantity-change="">
         <%= form_tag(add_medicine_purchase_order_path(params[:purchase_order_sequence_num], medicine_id:@medicine.id), method: 'post', remote: true, class: 'navbar-form navbar-left') do %> 
         <div class="row">
-          <%= number_field_tag :quantity, 1, required: true, class: "form-control col-sm-2 mr-2" %>
-          <%= submit_tag "Add", class: "btn btn-primary col-sm-1", data: { disable_with: "Medicine added." } %>
+          <%= number_field_tag :quantity, 1, in: 1..@medicine.quantity, required: true, class: "form-control col-sm-2 mr-2" %>
+          <%= submit_tag "Add", class: "btn btn-primary col-sm-1", data: { disable_with: "Wait" } %>
         </div>
         <% end %> 
      </div>
@@ -35,7 +35,7 @@
        <div class="form-increment" data-quantity-change="">
         <%= form_tag(add_medicine_bill_path(params[:bill_sequence_num], medicine_id:@medicine.id), method: 'post', remote: true, class: 'navbar-form navbar-left') do %>
         <div class="row"> 
-          <%= number_field_tag :quantity, 1, required: true, class: "form-control col-sm-2 mr-2" %>
+          <%= number_field_tag :quantity, 1, in: 1..@medicine.quantity, required: true, class: "form-control col-sm-2 mr-2" %>
           <%= submit_tag "Add", class: "btn btn-primary col-sm-1", id: 'add_button'%> 
         </div>
         <% end %> 

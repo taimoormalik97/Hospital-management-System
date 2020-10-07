@@ -33,11 +33,15 @@ en:
   hello: "Hello world"
   edit: 'Edit'
   delete: 'Delete'
-  back: 'Back'
   create: 'Create'
   update: 'Update'
   submit: 'Submit'
+  cancel: 'Cancel'
+  next: 'Next'
+  add: 'Add'
   action: 'Action'
+  approve: Approve'
+  complete: 'Complete'
 
   search:
     breadcrumb: 'Search Results'  
@@ -363,6 +367,8 @@ en:
       id: "ID"
     names: "Prescriptions"
     name: "Prescription"
+    add: 'Add Prescription'
+    view: 'View Prescription'
     no_prescriptions: "No Prescription To Display"
     notes: "Notes"
     medicines: "Medicines"
