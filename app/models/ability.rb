@@ -22,7 +22,6 @@ class Ability
       can :deliver, PurchaseOrder do |purchase_order|
         purchase_order.hospital_id == user.hospital_id && purchase_order.confirmed? && purchase_order.medicines.present?
       end
-
       can :destroy, PurchaseOrder do |purchase_order|
         purchase_order.drafted?
       end
@@ -30,7 +29,6 @@ class Ability
       cannot :destroy, Medicine do |medicine|
         PurchaseDetail.where(medicine_id: medicine.id).exists? || BillDetail.where(billable: medicine).exists?
       end
-      
       can %i[read update], Admin, hospital_id: user.hospital_id, id: user.id
       can :read, Appointment, hospital_id: user.hospital_id
       can :approve, Appointment do |appointment|

@@ -1,4 +1,5 @@
 class PurchaseOrderController < ApplicationController
+  before_action :load_purchase_order, only: :show
   load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
 
   before_action :index_page_breadcrumb, only: %i[index new show edit]
@@ -157,5 +158,9 @@ class PurchaseOrderController < ApplicationController
 
   def show_page_breadcrumb
     add_breadcrumb t('purchase_order.breadcrumb.show'), purchase_order_path
+  end
+
+  def load_purchase_order
+    @purchase_order = PurchaseOrder.includes(purchase_details: :medicine).find_by(sequence_num: params[:id])
   end
 end

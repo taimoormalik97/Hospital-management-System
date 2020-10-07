@@ -7,6 +7,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments
   def index
+    @appointments = @appointments.includes(:doctor, :patient, :availability)
     @appointments = @appointments.paginate(page: params[:page], per_page: PAGINATION_SIZE)
     respond_to do |format|
       format.html
