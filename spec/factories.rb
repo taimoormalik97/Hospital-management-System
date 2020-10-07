@@ -65,7 +65,7 @@ FactoryGirl.define do
     association :hospital, factory: :hospital
   end
 
-   factory :purchase_orders, class: PurchaseOrder do
+  factory :purchase_orders, class: PurchaseOrder do
     vendorname { Faker::Name.unique.name }
     price { Faker::Number.digit }
     state 'drafted'

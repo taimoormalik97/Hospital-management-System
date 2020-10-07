@@ -64,7 +64,6 @@ RSpec.describe DoctorsController, type: :controller do
         it 'creates a new doctor' do
           expect {
             post :create, params: { doctor: @new_doctor_params }
-            sleep 2
           }.to change(@hospital.doctors, :count).by(1)
         end
 
