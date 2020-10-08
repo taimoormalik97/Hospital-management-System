@@ -3,9 +3,11 @@
     <div class="card-header p-3 container-fluid">
       <div class="row">
         <h3 class="col-md-10"><%= t('sales_order.heading') %></h3>
-        <div class="col-md-2 d-flex justify-content-md-end">
-          <%= link_to t('sales_order.add_order_label') , new_bill_path, class: "btn btn-primary" %>
-        </div>
+        <% if current_user.admin? %>
+          <div class="col-md-2 d-flex justify-content-md-end">
+            <%= link_to t('sales_order.add_order_label') , new_bill_path, class: "btn btn-primary" %>
+          </div>
+        <% end %>
       </div>
     </div>
     <div class="card-body">
@@ -20,20 +22,23 @@
       <div class="tab-content">
         <div id="medicine_bills" class="<%= @active_tab == 'medicine' ? 'container tab-pane active' : 'container tab-pane'%>"><br>
           <% if @medicine_bills.present? %>
-           <table  class="table">
-              <thead >
+            <table  class="table">
+              <thead>
                 <tr>
                   <th><%= t('sales_order.name_label') %></th>
                   <th><%= t('sales_order.type_label') %></th>
                   <th><%= t('sales_order.price_label') %></th>
-                  <th><%= t('action') %></th>
+                  <% if current_user.admin? %>
+                    <th><%= t('action') %></th>
+                  <% end %>
                 </tr>
               </thead>
               <tbody>
-              <% @medicine_bills.each do |bill| %>
-                    <td><%=link_to bill.patient.name, bill_path(bill)%></td>
-                    <td><%= bill.billable_type%></td>
-                    <td><%= bill.price%></td>
+                <% @medicine_bills.each do |bill| %>
+                  <td><%=link_to bill.patient.name, bill_path(bill)%></td>
+                  <td><%= bill.billable_type%></td>
+                  <td><%= bill.price%></td>
+                  <% if can?(:edit, bill) %>
                     <div>
                       <td>
                         <%= link_to edit_bill_path(bill) do %>
@@ -44,16 +49,17 @@
                         <%end%>
                       </td>
                     </div>
+                  <% end %>
                   </tr>
-              <% end %>
-            <% else %>
-              <strong><%= t('sales_order.none') %></strong>
-            <% end %>
-            </tbody>
-          </table>
+                <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            <strong><%= t('sales_order.none') %></strong>
+          <% end %>
           <br>
           <div class="pagination justify-content-center" class="pagination-spacing">
-            <%= will_paginate @medicine_bills, previous_label: t('paginate.previous'), next_label: t('paginate.next'),params: { page2: @medicine_bills.next_page, tab:'medicine' } %>
+            <%= will_paginate @medicine_bills, previous_label: t('paginate.previous'), next_label: t('paginate.next'), params: { page2: @medicine_bills.next_page, tab:'medicine' } %>
           </div>
         </div>
         <div id="doctor_bills" class="<%= @active_tab == 'doctor' ? 'container tab-pane fade active show' : 'container tab-pane fade' %>"><br>
@@ -64,15 +70,18 @@
                   <th><%= t('sales_order.name_label') %></th>
                   <th><%= t('sales_order.type_label') %></th>
                   <th><%= t('sales_order.price_label') %></th>
-                  <th><%= t('action') %></th>
+                  <% if current_user.admin? %>
+                    <th><%= t('action') %></th>
+                  <% end %>
                 </tr>
               </thead>
               <tbody>
               <% @doctor_bills.each do |bill| %>
-                  <tr>
-                    <td><%=link_to bill.patient.name, bill_path(bill)%></td>
-                    <td><%= bill.billable_type%></td>
-                    <td><%= bill.price%></td>
+                <tr>
+                  <td><%=link_to bill.patient.name, bill_path(bill)%></td>
+                  <td><%= bill.billable_type%></td>
+                  <td><%= bill.price%></td>
+                  <% if can?(:edit, bill) %>
                     <div>
                       <td>
                         <%= link_to edit_bill_path(bill) do %>
@@ -83,7 +92,8 @@
                         <%end%>
                       </td>
                     </div>
-                  </tr>
+                  <% end %>
+                </tr>
               <% end %>
             <% else %>
               <strong><%= t('sales_order.none') %></strong>

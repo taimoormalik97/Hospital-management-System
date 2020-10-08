@@ -19,7 +19,8 @@ class DoctorsController < ApplicationController
     end
   end
 
-  def search_pred
+  # GET /doctors/search_doctors
+  def search_doctors
     @doctors = current_hospital.doctors.search_doctors(params[:q])
     respond_to do |format|
       format.json { render json: @doctors }
@@ -45,7 +46,7 @@ class DoctorsController < ApplicationController
         format.html { redirect_to doctors_path, notice: t('doctor.add.success') }
       else
         flash[:error] = [t('doctor.add.failure')]
-        flash[:error] += @doctor.errors.full_messages.first(5) if @doctor.errors.any?
+        flash[:error] += @doctor.errors.full_messages if @doctor.errors.any?
         format.html { render :new }
       end
     end
@@ -73,7 +74,7 @@ class DoctorsController < ApplicationController
         format.html { redirect_to doctor_path(@doctor), notice: t('doctor.update.success') }
       else
         flash[:error] = [t('doctor.update.failure')]
-        flash[:error] += @doctor.errors.full_messages.first(5) if @doctor.errors.any?
+        flash[:error] += @doctor.errors.full_messages if @doctor.errors.any?
         format.html { render :edit }
       end
     end
@@ -87,7 +88,7 @@ class DoctorsController < ApplicationController
         format.html { redirect_to doctors_path, notice: t('doctor.delete.success') }
       else
         flash[:error] = [t('doctor.delete.failure')]
-        flash[:error] += @doctor.errors.full_messages.first(5) if @doctor.errors.any?
+        flash[:error] += @doctor.errors.full_messages if @doctor.errors.any?
         format.html { render :show }
       end
     end

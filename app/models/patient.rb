@@ -11,7 +11,7 @@ class Patient < User
     if pattern.blank?  # blank? covers both nil and empty string
       all
     else
-      where('name LIKE ?', "%#{pattern}%")
+      where('name LIKE ?', "%#{pattern}%").limit(TOKENINPUT_LIMIT)
     end
   end
 

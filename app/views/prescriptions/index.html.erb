@@ -23,8 +23,8 @@
             <% @prescriptions.each do |prescription| %>
               <tr>
                 <td><%= link_to prescription.sequence_num, prescription_path(prescription) %></td>
-                <td><%= prescription.appointment.doctor.name %></td>
-                <td><%= prescription.appointment.patient.name %></td>
+                <td><%= prescription.appointment.doctor.name.titleize %></td>
+                <td><%= prescription.appointment.patient.name.titleize %></td>
                 <td><%= prescription.appointment.date %></td>
                 <td><%= "#{convert_to_twelve_hour_format(prescription.appointment.availability.start_slot)} - #{convert_to_twelve_hour_format(prescription.appointment.availability.end_slot)}" %></td>
               </tr>

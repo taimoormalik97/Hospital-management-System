@@ -46,7 +46,7 @@ class Availability < ApplicationRecord
     list = appointments.collect do |appointment|
       !(appointment.approved? || appointment.pending?)
     end
-    return true if list.any?
+    return true if list.any? || appointments.blank?
 
     errors.add :base, I18n.t('availability.delete.appointment_error')
     throw(:abort)

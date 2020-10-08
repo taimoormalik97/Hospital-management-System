@@ -13,7 +13,7 @@
            <%= link_to t('edit'), edit_purchase_order_path(@purchase_order), class: "btn btn-primary btn-spacing" %>
           <%end %>
           <% if can?(:destroy, @purchase_order) %>
-            <%= link_to t('delete'), purchase_order_path(@purchase_order), method: :delete, class: "btn btn-danger btn-spacing", data: { confirm: t('delete_confirm') } %>
+            <%= link_to t('delete'), purchase_order_path(@purchase_order), method: :delete, class: "btn btn-danger btn-spacing", data: { confirm: t('medicine.delete_confirm') } %>
           <% end %>
         </div>
       </div>
@@ -63,4 +63,3 @@
     </div>
   </div>
 </div>
-

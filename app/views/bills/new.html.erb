@@ -12,7 +12,7 @@
           <p>
             <div class="form-group">
               <label><%= t('sales_order.name_label') %></label>
-              <%= f.text_field :patient_id, :required =>true, id: "patient_search", class: "form-control" %>
+              <%= f.text_field :patient_id, required: true, id: "patient_search", class: "form-control" %>
             </div>
             <div class="form-group">
               <label><%= t('sales_order.type_label') %></label>
@@ -33,7 +33,7 @@
   </div>
 <% end %>
 <%= javascript_tag do %>
-  $('#patient_search').tokenInput("/patients/search_pred", { preventDuplicates: true, theme: 'facebook', tokenLimit: 1, hintText: 'search patient' });
+  $('#patient_search').tokenInput("/patients/search_patients", { preventDuplicates: true, theme: 'facebook', tokenLimit: 1, hintText: 'search patient' });
   $('.token-input-dropdown-facebook').css({"width": "69%", "font-size": "15px"});
   $('.token-input-list-facebook').css({"width": "100%", "font-size": "18px", "font-family": "Arial, Helvetica, sans-serif", "border-radius": "5px"});
 <% end %>

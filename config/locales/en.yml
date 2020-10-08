@@ -92,6 +92,9 @@ en:
     addmed:
       success: 'Medicine successfully added to the purchase_order'
       failure: 'Unable to add medicine to the purchase order'
+    remove_medicine:
+      success: 'Medicine successfully removed from the purchase_order'
+      failure: 'Unable to remove medicine from the purchase order'
     confirm:
       success: 'Purchase Order successfully confirmed'
       failure: 'Failed to confirm Purchase Order'
@@ -254,6 +257,7 @@ en:
       status: 'Status'
       doctor: 'Doctor'
       patient: 'Patient'
+      action: 'Actions'
     name: 'Appointments'
     show_name: 'Appointment'
     breadcrumb:
@@ -295,6 +299,7 @@ en:
       failure: 'Availability slot is not deleted!'
 
   admin:
+    signup_error: "Hospital and it's subdomain must be same"
     update:
       success: 'Profile has been updated successfully'
       failure: 'Profile is not updated!'

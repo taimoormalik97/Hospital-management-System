@@ -30,6 +30,7 @@ RSpec.describe PrescribedMedicine, type: :model do
       @prescribed_medicine_params = FactoryGirl.attributes_for(:prescribed_medicine)
       @prescribed_medicine_params[:hospital] = @hospital
       @prescribed_medicine_params[:medicine] = @medicine
+      @prescribed_medicine_params[:medicine_id] = @medicine.id
       @prescribed_medicine_params[:prescription] = @prescription
       @prescribed_medicine = PrescribedMedicine.create(@prescribed_medicine_params)
     end
@@ -40,11 +41,6 @@ RSpec.describe PrescribedMedicine, type: :model do
 
     it 'should return false when hospital doesn\'t exists' do
       @prescribed_medicine.hospital = nil
-      expect(@prescribed_medicine.save).to eq false
-    end
-
-    it 'should return false when medicine doesn\'t exists' do
-      @prescribed_medicine.medicine = nil
       expect(@prescribed_medicine.save).to eq false
     end
 

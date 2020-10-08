@@ -15,7 +15,7 @@
           <td><%= detail.medicine.price %></td>
           <td><%= detail.quantity %></td>
           <td>
-            <%= link_to remove_medicine_purchase_order_path(id: params[:id], medicine_id: detail.medicine.id), method: :post, data: { confirm: t('delete_confirm') }, remote: true do %>
+            <%= link_to remove_medicine_purchase_order_path(id: params[:id], medicine_id: detail.medicine.id), method: :post, data: { confirm: t('medicine.delete_confirm') }, remote: true do %>
               <i class="fas fa-trash-alt color-danger"></i>
             <% end %>
           </td>
