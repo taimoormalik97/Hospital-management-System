@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :medicines do
       collection do
         get 'search'
-        get 'search_pred'
+        get 'search_medicines'
       end
     end
 
@@ -65,13 +65,13 @@ Rails.application.routes.draw do
         get 'speciality_filter'
       end
       collection do
-        get 'search_pred'
+        get 'search_doctors'
         get 'search'
       end
     end
     resources :patients do
       collection do
-        get 'search_pred'
+        get 'search_patients'
       end
     end
     get '' => 'dashboards#dashboard'

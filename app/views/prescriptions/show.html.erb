@@ -27,13 +27,13 @@
             <label><%= t('prescription.doctor_name') %>: </label>
           </dt>
           <dd class="col-sm-10">
-            <%= @prescription.appointment.doctor.name %>
+            <%= @prescription.appointment.doctor.name.titleize %>
           </dd>
           <dt class="col-sm-2">
             <label><%= t('prescription.patient_name') %>: </label>
           </dt>
           <dd class="col-sm-10">
-            <%= @prescription.appointment.patient.name %>
+            <%= @prescription.appointment.patient.name.titleize %>
           </dd>
           <dt class="col-sm-2">
             <label><%= t('prescription.appointment_date') %>: </label>

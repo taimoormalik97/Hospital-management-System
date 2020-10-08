@@ -44,8 +44,8 @@ FactoryGirl.define do
   factory :availability do
     association :hospital, factory: :hospital
     association :doctor, factory: :doctor
-    start_slot DateTime.current
-    end_slot DateTime.current + 1.hour
+    start_slot DateTime.current.beginning_of_hour()
+    end_slot DateTime.current.beginning_of_hour() + 30.minutes
     week_day 'Monday'
   end
 
@@ -60,18 +60,18 @@ FactoryGirl.define do
 
   factory :medicine, class: Medicine do
     name { Faker::Name.unique.name }
-    price { Faker::Number.digit }
-    quantity  100
+    price 100
+    quantity 100
     association :hospital, factory: :hospital
-  end 
+  end
 
-   factory :purchase_orders, class: PurchaseOrder do
+  factory :purchase_orders, class: PurchaseOrder do
     vendorname { Faker::Name.unique.name }
     price { Faker::Number.digit }
     state 'drafted'
     association :hospital, factory: :hospital
     association :admin, factory: :admin
-  end 
+  end
 
   factory :purchase_details, class: PurchaseDetail do
     quantity { Faker::Number.digit }
@@ -103,7 +103,7 @@ FactoryGirl.define do
     association :hospital, factory: :hospital
     association :prescription, factory: :prescription
     association :medicine, factory: :medicine
-    quantity { Faker::Number.digit }
+    quantity 100
     usage_instruction 'Day & Night'
   end
 

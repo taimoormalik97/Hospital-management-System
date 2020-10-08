@@ -5,12 +5,10 @@
         <h3 class="col-md-8"><%= t('appointment.show_name') %></h3>
         <div class="col-md-4 d-flex justify-content-md-end"> 
           <% prescription = @appointment.prescription %>
-            <% if current_user.doctor? %>
-              <% if can?(:approve, @appointment) %>
-                <%= link_to 'Approve', approve_appointment_path(@appointment), method: 'put', data: { confirm: t('popup.approve') }, class: "btn btn-info btn-spacing" %>
-              <% elsif can?(:complete, @appointment) %>
-                <%= link_to 'Complete', complete_appointment_path(@appointment), method: 'put', data: { confirm: t('popup.complete') }, class: "btn btn-success btn-spacing" %>
-              <% end %>
+            <% if can?(:approve, @appointment) %>
+              <%= link_to 'Approve', approve_appointment_path(@appointment), method: 'put', data: { confirm: t('popup.approve') }, class: "btn btn-info btn-spacing" %>
+            <% elsif can?(:complete, @appointment) %>
+              <%= link_to 'Complete', complete_appointment_path(@appointment), method: 'put', data: { confirm: t('popup.complete') }, class: "btn btn-success btn-spacing" %>
             <% end %>
             <% if can?(:cancel, @appointment) %>
               <%= link_to 'Cancel', cancel_appointment_path(@appointment), method: 'put', data: { confirm: t('popup.cancel') }, class: "btn btn-danger btn-spacing" %>
@@ -46,13 +44,13 @@
             <label><%= t('appointment.label.doctor') %>: </label>
           </dt>
           <dd class="col-sm-9">   
-            <%= @appointment.doctor.name %>   
+            <%= @appointment.doctor.name.titleize %>   
           </dd>
           <dt class="col-sm-3">  
             <label><%= t('appointment.label.patient') %>: </label>
           </dt>
           <dd class="col-sm-9">   
-            <%= @appointment.patient.name %>   
+            <%= @appointment.patient.name.titleize %>   
           </dd>
         </dl>
       </div>

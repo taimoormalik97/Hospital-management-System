@@ -5,14 +5,21 @@ RSpec.describe AvailabilitiesController, type: :controller do
       @hospital = Hospital.create(FactoryGirl.attributes_for(:hospital))
       @doctor_params = FactoryGirl.attributes_for(:doctor)
       @doctor_params[:hospital] = @hospital
-      @doctor = User.create(@doctor_params)
+      @doctor = Doctor.create(@doctor_params)
+      @request.env['devise.mapping'] = Devise.mappings[:doctor]
+      @request.host = "#{@hospital.sub_domain}.localhost:3000"
+      @doctor.confirm
       sign_in @doctor
-      @request.host = "#{@hospital.sub_domain}.localhost:3000/doctors/#{@doctor.id}"
       @availability_params = FactoryGirl.attributes_for(:availability)
       @availability_params[:hospital] = @hospital
       @availability_params[:doctor] = @doctor
       @availability = Availability.create(@availability_params)
-      @availability_params[:week_day] = 'Tuesday'
+      @new_availability_params = FactoryGirl.attributes_for(:availability)
+      @new_availability_params[:start_slot] = DateTime.current.beginning_of_hour() + 1.hour
+      @new_availability_params[:end_slot] = DateTime.current.beginning_of_hour() + 1.hour + 30.minutes
+      @new_availability_params[:hospital] = @hospital
+      @new_availability_params[:doctor] = @doctor
+      #@availability_params[:week_day] = 'Tuesday'
     end
     
     ############# create #############
@@ -20,28 +27,28 @@ RSpec.describe AvailabilitiesController, type: :controller do
       context 'with valid attributes' do
         it 'creates a new availability' do
           expect {
-            post :create, params: { availability: @availability_params, doctor_id: @doctor.id }
+            post :create, params: { doctor_id: @doctor.sequence_num, availability: @new_availability_params }
           }.to change(@hospital.availabilities, :count).by(1)
         end
 
         it 'redirects to availabilities' do
-          post :create, params: { availability: @availability_params, doctor_id: @doctor.id }
-          expect(response).to redirect_to doctor_availabilities_path(@doctor.id)
+          post :create, params: { availability: @availability_params, doctor_id: @doctor.sequence_num }
+          expect(response).to redirect_to doctor_availabilities_path(@doctor.sequence_num, week_day: @new_availability_params[:week_day])
         end
       end
 
       context 'with invalid attributes' do
         it 'does not save the new availability' do
-          @new_appointment_params[:date] = nil
+          @new_availability_params[:doctor] = nil
           expect {
-            post :create, params: { availability: @availability_params, doctor_id: @doctor.id }
+            post :create, params: { doctor_id: @doctor.sequence_num, availability: @new_availability_params }
           }.to_not change(@doctor.availabilities, :count)
         end
 
-        it 're-renders the new method' do
-          @availability_params[:date] = nil
-          post :create, params: { availability: @availability_params }
-          expect(response).to redirect_to doctor_availabilities_path(@doctor.id)
+        it 'redirects to availabilities#index' do
+          @new_availability_params[:doctor] = nil
+          post :create, params: { doctor_id: @doctor.sequence_num, availability: @new_availability_params }
+          expect(response).to redirect_to doctor_availabilities_path(@doctor.sequence_num, week_day: @new_availability_params[:week_day])
         end
       end
     end
@@ -49,12 +56,12 @@ RSpec.describe AvailabilitiesController, type: :controller do
     ############# index #############
     describe 'GET index' do
       it 'populates an array of availabilities' do
-        get :index
-        expect(assigns(:availabilities)).to eq([@availability])
+        get :index, params: { doctor_id: @doctor.sequence_num }
+        expect(@hospital.availabilities).to eq([@availability])
       end
 
       it 'renders the :index view' do
-        get :index
+        get :index, params: { doctor_id: @doctor.sequence_num }
         expect(response).to render_template :index
       end
     end
@@ -63,13 +70,13 @@ RSpec.describe AvailabilitiesController, type: :controller do
     describe 'DELETE destroy' do
       it 'deletes the availability' do
         expect {
-          delete :destroy, id: @availability
-        }.to change(@doctor.availabilities, :count).by(-1)
+          delete :destroy, params: { doctor_id: @doctor.sequence_num, id: @availability }
+        }.to change(@hospital.availabilities, :count).by(-1)
       end
 
       it 'redirects to availabilities#index' do
-        delete :destroy, id: @availability
-        expect(response).to redirect_to doctor_availabilities_path(@doctor.id)
+        delete :destroy, params: { doctor_id: @doctor.sequence_num, id: @availability }
+        expect(response).to redirect_to doctor_availabilities_path(@doctor.sequence_num, week_day: @availability_params[:week_day])
       end
     end
 

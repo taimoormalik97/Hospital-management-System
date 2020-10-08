@@ -1,4 +1,5 @@
 class BillsController < ApplicationController
+  before_action :load_bill, only: :show
   load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
 
   before_action :index_page_breadcrumb, only: %i[index new show edit]
@@ -7,6 +8,7 @@ class BillsController < ApplicationController
   # GET /bills
   def index
     @active_tab = params[:tab] == 'doctor' ? 'doctor' : 'medicine'
+    @bills = @bills.includes(:patient)
     @doctor_bills = @bills.where(billable_type: 'doctor').paginate(page: params[:page1], per_page: PAGINATION_SIZE)
     @medicine_bills = @bills.where(billable_type: 'medicine').paginate(page: params[:page2], per_page: PAGINATION_SIZE)
     respond_to do |format|
@@ -50,20 +52,19 @@ class BillsController < ApplicationController
   end
 
   def add_doctor
-    @doctor= current_hospital.doctors.find_by(id: params[:doctor_id])
-    if @bill.add_doctor(@doctor)  
+    @doctor = current_hospital.doctors.find_by(id: params[:doctor_id])
+    if @bill.add_doctor(@doctor)
       respond_to do |format|
-        format.js{ render 'bills/update_price' }
-      end            
-    else   
-      flash[:error] = [t('sales_order.adddoc.failure')]
-      if @bill.errors.full_messages.present?
-        flash[:error] += @bill.errors.full_messages
+        flash[:notice] = [t('sales_order.adddoc.success')]
+        format.js { render 'bills/update_price' }
       end
+    else
+      flash[:error] = [t('sales_order.adddoc.failure')]
+      flash[:error] += @bill.errors.full_messages @bill.errors.full_messages.present?
       respond_to do |format|
-        format.js{ render 'bills/dont_update_price' }
-      end       
-    end 
+        format.js { render 'bills/dont_update_price' }
+      end
+    end
   end
 
   # GET /bills/:id
@@ -133,4 +134,7 @@ class BillsController < ApplicationController
     add_breadcrumb t('sales_order.breadcrumb.show'), bill_path
   end
 
+  def load_bill
+    @bill = Bill.includes(bill_details: [:billable]).find_by(sequence_num: params[:id])
+  end
 end

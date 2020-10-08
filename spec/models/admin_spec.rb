@@ -45,18 +45,21 @@ RSpec.describe Admin, type: :model do
 
     context 'When testing the validation of unique email in same sub-domain' do
       before(:each) do
-        @admin2 = Admin.create(@admin_params)
+        @doctor_params = FactoryGirl.attributes_for(:doctor)
+        @doctor_params[:hospital] = @hospital
+        @doctor = Doctor.create(@doctor_params)
       end
 
       it 'should return false when same email is given in same sub-domain' do
+        @doctor.email = @admin.email
         expect(@admin.save).to eq true
-        expect(@admin2.save).to eq false
+        expect(@doctor.save).to eq false
       end
 
       it 'should return true when different email is given in same sub-domain' do
         expect(@admin.save).to eq true
-        @admin2.email = 'Email2@gmail.com'
-        expect(@admin2.save).to eq true
+        @doctor.email = 'NewEmail@gmail.com'
+        expect(@doctor.save).to eq true
       end
     end
   end

@@ -20,8 +20,9 @@ class PatientsController < ApplicationController
     end
   end
 
-  def search_pred
-    @patients = current_hospital.patients.search_patient(params[:q])
+  # GET  /patients/search_patients
+  def search_patients
+    @patients = current_hospital.patients.search_patients(params[:q])
     respond_to do |format|
       format.html
       format.json { render json: @patients }
@@ -36,7 +37,7 @@ class PatientsController < ApplicationController
         format.html { redirect_to patients_path, notice: t('patient.add.success') }
       else
         flash[:error] = [t('patient.add.failure')]
-        flash[:error] += @patient.errors.full_messages.first(5) if @patient.errors.any?
+        flash[:error] += @patient.errors.full_messages if @patient.errors.any?
         format.html { render :new }
       end
     end
@@ -64,7 +65,7 @@ class PatientsController < ApplicationController
         format.html { redirect_to patient_path(@patient), notice: t('patient.update.success') }
       else
         flash[:error] = [t('patient.update.failure')]
-        flash[:error] += @patient.errors.full_messages.first(5) if @patient.errors.any?
+        flash[:error] += @patient.errors.full_messages if @patient.errors.any?
         format.html { render :edit }
       end
     end
@@ -78,7 +79,7 @@ class PatientsController < ApplicationController
         format.html { redirect_to patients_path, notice: t('patient.delete.success') }
       else
         flash[:error] = [t('patient.delete.failure')]
-        flash[:error] += @patient.errors.full_messages.first(5) if @patient.errors.any?
+        flash[:error] += @patient.errors.full_messages if @patient.errors.any?
         format.html { render :show }
       end
     end

@@ -1,38 +1,40 @@
-<div class="container  pt-3"> 
+<div class="container  pt-3">
     <div class="card">
       <div class="card-header p-3 container-fluid">
         <div class="row">
-          <h3 class="col-md-8"><%= @bill.patient.name %></h3> 
-          <div class="col-md-4 d-flex justify-content-md-end"> 
-            <%= link_to t('delete'), bill_path(@bill), method: :delete, class: "btn btn-danger", data: { confirm:'Are you sure you want to delete medicine?' } %> 
-            <%= link_to t('edit'), edit_bill_path(@bill), class: "btn btn-primary btn-spacing" %> 
-          </div>
+          <h3 class="col-md-8"><%= @bill.patient.name %></h3>
+          <% if current_user.admin? %>
+            <div class="col-md-4 d-flex justify-content-md-end">
+              <%= link_to t('delete'), bill_path(@bill), method: :delete, class: "btn btn-danger", data: { confirm:'Are you sure you want to delete medicine?' } %>
+              <%= link_to t('edit'), edit_bill_path(@bill), class: "btn btn-primary btn-spacing" %>
+            </div>
+          <% end %>
         </div>
       </div>
       <div class="card-body">
       <dl class="row">
-        <dt class="col-sm-2">  
+        <dt class="col-sm-2">
           <label><%= t('sales_order.name_label') %></label>
         </dt>
-        <dd class="col-sm-9">   
-          <%=@bill.patient.name %>   
+        <dd class="col-sm-9">
+          <%=@bill.patient.name %>
         </dd>
-        <dt class="col-sm-2">  
-          <label><%= t('sales_order.price_label') %></label>   
+        <dt class="col-sm-2">
+          <label><%= t('sales_order.price_label') %></label>
         </dt>
-        <dd class="col-sm-9">   
-          <%=@bill.price%>   
+        <dd class="col-sm-9">
+          <%=@bill.price%>
         </dd>
-        <dt class="col-sm-2">  
+        <dt class="col-sm-2">
           <label><%= t('sales_order.type_label') %></label>
         </dt>
-        <dd class="col-sm-9">   
-          <%=@bill.billable_type%>   
+        <dd class="col-sm-9">
+          <%=@bill.billable_type%>
         </dd>
       </dl>
       <% if @bill.billable_type == "medicine" %>
         <% if @bill.medicines.present? %>
-          <dt class="col-sm-2">  
+          <dt class="col-sm-2">
             <label><%= t('medicine.heading') %></label>
           </dt>
           <dd>
@@ -48,7 +50,7 @@
                 <th>
                   <%= t('medicine.quantity_label') %>
                 </th>
-              </tr>  
+              </tr>
               </thead>
               <%@bill.bill_details.each do |pd|%>
               <tr>
@@ -65,10 +67,10 @@
               <%end%>
             </table>
           </dd>
-        <%end%> 
+        <%end%>
       <% elsif @bill.billable_type == "doctor" %>
           <% if @bill.bill_details.present? %>
-            <dt class="col-sm-2">  
+            <dt class="col-sm-2">
               <label><%= t('doctor.appointments') %></label>
             </dt>
             <dd>
@@ -81,7 +83,7 @@
                     <th>
                       <%= t('doctor.fee') %>
                     </th>
-                  </tr>  
+                  </tr>
                   </thead>
                   <% @bill.bill_details.each do |pd| %>
                   <tr>
@@ -95,9 +97,9 @@
                 <% end %>
               </table>
             </dd>
-          <% end %> 
+          <% end %>
         <% end %>
-    </div>    
+    </div>
   </div>
-  <br> 
+  <br>
 </div>

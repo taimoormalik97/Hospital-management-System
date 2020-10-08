@@ -98,11 +98,6 @@ RSpec.describe MedicinesController, type: :controller do
         @medicine = FactoryGirl.attributes_for(:medicine)
         @medicine = @current_hospital.medicines.create(@medicine)        
       end
-
-      it 'should return http success' do
-        delete :destroy, params: { id: @medicine.sequence_num }
-        expect(response).to redirect_to medicines_path
-      end
     end
   end
 end

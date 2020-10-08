@@ -1,64 +1,64 @@
-<div class="container  pt-3"> 
+<div class="container  pt-3">
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
         <h3 class="col-md-10"><%= t('purchase_order.heading') %></h3> 
         <div class="col-md-2 d-flex justify-content-md-end">
-          <%= link_to t('purchase_order.add_order_label'), new_purchase_order_path, class: "btn btn-primary" %>   
-        </div>   
+          <%= link_to t('purchase_order.add_order_label'), new_purchase_order_path, class: "btn btn-primary" %>
+        </div>
       </div>
-    </div> 
+    </div>
     <div class="card-body">
-      <% if @purchase_orders.present? %>  
-        <table  class="table">   
-          <thead >   
-            <tr>   
-              <th><%= t('purchase_order.id') %></th> 
-              <th><%= t('purchase_order.name_label') %></th>   
-              <th><%= t('purchase_order.price_label') %></th>   
-              <th><%= t('purchase_order.state_label') %></th> 
+      <% if @purchase_orders.present? %>
+        <table  class="table">
+          <thead>
+            <tr>
+              <th><%= t('purchase_order.id') %></th>
+              <th><%= t('purchase_order.name_label') %></th>
+              <th><%= t('purchase_order.price_label') %></th>
+              <th><%= t('purchase_order.state_label') %></th>
               <th class='action'><%= t('action') %></th>
-            </tr>   
-          </thead>   
-          <tbody>   
-          <% @purchase_orders.each do |po| %> 
-            <% state_colors = state_colors(po) %>  
-            <tr>   
-              <td><%= link_to po.sequence_num, purchase_order_path(po) %></td>
-              <td><%= po.vendorname %></td>   
-              <td><%= po.price %></td>
-              <td><span class="p-1 rounded text-<%= state_colors[:text] %> bg-<%= state_colors[:bg] %>"><%= po.state.capitalize %></span></td>
-              <div>   
+            </tr>
+          </thead>
+          <tbody>
+          <% @purchase_orders.each do |purchase_order| %>
+            <% state_colors = state_colors(purchase_order) %>
+            <tr>
+              <td><%= link_to purchase_order.sequence_num, purchase_order_path(purchase_order) %></td>
+              <td><%= purchase_order.vendorname %></td>
+              <td><%= purchase_order.price %></td>
+              <td><span class="p-1 rounded text-<%= state_colors[:text] %> bg-<%= state_colors[:bg] %>"><%= purchase_order.state.capitalize %></span></td>
+              <div>
                 <td>
                   <div class='row'>
                     <div class='col-sm'>
-                      <% if can? :update, po %>
-                        <%= link_to edit_purchase_order_path(po), class: 'float-right' do %>
+                      <% if can? :update, purchase_order %>
+                        <%= link_to edit_purchase_order_path(purchase_order), class: 'float-right' do %>
                           <i class="fas fa-pen"></i>
                         <% end %>
-                      <% end %> 
+                      <% end %>
                     </div>
                     <div class='col-sm'>
-                      <% if can? :destroy, po %>
-                        <%= link_to purchase_order_path(po), method: :delete,  data: { confirm:'Are you sure you want to delete medicine?' } do %>
+                      <% if can? :destroy, purchase_order %>
+                        <%= link_to purchase_order_path(purchase_order), method: :delete,  data: { confirm:'Are you sure you want to delete medicine?' } do %>
                           <i class="fas fa-trash-alt color-danger"></i>
                         <% end %>
                       <% end %>
                     </div>
-                  </div>      
-                </td> 
-              </div>       
-            </tr>   
+                  </div>
+                </td>
+              </div>
+            </tr>
           <% end %>
         <% else %>
           <strong><%= t('purchase_order.none') %></strong>
-        <% end %>   
-        </tbody>   
-      </table> 
+        <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
 <br>
 <div class="pagination justify-content-center" class="pagination-spacing">
-  <%= will_paginate @purchase_orders, previous_label: t('paginate.previous'), next_label: t('paginate.next') %> 
+  <%= will_paginate @purchase_orders, previous_label: t('paginate.previous'), next_label: t('paginate.next') %>
 </div>

@@ -44,7 +44,7 @@
                 </div>
               </label>
               <div class="col-8 pl-0">
-                <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control" %>
+                <%= f.password_field :password, autofocus: true, autocomplete: "new-password", required: true, class: "form-control" %>
               </div>
             </div>
             <div class="row pb-3">
@@ -63,7 +63,7 @@
               <div class="row pb-0">
                 <label class="col-4"><%= t('guest.profile.hospital_sub_domain') %><span class="color-danger">*</span></label>
                 <div class="pl-0 col-8">
-                  <%= h.text_field :sub_domain, id: "sub_domain", readonly: true, class: "form-control" %>
+                  <%= h.text_field :sub_domain, id: "sub_domain",required: true, readonly: true, class: "form-control" %>
                 </div>
               </div>
               <div class="row pb-3">

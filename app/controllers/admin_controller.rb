@@ -4,14 +4,14 @@ class AdminController < ApplicationController
   before_action :root_page_breadcrumb, only: %i[show edit]
   before_action :show_page_breadcrumb, only: %i[show edit]
 
-  # GET /resource/show
+  # GET /admin/:id
   def show
     respond_to do |format|
       format.html
     end
   end
 
-  # GET /resource/edit
+  # GET /admin/:id/edit
   def edit
     add_breadcrumb t('admin.breadcrumb.edit'), edit_admin_path
     respond_to do |format|
@@ -19,7 +19,7 @@ class AdminController < ApplicationController
     end
   end
 
-  # PATCH/resource/update
+  # PATCH /admin/:id
   def update
     respond_to do |format|
       if @admin.update(admin_params)

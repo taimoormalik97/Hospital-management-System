@@ -60,7 +60,7 @@ class PrescriptionsController < ApplicationController
         format.html { redirect_to prescriptions_path, notice: t('prescription.delete.success') }
       else
         flash[:error] = [t('prescription.delete.failure')]
-        flash[:error] += @prescription.errors.full_messages.first(5) if @prescription.errors.any?
+        flash[:error] += @prescription.errors.full_messages if @prescription.errors.any?
         format.html { render :show }
       end
     end
@@ -68,7 +68,7 @@ class PrescriptionsController < ApplicationController
 
   # GET /prescription/search_medicine
   def search_medicine
-    @medicines = Medicine.search(params[:q])
+    @medicines = Medicine.search_medicines(params[:q])
     respond_to do |format|
       format.json { render json: @medicines }
     end

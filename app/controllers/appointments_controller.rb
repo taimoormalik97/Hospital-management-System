@@ -7,6 +7,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments
   def index
+    @appointments = @appointments.includes(:doctor, :patient, :availability)
     @appointments = @appointments.paginate(page: params[:page], per_page: PAGINATION_SIZE)
     respond_to do |format|
       format.html
@@ -29,7 +30,7 @@ class AppointmentsController < ApplicationController
         format.html { redirect_to appointments_path, notice: t('appointment.add.success') }
       else
         flash[:error] = [t('appointment.add.failure')]
-        flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
+        flash[:error] += @appointment.errors.full_messages if @appointment.errors.any?
         format.html { redirect_to appointments_path }
         format.js
       end
@@ -50,7 +51,7 @@ class AppointmentsController < ApplicationController
         format.html { redirect_to appointment_path(@appointment), notice: t('appointment.update.success') }
       else
         flash[:error] = [t('appointment.update.failure')]
-        flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
+        flash[:error] += @appointment.errors.full_messages if @appointment.errors.any?
         format.html { render :edit }
       end
     end
@@ -82,9 +83,8 @@ class AppointmentsController < ApplicationController
       flash[:notice] = t('appointment.approve.success')
     else
       flash[:error] = [t('appointment.approve.failure')]
-      flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
+      flash[:error] += @appointment.errors.full_messages if @appointment.errors.any?
     end
-      
     respond_to do |format|
       format.html { redirect_to appointments_path }
     end
@@ -96,7 +96,7 @@ class AppointmentsController < ApplicationController
       flash[:notice] = t('appointment.complete.success')
     else
       flash[:error] = [t('appointment.complete.failure')]
-      flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
+      flash[:error] += @appointment.errors.full_messages if @appointment.errors.any?
     end
     respond_to do |format|
       format.html { redirect_to appointments_path }
@@ -109,7 +109,7 @@ class AppointmentsController < ApplicationController
       flash[:notice] = t('appointment.cancel.success')
     else
       flash[:error] = [t('appointment.cancel.failure')]
-      flash[:error] += @appointment.errors.full_messages.first(5) if @appointment.errors.any?
+      flash[:error] += @appointment.errors.full_messages if @appointment.errors.any?
     end
     respond_to do |format|
       format.html { redirect_to appointments_path }

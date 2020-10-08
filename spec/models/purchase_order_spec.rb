@@ -40,7 +40,6 @@ RSpec.describe PurchaseOrder, type: :model do
       end
    
       it 'should be able to add medicines to itself' do
-        
         expect(@purchase_order.add_medicine(@medicine, @quantity)).to eq @hospital.purchase_details.find_by(medicine_id: @medicine.id)
       end
 

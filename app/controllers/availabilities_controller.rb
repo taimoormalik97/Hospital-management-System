@@ -28,7 +28,7 @@ class AvailabilitiesController < ApplicationController
       flash[:notice] = t('availability.add.success')
     else
       flash[:error] = [t('availability.add.failure')]
-      flash[:error] += @availability.errors.full_messages.first(5) if @availability.errors.any?
+      flash[:error] += @availability.errors.full_messages if @availability.errors.any?
     end
     respond_to do |format|
       format.html { redirect_to doctor_availabilities_path(@doctor, week_day: params[:availability][:week_day]) }
@@ -42,7 +42,7 @@ class AvailabilitiesController < ApplicationController
       flash[:notice] = t('availability.delete.success')
     else
       flash[:error] = [t('availability.delete.failure')]
-      flash[:error] += @availability.errors.full_messages.first(5) if @availability.errors.any?
+      flash[:error] += @availability.errors.full_messages if @availability.errors.any?
     end
     respond_to do |format|
       format.html { redirect_to doctor_availabilities_path(@doctor, week_day: @availability.week_day) }

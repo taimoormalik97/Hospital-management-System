@@ -9,11 +9,11 @@ class Medicine < ApplicationRecord
   has_many :purchase_details, dependent: :nullify
   belongs_to :hospital
 
-  def self.search_medicine(pattern)
+  def self.search_medicines(pattern)
     if pattern.blank?  # blank? covers both nil and empty string
       all
     else
-      where('name LIKE ?', "%#{pattern}%")
+      where('name LIKE ?', "%#{pattern}%").limit(TOKENINPUT_LIMIT)
     end
   end
 

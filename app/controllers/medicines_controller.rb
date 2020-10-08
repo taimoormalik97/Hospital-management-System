@@ -29,8 +29,9 @@ class MedicinesController < ApplicationController
     end
   end
 
-  def search_pred
-    @medicines = current_hospital.medicines.where("quantity > 0").search_medicine(params[:q])
+  # GET /medicines/search_medicines
+  def search_medicines
+    @medicines = current_hospital.medicines.where('quantity > 0').search_medicines(params[:q])
     respond_to do |format|
       format.json { render json: @medicines }
     end

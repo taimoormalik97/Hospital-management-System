@@ -1,4 +1,5 @@
 class PurchaseOrderController < ApplicationController
+  before_action :load_purchase_order, only: :show
   load_and_authorize_resource find_by: :sequence_num, through: :current_hospital
 
   before_action :index_page_breadcrumb, only: %i[index new show edit]
@@ -20,6 +21,7 @@ class PurchaseOrderController < ApplicationController
     end
   end
 
+  # GET /purchase_order/:id/get_medicine
   def get_medicine
     @medicine = current_hospital.medicines.find_by(id: params[:search])
     if @medicine.blank?
@@ -47,17 +49,17 @@ class PurchaseOrderController < ApplicationController
     end
   end
 
+  # POST /purchase_order/:id/add_medicine
   def remove_medicine
     @medicine = current_hospital.medicines.find_by(id: params[:medicine_id])
     if @purchase_order.remove_medicine(@medicine)
       respond_to do |format|
+        flash[:notice] = t('purchase_order.remove_medicine.success')
         format.js { render 'purchase_order/update_price' }
       end
     else
-      flash[:error] = [t('purchase_order.addmed.failure')]
-      if @purchase_order.errors.full_messages.present?
-        flash[:error] += @purchase_order.errors.full_messages
-      end
+      flash[:error] = [t('purchase_order.remove_medicine.failure')]
+      flash[:error] += @purchase_order.errors.full_messages if @purchase_order.errors.full_messages.present?
       redirect_to(request.env['HTTP_REFERER'])
     end
   end
@@ -79,10 +81,10 @@ class PurchaseOrderController < ApplicationController
 
   # POST /purchase_order
   def create
-    @purchase_order.hospital=current_hospital 
-    @purchase_order.admin=current_user
-    if @purchase_order.save 
-      flash[:notice] = t('purchase_order.add.success')   
+    @purchase_order.hospital = current_hospital
+    @purchase_order.admin = current_user
+    if @purchase_order.save
+      flash[:notice] = t('purchase_order.add.success')
       redirect_to @purchase_order
     else
       flash[:error] = [t('purchase_order.add.failure')]
@@ -143,7 +145,7 @@ class PurchaseOrderController < ApplicationController
   end
 
   def purchase_order_params   
-    params.require(:purchase_order).permit(:vendorname, :price)   
+    params.require(:purchase_order).permit(:vendorname, :price)
   end
 
   def root_page_breadcrumb
@@ -156,5 +158,9 @@ class PurchaseOrderController < ApplicationController
 
   def show_page_breadcrumb
     add_breadcrumb t('purchase_order.breadcrumb.show'), purchase_order_path
+  end
+
+  def load_purchase_order
+    @purchase_order = PurchaseOrder.includes(purchase_details: :medicine).find_by(sequence_num: params[:id])
   end
 end

@@ -30,13 +30,13 @@
               </div>
             </label>
             <div class="pl-0 col-9">
-              <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control" %>
+              <%= f.password_field :password, autofocus: true, required: true, autocomplete: "new-password", class: "form-control" %>
             </div>
           </div>
           <div class="row px-2 pt-0 mr-1">
             <label class="col-3"><%= t('guest.profile.confirm_new_password') %></label>
             <div class="pl-0 col-9">
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+              <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "form-control" %>
             </div>
           </div>
         </p>
