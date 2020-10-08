@@ -19,7 +19,6 @@ RSpec.describe AvailabilitiesController, type: :controller do
       @new_availability_params[:end_slot] = DateTime.current.beginning_of_hour() + 1.hour + 30.minutes
       @new_availability_params[:hospital] = @hospital
       @new_availability_params[:doctor] = @doctor
-      #@availability_params[:week_day] = 'Tuesday'
     end
     
     ############# create #############
