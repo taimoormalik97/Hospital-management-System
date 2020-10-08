@@ -35,18 +35,18 @@
               </thead>
               <tbody>
                 <% @medicine_bills.each do |bill| %>
-                  <td><%=link_to bill.patient.name, bill_path(bill)%></td>
-                  <td><%= bill.billable_type%></td>
-                  <td><%= bill.price%></td>
+                  <td><%= link_to bill.patient.name, bill_path(bill) %></td>
+                  <td><%= bill.billable_type %></td>
+                  <td><%= bill.price %></td>
                   <% if can?(:edit, bill) %>
                     <div>
                       <td>
                         <%= link_to edit_bill_path(bill) do %>
                           <i class="fas fa-pen"></i>
-                        <%end%>
+                        <% end %>
                         <%= link_to bill_path(bill), method: :delete, class: "btn-spacing", data: { confirm: t('medicine.delete_confirm') } do %>
                           <i class="fas fa-trash-alt color-danger"></i>
-                        <%end%>
+                        <% end %>
                       </td>
                     </div>
                   <% end %>
@@ -78,18 +78,18 @@
               <tbody>
               <% @doctor_bills.each do |bill| %>
                 <tr>
-                  <td><%=link_to bill.patient.name, bill_path(bill)%></td>
-                  <td><%= bill.billable_type%></td>
-                  <td><%= bill.price%></td>
+                  <td><%= link_to bill.patient.name, bill_path(bill) %></td>
+                  <td><%= bill.billable_type %></td>
+                  <td><%= bill.price %></td>
                   <% if can?(:edit, bill) %>
                     <div>
                       <td>
                         <%= link_to edit_bill_path(bill) do %>
                           <i class="fas fa-pen"></i>
-                        <%end%>
+                        <% end %>
                         <%= link_to bill_path(bill), method: :delete, class: "btn-spacing" do %>
                           <i class="fas fa-trash-alt color-danger"></i>
-                        <%end%>
+                        <% end %>
                       </td>
                     </div>
                   <% end %>
