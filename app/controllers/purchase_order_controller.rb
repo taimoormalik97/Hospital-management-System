@@ -37,15 +37,14 @@ class PurchaseOrderController < ApplicationController
   def add_medicine
     @medicine = current_hospital.medicines.find_by(id: params[:medicine_id])
     quantity = params[:quantity].to_i
-    if quantity > 0 && @purchase_order.add_medicine(@medicine, quantity)
-      respond_to do |format|
+    if @purchase_order.add_medicine(@medicine, quantity)
         flash[:notice] = t('purchase_order.addmed.success')
-        format.js { render 'purchase_order/update_price' }
-      end
     else
       flash[:error] = [t('purchase_order.addmed.failure')]
       flash[:error] += @purchase_order.errors.full_messages if @purchase_order.errors.full_messages.present?
-      redirect_to(request.env['HTTP_REFERER'])
+    end
+    respond_to do |format|
+      format.js { render 'purchase_order/update_price' }
     end
   end
 

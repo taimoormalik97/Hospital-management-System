@@ -22,12 +22,12 @@ class Bill < ApplicationRecord
             end
           end
         else
-          errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
+          errors.add :base, I18n.t('medicine.add.failure')
           return false
         end
       end
     rescue => e
-      errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
+      errors.add :base, I18n.t('medicine.add.failure')
     end
   end
 

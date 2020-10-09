@@ -32,7 +32,7 @@
             <label><%= t('appointment.label.slot') %>: </label>
           </dt>
           <dd class="col-sm-9">
-            <%= "#{ convert_to_twelve_hour_format(availability.start_slot) } - #{ convert_to_twelve_hour_format(availability.end_slot) }" %>
+            <%= "#{convert_to_twelve_hour_format(availability.start_slot)} - #{convert_to_twelve_hour_format(availability.end_slot)}" %>
           </dd>
           <dt class="col-sm-3">
             <label><%= t('appointment.label.date') %>: </label>

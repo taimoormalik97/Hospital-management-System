@@ -41,7 +41,7 @@ en:
   add: 'Add'
   disabled_add: 'Wait'
   save: 'Save'
-  errors: 'Errors'
+  errors_msg: 'Errors'
   action: 'Action'
   approve: Approve'
   complete: 'Complete'
@@ -160,7 +160,7 @@ en:
     delete_confirm: 'Are you sure you want to delete medicine?'
     add:
       success: 'Medicine has been added successfully'
-      failure: 'Failed to add!'
+      failure: 'Failed to add given quantity!'
     delete:
       success: 'Medicine has been deleted successfully'
       failure: 'Failed to delete!'

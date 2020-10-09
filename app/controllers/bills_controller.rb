@@ -39,15 +39,14 @@ class BillsController < ApplicationController
   def add_medicine
     @medicine = current_hospital.medicines.find_by(id: params[:medicine_id])
     quantity = params[:quantity].to_i
+    if @bill.add_medicine(@medicine, quantity)
+      flash.now[:notice] = t('sales_order.addmed.success')
+    else
+      flash.now[:error] = [t('sales_order.addmed.failure')]
+      flash.now[:error] += @bill.errors.full_messages if @bill.errors.full_messages.present?
+    end
     respond_to do |format|
-      if quantity > 0 && @bill.add_medicine(@medicine, quantity)
-        flash[:notice] = t('sales_order.addmed.success')
-        format.js { render 'bills/update_price' }
-      else
-        flash[:error] = [t('sales_order.addmed.failure')]
-        flash[:error] += @bill.errors.full_messages if @bill.errors.full_messages.present?
-        redirect_to(request.env['HTTP_REFERER'])
-      end
+      format.js { render 'bills/update_price' }
     end
   end
 
