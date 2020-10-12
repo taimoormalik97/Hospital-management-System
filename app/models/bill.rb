@@ -41,4 +41,8 @@ class Bill < ApplicationRecord
       bill_details.create(billable: doctor, hospital: doctor.hospital)
     end
   end
+
+  def medicine_bill?
+    billable_type == 'medicine'
+  end
 end

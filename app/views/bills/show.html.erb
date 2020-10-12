@@ -32,7 +32,7 @@
           <%= @bill.billable_type %>
         </dd>
       </dl>
-      <% if @bill.billable_type == "medicine" %>
+      <% if @bill.medicine_bill? %>
         <% if @bill.medicines.present? %>
           <dt class="col-sm-2">
             <label><%= t('medicine.heading') %></label>
@@ -53,16 +53,16 @@
                 </tr>
               </thead>
               <tbody>
-                <% @bill.bill_details.each do |pd| %>
+                <% @bill.bill_details.each do |detail| %>
                   <tr>
                     <td>
-                      <%= pd.billable.name %>
+                      <%= detail.billable.name %>
                     </td>
                     <td>
-                      <%= pd.billable.price %>
+                      <%= detail.billable.price %>
                     </td>
                     <td>
-                      <%= pd.quantity %>
+                      <%= detail.quantity %>
                     </td>
                   </tr>
                 <% end %>
@@ -70,7 +70,7 @@
             </table>
           </dd>
         <% end %>
-      <% elsif @bill.billable_type == "doctor" %>
+      <% else %>
         <% if @bill.bill_details.present? %>
           <dt class="col-sm-2">
             <label><%= t('doctor.appointments') %></label>
@@ -88,13 +88,13 @@
                 </tr>
               </thead>
               <tbody>
-                <% @bill.bill_details.each do |pd| %>
+                <% @bill.bill_details.each do |detail| %>
                   <tr>
                     <td>
-                      <%= pd.billable.name %>
+                      <%= detail.billable.name %>
                     </td>
                     <td>
-                      <%= pd.billable.consultancy_fee %>
+                      <%= detail.billable.consultancy_fee %>
                     </td>
                   </tr>
                 <% end %>

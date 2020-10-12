@@ -42,25 +42,25 @@
     <div class="card-header p-3 container-fluid">
       <div class="row">
         <h3 class="col-md-9">
-          <% if @bill.billable_type == "medicine" %>
+          <% if @bill.medicine_bill? %>
             <%= t('sales_order.add_medicines') %>
-          <% elsif @bill.billable_type == "doctor" %>
+          <% else %>
             <%= t('sales_order.add_doctors') %>
           <% end %>
         </h3>
       </div>
     </div>
     <div class="card-body">
-      <% if @bill.billable_type == "medicine" %>
+      <% if @bill.medicine_bill? %>
         <%= render 'medicinesearch' %>
-      <% elsif @bill.billable_type == "doctor" %>
+      <% else %>
         <%= render 'doctorssearch' %>
       <% end %>
       <div id="display_results"></div>
     </div>
   </div>
 </div>
-<% if @bill.billable_type == "medicine" %>
+<% if @bill.medicine_bill? %>
   <div class="container pt-3 mb-5">
     <div class="card">
       <div class="card-header p-3 container-fluid">
