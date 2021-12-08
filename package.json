@@ -2,19 +2,19 @@
   "name": "Hospital",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.14.0",
-    "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
-    "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "4.3.0",
-    "bootstrap": "^4.5.2",
-    "chart.js": "^2.9.3",
-    "chartkick": "^3.2.1",
-    "jquery": "^3.5.1",
-    "popper.js": "^1.16.1"
+    "@fortawesome/fontawesome-free": "*",
+    "@rails/actioncable": "*",
+    "@rails/activestorage": "*",
+    "@rails/ujs": "*",
+    "@rails/webpacker": "*",
+    "bootstrap": "4.5.2",
+    "chart.js": "*",
+    "chartkick": "*",
+    "jquery": "*",
+    "popper.js": "*"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "*"
   }
 }
