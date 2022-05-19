@@ -3,7 +3,7 @@
   <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 <%= form_for [@prescription, @prescribed_medicine], remote: true do |f| %>
-  <div class="container pt-3"> 
+  <div class="container pt-3">
     <div class="modal-body">
       <div class="form-group">
         <label><%= t('prescription.medicine_full_name') %></label>
@@ -19,8 +19,8 @@
       </div>
     </div>
     <div class="modal-footer">
-      <%= submit_tag "Submit", class: "btn btn-primary", name: nil%>
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <%= submit_tag t('submit'), class: "btn btn-primary", name: nil %>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t('cancel') %></button>
     </div>
   </div>
 <% end %>

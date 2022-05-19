@@ -1,54 +1,54 @@
-<div class="container  pt-3"> 
+<div class="container  pt-3">
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
-        <h3 class="col-md-10"><%= t('medicine.heading')%></h3> 
+        <h3 class="col-md-10"><%= t('medicine.heading') %></h3>
         <div class="col-md-2 d-flex justify-content-md-end">
-          <%= link_to t('add'), new_medicine_path ,class: "btn btn-primary" %>   
-        </div>   
+          <%= link_to t('add'), new_medicine_path ,class: "btn btn-primary" %>
+        </div>
       </div>
-    </div> 
+    </div>
     <div class="card-body">
-      <% if @medicines.present? %> 
-        <table  class="table">   
-          <thead >   
-            <tr>   
-              <th><%= t('medicine.name_label') %></th>   
-              <th><%= t('medicine.price_label') %></th>   
-              <th><%= t('medicine.quantity_label') %></th> 
-              <th><%= t('action') %></th>    
-            </tr>   
-          </thead>   
-          <tbody>  
-          <% @medicines.each do |medicine| %>   
-            <tr>   
-              <td><%= link_to medicine.name, medicine_path(medicine) %></td>   
-              <td><%= medicine.price %></td>   
-              <td><%= medicine.quantity%></td>
-              <div>   
-                <td>   
-                  <%= link_to edit_medicine_path(medicine) do %>
-                    <i class="fas fa-pen"></i>
-                  <%end%> 
-                  <% if can? :destroy, medicine %>
-                    <%= link_to medicine_path(medicine), method: :delete, class: "btn-spacing", data: { confirm:'Are you sure you want to delete medicine?' } do %>
-                      <i class="fas fa-trash-alt color-danger"></i>
-                    <%end%>
-                  <% end %>      
-                </td>
-              </div>    
-            </tr>  
-          <% end %>
-        <% else %>
-          <strong><%= t('medicine.none') %></strong>
-        <% end %>   
-        </tbody>   
-      </table> 
+      <% if @medicines.present? %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th><%= t('medicine.name_label') %></th>
+              <th><%= t('medicine.price_label') %></th>
+              <th><%= t('medicine.quantity_label') %></th>
+              <th><%= t('action') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @medicines.each do |medicine| %>
+              <tr>
+                <td><%= link_to medicine.name, medicine_path(medicine) %></td>
+                <td><%= medicine.price %></td>
+                <td><%= medicine.quantity %></td>
+                <div>
+                  <td>
+                    <%= link_to edit_medicine_path(medicine) do %>
+                      <i class="fas fa-pen"></i>
+                    <% end %>
+                    <% if can? :destroy, medicine %>
+                      <%= link_to medicine_path(medicine), method: :delete, class: "btn-spacing", data: { confirm: t('medicine.delete_confirm') } do %>
+                        <i class="fas fa-trash-alt color-danger"></i>
+                      <% end %>
+                    <% end %>
+                  </td>
+                </div>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <strong><%= t('medicine.none') %></strong>
+      <% end %>
     </div>
   </div>
 </div>
 <br>
 <div class="pagination justify-content-center" class="pagination-spacing">
-  <%= will_paginate @medicines, previous_label: t('paginate.previous'), next_label: t('paginate.next') %> 
+  <%= will_paginate @medicines, previous_label: t('paginate.previous'), next_label: t('paginate.next') %>
 </div>
 

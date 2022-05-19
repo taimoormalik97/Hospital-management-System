@@ -6,13 +6,13 @@
         <div class="col-md-2 d-flex justify-content-md-end">
         </div>
       </div>
-    </div> 
+    </div>
     <div class="card-body">
       <% if @prescriptions.present? %>
         <table  class="table">
           <thead>
             <tr>
-              <th><%= t('prescription.label.id') %></th> 
+              <th><%= t('prescription.label.id') %></th>
               <th><%= t('prescription.doctor_name') %></th>
               <th><%= t('prescription.patient_name') %></th>
               <th><%= t('prescription.appointment_date') %></th>
@@ -20,15 +20,15 @@
             </tr>
           </thead>
           <tbody>
-          <% @prescriptions.each do |prescription| %>
-            <tr>   
-              <td><%= link_to prescription.sequence_num, prescription_path(prescription) %></td>  
-              <td><%= prescription.appointment.doctor.name.titleize %></td>
-              <td><%= prescription.appointment.patient.name.titleize %></td>
-              <td><%= prescription.appointment.date %></td>
-              <td><%= "#{convert_to_twelve_hour_format(prescription.appointment.availability.start_slot)} - #{convert_to_twelve_hour_format(prescription.appointment.availability.end_slot)}" %></td>
-            </tr>
-          <% end %>
+            <% @prescriptions.each do |prescription| %>
+              <tr>
+                <td><%= link_to prescription.sequence_num, prescription_path(prescription) %></td>
+                <td><%= prescription.appointment.doctor.name.titleize %></td>
+                <td><%= prescription.appointment.patient.name.titleize %></td>
+                <td><%= prescription.appointment.date %></td>
+                <td><%= "#{convert_to_twelve_hour_format(prescription.appointment.availability.start_slot)} - #{convert_to_twelve_hour_format(prescription.appointment.availability.end_slot)}" %></td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
       <% else %>

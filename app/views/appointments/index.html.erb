@@ -1,42 +1,41 @@
-<div class="container pt-3"> 
+<div class="container pt-3">
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
-        <h3 class="col-md-10"><%= t('appointment.breadcrumb.index') %></h3> 
+        <h3 class="col-md-10"><%= t('appointment.breadcrumb.index') %></h3>
         <% if current_user.patient? %>
           <div class="col-md-2 d-flex justify-content-md-end">
-            <%= link_to 'Add', new_appointment_path,  {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#appointment_modal', class: 'btn btn-primary'} %>
-            <%= render partial: "appointment_modal" %>   
-          </div> 
-        <% end %>  
+            <%= link_to t('add'), new_appointment_path,  { remote: true, 'data-toggle' =>"modal", 'data-target' =>'#appointment_modal', class: 'btn btn-primary' } %>
+            <%= render partial: "appointment_modal" %>
+          </div>
+        <% end %>
       </div>
-    </div> 
+    </div>
     <div class="card-body">
       <% if @appointments.present? %>
-        <table  class="table">   
-          <thead >   
+        <table class="table">
+          <thead>
             <tr>
-              <th><%= t('appointment.label.id') %></th> 
-              <th><%= t('appointment.label.date') %></th> 
-              <th><%= t('appointment.label.start') %></th>   
+              <th><%= t('appointment.label.id') %></th>
+              <th><%= t('appointment.label.date') %></th>
+              <th><%= t('appointment.label.start') %></th>
               <th><%= t('appointment.label.end') %></th>
-              <% unless current_user.doctor? %>   
-                <th><%= t('doctor.name') %></th> 
+              <% unless current_user.doctor? %>
+                <th><%= t('doctor.name') %></th>
               <% end %>
               <th><%= t('appointment.label.status') %></th>
               <% unless current_user.patient? %>
-                <th><%= t('patient.name') %></th> 
+                <th><%= t('patient.name') %></th>
               <% end %>
-              <th><%= t('appointment.label.action') %></th> 
-            </tr>   
-          </thead>   
-          <tbody>   
-            <% @appointments.each do |appointment| %>   
-              <tr> 
+              <th><%= t('action') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @appointments.each do |appointment| %>
                 <td><%= link_to appointment.sequence_num, appointment_path(appointment) %></td>
-                <td><%= appointment.date %></td>   
+                <td><%= appointment.date %></td>
                 <% availability = appointment.availability %>
-                <td><%= convert_to_twelve_hour_format(availability.start_slot) %></td>  
+                <td><%= convert_to_twelve_hour_format(availability.start_slot) %></td>
                 <td><%= convert_to_twelve_hour_format(availability.end_slot) %></td>
                 <% status_colors = status_colors(appointment) %>
                 <% unless current_user.doctor? %>
@@ -63,13 +62,13 @@
                       <%= link_to cancel_appointment_path(appointment), method: 'put', data: { confirm: t('popup.cancel') } do %>
                         <i class="far fa-times-circle color-danger" title="cancel"></i>
                       <% end %>
-                    <% end %> 
+                    <% end %>
                   </div>
-                </td> 
-              </tr>   
-            <% end %>  
-          </tbody>   
-        </table> 
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       <% else %>
         <strong><%= t('appointment.no_appointments') %></strong>
       <% end %>
@@ -77,5 +76,5 @@
   </div>
 </div>
 <div class="pagination justify-content-center" class="pagination-spacing">
-  <%= will_paginate @appointments, previous_label: t('paginate.previous'), next_label: t('paginate.next') %> 
+  <%= will_paginate @appointments, previous_label: t('paginate.previous'), next_label: t('paginate.next') %>
 </div>

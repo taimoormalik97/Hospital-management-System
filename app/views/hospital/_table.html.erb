@@ -1,27 +1,27 @@
 <div class="card mb-5">
   <div class="card-header p-3 container-fluid">
     <div class="row">
-      <h3 class="col-md-10"><%= title %></h3> 
+      <h3 class="col-md-10"><%= title %></h3>
     </div>
-  </div> 
+  </div>
   <div class="card-body">
-      <table  class="table">   
-        <thead >   
-          <tr>   
-            <th><%= t('id') %></th>  
-            <th><%= t('name') %></th>  
-          </tr>   
-        </thead>   
-        <tbody>   
-          <% results.each do |result| %>  
-          <% next if cannot?(:show, result) %> 
-            <tr>   
+      <table  class="table">
+        <thead>
+          <tr>
+            <th><%= t('id') %></th>
+            <th><%= t('name') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% results.each do |result| %>
+          <% next if cannot?(:show, result) %>
+            <tr>
               <% path = resource_path(result) %>
-              <td><%= link_to result.sequence_num, path %></td>   
-              <td><%= link_to result.name, path %></td>   
-            </tr>   
-          <% end %>   
-        </tbody>   
-      </table> 
+              <td><%= link_to result.sequence_num, path %></td>
+              <td><%= link_to result.name, path %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
   </div>
 </div>

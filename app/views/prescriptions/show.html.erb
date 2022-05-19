@@ -3,7 +3,7 @@
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
-        <h3 class="col-md-6"><%= t('prescription.name')%></h3>
+        <h3 class="col-md-6"><%= t('prescription.name') %></h3>
         <div class="col-md-6 d-flex justify-content-md-end">
           <% if can?(:edit, @prescription) %>
             <%= link_to 'Add Medicine', new_prescription_prescribed_medicine_path(@prescription.sequence_num) , {class: "btn btn-primary btn-spacing", remote: true} %>
@@ -45,7 +45,7 @@
             <label><%= t('prescription.appointment_time') %>: </label>
           </dt>
           <dd class="col-sm-10">
-            <%= "#{convert_to_twelve_hour_format(@prescription.appointment.availability.start_slot)} - #{convert_to_twelve_hour_format(@prescription.appointment.availability.end_slot)}" %> 
+            <%= "#{convert_to_twelve_hour_format(@prescription.appointment.availability.start_slot)} - #{convert_to_twelve_hour_format(@prescription.appointment.availability.end_slot)}" %>
           </dd>
           <dt class="col-sm-2">
             <label><%= t('prescription.doctor_notes') %>: </label>

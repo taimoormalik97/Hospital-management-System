@@ -30,64 +30,88 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: 'Hello world'
   edit: 'Edit'
   delete: 'Delete'
-  back: 'Back'
   create: 'Create'
   update: 'Update'
   submit: 'Submit'
+  cancel: 'Cancel'
+  next: 'Next'
+  add: 'Add'
+  disabled_add: 'Wait'
+  save: 'Save'
+  errors_msg: 'Errors'
   action: 'Action'
+  approve: Approve'
+  complete: 'Complete'
+  speciality: 'Speciality'
+  time_zone: 'Pacific Time (US & Canada)'
 
   search:
     breadcrumb: 'Search Results'  
     
   dashboard:
     breadcrumb: 'Dashboard'
-
-  add: 'Add'
+    performance: 'Performance'
+    total_orders: 'Total Orders'
+    overview: 'Overview'
+    new_patients: 'New Patients'
+    your_patients: 'Your Patients'
+    appointments: 'Appointments'
+    your_revenue: 'Your Revenue'
+    medicines: 'Medicines'
+    doctors: 'Doctors'
+    revenue: 'Revenue'
+    your_orders: 'Your Orders'
+    purchased_medicines: 'Purchased Medicines'
+    order: 'Order'
 
   purchase_order:
     heading: 'Purchase Orders'
+    add_medicine: 'Add Medicines'
     add_order_label: 'Add'
     edit_order_label: 'Edit Order'
     name_label: 'Vendor Name'
     price_label: 'Price'
     state_label: 'State'
+    show_purchase_order: 'Purchase Order #'
     confirm_button: 'Confirm'
     deliver_button: 'Deliver'
-    name: "Purchase Orders"
+    name: 'Purchase Orders'
     none: 'No Purchase Orders to display'
     add:
-      success: "Purchase order has been added successfully"
-      failure: "Failed to add!"
+      success: 'Purchase order has been added successfully'
+      failure: 'Failed to add!'
     delete:
-      success: "Purchase order has been deleted successfully"
-      failure: "Failed to delete!"
+      success: 'Purchase order has been deleted successfully'
+      failure: 'Failed to delete!'
     update:
-      success: "Purchase order has been updated successfully"
-      failure: "Failed to update!"
+      success: 'Purchase order has been updated successfully'
+      failure: 'Failed to update!'
     addmed:
-      success: "Medicine successfully added to the purchase_order"
-      failure: "Unable to add medicine to the purchase order"
+      success: 'Medicine successfully added to the purchase_order'
+      failure: 'Unable to add medicine to the purchase order'
     remove_medicine:
-      success: "Medicine successfully removed from the purchase_order"
-      failure: "Unable to remove medicine from the purchase order"
+      success: 'Medicine successfully removed from the purchase_order'
+      failure: 'Unable to remove medicine from the purchase order'
     confirm:
-      success: "Purchase Order successfully confirmed"
-      failure: "Failed to confirm Purchase Order"
+      success: 'Purchase Order successfully confirmed'
+      failure: 'Failed to confirm Purchase Order'
     deliver:
-      success: "Purchase Order successfully delivered"
-      failure: "Failed to deliver Purchase Order"
+      success: 'Purchase Order successfully delivered'
+      failure: 'Failed to deliver Purchase Order'
     breadcrumb:
-      index: "Purchase Orders"
-      new: "New Order"
-      show: "Order Details"
-      edit: "Edit Order"
+      index: 'Purchase Orders'
+      new: 'New Order'
+      show: 'Order Details'
+      edit: 'Edit Order'
 
   sales_order:
-    name: "Sales Orders"
+    name: 'Sales Orders'
     none: 'No Sales Orders to display'
+    add_medicine: 'Add Medicines'
+    add_doctor: 'Add Doctors'
     heading: 'Sales Orders'
     add_order_label: 'Add'
     edit_order_label: 'Edit Order'
@@ -95,34 +119,34 @@ en:
     type_label: 'Type'
     price_label: 'Total Bill'
     add:
-      success: "Sales order has been added successfully"
-      failure: "Failed to add!"
+      success: 'Sales order has been added successfully'
+      failure: 'Failed to add!'
     delete:
-      success: "Sales order has been deleted successfully"
-      failure: "Failed to delete!"
+      success: 'Sales order has been deleted successfully'
+      failure: 'Failed to delete!'
     update:
-      success: "Sales order has been updated successfully"
-      failure: "Failed to update!"
+      success: 'Sales order has been updated successfully'
+      failure: 'Failed to update!'
     addmed:
-      success: "Sales successfully added to the purchase order"
-      failure: "Unable to add medicine to the purchase order"
+      success: 'Sales successfully added to the purchase order'
+      failure: 'Unable to add medicine to the purchase order'
     confirm:
-      success: "Sales Order successfully confirmed"
-      failure: "Failed to confirm Purchase Order"
+      success: 'Sales Order successfully confirmed'
+      failure: 'Failed to confirm Purchase Order'
     deliver:
-      success: "Sales Order successfully delivered"
-      failure: "Failed to deliver Purchase Order"
+      success: 'Sales Order successfully delivered'
+      failure: 'Failed to deliver Purchase Order'
     breadcrumb:
-      index: "Sales Orders"
-      new: "New Order"
-      show: "Order Details"
-      edit: "Edit Order"
+      index: 'Sales Orders'
+      new: 'New Order'
+      show: 'Order Details'
+      edit: 'Edit Order'
     addmed:
-      success: "Medicine successfully added to the sales order"
-      failure: "Unable to add medicine to the sales order"
+      success: 'Medicine successfully added to the sales order'
+      failure: 'Unable to add medicine to the sales order'
     adddoc:
-      success: "Doctor successfully added to the sales order"
-      failure: "Unable to add doctor to the sales order"
+      success: 'Doctor successfully added to the sales order'
+      failure: 'Unable to add doctor to the sales order'
 
   medicine:
     heading: 'Medicines'
@@ -131,37 +155,40 @@ en:
     name_label: 'Name'
     price_label: 'Price'
     quantity_label: 'Quantity'
-    name: "Medicines"
+    name: 'Medicines'
     none: 'No Medicines to display'
+    delete_confirm: 'Are you sure you want to delete medicine?'
     add:
-      success: "Medicine has been added successfully"
-      failure: "Failed to add!"
+      success: 'Medicine has been added successfully'
+      failure: 'Failed to add given quantity!'
     delete:
-      success: "Medicine has been deleted successfully"
-      failure: "Failed to delete!"
+      success: 'Medicine has been deleted successfully'
+      failure: 'Failed to delete!'
     update:
-      success: "Medicine has been updated successfully"
-      failure: "Failed to update!"
+      success: 'Medicine has been updated successfully'
+      failure: 'Failed to update!'
     search:
-      success: "Medicine found!"
-      failure: "Medicine not found"
+      add_quantity: 'Quantity to add'
+      total_quantity: 'Total Quantity'
+      success: 'Medicine found!'
+      failure: 'Medicine not found'
     breadcrumb:
-      index: "Medicines"
-      new: "New Medicine"
-      show: "Medicine Details"
-      edit: "Edit Medicine"
+      index: 'Medicines'
+      new: 'New Medicine'
+      show: 'Medicine Details'
+      edit: 'Edit Medicine'
     prescription_error: 'Medicine exists in prescriptions'
 
   paginate:
-    previous: "Previous"
-    next: "Next"
+    previous: 'Previous'
+    next: 'Next'
 
   doctor:
     no_doctors: 'No Doctor to display'
     appointments: "Doctor's Appointments"
     name_label: 'Name'
-    fee: 'fee'
-    name: "Doctors"
+    fee: 'Consultancy Fee'
+    name: 'Doctors'
     label: 
       title:
         add: 'Add Doctor'
@@ -175,24 +202,24 @@ en:
       consultancy_fee: 'Consultancy Fee'
       profile_picture: 'Profile Picture'
     add:
-      success: "Doctor has been added successfully"
-      failure: "Doctor is not added!"
+      success: 'Doctor has been added successfully'
+      failure: 'Doctor is not added!'
     delete:
-      success: "Doctor has been deleted successfully"
-      failure: "Doctor is not deleted!"
+      success: 'Doctor has been deleted successfully'
+      failure: 'Doctor is not deleted!'
       appointment_error: 'Doctor cannot be deleted if his appointments exist with a patient'
     update:
-      success: "Doctor has been updated successfully"
-      failure: "Doctor is not updated!"
+      success: 'Doctor has been updated successfully'
+      failure: 'Doctor is not updated!'
     breadcrumb:
-      index: "Doctors"
-      new: "New Doctor"
-      show: "Doctor Details"
-      edit: "Edit Doctor"
+      index: 'Doctors'
+      new: 'New Doctor'
+      show: 'Doctor Details'
+      edit: 'Edit Doctor'
 
   patient:
     no_patients: 'No Patient to display'
-    name: "Patients"
+    name: 'Patients'
     label: 
       title:
         add: 'Add Patient'
@@ -204,20 +231,20 @@ en:
       family_history: 'Family History'
       gender: 'Gender'
     add:
-      success: "Patient has been added successfully"
-      failure: "Patient is not added!"
+      success: 'Patient has been added successfully'
+      failure: 'Patient is not added!'
     delete:
-      success: "Patient has been deleted successfully"
-      failure: "Patient is not deleted!"
+      success: 'Patient has been deleted successfully'
+      failure: 'Patient is not deleted!'
       appointment_error: 'Patient cannot be deleted if his appointments exist with a doctor'
     update:
-      success: "Patient has been updated successfully"
-      failure: "Patient is not updated!"
+      success: 'Patient has been updated successfully'
+      failure: 'Patient is not updated!'
     breadcrumb:
-      index: "Patients"
-      new: "New Patient"
-      show: "Patient Details"
-      edit: "Edit Patient"
+      index: 'Patients'
+      new: 'New Patient'
+      show: 'Patient Details'
+      edit: 'Edit Patient'
 
   appointment:
     no_appointments: 'No Appointment to display'
@@ -231,25 +258,25 @@ en:
       doctor: 'Doctor'
       patient: 'Patient'
       action: 'Actions'
-    name: "Appointments"
-    show_name: "Appointment"
+    name: 'Appointments'
+    show_name: 'Appointment'
     breadcrumb:
-      index: "Appointments"
-      new: "New Appointment"
-      show: "Appointment Details"
-      edit: "Edit Appointment"
+      index: 'Appointments'
+      new: 'New Appointment'
+      show: 'Appointment Details'
+      edit: 'Edit Appointment'
     add:
-      success: "Appointment has been added successfully"
-      failure: "Appointment is not added!"
+      success: 'Appointment has been added successfully'
+      failure: 'Appointment is not added!'
     approve:
-      success: "Appointment has been approved"
-      failure: "Appointment is not approved!"
+      success: 'Appointment has been approved'
+      failure: 'Appointment is not approved!'
     complete:
-      success: "Appointment has been completed"
-      failure: "Appointment is not complete!"
+      success: 'Appointment has been completed'
+      failure: 'Appointment is not complete!'
     cancel:
-      success: "Appointment has been canceled"
-      failure: "Appointment is not canceled!"
+      success: 'Appointment has been canceled'
+      failure: 'Appointment is not canceled!'
 
   availability:
     note: 'Note: Availability will be split into 30 minutes slots'
@@ -259,95 +286,95 @@ en:
       end: 'End'
       day: 'Day'
       empty_message: 'No Availability Slot'
-    name: "Availabilities"
+    name: 'Availabilities'
     end_time_error: 'End should be greater then Start!'
     overlapping_error: 'Current Slot Time is already taken!'
-    breadcrumb: "Availabilities"
+    breadcrumb: 'Availabilities'
     add:
-      success: "Availability slot has been added successfully"
-      failure: "Availability slot is not added!"
+      success: 'Availability slot has been added successfully'
+      failure: 'Availability slot is not added!'
     delete:
       appointment_error: 'Availability slot cannot be deleted if appointments exist for that slot'
-      success: "Availability slot has been deleted successfully"
-      failure: "Availability slot is not deleted!"
+      success: 'Availability slot has been deleted successfully'
+      failure: 'Availability slot is not deleted!'
 
   admin:
     signup_error: "Hospital and it's subdomain must be same"
     update:
-      success: "Profile has been updated successfully"
-      failure: "Profile is not updated!"
+      success: 'Profile has been updated successfully'
+      failure: 'Profile is not updated!'
     breadcrumb:
-      show: "Profile"
-      edit: "Edit Profile"
+      show: 'Profile'
+      edit: 'Edit Profile'
     profile:
-      name: "Name"
-      email: "Email"
-      password: "Password"
-      confirm_password: "Confirm Password"
-      hospital_name: "Hospital Name"
-      hospital_sub_domain: "Hospital Sub Domain"
-      hospital_address: "Hospital Address"
-      hospital_phone_number: "Phone Number"
-      edit: "Edit Profile"
+      name: 'Name'
+      email: 'Email'
+      password: 'Password'
+      confirm_password: 'Confirm Password'
+      hospital_name: 'Hospital Name'
+      hospital_sub_domain: 'Hospital Sub Domain'
+      hospital_address: 'Hospital Address'
+      hospital_phone_number: 'Phone Number'
+      edit: 'Edit Profile'
 
   guest:
-    welcome_msg: "Welcome To HMS"
-    hms: "HMS"
-    system_heading: "HOSPITAL MANAGEMENT SYSTEM"
-    improve: "Improving "
-    healthcare: "HealthCare"
-    welcome: "Welcome to"
-    our: "Our "
-    doctors: "Doctors"
-    lorem_ipsum: "Lorem ipsum dolor sit amet, consectetur to adipiscing elit. Vestibulum ornare congue odio"
-    buy_medicines: "Buy Medicines"
-    consult_doctors: "Consult Doctors"
-    book_appointments: "Book Appointments"
-    experience_number: "10"
-    doctors_number: "3000"
-    patients_number: "20,000"
-    hospitals_number: "1000"
-    total_experience: "Years of Experience"
-    total_doctors: "Successfull Doctors"
-    total_patients: "Happy Patients"
-    total_hospitals: "Excelling Hospitals"
-    doc1_name: "Dr. Harry Potter"
-    doc2_name: "Dr. Hermoine Granger"
-    doc3_name: "Dr. Ron Weasley"
-    home: "Home"
-    about: "About"
-    contact: "Contact"
-    complaints: "Complaints & Queries"
-    hear_from_doctors: "Best Care For Your Good Health"
-    medkit: "medkit"
-    calendar: "calendar"
-    stethoscope: "stethoscope"
-    copyright: "Copyright"
+    welcome_msg: 'Welcome To HMS'
+    hms: 'HMS'
+    system_heading: 'HOSPITAL MANAGEMENT SYSTEM'
+    improve: 'Improving '
+    healthcare: 'HealthCare'
+    welcome: 'Welcome to'
+    our: 'Our '
+    doctors: 'Doctors'
+    lorem_ipsum: 'Lorem ipsum dolor sit amet, consectetur to adipiscing elit. Vestibulum ornare congue odio'
+    buy_medicines: 'Buy Medicines'
+    consult_doctors: 'Consult Doctors'
+    book_appointments: 'Book Appointments'
+    experience_number: '10'
+    doctors_number: '3000'
+    patients_number: '20,000'
+    hospitals_number: '1000'
+    total_experience: 'Years of Experience'
+    total_doctors: 'Successfull Doctors'
+    total_patients: 'Happy Patients'
+    total_hospitals: 'Excelling Hospitals'
+    doc1_name: 'Dr. Harry Potter'
+    doc2_name: 'Dr. Hermoine Granger'
+    doc3_name: 'Dr. Ron Weasley'
+    home: 'Home'
+    about: 'About'
+    contact: 'Contact'
+    complaints: 'Complaints & Queries'
+    hear_from_doctors: 'Best Care For Your Good Health'
+    medkit: 'medkit'
+    calendar: 'calendar'
+    stethoscope: 'stethoscope'
+    copyright: 'Copyright'
     find:
-      error: "Email was not found!"
-      user: "Find User"
-    select_hospital: "Choose Your Hospital"
-    or_msg: "or"
-    signup: "Sign up"
-    signin: "Sign in"
-    sigin_to_your_account: "Sign in to your account"
-    login: "Login"
-    change_password: "Change Your Password"
-    forgot_password: "Forgot Password?"
-    reset_password_msg: "You will receive an email to reset your password"
-    confirm_email: "Resend Confirmation Instructions"
-    confirm_email_msg: "You will receive an email to confirm your account"
+      error: 'Email was not found!'
+      user: 'Find User'
+    select_hospital: 'Choose Your Hospital'
+    or_msg: 'or'
+    signup: 'Sign up'
+    signin: 'Sign in'
+    sigin_to_your_account: 'Sign in to your account'
+    login: 'Login'
+    change_password: 'Change Your Password'
+    forgot_password: 'Forgot Password?'
+    reset_password_msg: 'You will receive an email to reset your password'
+    confirm_email: 'Resend Confirmation Instructions'
+    confirm_email_msg: 'You will receive an email to confirm your account'
     profile:
-      name: "Name"
-      email: "Email"
-      password: "Password"
-      confirm_password: "Confirm Password"
-      new_password: "New Password"
-      confirm_new_password: "Confirm New Password"
-      hospital_name: "Hospital Name"
-      hospital_sub_domain: "Hospital Sub Domain"
-      hospital_address: "Hospital Address"
-      hospital_phone_number: "Phone Number"
+      name: 'Name'
+      email: 'Email'
+      password: 'Password'
+      confirm_password: 'Confirm Password'
+      new_password: 'New Password'
+      confirm_new_password: 'Confirm New Password'
+      hospital_name: 'Hospital Name'
+      hospital_sub_domain: 'Hospital Sub Domain'
+      hospital_address: 'Hospital Address'
+      hospital_phone_number: 'Phone Number'
 
   navbar:
     profile: 'My Profile'
@@ -365,35 +392,38 @@ en:
     
   prescription:
     label:
-      id: "ID"
-    names: "Prescriptions"
-    name: "Prescription"
-    no_prescriptions: "No Prescription To Display"
-    notes: "Notes"
-    medicines: "Medicines"
-    medicine_name: "Name"
-    add_medicine: "Add Medicine"
-    medicine_full_name: "Medicine Name"
-    quantity: "Quantity"
-    instructions: "Instructions"
-    doctor_name: "Doctor"
-    patient_name: "Patient"
+      id: 'ID'
+    note: 'Note: Add Medicines in prescription by clicking on "Add Medicine".'
+    names: 'Prescriptions'
+    name: 'Prescription'
+    add: 'Add Prescription'
+    view: 'View Prescription'
+    no_prescriptions: 'No Prescription To Display'
+    notes: 'Notes'
+    medicines: 'Medicines'
+    medicine_name: 'Name'
+    add_medicine: 'Add Medicine'
+    medicine_full_name: 'Medicine Name'
+    quantity: 'Quantity'
+    instructions: 'Instructions'
+    doctor_name: 'Doctor'
+    patient_name: 'Patient'
     appointment_id: 'Appointment id'
-    appointment_date: "Appointment Date"
-    appointment_time: "Appointment Time"
-    doctor_notes: "Doctor Notes"
+    appointment_date: 'Appointment Date'
+    appointment_time: 'Appointment Time'
+    doctor_notes: 'Doctor Notes'
     save: 'Save'
     cancel: 'Cancel'
     breadcrumb:
-      index: "Prescriptions"
-      show: "Prescription Details"
-      edit: "Edit Prescription"
+      index: 'Prescriptions'
+      show: 'Prescription Details'
+      edit: 'Edit Prescription'
     update:
-      success: "Prescription has been updated successfully"
-      failure: "Prescription is not updated!"
+      success: 'Prescription has been updated successfully'
+      failure: 'Prescription is not updated!'
     delete:
-      success: "Prescription has been deleted successfully"
-      failure: "Prescription is not deleted!"
-    add_medicine: "Medicine has been successfully added"
-    medicine_not_added: "Medicine has not been added"
-    delete_medicine: "Medicine has been successfully deleted"
+      success: 'Prescription has been deleted successfully'
+      failure: 'Prescription is not deleted!'
+    add_medicine: 'Add Medicine'
+    medicine_not_added: 'Medicine has not been added'
+    delete_medicine: 'Medicine has been successfully deleted'

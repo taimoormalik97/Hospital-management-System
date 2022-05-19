@@ -1,50 +1,50 @@
-<%= form_for(@doctor, method: @doctor.persisted? ? 'patch' : 'post', html: { multipart: true }) do |f| %> 
-  <div class="container pt-3"> 
+<%= form_for(@doctor, method: @doctor.persisted? ? 'patch' : 'post', html: { multipart: true }) do |f| %>
+  <div class="container pt-3">
     <div class="card">
       <div class="card-header p-3 container-fluid">
         <div class="row">
           <h3 class="col-md-9">
             <%= @doctor.persisted? ? t('doctor.label.title.edit') : t('doctor.label.title.add') %>
-          </h3> 
+          </h3>
         </div>
       </div>
-      <div class="card-body"> 
-        <p>   
-          <div class="form-group">   
-            <label><%= t('doctor.label.name') %></label>   
-            <%= f.text_field :name, required: true, class: "form-control" %>   
-          </div>   
-          <div class="form-group">   
-            <label><%= t('doctor.label.email') %></label>   
-            <%= f.email_field :email, required: true, class: "form-control" %>   
-          </div>   
-          <div class="form-group">   
-            <label><%= t('doctor.label.registration_no') %></label>   
-            <%= f.number_field :registration_no, required: true, class: "form-control" %>   
-          </div> 
-          <div class="form-group">   
-            <label><%= t('doctor.label.speciality') %></label>   
-            <%= f.text_field :speciality, required: true, class: "form-control" %>   
-          </div> 
-          <div class="form-group">   
-            <label><%= t('doctor.label.consultancy_fee') %></label>   
-            <%= f.number_field :consultancy_fee, required: true, class: "form-control" %>   
+      <div class="card-body">
+        <p>
+          <div class="form-group">
+            <label><%= t('doctor.label.name') %></label>
+            <%= f.text_field :name, required: true, class: "form-control" %>
           </div>
-          <div class="form-group">   
+          <div class="form-group">
+            <label><%= t('doctor.label.email') %></label>
+            <%= f.email_field :email, required: true, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><%= t('doctor.label.registration_no') %></label>
+            <%= f.number_field :registration_no, required: true, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><%= t('doctor.label.speciality') %></label>
+            <%= f.text_field :speciality, required: true, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><%= t('doctor.label.consultancy_fee') %></label>
+            <%= f.number_field :consultancy_fee, required: true, class: "form-control" %>
+          </div>
+          <div class="form-group">
             <label><%= t('doctor.label.profile_picture') %></label><br />
-            <%= f.file_field :profile_picture %>   
-          </div>     
-        </p> 
+            <%= f.file_field :profile_picture %>
+          </div>
+        </p>
       </div>
       <div class="card-footer p-3 container-fluid">
         <div class="row d-flex justify-content-md-end">
           <div class="col-md-3 d-flex justify-content-md-end">
-            <%= f.submit 'Save' , class: "btn btn-primary " %>  
+            <%= f.submit t('save'), class: "btn btn-primary " %>
             <% cancel_path = @doctor.persisted? ? doctor_path(@doctor) : doctors_path %>
-            <%= link_to 'Cancel', cancel_path , class: "btn btn-secondary btn-spacing" %>
+            <%= link_to t('cancel'), cancel_path , class: "btn btn-secondary btn-spacing" %>
           </div>
         </div>
-      </div>    
-    </div>    
+      </div>
+    </div>
   </div>
-<% end %>   
+<% end %>

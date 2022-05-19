@@ -13,16 +13,16 @@
     <div class="card-body">
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-          <a class="<%= @active_tab == 'medicine' ? 'nav-link active' : 'nav-link' %>" data-toggle="tab" href="#medicine_bills">Medicines</a>
+          <a class="<%= @active_tab == 'medicine' ? 'nav-link active' : 'nav-link' %>" data-toggle="tab" href="#medicine_bills"><%= t('medicine.heading') %></a>
         </li>
         <li class="nav-item">
-          <a class="<%= @active_tab == 'doctor' ? 'nav-link active' : 'nav-link' %>" data-toggle="tab" href="#doctor_bills">Doctors</a>
+          <a class="<%= @active_tab == 'doctor' ? 'nav-link active' : 'nav-link' %>" data-toggle="tab" href="#doctor_bills"><%= t('doctor.name') %></a>
         </li>
       </ul>
       <div class="tab-content">
         <div id="medicine_bills" class="<%= @active_tab == 'medicine' ? 'container tab-pane active' : 'container tab-pane'%>"><br>
           <% if @medicine_bills.present? %>
-           <table  class="table">
+            <table  class="table">
               <thead>
                 <tr>
                   <th><%= t('sales_order.name_label') %></th>
@@ -34,32 +34,32 @@
                 </tr>
               </thead>
               <tbody>
-              <% @medicine_bills.each do |bill| %>
-                    <td><%=link_to bill.patient.name, bill_path(bill)%></td>
-                    <td><%= bill.billable_type%></td>
-                    <td><%= bill.price%></td>
-                    <% if can?(:edit, bill) %>
-                      <div>
-                        <td>
-                          <%= link_to edit_bill_path(bill) do %>
-                            <i class="fas fa-pen"></i>
-                          <% end %>
-                          <%= link_to bill_path(bill), method: :delete, class: "btn-spacing", data: {confirm:'Are you sure you want to delete medicine?'} do %>
-                            <i class="fas fa-trash-alt color-danger"></i>
-                          <% end %>
-                        </td>
-                      </div>
-                    <% end %>
+                <% @medicine_bills.each do |bill| %>
+                  <td><%= link_to bill.patient.name, bill_path(bill) %></td>
+                  <td><%= bill.billable_type %></td>
+                  <td><%= bill.price %></td>
+                  <% if can?(:edit, bill) %>
+                    <div>
+                      <td>
+                        <%= link_to edit_bill_path(bill) do %>
+                          <i class="fas fa-pen"></i>
+                        <% end %>
+                        <%= link_to bill_path(bill), method: :delete, class: "btn-spacing", data: { confirm: t('medicine.delete_confirm') } do %>
+                          <i class="fas fa-trash-alt color-danger"></i>
+                        <% end %>
+                      </td>
+                    </div>
+                  <% end %>
                   </tr>
-              <% end %>
-            <% else %>
-              <strong><%= t('sales_order.none') %></strong>
-            <% end %>
-            </tbody>
-          </table>
+                <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            <strong><%= t('sales_order.none') %></strong>
+          <% end %>
           <br>
           <div class="pagination justify-content-center" class="pagination-spacing">
-            <%= will_paginate @medicine_bills, previous_label: t('paginate.previous'), next_label: t('paginate.next'),params: { page2: @medicine_bills.next_page, tab:'medicine'} %>
+            <%= will_paginate @medicine_bills, previous_label: t('paginate.previous'), next_label: t('paginate.next'), params: { page2: @medicine_bills.next_page, tab:'medicine' } %>
           </div>
         </div>
         <div id="doctor_bills" class="<%= @active_tab == 'doctor' ? 'container tab-pane fade active show' : 'container tab-pane fade' %>"><br>
@@ -77,23 +77,23 @@
               </thead>
               <tbody>
               <% @doctor_bills.each do |bill| %>
-                  <tr>
-                    <td><%=link_to bill.patient.name, bill_path(bill)%></td>
-                    <td><%= bill.billable_type%></td>
-                    <td><%= bill.price%></td>
-                    <% if can?(:edit, bill) %>
-                      <div>
-                        <td>
-                          <%= link_to edit_bill_path(bill) do %>
-                            <i class="fas fa-pen"></i>
-                          <%end%>
-                          <%= link_to bill_path(bill), method: :delete, class: "btn-spacing" do %>
-                            <i class="fas fa-trash-alt color-danger"></i>
-                          <%end%>
-                        </td>
-                      </div>
-                    <% end %>
-                  </tr>
+                <tr>
+                  <td><%= link_to bill.patient.name, bill_path(bill) %></td>
+                  <td><%= bill.billable_type %></td>
+                  <td><%= bill.price %></td>
+                  <% if can?(:edit, bill) %>
+                    <div>
+                      <td>
+                        <%= link_to edit_bill_path(bill) do %>
+                          <i class="fas fa-pen"></i>
+                        <% end %>
+                        <%= link_to bill_path(bill), method: :delete, class: "btn-spacing" do %>
+                          <i class="fas fa-trash-alt color-danger"></i>
+                        <% end %>
+                      </td>
+                    </div>
+                  <% end %>
+                </tr>
               <% end %>
             <% else %>
               <strong><%= t('sales_order.none') %></strong>

@@ -28,8 +28,8 @@
         <div class="card-footer p-3 container-fluid">
           <div class="row d-flex justify-content-md-end">
             <div class="col-md-3 d-flex justify-content-md-end">
-              <%= link_to 'Cancel', bills_path , class: "btn btn-secondary btn-spacing" %>
-              <%= f.submit t('update'), class: "btn btn-primary btn-spacing"%>
+              <%= link_to t('cancel'), bills_path , class: "btn btn-secondary btn-spacing" %>
+              <%= f.submit t('update'), class: "btn btn-primary btn-spacing" %>
             </div>
           </div>
         </div>
@@ -42,31 +42,31 @@
     <div class="card-header p-3 container-fluid">
       <div class="row">
         <h3 class="col-md-9">
-          <% if @bill.billable_type=="medicine"%>
-            <%= "Add Medicines" %>
-          <% elsif @bill.billable_type=="doctor"%>
-            <%= "Add Doctors" %>
-          <%end%>
+          <% if @bill.medicine_bill? %>
+            <%= t('sales_order.add_medicines') %>
+          <% else %>
+            <%= t('sales_order.add_doctors') %>
+          <% end %>
         </h3>
       </div>
     </div>
     <div class="card-body">
-      <% if @bill.billable_type=="medicine"%>
-        <%= render 'medicinesearch'%>
-      <% elsif @bill.billable_type=="doctor"%>
-        <%= render 'doctorssearch'%>
-      <%end%>
+      <% if @bill.medicine_bill? %>
+        <%= render 'medicinesearch' %>
+      <% else %>
+        <%= render 'doctorssearch' %>
+      <% end %>
       <div id="display_results"></div>
     </div>
   </div>
 </div>
-<% if @bill.billable_type=="medicine"%>
+<% if @bill.medicine_bill? %>
   <div class="container pt-3 mb-5">
     <div class="card">
       <div class="card-header p-3 container-fluid">
         <div class="row">
           <h3 class="col-md-9">
-            <%= "Medicines" %>
+            <%= t('medicine.heading') %>
           </h3>
         </div>
       </div>

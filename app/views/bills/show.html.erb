@@ -5,7 +5,7 @@
           <h3 class="col-md-8"><%= @bill.patient.name %></h3>
           <% if current_user.admin? %>
             <div class="col-md-4 d-flex justify-content-md-end">
-              <%= link_to t('delete'), bill_path(@bill), method: :delete, class: "btn btn-danger", data: { confirm:'Are you sure you want to delete medicine?' } %>
+              <%= link_to t('delete'), bill_path(@bill), method: :delete, class: "btn btn-danger", data: { confirm: t('medicine.delete_confirm') } %>
               <%= link_to t('edit'), edit_bill_path(@bill), class: "btn btn-primary btn-spacing" %>
             </div>
           <% end %>
@@ -17,22 +17,22 @@
           <label><%= t('sales_order.name_label') %></label>
         </dt>
         <dd class="col-sm-9">
-          <%=@bill.patient.name %>
+          <%= @bill.patient.name %>
         </dd>
         <dt class="col-sm-2">
           <label><%= t('sales_order.price_label') %></label>
         </dt>
         <dd class="col-sm-9">
-          <%=@bill.price%>
+          <%= @bill.price %>
         </dd>
         <dt class="col-sm-2">
           <label><%= t('sales_order.type_label') %></label>
         </dt>
         <dd class="col-sm-9">
-          <%=@bill.billable_type%>
+          <%= @bill.billable_type %>
         </dd>
       </dl>
-      <% if @bill.billable_type == "medicine" %>
+      <% if @bill.medicine_bill? %>
         <% if @bill.medicines.present? %>
           <dt class="col-sm-2">
             <label><%= t('medicine.heading') %></label>
@@ -40,65 +40,69 @@
           <dd>
             <table class="table">
               <thead>
-              <tr>
-                <th>
-                  <%= t('medicine.name_label') %>
-                </th>
-                <th>
-                  <%= t('medicine.price_label') %>
-                </th>
-                <th>
-                  <%= t('medicine.quantity_label') %>
-                </th>
-              </tr>
+                <tr>
+                  <th>
+                    <%= t('medicine.name_label') %>
+                  </th>
+                  <th>
+                    <%= t('medicine.price_label') %>
+                  </th>
+                  <th>
+                    <%= t('medicine.quantity_label') %>
+                  </th>
+                </tr>
               </thead>
-              <%@bill.bill_details.each do |pd|%>
-              <tr>
-                <td>
-                  <%=pd.billable.name%>
-                </td>
-                <td>
-                  <%=pd.billable.price%>
-                </td>
-                <td>
-                  <%=pd.quantity%>
-                </td>
-              </tr>
-              <%end%>
-            </table>
-          </dd>
-        <%end%>
-      <% elsif @bill.billable_type == "doctor" %>
-          <% if @bill.bill_details.present? %>
-            <dt class="col-sm-2">
-              <label><%= t('doctor.appointments') %></label>
-            </dt>
-            <dd>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>
-                      <%= t('doctor.name_label') %>
-                    </th>
-                    <th>
-                      <%= t('doctor.fee') %>
-                    </th>
-                  </tr>
-                  </thead>
-                  <% @bill.bill_details.each do |pd| %>
+              <tbody>
+                <% @bill.bill_details.each do |detail| %>
                   <tr>
                     <td>
-                      <%= pd.billable.name %>
+                      <%= detail.billable.name %>
                     </td>
                     <td>
-                      <%= pd.billable.consultancy_fee %>
+                      <%= detail.billable.price %>
+                    </td>
+                    <td>
+                      <%= detail.quantity %>
                     </td>
                   </tr>
                 <% end %>
-              </table>
-            </dd>
-          <% end %>
+              </tbody>
+            </table>
+          </dd>
         <% end %>
+      <% else %>
+        <% if @bill.bill_details.present? %>
+          <dt class="col-sm-2">
+            <label><%= t('doctor.appointments') %></label>
+          </dt>
+          <dd>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>
+                    <%= t('doctor.name_label') %>
+                  </th>
+                  <th>
+                    <%= t('doctor.fee') %>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @bill.bill_details.each do |detail| %>
+                  <tr>
+                    <td>
+                      <%= detail.billable.name %>
+                    </td>
+                    <td>
+                      <%= detail.billable.consultancy_fee %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </dd>
+        <% end %>
+      <% end %>
     </div>
   </div>
   <br>

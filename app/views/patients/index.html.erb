@@ -1,43 +1,43 @@
-<div class="container pt-3"> 
+<div class="container pt-3">
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
-        <h3 class="col-md-10">Patients</h3> 
+        <h3 class="col-md-10"><%= t('patient.name') %></h3>
         <% if current_user.admin? %>
           <div class="col-md-2 d-flex justify-content-md-end">
-            <%= link_to 'Add', new_patient_path ,class: "btn btn-primary" %>   
-          </div>    
+            <%= link_to t('add'), new_patient_path ,class: "btn btn-primary" %>
+          </div>
         <% end %>
       </div>
-    </div> 
+    </div>
     <div class="card-body">
       <% if @patients.present? %>
-        <table  class="table">   
-          <thead >   
-            <tr>   
-              <th><%= t('patient.label.patient_name') %></th>   
-              <th><%= t('patient.label.gender') %></th>   
-              <th><%= t('patient.label.dob') %></th>   
-              <th><%= t('patient.label.family_history') %></th>  
-            </tr>   
-          </thead>   
-          <tbody>   
-            <% @patients.each do |patient| %>   
-                <tr>   
-                  <td><%= link_to patient.name, patient_path(patient) %></td>   
-                  <td><%= patient.gender %></td>  
-                  <td><%= patient.dob %></td>  
-                  <td><%= patient.family_history %></td>   
-                </tr>   
-            <% end %>   
-          </tbody>   
-        </table> 
+        <table class="table">
+          <thead>
+            <tr>
+              <th><%= t('patient.label.patient_name') %></th>
+              <th><%= t('patient.label.gender') %></th>
+              <th><%= t('patient.label.dob') %></th>
+              <th><%= t('patient.label.family_history') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @patients.each do |patient| %>
+              <tr>
+                <td><%= link_to patient.name, patient_path(patient) %></td>
+                <td><%= patient.gender %></td>
+                <td><%= patient.dob %></td>
+                <td><%= patient.family_history %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       <% else %>
         <strong><%= t('patient.no_patients') %></strong>
       <% end %>
     </div>
   </div>
-</div> 
+</div>
 <div class="pagination justify-content-center" class="pagination-spacing">
-  <%= will_paginate @doctors, previous_label: t('paginate.previous'), next_label: t('paginate.next') %> 
+  <%= will_paginate @doctors, previous_label: t('paginate.previous'), next_label: t('paginate.next') %>
 </div>

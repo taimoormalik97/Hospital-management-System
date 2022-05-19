@@ -1,46 +1,46 @@
-<%= form_for(@patient, method: @patient.persisted? ? 'patch' : 'post') do |f| %> 
-  <div class="container pt-3"> 
+<%= form_for(@patient, method: @patient.persisted? ? 'patch' : 'post') do |f| %>
+  <div class="container pt-3">
     <div class="card">
       <div class="card-header p-3 container-fluid">
         <div class="row">
           <h3 class="col-md-9">
             <%= @patient.persisted? ? t('patient.label.title.edit') : t('patient.label.title.edit') %>
-          </h3>  
+          </h3>
         </div>
       </div>
-      <div class="card-body">     
-        <p>   
-          <div class="form-group">   
-            <label><%= t('patient.label.name') %></label>   
-            <%= f.text_field :name, required: true, class: "form-control" %>   
-          </div>    
-          <div class="form-group"> 
-            <label><%= t('patient.label.email_field') %></label>   
-            <%= f.email_field :email, required: true, class: "form-control" %>   
-          </div>   
-          <div class="form-group">  
-            <label><%= t('patient.label.dob') %></label>   
-            <%= f.date_field :dob, required: true, class: "form-control" %>     
-          </div> 
-          <div class="form-group">   
-            <label><%= t('patient.label.family_history') %></label>   
-            <%= f.text_field :family_history, class: "form-control" %>   
-          </div> 
-          <div class="form-group">   
-            <label><%= t('patient.label.gender') %></label>   
-            <%= f.select :gender, options_for_select(["Male", "Female", "Other"], selected: @patient.gender), { required: true } , { class: "form-control" } %> 
-          </div>     
-        </p> 
-      </div> 
+      <div class="card-body">
+        <p>
+          <div class="form-group">
+            <label><%= t('patient.label.name') %></label>
+            <%= f.text_field :name, required: true, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><%= t('patient.label.email') %></label>
+            <%= f.email_field :email, required: true, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><%= t('patient.label.dob') %></label>
+            <%= f.date_field :dob, selected: Date.today, max: Date.today, required: true, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><%= t('patient.label.family_history') %></label>
+            <%= f.text_field :family_history, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><%= t('patient.label.gender') %></label>
+            <%= f.select :gender, options_for_select(["Male", "Female", "Other"], selected: @patient.gender), { required: true } , { class: "form-control" } %>
+          </div>
+        </p>
+      </div>
       <div class="card-footer p-3 container-fluid">
         <div class="row d-flex justify-content-md-end">
           <div class="col-md-3 d-flex justify-content-md-end">
-            <%= f.submit 'Save' , class: "btn btn-primary " %>   
+            <%= f.submit t('save'), class: "btn btn-primary " %>
             <% cancel_path = @patient.persisted? ? patient_path(@patient) : patients_path %>
-            <%= link_to 'Cancel', cancel_path , class: "btn btn-secondary btn-spacing" %>
+            <%= link_to t('cancel'), cancel_path , class: "btn btn-secondary btn-spacing" %>
           </div>
         </div>
-      </div>    
-    </div>    
+      </div>
+    </div>
   </div>
 <% end %>

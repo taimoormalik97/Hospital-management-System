@@ -6,7 +6,7 @@
         <% if message.is_a?(String) %>
           <%= message %>
         <% elsif message.is_a?(Array)%>
-          <h5><strong>Errors</strong></h5>
+          <h5><strong><%= t('errors_msg') %></strong></h5>
           <ul>
             <% message.each do |msg| %>
               <li><%= msg %></li>

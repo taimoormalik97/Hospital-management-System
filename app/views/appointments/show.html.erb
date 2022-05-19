@@ -1,22 +1,22 @@
-<div class="container pt-3"> 
+<div class="container pt-3">
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
         <h3 class="col-md-8"><%= t('appointment.show_name') %></h3>
-        <div class="col-md-4 d-flex justify-content-md-end"> 
+        <div class="col-md-4 d-flex justify-content-md-end">
           <% prescription = @appointment.prescription %>
             <% if can?(:approve, @appointment) %>
-              <%= link_to 'Approve', approve_appointment_path(@appointment), method: 'put', data: { confirm: t('popup.approve') }, class: "btn btn-info btn-spacing" %>
+              <%= link_to t('approve'), approve_appointment_path(@appointment), method: 'put', data: { confirm: t('popup.approve') }, class: "btn btn-info btn-spacing" %>
             <% elsif can?(:complete, @appointment) %>
-              <%= link_to 'Complete', complete_appointment_path(@appointment), method: 'put', data: { confirm: t('popup.complete') }, class: "btn btn-success btn-spacing" %>
+              <%= link_to t('complete'), complete_appointment_path(@appointment), method: 'put', data: { confirm: t('popup.complete') }, class: "btn btn-success btn-spacing" %>
             <% end %>
             <% if can?(:cancel, @appointment) %>
-              <%= link_to 'Cancel', cancel_appointment_path(@appointment), method: 'put', data: { confirm: t('popup.cancel') }, class: "btn btn-danger btn-spacing" %>
-            <% end %> 
+              <%= link_to t('Cancel'), cancel_appointment_path(@appointment), method: 'put', data: { confirm: t('popup.cancel') }, class: "btn btn-danger btn-spacing" %>
+            <% end %>
           <% if @appointment.approved? && can?(:create, Prescription) && prescription.nil? %>
-            <%= link_to "Add Prescription", new_prescription_path(appointment_id: @appointment.sequence_num), class: "btn btn-primary btn-spacing" %>
+            <%= link_to t('prescription.add'), new_prescription_path(appointment_id: @appointment.sequence_num), class: "btn btn-primary btn-spacing" %>
           <% elsif prescription.present? && can?(:show, prescription) %>
-            <%= link_to "View Prescription", prescription_path(prescription), class: "btn btn-primary btn-spacing" %>
+            <%= link_to t('prescription.view'), prescription_path(prescription), class: "btn btn-primary btn-spacing" %>
           <% end %>
         </div>
       </div>
@@ -24,33 +24,33 @@
     <div class="card-body">
       <div class="container">
         <dl class="row">
-          <dt class="col-12 p-2"> 
+          <dt class="col-12 p-2">
             <span class="p-1 rounded text-<%= status_colors(@appointment)[:text] %> bg-<%= status_colors(@appointment)[:bg] %>"><%= @appointment.current_state.capitalize %></span>
           </dt>
           <% availability = @appointment.availability %>
-          <dt class="col-sm-3">  
+          <dt class="col-sm-3">
             <label><%= t('appointment.label.slot') %>: </label>
           </dt>
-          <dd class="col-sm-9">   
-            <%= "#{convert_to_twelve_hour_format(availability.start_slot)} - #{convert_to_twelve_hour_format(availability.end_slot)}" %>     
+          <dd class="col-sm-9">
+            <%= "#{convert_to_twelve_hour_format(availability.start_slot)} - #{convert_to_twelve_hour_format(availability.end_slot)}" %>
           </dd>
-          <dt class="col-sm-3">  
+          <dt class="col-sm-3">
             <label><%= t('appointment.label.date') %>: </label>
           </dt>
-          <dd class="col-sm-9">   
-            <%= @appointment.date %>   
+          <dd class="col-sm-9">
+            <%= @appointment.date %>
           </dd>
-          <dt class="col-sm-3">  
+          <dt class="col-sm-3">
             <label><%= t('appointment.label.doctor') %>: </label>
           </dt>
-          <dd class="col-sm-9">   
-            <%= @appointment.doctor.name.titleize %>   
+          <dd class="col-sm-9">
+            <%= @appointment.doctor.name.titleize %>
           </dd>
-          <dt class="col-sm-3">  
+          <dt class="col-sm-3">
             <label><%= t('appointment.label.patient') %>: </label>
           </dt>
-          <dd class="col-sm-9">   
-            <%= @appointment.patient.name.titleize %>   
+          <dd class="col-sm-9">
+            <%= @appointment.patient.name.titleize %>
           </dd>
         </dl>
       </div>

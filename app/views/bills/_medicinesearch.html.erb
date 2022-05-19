@@ -1,11 +1,10 @@
 <div class="container" id="search1">
-  <%= form_tag(get_medicine_bill_path, method: 'get', remote: true, 
-    class: 'navbar-form navbar-left') do %>
+  <%= form_tag(get_medicine_bill_path, method: 'get', remote: true, class: 'navbar-form navbar-left') do %>
     <div class="input-group">
       <%= text_field_tag :search, nil, required: true, id: 'search_medicines', placeholder: "Search Medicines..." %>
-      <%= hidden_field_tag :bill_sequence_num, @bill.sequence_num%>
+      <%= hidden_field_tag :bill_sequence_num, @bill.sequence_num %>
       <div class="input-group-btn">
-        <%= submit_tag t('submit'), :class =>'btn btn-info glyphicon glyphicon-search',:name =>nil%>
+        <%= submit_tag t('submit'), class: 'btn btn-info glyphicon glyphicon-search',name: nil %>
       </div>
     </div>
   <% end %>

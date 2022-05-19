@@ -4,6 +4,7 @@ class Patient < User
   has_many :doctors, through: :appointments
   has_many :bills, dependent: :nullify
   validates_presence_of %i[name gender dob]
+  validates :dob, timeliness: { on_or_before: lambda { Date.today }, type: :date }
   scope :doctor_only, ->(user) { joins(:appointments).where(appointments: { doctor_id: user.id, hospital_id: user.hospital_id }).distinct }
   
   def self.search_patients(pattern)

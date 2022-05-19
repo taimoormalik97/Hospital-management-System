@@ -1,68 +1,67 @@
 <div id="add_medicine_purchaseorder_flash_messages"></div>
 <%= form_for @purchase_order, url: {action: :update} do |f| %>
   <div class="container  pt-3">
-      <div class="card">
-        <div class="card-header p-3 container-fluid">
-          <div class="row">
-            <h3 class="col-md-9">
-              <%= t('purchase_order.edit_order_label') %>
-            </h3>
-          </div>
-        </div>
-        <div class="card-body">
-          <p>
-            <div class="form-group">
-              <label><%= t('purchase_order.name_label') %></label>
-              <%= f.text_field :vendorname, required: true, class: "form-control" %>
-            </div>   
-            <div class="form-group">
-              <label><%= t('purchase_order.price_label') %></label>
-              <strong><span class="pl-3" id="purchase_order_price"><%= @purchase_order.price %></span></strong> 
-            </div>
-          </p>
-        </div> 
-        <div class="card-footer p-3 container-fluid">
-          <div class="row d-flex justify-content-md-end">
-            <div class="col-md-3 d-flex justify-content-md-end">
-              <%= link_to 'Cancel', purchase_order_index_path , class: "btn btn-secondary btn-spacing" %>
-              <%= f.submit t('update'), class: "btn btn-primary btn-spacing"%> 
-            </div>
-          </div>
-        </div> 
-      </div>    
-    </div>    
-  </div>
-<% end %> 
-<% if can?(:update, @purchase_order) %> 
-  <div class="container pt-3 mb-5"> 
     <div class="card">
       <div class="card-header p-3 container-fluid">
         <div class="row">
           <h3 class="col-md-9">
-            <%= "Add Medicines" %>
-          </h3> 
+            <%= t('purchase_order.edit_order_label') %>
+          </h3>
         </div>
-      </div> 
+      </div>
+      <div class="card-body">
+        <p>
+          <div class="form-group">
+            <label><%= t('purchase_order.name_label') %></label>
+            <%= f.text_field :vendorname, required: true, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label><%= t('purchase_order.price_label') %></label>
+            <strong><span class="pl-3" id="purchase_order_price"><%= @purchase_order.price %></span></strong>
+          </div>
+        </p>
+      </div>
+      <div class="card-footer p-3 container-fluid">
+        <div class="row d-flex justify-content-md-end">
+          <div class="col-md-3 d-flex justify-content-md-end">
+            <%= link_to t('cancel'), purchase_order_index_path , class: "btn btn-secondary btn-spacing" %>
+            <%= f.submit t('update'), class: "btn btn-primary btn-spacing" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if can?(:update, @purchase_order) %>
+  <div class="container pt-3 mb-5">
+    <div class="card">
+      <div class="card-header p-3 container-fluid">
+        <div class="row">
+          <h3 class="col-md-9">
+            <%= t('purchase_order.add_medicine') %>
+          </h3>
+        </div>
+      </div>
       <div class="card-body">
         <%= render 'medicinesearch'%>
         <div id="display_results"></div>
       </div>
     </div>
   </div>
-    <div class="container pt-3 mb-5">
-      <div class="card">
-        <div class="card-header p-3 container-fluid">
-          <div class="row">
-            <h3 class="col-md-9">
-              <%= "Medicines" %>
-            </h3> 
-          </div>
-        </div> 
-        <div class="card-body">
-          <div id="medicines_table_purchase_order">
-            <%= render(partial: 'medicines_table') %>
-          </div>
+  <div class="container pt-3 mb-5">
+    <div class="card">
+      <div class="card-header p-3 container-fluid">
+        <div class="row">
+          <h3 class="col-md-9">
+            <%= t('medicine.heading') %>
+          </h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="medicines_table_purchase_order">
+          <%= render(partial: 'medicines_table') %>
         </div>
       </div>
     </div>
+  </div>
 <% end %>

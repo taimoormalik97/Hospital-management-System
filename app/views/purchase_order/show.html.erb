@@ -2,64 +2,64 @@
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
-        <h3 class="col-md-8"><%= "Purchase Order ##{@purchase_order.sequence_num}" %></h3>
+        <h3 class="col-md-8"><%= "#{t('purchase_order.show_purchase_order')}#{@purchase_order.sequence_num}" %></h3>
         <div class="col-md-4 d-flex justify-content-md-end">
           <% if can?(:confirm, @purchase_order) %>
-            <%= link_to t('purchase_order.confirm_button'), confirm_purchase_order_path(@purchase_order), method: "put", class: "btn btn-success"%>
+            <%= link_to t('purchase_order.confirm_button'), confirm_purchase_order_path(@purchase_order), method: "put", class: "btn btn-success" %>
            <% elsif can?(:deliver, @purchase_order) %>
-              <%= link_to t('purchase_order.deliver_button'), deliver_purchase_order_path(@purchase_order), method: "put", class: "btn btn-success"%>
+              <%= link_to t('purchase_order.deliver_button'), deliver_purchase_order_path(@purchase_order), method: "put", class: "btn btn-success" %>
           <% end %>
           <% if can?(:update, @purchase_order) %>
            <%= link_to t('edit'), edit_purchase_order_path(@purchase_order), class: "btn btn-primary btn-spacing" %>
-          <%end%>
+          <%end %>
           <% if can?(:destroy, @purchase_order) %>
-            <%= link_to t('delete'), purchase_order_path(@purchase_order), method: :delete, class: "btn btn-danger btn-spacing", data: { confirm: t('popup.remove_medicine') } %>
+            <%= link_to t('delete'), purchase_order_path(@purchase_order), method: :delete, class: "btn btn-danger btn-spacing", data: { confirm: t('medicine.delete_confirm') } %>
           <% end %>
         </div>
       </div>
     </div>
     <div class="card-body">
-    <dl class="row">
-      <dd class="col-12">
-        <% state_colors = state_colors(@purchase_order) %>
-        <span class="p-1 rounded text-<%= state_colors[:text] %> bg-<%= state_colors[:bg] %>"><%= @purchase_order.state.capitalize %></span>
-      </dd>
-      <dt class="col-sm-2">
-        <label><%= t('purchase_order.name_label') %></label>
-      </dt>
-      <dd class="col-sm-9">
-        <%=@purchase_order.vendorname %>
-      </dd>
-      <dt class="col-sm-2">
-        <label><%= t('purchase_order.price_label') %></label>
-      </dt>
-      <dd class="col-sm-9">
-        <%=@purchase_order.price%>
-      </dd>
-    </dl>
-    <label><strong><%= t('prescription.medicines') %>: </strong></label>
-    <% if @purchase_order.medicines.present? %>
-      <table  class="table">
-        <thead>
-          <tr>
-            <th><%= t('medicine.name_label') %></th>
-            <th><%= t('medicine.price_label') %></th>
-            <th><%= t('medicine.quantity_label') %></th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @purchase_order.purchase_details.each do |purchase_detail| %>
-          <tr>
-            <td><%= link_to purchase_detail.medicine.name, medicine_path(purchase_detail.medicine) %></td>
-            <td><%= purchase_detail.medicine.price %></td>
-            <td><%= purchase_detail.quantity%></td>
-          </tr>
-        <% end %>
-    <% else %>
-      <strong><%= t('medicine.none') %></strong>
-        </tbody>
-      </table>
-    <% end %>
+      <dl class="row">
+        <dd class="col-12">
+          <% state_colors = state_colors(@purchase_order) %>
+          <span class="p-1 rounded text-<%= state_colors[:text] %> bg-<%= state_colors[:bg] %>"><%= @purchase_order.state.capitalize %></span>
+        </dd>
+        <dt class="col-sm-2">
+          <label><%= t('purchase_order.name_label') %></label>
+        </dt>
+        <dd class="col-sm-9">
+          <%= @purchase_order.vendorname %>
+        </dd>
+        <dt class="col-sm-2">
+          <label><%= t('purchase_order.price_label') %></label>
+        </dt>
+        <dd class="col-sm-9">
+          <%= @purchase_order.price %>
+        </dd>
+      </dl>
+      <label><strong><%= t('prescription.medicines') %>: </strong></label>
+      <% if @purchase_order.medicines.present? %>
+        <table  class="table">
+          <thead >
+            <tr>
+              <th><%= t('medicine.name_label') %></th>
+              <th><%= t('medicine.price_label') %></th>
+              <th><%= t('medicine.quantity_label') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @purchase_order.purchase_details.each do |purchase_detail| %>
+              <tr>
+                <td><%= link_to purchase_detail.medicine.name, medicine_path(purchase_detail.medicine) %></td>
+                <td><%= purchase_detail.medicine.price %></td>
+                <td><%= purchase_detail.quantity%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <strong><%= t('medicine.none') %></strong>
+      <% end %>
     </div>
   </div>
 </div>

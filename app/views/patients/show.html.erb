@@ -1,10 +1,10 @@
-<div class="container pt-3"> 
+<div class="container pt-3">
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
-        <h3 class="col-md-8"><%= @patient.name.titleize %></h3> 
+        <h3 class="col-md-8"><%= @patient.name.titleize %></h3>
         <div class="col-md-4 d-flex justify-content-md-end">
-          <% if can?(:edit, @patient) %> 
+          <% if can?(:edit, @patient) %>
             <%= link_to t('edit'), edit_patient_path(@patient) , class: "btn btn-primary " %>
           <% end %>
           <% if can?(:delete, @patient) %>
@@ -15,31 +15,31 @@
     </div>
     <div class="card-body">
       <dl class="row">
-        <dt class="col-sm-2">  
+        <dt class="col-sm-2">
           <label><%= t('patient.label.email') %>: </label>
         </dt>
-        <dd class="col-sm-9">   
-          <%= @patient.email %>   
+        <dd class="col-sm-9">
+          <%= @patient.email %>
         </dd>
-        <dt class="col-sm-2">  
-          <label><%= t('patient.label.gender') %>: </label>   
+        <dt class="col-sm-2">
+          <label><%= t('patient.label.gender') %>: </label>
         </dt>
-        <dd class="col-sm-9">   
-          <%= @patient.gender %>   
+        <dd class="col-sm-9">
+          <%= @patient.gender %>
         </dd>
-        <dt class="col-sm-2">  
+        <dt class="col-sm-2">
           <label><%= t('patient.label.dob') %>: </label>
         </dt>
-        <dd class="col-sm-9">   
-          <%= @patient.dob %>   
+        <dd class="col-sm-9">
+          <%= @patient.dob %>
         </dd>
-        <dt class="col-sm-2">  
+        <dt class="col-sm-2">
           <label><%= t('patient.label.family_history') %>: </label>
         </dt>
-        <dd class="col-sm-9">   
-          <%= @patient.family_history %>   
+        <dd class="col-sm-9">
+          <%= @patient.family_history %>
         </dd>
       </dl>
-    </div>    
-  </div>   
-</div>  
+    </div>
+  </div>
+</div>

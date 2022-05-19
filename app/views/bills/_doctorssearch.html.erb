@@ -1,13 +1,12 @@
 <div class="container" id="docsearch">
-  <%= form_tag(search_doctors_path, method: 'get', remote: true, 
-  class: 'navbar-form navbar-left') do %>
+  <%= form_tag(search_doctors_path, method: 'get', remote: true, class: 'navbar-form navbar-left') do %>
     <div class="input-group">
       <%= text_field_tag :search, nil, required: true, id: 'search_doctors', placeholder: "Search Doctors..." %>
-      <%= hidden_field_tag :bill_sequence_num, @bill.sequence_num%>
-      <div class="input-group-btn">  
-        <%= submit_tag t('submit'), class: 'btn btn-info glyphicon glyphicon-search',name: nil%>
+      <%= hidden_field_tag :bill_sequence_num, @bill.sequence_num %>
+      <div class="input-group-btn">
+        <%= submit_tag t('submit'), class: 'btn btn-info glyphicon glyphicon-search',name: nil %>
       </div>
     </div>
   <% end %>
-</div> 
+</div>
 <div class="container" id="display_results"></div>

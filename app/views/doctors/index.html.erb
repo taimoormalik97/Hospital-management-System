@@ -1,15 +1,15 @@
-<div class="container pt-3"> 
+<div class="container pt-3">
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
-        <h3 class="col-md-10">Doctors</h3> 
+        <h3 class="col-md-10"><%= t('doctor.name') %></h3>
         <% if current_user.admin? %>
           <div class="col-md-2 d-flex justify-content-md-end">
-            <%= link_to 'Add', new_doctor_path ,class: "btn btn-primary" %>   
-          </div>   
+            <%= link_to t('add'), new_doctor_path ,class: "btn btn-primary" %>
+          </div>
         <% end %>
       </div>
-    </div> 
+    </div>
     <div class="card-body">
       <%= render partial: 'speciality_filter' %>
       <% if @doctors.present? %>
@@ -21,5 +21,5 @@
   </div>
 </div>
 <div class="pagination justify-content-center" class="pagination-spacing">
-  <%= will_paginate @doctors, previous_label: t('paginate.previous'), next_label: t('paginate.next') %> 
+  <%= will_paginate @doctors, previous_label: t('paginate.previous'), next_label: t('paginate.next') %>
 </div>

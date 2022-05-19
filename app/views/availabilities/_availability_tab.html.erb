@@ -1,30 +1,30 @@
 <div class="tab-pane <%= addclass %>" id="<%= "pag#{num+1}" %>" role="tabpanel">
   <div class="sv-tab-panel">
-    <div class="container pt-3"> 
+    <div class="container pt-3">
       <div class="card scroll">
         <div class="card-body table-responsive">
           <% unless @availabilities.empty? %>
-            <table class="table">   
-              <thead>   
-                <tr>   
-                  <th><%= t('availability.label.start') %></th>   
-                  <th><%= t('availability.label.end') %></th> 
+            <table class="table">
+              <thead>
+                <tr>
+                  <th><%= t('availability.label.start') %></th>
+                  <th><%= t('availability.label.end') %></th>
                   <th></th>
-                </tr>   
-              </thead>   
+                </tr>
+              </thead>
               <tbody>
                 <% @availabilities.each do |availability| %>
-                  <tr>  
-                    <td><%= convert_to_twelve_hour_format(availability.start_slot) %></td>  
+                  <tr>
+                    <td><%= convert_to_twelve_hour_format(availability.start_slot) %></td>
                     <td><%= convert_to_twelve_hour_format(availability.end_slot) %></td>
                     <td>
                       <%= link_to doctor_availability_path(@doctor, availability), method: :delete do %>
                         <i class="fas fa-trash-alt"></i>
                       <% end %>
-                    </td>     
-                  </tr>   
-                <% end %>  
-              </tbody>   
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
             </table>
           <% else %>
             <%= t('availability.label.empty_message') %>

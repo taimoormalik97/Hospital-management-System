@@ -1,4 +1,4 @@
-<%= form_for @purchase_order, url: {action: :create} do |f| %> 
+<%= form_for @purchase_order, url: { action: :create } do |f| %>
   <div class="container  pt-3">
       <div class="card">
         <div class="card-header p-3 container-fluid">
@@ -15,7 +15,7 @@
               <%= f.text_field :vendorname, required: true, class: "form-control" %>
             </div>
             <div class="form-group">
-              <%= f.hidden_field :price, value: 0%>
+              <%= f.hidden_field :price, value: 0 %>
             </div>
             <div class="form-group">
               <label><%= t('purchase_order.state_label') %></label>
@@ -26,7 +26,7 @@
         <div class="card-footer p-3 container-fluid">
           <div class="row d-flex justify-content-md-end">
             <div class="col-md-3 d-flex justify-content-md-end">
-              <%= link_to 'Cancel', purchase_order_index_path , class: "btn btn-secondary btn-spacing" %>
+              <%= link_to t('cancel'), purchase_order_index_path , class: "btn btn-secondary btn-spacing" %>
               <%= f.submit t('create'), class: "btn btn-primary btn-spacing" %>
             </div>
           </div>

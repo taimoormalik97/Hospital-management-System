@@ -1,4 +1,4 @@
-<%= form_for([@doctor, @availability], method: 'post') do |f| %> 
+<%= form_for([@doctor, @availability], method: 'post') do |f| %>
   <div class="modal-header">
     <h5 class="modal-title" id="exampleModalLabel"><%= t('availability.label.new_slot_label') %></h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -8,17 +8,17 @@
   <div class="modal-body">
     <div class="form-group">
       <label class="col-form-label"><%= t('availability.label.day') %>:</label>
-      <%= f.select :week_day, options_for_select(Date::DAYNAMES), {required: true}, { class: 'form-control', id: 'select_availability_day' }  %>  
+      <%= f.select :week_day, options_for_select(Date::DAYNAMES), {required: true}, { class: 'form-control', id: 'select_availability_day' }  %>
     </div>
     <div class="form-group">
       <label class="col-form-label"><%= t('availability.label.start') %>:</label>
       <div >
-        <%= f.time_select :start_slot, {minute_step: 30}, required: true, class: 'form-control time' %> 
+        <%= f.time_select :start_slot, {minute_step: 30}, required: true, class: 'form-control time' %>
       </div>
     <div class="form-group">
       <label class="col-form-label"><%= t('availability.label.end') %>:</label>
       <div >
-        <%= f.time_select :end_slot, {minute_step: 30}, required: true, class: 'form-control time' %> 
+        <%= f.time_select :end_slot, {minute_step: 30}, required: true, class: 'form-control time' %>
       </div>
     </div>
     <div class="form-group pl-2 font-italic color-ready note">
@@ -27,6 +27,6 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-    <%= f.submit 'Add' , class: "btn btn-primary " %>
+    <%= f.submit t('add') , class: "btn btn-primary " %>
   </div>
 <% end %>

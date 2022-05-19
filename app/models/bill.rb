@@ -10,7 +10,7 @@ class Bill < ApplicationRecord
   def add_medicine(medicine, quantity_added)
     begin
       Bill.transaction do
-        if medicine.quantity > 0 && quantity_added <= medicine.quantity
+        if quantity_added > 0 && medicine.quantity > 0 && quantity_added <= medicine.quantity
           if medicine.update!(quantity: medicine.quantity - quantity_added)
             updated_price = price + (medicine.price * quantity_added)
             update!(price: updated_price)
@@ -22,12 +22,12 @@ class Bill < ApplicationRecord
             end
           end
         else
-          errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
+          errors.add :base, I18n.t('medicine.add.failure')
           return false
         end
       end
     rescue => e
-      errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
+      errors.add :base, I18n.t('medicine.add.failure')
     end
   end
 
@@ -40,5 +40,9 @@ class Bill < ApplicationRecord
       update(price: self.price + doctor.consultancy_fee)
       bill_details.create(billable: doctor, hospital: doctor.hospital)
     end
+  end
+
+  def medicine_bill?
+    billable_type == 'medicine'
   end
 end

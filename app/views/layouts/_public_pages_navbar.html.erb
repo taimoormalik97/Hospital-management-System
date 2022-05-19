@@ -1,18 +1,18 @@
 <nav class="navbar nav-static-pages navbar-expand-lg navbar-light fixed-top">
-  <a class="navbar-brand text-white ml-3 mr-3" href= <%= root_url(subdomain: false) %> > HMS</a>
+  <%= link_to t('guest.hms'), root_url(subdomain: false), class: "navbar-brand text-white ml-3 mr-3" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link text-white" href= <%= about_url(subdomain: false) %> ><%=t('guest.about')%></a>
+        <%= link_to t('guest.about'), about_url(subdomain: false), class: "nav-link text-white" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href= <%= contact_url(subdomain: false) %> ><%=t('guest.contact')%></a>
+        <%= link_to t('guest.contact'), contact_url(subdomain: false), class: "nav-link text-white" %>
       </li>
     </ul>
-      <%= link_to "Sign in", find_path, class: "btn btn-outline-light my-0 my-sm-0 mr-2" %>
-      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-light my-0 my-sm-0 mr-3" %>
+      <%= link_to t('guest.signin'), find_path, class: "btn btn-outline-light my-0 my-sm-0 mr-2" %>
+      <%= link_to t('guest.signup'), new_user_registration_path, class: "btn btn-light my-0 my-sm-0 mr-3" %>
   </div>
 </nav>

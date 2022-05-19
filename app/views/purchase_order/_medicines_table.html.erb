@@ -9,20 +9,20 @@
       </tr>
     </thead>
     <tbody>
-    <% @purchase_order.purchase_details.each do |detail| %>
-      <tr>
-        <td><%= link_to detail.medicine.name, medicine_path(detail.medicine) %></td>
-        <td><%= detail.medicine.price %></td>
-        <td><%= detail.quantity %></td>
-        <td>
-          <%= link_to remove_medicine_purchase_order_path(id: params[:id], medicine_id: detail.medicine.id), method: :post, data: { confirm: t('popup.remove_medicine') }, remote: true do %>
-            <i class="fas fa-trash-alt color-danger"></i>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% @purchase_order.purchase_details.each do |detail| %>
+        <tr>
+          <td><%= link_to detail.medicine.name, medicine_path(detail.medicine) %></td>
+          <td><%= detail.medicine.price %></td>
+          <td><%= detail.quantity %></td>
+          <td>
+            <%= link_to remove_medicine_purchase_order_path(id: params[:id], medicine_id: detail.medicine.id), method: :post, data: { confirm: t('medicine.delete_confirm') }, remote: true do %>
+              <i class="fas fa-trash-alt color-danger"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% else %>
   <strong><%= t('medicine.none') %></strong>
 <% end %>

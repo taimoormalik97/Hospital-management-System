@@ -1,9 +1,9 @@
-<div class="container pt-3 mb-3 half-background"> 
+<div class="container pt-3 mb-3 half-background">
   <div class="row">
-    <%= render partial: "dashboard_top_card", locals: {text_label: 'Doctors',value: count_doctors(@current_hospital)} %>
-    <%= render partial: "dashboard_top_card", locals: {text_label: 'Appointments',value: count_user_appointments(current_user)} %>
-    <%= render partial: "dashboard_top_card", locals: {text_label: 'Your Orders',value: count_patient_orders(current_user)} %>
-    <%= render partial: "dashboard_top_card", locals: {text_label: 'Medicines',value: count_medicines(@current_hospital)} %>
+    <%= render partial: "dashboard_top_card", locals: { text_label: t('dashboard.doctors'), value: count_doctors(@current_hospital) } %>
+    <%= render partial: "dashboard_top_card", locals: { text_label: t('dashboard.appointments'), value: count_user_appointments(current_user) } %>
+    <%= render partial: "dashboard_top_card", locals: { text_label: t('dashboard.your_orders'), value: count_patient_orders(current_user) } %>
+    <%= render partial: "dashboard_top_card", locals: { text_label: t('dashboard.medicines'), value: count_medicines(@current_hospital) } %>
   </div>
   <div class="row">
     <div class="col-xl-4 my-4">
@@ -11,8 +11,8 @@
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
             <div class="col">
-              <h6 class="text-uppercase text-muted ls-1 mb-1">Overview</h6>
-              <h5 class="title-large mb-0">Appointments</h5>
+              <h6 class="text-uppercase text-muted ls-1 mb-1"><%= t('dashboard.overview') %></h6>
+              <h5 class="title-large mb-0"><%= t('dashboard.appointments') %></h5>
             </div>
           </div>
         </div>
@@ -31,8 +31,8 @@
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
             <div class="col">
-              <h6 class="text-light text-uppercase ls-1 mb-1">Purchased Medicines</h6>
-              <h5 class="title-large text-white mb-0">Orders</h5>
+              <h6 class="text-light text-uppercase ls-1 mb-1"><%= t('dashboard.purchased_medicines') %></h6>
+              <h5 class="title-large text-white mb-0"><%= t('dashboard.overview') %></h5>
             </div>
           </div>
         </div>

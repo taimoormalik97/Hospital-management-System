@@ -10,7 +10,7 @@ FactoryGirl.define do
   end
 
   factory :admin, class: User do
-    id {Faker::Number.digit }
+    id { Faker::Number.digit }
     name { Faker::Name.unique.name }
     email { Faker::Internet.unique.email }
     password { Faker::Internet.password }
@@ -24,7 +24,7 @@ FactoryGirl.define do
     email { Faker::Internet.unique.email }
     password { Faker::Internet.password }
     type 'Doctor'
-    registration_no { Faker::Number.digit }
+    registration_no { Faker::Number.number(digits: 10) }
     speciality { Faker::Name.unique.name }
     password_confirmation { password }
     consultancy_fee 200

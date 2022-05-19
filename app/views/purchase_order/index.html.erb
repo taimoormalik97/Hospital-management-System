@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
-        <h3 class="col-md-10"><%= t('purchase_order.heading') %></h3> 
+        <h3 class="col-md-10"><%= t('purchase_order.heading') %></h3>
         <div class="col-md-2 d-flex justify-content-md-end">
           <%= link_to t('purchase_order.add_order_label'), new_purchase_order_path, class: "btn btn-primary" %>
         </div>
@@ -10,7 +10,7 @@
     </div>
     <div class="card-body">
       <% if @purchase_orders.present? %>
-        <table  class="table">
+        <table class="table">
           <thead>
             <tr>
               <th><%= t('purchase_order.id') %></th>
@@ -21,40 +21,40 @@
             </tr>
           </thead>
           <tbody>
-          <% @purchase_orders.each do |purchase_order| %>
-            <% state_colors = state_colors(purchase_order) %>
-            <tr>
-              <td><%= link_to purchase_order.sequence_num, purchase_order_path(purchase_order) %></td>
-              <td><%= purchase_order.vendorname %></td>
-              <td><%= purchase_order.price %></td>
-              <td><span class="p-1 rounded text-<%= state_colors[:text] %> bg-<%= state_colors[:bg] %>"><%= purchase_order.state.capitalize %></span></td>
-              <div>
-                <td>
-                  <div class='row'>
-                    <div class='col-sm'>
-                      <% if can? :update, purchase_order %>
-                        <%= link_to edit_purchase_order_path(purchase_order), class: 'float-right' do %>
-                          <i class="fas fa-pen"></i>
+            <% @purchase_orders.each do |purchase_order| %>
+              <% state_colors = state_colors(purchase_order) %>
+              <tr>
+                <td><%= link_to purchase_order.sequence_num, purchase_order_path(purchase_order) %></td>
+                <td><%= purchase_order.vendorname %></td>
+                <td><%= purchase_order.price %></td>
+                <td><span class="p-1 rounded text-<%= state_colors[:text] %> bg-<%= state_colors[:bg] %>"><%= purchase_order.state.capitalize %></span></td>
+                <div>
+                  <td>
+                    <div class='row'>
+                      <div class='col-sm'>
+                        <% if can? :update, purchase_order %>
+                          <%= link_to edit_purchase_order_path(purchase_order), class: 'float-right' do %>
+                            <i class="fas fa-pen"></i>
+                          <% end %>
                         <% end %>
-                      <% end %>
-                    </div>
-                    <div class='col-sm'>
-                      <% if can? :destroy, purchase_order %>
-                        <%= link_to purchase_order_path(purchase_order), method: :delete,  data: { confirm:'Are you sure you want to delete medicine?' } do %>
-                          <i class="fas fa-trash-alt color-danger"></i>
+                      </div>
+                      <div class='col-sm'>
+                        <% if can? :destroy, purchase_order %>
+                          <%= link_to purchase_order_path(purchase_order), method: :delete,  data: { confirm: t('medicine.delete_confirm') } do %>
+                            <i class="fas fa-trash-alt color-danger"></i>
+                          <% end %>
                         <% end %>
-                      <% end %>
+                      </div>
                     </div>
-                  </div>
-                </td>
-              </div>
-            </tr>
-          <% end %>
-        <% else %>
-          <strong><%= t('purchase_order.none') %></strong>
-        <% end %>
-        </tbody>
-      </table>
+                  </td>
+                </div>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <strong><%= t('purchase_order.none') %></strong>
+      <% end %>
     </div>
   </div>
 </div>

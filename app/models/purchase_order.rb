@@ -20,10 +20,11 @@ class PurchaseOrder < ApplicationRecord
   belongs_to :admin
   has_many :purchase_details, dependent: :destroy
   has_many :medicines, through: :purchase_details
+  
   def add_medicine(medicine, quantity_added)
     begin
       PurchaseOrder.transaction do
-        if self.update(price: self.price += medicine.price*quantity_added)
+        if quantity_added > 0 && self.update(price: self.price += medicine.price*quantity_added)
           curr_purchase_detail = purchase_details.find_by(medicine: medicine)
           if curr_purchase_detail
             updated_quantity = quantity_added + curr_purchase_detail.quantity
@@ -32,12 +33,12 @@ class PurchaseOrder < ApplicationRecord
             purchase_details.create(quantity: quantity_added, medicine: medicine, hospital: medicine.hospital)
           end
         else
-          self.errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
+          self.errors.add(:base, I18n.t('medicine.add.failure'))
           return false
         end
       end
     rescue ActiveRecord::RecordNotSaved
-      self.errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
+      self.errors.add(:base, I18n.t('medicine.add.failure'))
     end   
   end
   
@@ -51,11 +52,11 @@ class PurchaseOrder < ApplicationRecord
             update(price: self.price - price)
           end
         else
-          self.errors.add(:unable_to_add, I18n.t('medicine.delete.failure'))
+          self.errors.add(:base, I18n.t('medicine.delete.failure'))
         end
       end
     rescue ActiveRecord::RecordNotSaved
-      self.errors.add(:unable_to_add, I18n.t('medicine.add.failure'))
+      self.errors.add(:base, I18n.t('medicine.add.failure'))
       return false
     end
   end

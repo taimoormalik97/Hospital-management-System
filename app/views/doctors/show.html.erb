@@ -1,10 +1,10 @@
-<div class="container pt-3"> 
+<div class="container pt-3">
   <div class="card">
     <div class="card-header p-3 container-fluid">
       <div class="row">
         <h3 class="col-md-8">Dr. <%= @doctor.name %></h3>
-        <div class="col-md-4 d-flex justify-content-md-end"> 
-          <% if can?(:edit, @doctor) %> 
+        <div class="col-md-4 d-flex justify-content-md-end">
+          <% if can?(:edit, @doctor) %>
             <%= link_to t('edit'), edit_doctor_path(@doctor) , class: "btn btn-primary " %>
           <% end %>
           <% if can?(:delete, @doctor) %>
@@ -25,29 +25,29 @@
         </div>
         <div class="col-sm-9">
           <dl class="row">
-            <dt class="col-sm-3">  
+            <dt class="col-sm-3">
               <label><%= t('doctor.label.email') %>: </label>
             </dt>
-            <dd class="col-sm-9">   
-              <%= @doctor.email %>   
+            <dd class="col-sm-9">
+              <%= @doctor.email %>
             </dd>
-            <dt class="col-sm-3">  
-              <label><%= t('doctor.label.registration_no') %>: </label>   
+            <dt class="col-sm-3">
+              <label><%= t('doctor.label.registration_no') %>: </label>
             </dt>
-            <dd class="col-sm-9">   
-              <%= @doctor.registration_no %>   
+            <dd class="col-sm-9">
+              <%= @doctor.registration_no %>
             </dd>
-            <dt class="col-sm-3">  
+            <dt class="col-sm-3">
               <label><%= t('doctor.label.speciality') %>: </label>
             </dt>
-            <dd class="col-sm-9">   
-              <%= @doctor.speciality %>   
+            <dd class="col-sm-9">
+              <%= @doctor.speciality %>
             </dd>
-            <dt class="col-sm-3">  
+            <dt class="col-sm-3">
               <label><%= t('doctor.label.consultancy_fee') %>: </label>
             </dt>
-            <dd class="col-sm-9">   
-              <%= @doctor.consultancy_fee %>   
+            <dd class="col-sm-9">
+              <%= @doctor.consultancy_fee %>
             </dd>
           </dl>
         </div>
